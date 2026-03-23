@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass, field
 from typing import Any, TypedDict
 
@@ -37,7 +38,7 @@ class ApiResponse:
     headers: dict[str, str] = field(
         default_factory=lambda: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': os.environ.get('ALLOWED_FRONTEND_ORIGIN', '*'),
         }
     )
 

@@ -1,0 +1,135 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: DataProtection backend managed with AWS SAM.
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: dev
+    Description: Deployment environment name used for the stack stage and resource naming.
+  CognitoUserPoolId:
+    Type: String
+    Default: us-east-1_drQNWrXIr
+    Description: Cognito User Pool ID used by the HTTP API JWT authorizer.
+  CognitoAppClientId:
+    Type: String
+    Default: ini1cmdvm498ljb0b64hke9co
+    Description: Cognito App Client ID used as the JWT audience.
+  AllowedFrontendOrigin:
+    Type: String
+    Default: https://main.d3j3nhep0c70ml.amplifyapp.com
+    Description: Frontend origin allowed for browser CORS requests.
+  DynamoDbTableName:
+    Type: String
+    Default: dataprotection-dev-main-sam
+    Description: DynamoDB table name for the SAM-managed backend.
+
+Globals:
+  Function:
+    Runtime: python3.11
+    Timeout: 15
+    MemorySize: 256
+    Tracing: Active
+    Environment:
+      Variables:
+        APP_ENV: !Ref EnvironmentName
+        DYNAMODB_TABLE_NAME: !Ref DynamoDbTableName
+        ALLOWED_FRONTEND_ORIGIN: !Ref AllowedFrontendOrigin
+
+Resources:
+  BackendHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: !Ref EnvironmentName
+      CorsConfiguration:
+        AllowOrigins:
+          - !Ref AllowedFrontendOrigin
+        AllowHeaders:
+          - Authorization
+          - Content-Type
+        AllowMethods:
+          - GET
+          - POST
+          - OPTIONS
+        MaxAge: 600
+      Auth:
+        DefaultAuthorizer: CognitoJwtAuthorizer
+        Authorizers:
+          CognitoJwtAuthorizer:
+            IdentitySource: "$request.header.Authorization"
+            JwtConfiguration:
+              audience:
+                - !Ref CognitoAppClientId
+              issuer: !Sub https://cognito-idp.${AWS::Region}.amazonaws.com/${CognitoUserPoolId}
+
+  BackendTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref DynamoDbTableName
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+        - AttributeName: sk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+        - AttributeName: sk
+          KeyType: RANGE
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+
+  BackendApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub dataprotection-${EnvironmentName}-api
+      CodeUri: src/
+      Handler: app.lambda_handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DynamoDbTableName
+      Events:
+        HealthRoute:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BackendHttpApi
+            Method: GET
+            Path: /health
+            Auth:
+              Authorizer: NONE
+        FrameworksRoute:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BackendHttpApi
+            Method: GET
+            Path: /frameworks
+        BootstrapRoute:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BackendHttpApi
+            Method: GET
+            Path: /app/bootstrap
+        OrganisationsRoute:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BackendHttpApi
+            Method: POST
+            Path: /organisations
+        AssessmentsRoute:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BackendHttpApi
+            Method: POST
+            Path: /assessments
+
+Outputs:
+  ApiUrl:
+    Description: Base URL for the SAM-managed HTTP API stage.
+    Value: !Sub https://${BackendHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/${EnvironmentName}
+  ApiFunctionName:
+    Description: Lambda function name serving the HTTP API.
+    Value: !Ref BackendApiFunction
+  DynamoDbTableName:
+    Description: DynamoDB table name used by the backend.
+    Value: !Ref BackendTable

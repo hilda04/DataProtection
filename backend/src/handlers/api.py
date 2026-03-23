@@ -4,7 +4,6 @@ import json
 from typing import Any
 
 from models.types import ApiResponse
-from services.assessment_engine import calculate_weighted_score, generate_findings
 from services.data_store import (
     ConflictError,
     DataStore,
@@ -14,31 +13,16 @@ from services.data_store import (
     get_user_from_event,
 )
 from services.framework_registry import load_framework_catalog
-from services.report_builder import build_report_summary
 
-SAMPLE_RESPONSES = [
-    {
-        'sectionId': 'governance',
-        'controlId': 'ZW-DPA-GOV-01',
-        'score': 2,
-        'weight': 5,
-        'priority': 'high',
-        'findingTemplate': 'Privacy governance ownership is not consistently formalised.',
-        'recommendation': (
-            'Assign a documented privacy lead and approve governance terms of '
-            'reference.'
-        ),
-    },
-    {
-        'sectionId': 'security',
-        'controlId': 'ZW-DPA-SEC-02',
-        'score': 1,
-        'weight': 4,
-        'priority': 'high',
-        'findingTemplate': 'Breach response activities are not fully documented or rehearsed.',
-        'recommendation': 'Create and test a breach management workflow with escalation criteria.',
-    },
-]
+
+def health(_event: dict[str, Any], _context: Any) -> dict[str, Any]:
+    return ApiResponse(
+        status_code=200,
+        body={
+            'ok': True,
+            'service': 'dataprotection-backend',
+        },
+    ).to_dict()
 
 
 def get_bootstrap(event: dict[str, Any], _context: Any) -> dict[str, Any]:
@@ -77,27 +61,23 @@ def list_frameworks(_event: dict[str, Any], _context: Any) -> dict[str, Any]:
         return ApiResponse(status_code=200, body=load_framework_catalog()).to_dict()
 
 
-def start_assessment(_event: dict[str, Any], _context: Any) -> dict[str, Any]:
-    return ApiResponse(
-        status_code=201,
-        body={
-            'assessmentId': 'asm_demo_001',
-            'status': 'coming_next',
-            'frameworkId': 'zim-dpa',
-            'message': 'Assessment creation is coming next.',
-        },
-    ).to_dict()
-
-
-def calculate_results(_event: dict[str, Any], _context: Any) -> dict[str, Any]:
-    scorecard = calculate_weighted_score(SAMPLE_RESPONSES)
-    findings = generate_findings(SAMPLE_RESPONSES)
-    report = build_report_summary(
-        organization={'organizationId': 'org_demo', 'name': 'Demo Organization'},
-        scorecard=scorecard,
-        findings=findings,
-    )
-    return ApiResponse(status_code=200, body=report).to_dict()
+def create_assessment(event: dict[str, Any], _context: Any) -> dict[str, Any]:
+    try:
+        user = get_user_from_event(event)
+        payload = _load_body(event)
+        framework_id = payload.get('frameworkId', 'zim-dpa')
+        return ApiResponse(
+            status_code=201,
+            body={
+                'assessmentId': 'pending',
+                'frameworkId': framework_id,
+                'status': 'coming_next',
+                'requestedBy': user['sub'],
+                'message': 'Assessment creation is ready for future implementation.',
+            },
+        ).to_dict()
+    except NotAuthenticatedError as error:
+        return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
 
 
 def _load_body(event: dict[str, Any]) -> dict[str, Any]:

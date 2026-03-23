@@ -144,3 +144,17 @@ def test_list_frameworks_returns_metadata(monkeypatch: pytest.MonkeyPatch) -> No
     assert response['statusCode'] == 200
     assert body[0]['frameworkId'] == 'zim-dpa'
     assert 'description' in body[0]
+
+
+def test_create_assessment_returns_stub(auth_event: dict[str, Any]) -> None:
+    event = {
+        **auth_event,
+        'body': json.dumps({'frameworkId': 'zim-dpa'}),
+    }
+
+    response = api.create_assessment(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 201
+    assert body['frameworkId'] == 'zim-dpa'
+    assert body['status'] == 'coming_next'
