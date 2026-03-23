@@ -1,0 +1,133 @@
+:root {
+  color: #10233c;
+  background: #f3f6fb;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button {
+  appearance: none;
+  border: 0;
+  border-radius: 0.875rem;
+  background: #1d4ed8;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.85rem 1.1rem;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+code {
+  background: #e2e8f0;
+  border-radius: 0.4rem;
+  padding: 0.1rem 0.35rem;
+}
+
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-radius: 0.875rem;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1rem;
+  min-height: 4rem;
+}
+
+#root {
+  width: 100%;
+}
+
+.shell {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  padding: 1.5rem;
+}
+
+.hero-panel {
+  padding-bottom: 1.25rem;
+}
+
+.status-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.actions-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.secondary-button {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.eyebrow,
+.label {
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.lead {
+  margin-bottom: 0;
+  max-width: 54rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.95rem;
+}
+
+.status-badge.authenticated {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.signed_out,
+.status-badge.checking {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 1rem 0.75rem 2rem;
+  }
+
+  .actions-panel {
+    display: grid;
+  }
+}
