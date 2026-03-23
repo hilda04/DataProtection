@@ -12,7 +12,11 @@ RISK_LEVELS = {
 def calculate_weighted_score(responses: list[dict[str, Any]]) -> dict[str, Any]:
     total_weight = sum(item["weight"] for item in responses)
     weighted_sum = sum(item["weight"] * item["score"] for item in responses)
-    percentage = round((weighted_sum / (total_weight * MATURITY_SCALE)) * 100) if total_weight else 0
+    percentage = (
+        round((weighted_sum / (total_weight * MATURITY_SCALE)) * 100)
+        if total_weight
+        else 0
+    )
     return {
         "overallScore": percentage,
         "sectionScores": _calculate_section_scores(responses),

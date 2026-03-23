@@ -1,5 +1,3 @@
-import 'aws-amplify/auth/enable-oauth-listener';
-
 import { Amplify } from 'aws-amplify';
 import { fetchAuthSession, getCurrentUser, signInWithRedirect, signOut } from 'aws-amplify/auth';
 
