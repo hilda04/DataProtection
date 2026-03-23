@@ -1,198 +1,25 @@
 {
-  "frameworkId": "zw-cdpa-2021",
-  "name": "Zimbabwe Cyber and Data Protection Act Self-Assessment",
-  "version": "1.0.0",
+  "frameworkId": "zim-dpa",
+  "name": "Zimbabwe Cyber and Data Protection Act",
+  "version": "2021",
   "jurisdiction": "Zimbabwe",
   "regulationFamily": "Data protection",
-  "description": "Configurable maturity-based self-assessment aligned to the Zimbabwe Cyber and Data Protection Act.",
-  "maturityModel": {
-    "min": 0,
-    "max": 4,
-    "levels": [
-      { "score": 0, "label": "Not in place" },
-      { "score": 1, "label": "Ad hoc" },
-      { "score": 2, "label": "Partially documented" },
-      { "score": 3, "label": "Implemented" },
-      { "score": 4, "label": "Monitored and reviewed" }
-    ]
-  },
+  "description": "Self-assessment against key data protection requirements for Zimbabwean organisations.",
   "sections": [
     {
       "id": "governance-accountability",
       "title": "Governance and accountability",
-      "summary": "Leadership ownership, policies, roles, and oversight for data protection.",
-      "controls": [
-        {
-          "id": "ZW-DPA-GOV-01",
-          "title": "Privacy accountability structure",
-          "weight": 5,
-          "legalReferences": ["Accountability", "Governance obligations"],
-          "findingTemplate": "Formal privacy accountability roles are not clearly defined.",
-          "recommendedAction": "Appoint a responsible privacy lead and approve governance responsibilities.",
-          "questions": [
-            {
-              "id": "Q-GOV-01",
-              "prompt": "How clearly are privacy responsibilities assigned and documented?",
-              "helpText": "Consider board oversight, management ownership, and operational roles.",
-              "responseType": "maturity"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "data-inventory-classification",
-      "title": "Personal data inventory and classification",
-      "summary": "Visibility of personal data, processing activities, and sensitive classifications.",
-      "controls": [
-        {
-          "id": "ZW-DPA-DATA-01",
-          "title": "Personal data inventory",
-          "weight": 4,
-          "legalReferences": ["Processing records", "Sensitive data awareness"],
-          "findingTemplate": "The organisation does not maintain a reliable inventory of personal data processing.",
-          "recommendedAction": "Create and maintain a data inventory covering systems, categories, purposes, and retention.",
-          "questions": [
-            {
-              "id": "Q-DATA-01",
-              "prompt": "How complete and current is your inventory of personal data and sensitive data?",
-              "helpText": "Include systems, owners, locations, and cross-border transfers where relevant.",
-              "responseType": "maturity"
-            }
-          ]
-        }
-      ]
+      "summary": "Leadership ownership, policies, roles, and oversight for data protection."
     },
     {
       "id": "lawful-processing-consent",
       "title": "Lawful processing and consent",
-      "summary": "Legal basis, consent controls, and purpose limitation practices.",
-      "controls": [
-        {
-          "id": "ZW-DPA-LAW-01",
-          "title": "Lawful basis and consent evidence",
-          "weight": 5,
-          "legalReferences": ["Lawful processing", "Consent requirements"],
-          "findingTemplate": "Lawful bases or consent records are incomplete for one or more processing activities.",
-          "recommendedAction": "Document lawful bases per process and implement evidence-backed consent records where required.",
-          "questions": [
-            {
-              "id": "Q-LAW-01",
-              "prompt": "How consistently are lawful bases and consent records captured for processing activities?",
-              "helpText": "Assess documented rationale, approval, and traceability.",
-              "responseType": "maturity"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "transparency-notices",
-      "title": "Transparency and notices",
-      "summary": "Privacy notices, communication clarity, and fair processing disclosure.",
-      "controls": [
-        {
-          "id": "ZW-DPA-TRN-01",
-          "title": "Privacy notice management",
-          "weight": 3,
-          "legalReferences": ["Transparency", "Notice obligations"],
-          "findingTemplate": "Privacy notices are missing, outdated, or not aligned to actual processing.",
-          "recommendedAction": "Review and publish privacy notices for each major processing context.",
-          "questions": [
-            {
-              "id": "Q-TRN-01",
-              "prompt": "How well do your privacy notices describe data use, rights, and contact points?",
-              "helpText": "Review websites, forms, HR notices, and customer onboarding materials.",
-              "responseType": "maturity"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "data-subject-rights",
-      "title": "Data subject rights",
-      "summary": "Processes for access, correction, objection, deletion, and complaint handling.",
-      "controls": [
-        {
-          "id": "ZW-DPA-RGT-01",
-          "title": "Rights request handling",
-          "weight": 4,
-          "legalReferences": ["Data subject rights"],
-          "findingTemplate": "Data subject requests are not centrally tracked or managed to defined timelines.",
-          "recommendedAction": "Establish a request workflow, register, and ownership model for rights handling.",
-          "questions": [
-            {
-              "id": "Q-RGT-01",
-              "prompt": "How consistently can your organisation receive, log, and respond to rights requests?",
-              "helpText": "Consider intake channels, identity checks, tracking, and escalation.",
-              "responseType": "maturity"
-            }
-          ]
-        }
-      ]
+      "summary": "Legal basis, consent controls, and purpose limitation practices."
     },
     {
       "id": "security-breach-response",
       "title": "Security and breach response",
-      "summary": "Security safeguards, incident handling, and breach notification readiness.",
-      "controls": [
-        {
-          "id": "ZW-DPA-SEC-01",
-          "title": "Security safeguards",
-          "weight": 5,
-          "legalReferences": ["Security safeguards"],
-          "findingTemplate": "Security controls are not consistently implemented or reviewed for personal data processing.",
-          "recommendedAction": "Define baseline safeguards, assign owners, and monitor control operation.",
-          "questions": [
-            {
-              "id": "Q-SEC-01",
-              "prompt": "How mature are your security safeguards for protecting personal data?",
-              "helpText": "Include access control, backups, logging, awareness, and technical hardening.",
-              "responseType": "maturity"
-            }
-          ]
-        },
-        {
-          "id": "ZW-DPA-SEC-02",
-          "title": "Breach response readiness",
-          "weight": 5,
-          "legalReferences": ["Incident response", "Breach notification"],
-          "findingTemplate": "Breach response procedures are not fully documented, tested, or aligned to notification requirements.",
-          "recommendedAction": "Create a breach response playbook and test notification decision-making.",
-          "questions": [
-            {
-              "id": "Q-SEC-02",
-              "prompt": "How prepared is your organisation to detect, assess, escalate, and report a personal data breach?",
-              "helpText": "Consider decision trees, contacts, evidence handling, and rehearsal.",
-              "responseType": "maturity"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "third-parties-cross-border",
-      "title": "Third parties and cross-border transfers",
-      "summary": "Processor governance, contractual controls, and international transfer oversight.",
-      "controls": [
-        {
-          "id": "ZW-DPA-TP-01",
-          "title": "Third-party assurance and transfer governance",
-          "weight": 4,
-          "legalReferences": ["Third-party processing", "Cross-border transfers"],
-          "findingTemplate": "Third-party processing and cross-border transfer arrangements are not sufficiently governed.",
-          "recommendedAction": "Assess processors, maintain contracts, and document transfer safeguards.",
-          "questions": [
-            {
-              "id": "Q-TP-01",
-              "prompt": "How robust are your controls over service providers and cross-border transfers of personal data?",
-              "helpText": "Assess due diligence, contracts, shared responsibilities, and transfer approvals.",
-              "responseType": "maturity"
-            }
-          ]
-        }
-      ]
+      "summary": "Security safeguards, incident handling, and breach notification readiness."
     }
   ]
 }
