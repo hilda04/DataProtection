@@ -19,6 +19,7 @@ def health(_event: dict[str, Any], _context: Any) -> dict[str, Any]:
     return ApiResponse(
         status_code=200,
         body={
+            'status': 'ok',
             'ok': True,
             'service': 'dataprotection-backend',
         },

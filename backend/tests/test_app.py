@@ -6,10 +6,19 @@ from typing import Any, Dict, Optional
 from app import lambda_handler
 
 
-def make_event(method: str, path: str, body: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+def make_event(
+    method: str,
+    path: str,
+    body: Optional[Dict[str, Any]] = None,
+    *,
+    stage: str = 'dev-sam',
+    include_raw_path: bool = True,
+    include_event_path: bool = False,
+    include_request_context_path: bool = False,
+) -> Dict[str, Any]:
     event: Dict[str, Any] = {
-        'rawPath': path,
         'requestContext': {
+            'stage': stage,
             'http': {
                 'method': method,
             },
@@ -23,6 +32,16 @@ def make_event(method: str, path: str, body: Optional[Dict[str, Any]] = None) ->
             },
         },
     }
+
+    if include_raw_path:
+        event['rawPath'] = path
+
+    if include_event_path:
+        event['path'] = path
+
+    if include_request_context_path:
+        event['requestContext']['http']['path'] = path
+
     if body is not None:
         event['body'] = json.dumps(body)
     return event
@@ -30,6 +49,39 @@ def make_event(method: str, path: str, body: Optional[Dict[str, Any]] = None) ->
 
 def test_health_route_returns_ok() -> None:
     response = lambda_handler(make_event('GET', '/health'), None)
+    payload = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert payload['ok'] is True
+
+
+def test_health_route_supports_stage_prefixed_raw_path() -> None:
+    response = lambda_handler(make_event('GET', '/dev-sam/health'), None)
+    payload = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert payload['ok'] is True
+
+
+def test_health_route_supports_event_path_when_raw_path_missing() -> None:
+    event = make_event('GET', '/dev-sam/health', include_raw_path=False, include_event_path=True)
+
+    response = lambda_handler(event, None)
+    payload = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert payload['ok'] is True
+
+
+def test_health_route_supports_request_context_http_path_when_raw_path_missing() -> None:
+    event = make_event(
+        'GET',
+        '/dev-sam/health',
+        include_raw_path=False,
+        include_request_context_path=True,
+    )
+
+    response = lambda_handler(event, None)
     payload = json.loads(response['body'])
 
     assert response['statusCode'] == 200
