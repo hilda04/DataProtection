@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 import json
-from typing import Any
+from typing import Any, Dict, Optional
 
 from app import lambda_handler
 
 
-def make_event(method: str, path: str, body: dict[str, Any] | None = None) -> dict[str, Any]:
-    event: dict[str, Any] = {
+def make_event(method: str, path: str, body: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    event: Dict[str, Any] = {
         'rawPath': path,
         'requestContext': {
             'http': {

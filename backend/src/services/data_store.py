@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import os
-from datetime import UTC, datetime
-from typing import Any
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
 from models.types import FrameworkSummary, OrganisationSummary, UserSummary
@@ -36,7 +36,7 @@ REQUIRED_ORGANISATION_FIELDS = (
 
 
 class DataStore:
-    def __init__(self, table: Any | None = None, table_name: str | None = None):
+    def __init__(self, table: Optional[Any] = None, table_name: Optional[str] = None):
         resolved_table_name = table_name or os.environ.get('DYNAMODB_TABLE_NAME')
         if table is None and not resolved_table_name:
             raise DataStoreError('DYNAMODB_TABLE_NAME is not configured.')
@@ -71,7 +71,7 @@ class DataStore:
                     }
                 )
 
-    def list_frameworks(self) -> list[FrameworkSummary]:
+    def list_frameworks(self) -> List[FrameworkSummary]:
         self.ensure_framework_seed_data()
         key = _dynamodb_key()
         result = self.table.query(
@@ -92,7 +92,7 @@ class DataStore:
             for item in items
         ]
 
-    def get_bootstrap(self, user: UserSummary) -> dict[str, Any]:
+    def get_bootstrap(self, user: UserSummary) -> Dict[str, Any]:
         membership = self._get_user_membership(user['sub'])
         organisation = None
         if membership:
@@ -106,7 +106,7 @@ class DataStore:
         }
 
     def create_organisation(
-        self, user: UserSummary, payload: dict[str, Any]
+        self, user: UserSummary, payload: Dict[str, Any]
     ) -> OrganisationSummary:
         self._validate_payload(payload)
 
@@ -114,7 +114,7 @@ class DataStore:
         if existing_membership:
             raise ConflictError('You already belong to an organisation.')
 
-        created_at = datetime.now(UTC).isoformat()
+        created_at = datetime.now(timezone.utc).isoformat()
         organisation_id = f'org_{uuid4().hex[:12]}'
         organisation: OrganisationSummary = {
             'organisationId': organisation_id,
@@ -178,7 +178,7 @@ class DataStore:
 
         return organisation
 
-    def _get_user_membership(self, user_sub: str) -> dict[str, Any] | None:
+    def _get_user_membership(self, user_sub: str) -> Optional[Dict[str, Any]]:
         key = _dynamodb_key()
         result = self.table.query(
             KeyConditionExpression=(
@@ -190,7 +190,7 @@ class DataStore:
         items = result.get('Items', [])
         return items[0] if items else None
 
-    def _get_organisation(self, organisation_id: str) -> OrganisationSummary | None:
+    def _get_organisation(self, organisation_id: str) -> Optional[OrganisationSummary]:
         result = self.table.get_item(Key={'pk': f'ORG#{organisation_id}', 'sk': 'META'})
         item = result.get('Item')
         if not item:
@@ -207,14 +207,14 @@ class DataStore:
             'createdAt': item['createdAt'],
         }
 
-    def _validate_payload(self, payload: dict[str, Any]) -> None:
+    def _validate_payload(self, payload: Dict[str, Any]) -> None:
         for field_name in REQUIRED_ORGANISATION_FIELDS:
             value = payload.get(field_name)
             if not isinstance(value, str) or not value.strip():
                 raise ValidationError(f'{field_name} is required.')
 
 
-def get_user_from_event(event: dict[str, Any]) -> UserSummary:
+def get_user_from_event(event: Dict[str, Any]) -> UserSummary:
     claims = (
         event.get('requestContext', {})
         .get('authorizer', {})
@@ -236,7 +236,7 @@ def _dynamodb_key() -> Any:
     return Key
 
 
-def _serialize_item(item: dict[str, Any]) -> dict[str, dict[str, Any]]:
+def _serialize_item(item: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
     from boto3.dynamodb.types import TypeSerializer
 
     serializer = TypeSerializer()

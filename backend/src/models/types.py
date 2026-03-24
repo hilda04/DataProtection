@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import dataclass, field
-from typing import Any, TypedDict
+from typing import Any, Dict, List, TypedDict, Union
 
 
 class UserSummary(TypedDict):
@@ -28,21 +28,21 @@ class FrameworkSummary(TypedDict):
     name: str
     version: str
     description: str
-    sections: list[dict[str, str]]
+    sections: List[Dict[str, str]]
 
 
-@dataclass(slots=True)
+@dataclass
 class ApiResponse:
     status_code: int
-    body: dict[str, Any] | list[Any]
-    headers: dict[str, str] = field(
+    body: Union[Dict[str, Any], List[Any]]
+    headers: Dict[str, str] = field(
         default_factory=lambda: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': os.environ.get('ALLOWED_FRONTEND_ORIGIN', '*'),
         }
     )
 
-    def to_dict(self) -> dict[str, Any]:
+    def to_dict(self) -> Dict[str, Any]:
         return {
             'statusCode': self.status_code,
             'headers': self.headers,

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Callable
+from typing import Any, Callable, Dict, Tuple
 
 from handlers.api import (
     create_assessment,
@@ -11,9 +11,9 @@ from handlers.api import (
 )
 from models.types import ApiResponse
 
-RouteHandler = Callable[[dict[str, Any], Any], dict[str, Any]]
+RouteHandler = Callable[[Dict[str, Any], Any], Dict[str, Any]]
 
-ROUTES: dict[tuple[str, str], RouteHandler] = {
+ROUTES: Dict[Tuple[str, str], RouteHandler] = {
     ('GET', '/health'): health,
     ('GET', '/frameworks'): list_frameworks,
     ('GET', '/app/bootstrap'): get_bootstrap,
@@ -22,7 +22,7 @@ ROUTES: dict[tuple[str, str], RouteHandler] = {
 }
 
 
-def lambda_handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
+def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     method = event.get('requestContext', {}).get('http', {}).get('method', '')
     path = event.get('rawPath', '')
     handler = ROUTES.get((method, path))

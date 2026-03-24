@@ -26,7 +26,7 @@ Parameters:
 
 Globals:
   Function:
-    Runtime: python3.11
+    Runtime: python3.9
     Timeout: 15
     MemorySize: 256
     Tracing: Active
