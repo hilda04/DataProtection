@@ -215,19 +215,22 @@ class DataStore:
 
 
 def get_user_from_event(event: Dict[str, Any]) -> UserSummary:
-    claims = (
-        event.get('requestContext', {})
-        .get('authorizer', {})
-        .get('jwt', {})
-        .get('claims', {})
-    )
+    authorizer = event.get('requestContext', {}).get('authorizer', {})
+    claims = authorizer.get('jwt', {}).get('claims') or authorizer.get('claims', {})
+
+    if not isinstance(claims, dict):
+        claims = {}
+
     user_sub = claims.get('sub')
     email = claims.get('email')
 
-    if not user_sub or not email:
+    if not user_sub:
         raise NotAuthenticatedError('Authenticated user claims were not found.')
 
-    return {'sub': str(user_sub), 'email': str(email)}
+    user: UserSummary = {'sub': str(user_sub), 'email': ''}
+    if email:
+        user['email'] = str(email)
+    return user
 
 
 def _dynamodb_key() -> Any:

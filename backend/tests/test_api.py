@@ -86,6 +86,20 @@ def auth_event() -> dict[str, Any]:
     }
 
 
+@pytest.fixture
+def auth_event_rest_claims() -> dict[str, Any]:
+    return {
+        'requestContext': {
+            'authorizer': {
+                'claims': {
+                    'sub': 'user-legacy',
+                    'email': 'legacy@example.com',
+                }
+            }
+        }
+    }
+
+
 def test_get_bootstrap_returns_existing_organisation(
     monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
 ) -> None:
@@ -97,6 +111,19 @@ def test_get_bootstrap_returns_existing_organisation(
     assert response['statusCode'] == 200
     assert body['hasOrganisation'] is True
     assert body['organisation']['organisationId'] == 'org_123'
+
+
+def test_get_bootstrap_accepts_rest_authorizer_claims(
+    monkeypatch: pytest.MonkeyPatch, auth_event_rest_claims: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
+
+    response = api.get_bootstrap(auth_event_rest_claims, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert body['user']['sub'] == 'user-legacy'
+    assert body['user']['email'] == 'legacy@example.com'
 
 
 def test_create_organisation_uses_authenticated_user(
@@ -123,6 +150,37 @@ def test_create_organisation_uses_authenticated_user(
 
     assert response['statusCode'] == 201
     assert body['createdBy'] != 'frontend-user-should-not-win'
+
+
+def test_create_organisation_allows_missing_email_claim(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=False))
+    event = {
+        'requestContext': {
+            'authorizer': {
+                'jwt': {
+                    'claims': {
+                        'sub': auth_event['requestContext']['authorizer']['jwt']['claims']['sub'],
+                    }
+                }
+            }
+        },
+        'body': json.dumps(
+            {
+                'name': 'Example Org',
+                'sector': 'Finance',
+                'size': '51-200',
+                'country': 'Zimbabwe',
+                'primaryContactName': 'Tariro Dube',
+                'primaryContactEmail': 'tariro@example.com',
+            }
+        ),
+    }
+
+    response = api.onboard_organization(event, None)
+
+    assert response['statusCode'] == 201
 
 
 def test_create_organisation_requires_authentication(monkeypatch: pytest.MonkeyPatch) -> None:
