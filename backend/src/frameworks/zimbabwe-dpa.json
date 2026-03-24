@@ -1,0 +1,25 @@
+{
+  "frameworkId": "zim-dpa",
+  "name": "Zimbabwe Cyber and Data Protection Act",
+  "version": "2021",
+  "jurisdiction": "Zimbabwe",
+  "regulationFamily": "Data protection",
+  "description": "Self-assessment against key data protection requirements for Zimbabwean organisations.",
+  "sections": [
+    {
+      "id": "governance-accountability",
+      "title": "Governance and accountability",
+      "summary": "Leadership ownership, policies, roles, and oversight for data protection."
+    },
+    {
+      "id": "lawful-processing-consent",
+      "title": "Lawful processing and consent",
+      "summary": "Legal basis, consent controls, and purpose limitation practices."
+    },
+    {
+      "id": "security-breach-response",
+      "title": "Security and breach response",
+      "summary": "Security safeguards, incident handling, and breach notification readiness."
+    }
+  ]
+}
