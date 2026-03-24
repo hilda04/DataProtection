@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 import {
   createOrganisation,
   getBootstrap,
@@ -6,7 +6,7 @@ import {
   type CreateOrganisationInput,
   type FrameworkSummary,
 } from './lib/api';
-import { getAuthConfigSummary, isSignedIn, login, logout } from './lib/auth';
+import { isSignedIn, login, logout } from './lib/auth';
 import './styles.css';
 
 type AuthState = 'checking' | 'authenticated' | 'signed_out';
@@ -14,7 +14,6 @@ type AppView = 'loading' | 'signed_out' | 'setup' | 'dashboard';
 
 type OrganisationFormState = CreateOrganisationInput;
 
-const authConfigSummary = getAuthConfigSummary();
 const initialFormState: OrganisationFormState = {
   name: '',
   sector: '',
@@ -24,6 +23,14 @@ const initialFormState: OrganisationFormState = {
   primaryContactEmail: '',
 };
 
+const frameworkStatusByVersion: Record<string, 'Not started' | 'In progress'> = {
+  '2024.1': 'Not started',
+};
+
+function getFrameworkStatus(framework: FrameworkSummary): 'Not started' | 'In progress' {
+  return frameworkStatusByVersion[framework.version] ?? 'Not started';
+}
+
 export default function App() {
   const [authState, setAuthState] = useState<AuthState>('checking');
   const [view, setView] = useState<AppView>('loading');
@@ -31,7 +38,6 @@ export default function App() {
   const [bootstrapError, setBootstrapError] = useState('');
   const [formState, setFormState] = useState<OrganisationFormState>(initialFormState);
   const [formError, setFormError] = useState('');
-  const [formSuccess, setFormSuccess] = useState('');
   const [isBusy, setIsBusy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [assessmentMessage, setAssessmentMessage] = useState('');
@@ -39,14 +45,6 @@ export default function App() {
   useEffect(() => {
     void initialiseApp();
   }, []);
-
-  const statusLabel = useMemo(() => {
-    if (authState === 'checking') {
-      return 'Checking session…';
-    }
-
-    return authState === 'authenticated' ? 'Signed in' : 'Signed out';
-  }, [authState]);
 
   async function initialiseApp(): Promise<void> {
     setIsBusy(true);
@@ -80,7 +78,7 @@ export default function App() {
     if (!result.ok || !result.data) {
       setBootstrap(null);
       setBootstrapError(result.error ?? 'Unable to load your workspace.');
-      setView('signed_out');
+      setView(authState === 'authenticated' ? 'dashboard' : 'signed_out');
       return;
     }
 
@@ -93,10 +91,6 @@ export default function App() {
     setView(result.data.hasOrganisation ? 'dashboard' : 'setup');
   }
 
-  async function handleLogin(): Promise<void> {
-    await login();
-  }
-
   async function handleLogout(): Promise<void> {
     setIsBusy(true);
     try {
@@ -106,7 +100,6 @@ export default function App() {
       setBootstrap(null);
       setBootstrapError('');
       setFormError('');
-      setFormSuccess('');
       setAssessmentMessage('');
     } finally {
       setIsBusy(false);
@@ -117,7 +110,6 @@ export default function App() {
     event.preventDefault();
     setIsSubmitting(true);
     setFormError('');
-    setFormSuccess('');
 
     const result = await createOrganisation(formState);
 
@@ -127,14 +119,11 @@ export default function App() {
       return;
     }
 
-    setFormSuccess('Organisation profile saved. Loading your dashboard…');
     await loadBootstrap();
     setIsSubmitting(false);
   }
 
-  function handleInputChange(
-    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ): void {
+  function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void {
     const { name, value } = event.target;
     setFormState((current) => ({
       ...current,
@@ -143,84 +132,87 @@ export default function App() {
   }
 
   function handleStartAssessment(framework: FrameworkSummary): void {
-    setAssessmentMessage(`Coming next: ${framework.name} assessment setup.`);
+    setAssessmentMessage(`Next step ready: ${framework.name}. Assessment flow will open here soon.`);
   }
 
-  return (
-    <main className="shell">
-      <section className="panel hero-panel">
-        <p className="eyebrow">Audit-grade compliance, step by step</p>
-        <h1>DataProtection</h1>
-        <p className="lead">
-          A simple workspace for Zimbabwean organisations to get set up quickly and begin their
-          first data protection assessment.
-        </p>
-      </section>
+  const hasOrganisation = Boolean(bootstrap?.organisation);
 
-      <section className="panel status-panel">
+  return (
+    <main className="app-shell">
+      <header className="topbar">
         <div>
-          <p className="label">Auth status</p>
-          <strong className={`status-badge ${authState}`}>{statusLabel}</strong>
+          <p className="brand-kicker">Audit-grade data protection</p>
+          <h1>DataProtection</h1>
         </div>
-        <div>
-          <p className="label">Configured user pool</p>
-          <span>{authConfigSummary.userPoolId}</span>
-        </div>
-        <div>
-          <p className="label">Configured region</p>
-          <span>{authConfigSummary.region}</span>
-        </div>
-      </section>
+        {authState === 'authenticated' && bootstrap ? (
+          <div className="topbar-meta">
+            <div>
+              <p className="meta-label">Organisation</p>
+              <p className="meta-value">{bootstrap.organisation?.name ?? 'Setup in progress'}</p>
+            </div>
+            <div>
+              <p className="meta-label">Signed in as</p>
+              <p className="meta-value">{bootstrap.user.email}</p>
+            </div>
+            <button className="secondary-button" disabled={isBusy} onClick={() => void handleLogout()} type="button">
+              Sign out
+            </button>
+          </div>
+        ) : null}
+      </header>
 
       {bootstrapError ? (
-        <section className="panel error-panel" role="alert">
-          <p className="label">Workspace error</p>
-          <p>{bootstrapError}</p>
-          <button className="secondary-button" disabled={isBusy} onClick={() => void initialiseApp()} type="button">
-            Retry
-          </button>
+        <section className="card error-banner" role="alert">
+          <h2>We could not load your workspace</h2>
+          <p>Please retry. If the issue persists, sign out and sign in again.</p>
+          <div className="button-row">
+            <button disabled={isBusy} onClick={() => void initialiseApp()} type="button">
+              Retry
+            </button>
+            {authState === 'authenticated' ? (
+              <button className="secondary-button" disabled={isBusy} onClick={() => void handleLogout()} type="button">
+                Sign out
+              </button>
+            ) : null}
+          </div>
+          <details className="technical-details">
+            <summary>Technical details</summary>
+            <p>{bootstrapError}</p>
+          </details>
         </section>
       ) : null}
 
       {view === 'loading' ? (
-        <section className="panel">
-          <p className="label">Loading</p>
-          <p>{isBusy ? 'Checking your session and loading your workspace…' : 'Preparing your workspace…'}</p>
+        <section className="card center-card">
+          <h2>Loading your workspace</h2>
+          <p>{isBusy ? 'Checking your session and preparing your dashboard…' : 'Please wait…'}</p>
         </section>
       ) : null}
 
       {view === 'signed_out' ? (
-        <section className="panel stack-panel">
-          <div>
-            <p className="label">Sign in</p>
-            <h2>Open your private workspace</h2>
-            <p>
-              Sign in with Cognito Hosted UI to load your organisation profile and available
-              compliance frameworks.
-            </p>
-          </div>
-          <div className="actions-panel">
-            <button disabled={isBusy} onClick={() => void handleLogin()} type="button">
-              Sign in
-            </button>
-            <button className="secondary-button" disabled={isBusy} onClick={() => void initialiseApp()} type="button">
-              Refresh status
-            </button>
-          </div>
+        <section className="card center-card auth-card">
+          <p className="section-label">Welcome</p>
+          <h2>Start your data protection self-assessment</h2>
+          <p>
+            Track your readiness against Zimbabwe’s data protection requirements with a guided,
+            audit-friendly workspace.
+          </p>
+          <button className="cta-button" disabled={isBusy} onClick={() => void login()} type="button">
+            Sign in
+          </button>
         </section>
       ) : null}
 
       {view === 'setup' && bootstrap ? (
-        <section className="panel stack-panel">
-          <div>
-            <p className="label">Organisation setup</p>
-            <h2>Welcome, {bootstrap.user.email}</h2>
-            <p>
-              Tell us a little about your organisation so we can tailor the assessment workspace.
-            </p>
-          </div>
+        <section className="card center-card">
+          <p className="section-label">Organisation setup</p>
+          <h2>Set up your organisation</h2>
+          <p>
+            Add your organisation details once. We will use this profile throughout your assessment
+            and reporting workflow.
+          </p>
 
-          <form className="form-grid" onSubmit={(event) => void handleCreateOrganisation(event)}>
+          <form className="setup-form" onSubmit={(event) => void handleCreateOrganisation(event)}>
             <label>
               Organisation name
               <input name="name" onChange={handleInputChange} placeholder="Example Private Limited" type="text" value={formState.name} />
@@ -256,74 +248,78 @@ export default function App() {
                 {formError}
               </p>
             ) : null}
-            {formSuccess ? <p className="inline-message success-text">{formSuccess}</p> : null}
 
-            <div className="actions-panel form-actions">
-              <button disabled={isSubmitting} type="submit">
+            <div className="button-row setup-actions">
+              <button className="cta-button" disabled={isSubmitting} type="submit">
                 {isSubmitting ? 'Saving…' : 'Save organisation'}
-              </button>
-              <button className="secondary-button" disabled={isSubmitting || isBusy} onClick={() => void handleLogout()} type="button">
-                Sign out
               </button>
             </div>
           </form>
         </section>
       ) : null}
 
-      {view === 'dashboard' && bootstrap && bootstrap.organisation ? (
-        <section className="panel stack-panel">
-          <div className="dashboard-header">
-            <div>
-              <p className="label">Dashboard</p>
-              <h2>{bootstrap.organisation.name}</h2>
-              <p>Signed in as {bootstrap.user.email}</p>
-            </div>
-            <div className="actions-panel">
-              <button className="secondary-button" disabled={isBusy} onClick={() => void initialiseApp()} type="button">
-                Reload workspace
-              </button>
-              <button className="secondary-button" disabled={isBusy} onClick={() => void handleLogout()} type="button">
-                Sign out
-              </button>
-            </div>
-          </div>
+      {view === 'dashboard' && bootstrap && hasOrganisation ? (
+        <section className="dashboard-grid">
+          <section className="card welcome-card">
+            <p className="section-label">Welcome back</p>
+            <h2>{bootstrap.organisation.name}</h2>
+            <p>Track your readiness, organise evidence, and prepare for audit conversations.</p>
+          </section>
 
-          <div className="summary-grid">
-            <article className="summary-card">
-              <p className="label">Organisation</p>
-              <h3>{bootstrap.organisation.name}</h3>
-              <p>
-                {bootstrap.organisation.sector} · {bootstrap.organisation.size} · {bootstrap.organisation.country}
-              </p>
-            </article>
-            <article className="summary-card">
-              <p className="label">Primary contact</p>
-              <h3>{bootstrap.organisation.primaryContactName}</h3>
-              <p>{bootstrap.organisation.primaryContactEmail}</p>
-            </article>
-          </div>
+          <section className="card org-card">
+            <p className="section-label">Organisation summary</p>
+            <h3>{bootstrap.organisation.name}</h3>
+            <p>{bootstrap.organisation.sector}</p>
+            <p>
+              {bootstrap.organisation.size} employees · {bootstrap.organisation.country}
+            </p>
+            <p>
+              Primary contact: {bootstrap.organisation.primaryContactName} ({bootstrap.organisation.primaryContactEmail})
+            </p>
+          </section>
 
-          <div className="framework-list">
-            {bootstrap.frameworks.map((framework) => (
-              <article className="framework-card" key={framework.frameworkId}>
+          {bootstrap.frameworks.map((framework) => {
+            const status = getFrameworkStatus(framework);
+
+            return (
+              <section className="card framework-card" key={framework.frameworkId}>
+                <div className="framework-top">
+                  <div>
+                    <p className="section-label">Framework</p>
+                    <h3>{framework.name}</h3>
+                    <p>Version {framework.version}</p>
+                  </div>
+                  <span className={`status-pill ${status === 'In progress' ? 'in-progress' : 'not-started'}`}>
+                    {status}
+                  </span>
+                </div>
+
+                <p>{framework.description}</p>
+
                 <div>
-                  <p className="label">Available framework</p>
-                  <h3>{framework.name}</h3>
-                  <p>
-                    Version {framework.version} · {framework.description}
-                  </p>
+                  <p className="section-label">Starter sections</p>
                   <ul>
                     {framework.sections.map((section) => (
                       <li key={section.sectionId}>{section.name}</li>
                     ))}
                   </ul>
                 </div>
-                <button onClick={() => handleStartAssessment(framework)} type="button">
-                  Start Zimbabwe Data Protection Assessment
+
+                <button className="cta-button" onClick={() => handleStartAssessment(framework)} type="button">
+                  Start assessment
                 </button>
-              </article>
-            ))}
-          </div>
+              </section>
+            );
+          })}
+
+          <section className="card help-card">
+            <p className="section-label">How this works</p>
+            <h3>Simple steps for non-auditors</h3>
+            <p>
+              Work through each section, answer guided prompts, and keep evidence in one place for
+              legal, compliance, risk, and IT teams.
+            </p>
+          </section>
 
           {assessmentMessage ? <p className="inline-message info-text">{assessmentMessage}</p> : null}
         </section>
