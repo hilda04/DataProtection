@@ -21,7 +21,7 @@ Set that value in frontend environments:
 Example:
 
 ```bash
-VITE_API_BASE_URL=https://abc123.execute-api.us-east-1.amazonaws.com/dev-sam
+VITE_API_BASE_URL=<paste ApiUrl stack output here>
 ```
 
 ## Backend deploy checks
