@@ -127,6 +127,9 @@ Outputs:
   ApiUrl:
     Description: Base URL for the SAM-managed HTTP API stage.
     Value: !Sub https://${BackendHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/${EnvironmentName}
+  HealthUrl:
+    Description: Public health endpoint URL.
+    Value: !Sub https://${BackendHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/${EnvironmentName}/health
   ApiFunctionName:
     Description: Lambda function name serving the HTTP API.
     Value: !Ref BackendApiFunction
