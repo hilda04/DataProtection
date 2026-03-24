@@ -1,6 +1,6 @@
 import { getAccessToken } from './auth';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '');
+const API_BASE_URL = normaliseApiBaseUrl(import.meta.env.VITE_API_BASE_URL);
 
 type ApiResult<T> = {
   ok: boolean;
@@ -65,6 +65,18 @@ export async function getFrameworks(): Promise<ApiResult<FrameworkSummary[]>> {
   });
 }
 
+export async function getHealth(): Promise<ApiResult<{ ok: boolean; service: string }>> {
+  return request<{ ok: boolean; service: string }>(
+    '/health',
+    {
+      method: 'GET',
+    },
+    {
+      requiresAuth: false,
+    },
+  );
+}
+
 export async function createOrganisation(
   payload: CreateOrganisationInput,
 ): Promise<ApiResult<OrganisationSummary>> {
@@ -74,7 +86,15 @@ export async function createOrganisation(
   });
 }
 
-async function request<T>(path: string, init: RequestInit): Promise<ApiResult<T>> {
+type RequestOptions = {
+  requiresAuth?: boolean;
+};
+
+async function request<T>(
+  path: string,
+  init: RequestInit,
+  options: RequestOptions = {},
+): Promise<ApiResult<T>> {
   if (!API_BASE_URL) {
     return {
       ok: false,
@@ -83,23 +103,28 @@ async function request<T>(path: string, init: RequestInit): Promise<ApiResult<T>
     };
   }
 
-  const accessToken = await getAccessToken();
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+    ...(init.headers ?? {}),
+  };
 
-  if (!accessToken) {
-    return {
-      ok: false,
-      status: 401,
-      error: 'No access token is available. Sign in first.',
-    };
+  if (options.requiresAuth ?? true) {
+    const accessToken = await getAccessToken();
+
+    if (!accessToken) {
+      return {
+        ok: false,
+        status: 401,
+        error: 'No access token is available. Sign in first.',
+      };
+    }
+
+    headers.Authorization = `Bearer ${accessToken}`;
   }
 
   const response = await fetch(`${API_BASE_URL}${path}`, {
     ...init,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-      ...(init.headers ?? {}),
-    },
+    headers,
   });
 
   let payload: unknown = null;
@@ -128,4 +153,12 @@ async function request<T>(path: string, init: RequestInit): Promise<ApiResult<T>
     status: response.status,
     data: payload as T,
   };
+}
+
+function normaliseApiBaseUrl(value: string | undefined): string {
+  if (!value) {
+    return '';
+  }
+
+  return value.trim().replace(/\/$/, '');
 }
