@@ -29,6 +29,9 @@ class ValidationError(DataStoreError):
 logger = logging.getLogger(__name__)
 
 
+TABLE_PK_ATTRIBUTE = 'pk'
+TABLE_SK_ATTRIBUTE = 'sk'
+
 REQUIRED_ORGANISATION_FIELDS = (
     'name',
     'sector',
@@ -133,14 +136,14 @@ class DataStore:
         }
 
         organisation_item = {
-            'pk': f"ORG#{organisation_id}",
-            'sk': 'META',
+            TABLE_PK_ATTRIBUTE: f"ORG#{organisation_id}",
+            TABLE_SK_ATTRIBUTE: 'META',
             'entityType': 'ORGANISATION',
             **organisation,
         }
         membership_item = {
-            'pk': f"USER#{user['sub']}",
-            'sk': f"MEMBERSHIP#ORG#{organisation_id}",
+            TABLE_PK_ATTRIBUTE: f"USER#{user['sub']}",
+            TABLE_SK_ATTRIBUTE: f"MEMBERSHIP#ORG#{organisation_id}",
             'entityType': 'USER_ORGANISATION_MEMBERSHIP',
             'organisationId': organisation_id,
             'userSub': user['sub'],
@@ -152,22 +155,23 @@ class DataStore:
         client = self.table.meta.client
         table_name = self.table.name
 
+        self._validate_transaction_item_keys(organisation_item, item_name='organisation')
+        self._validate_transaction_item_keys(membership_item, item_name='membership')
+
         logger.info(
-            'Preparing DynamoDB organisation write.',
+            'Preparing DynamoDB transaction for organisation creation.',
             extra={
                 'route': 'POST /organisations',
                 'table_name': table_name,
-                'pk': organisation_item['pk'],
-                'sk': organisation_item['sk'],
-            },
-        )
-        logger.info(
-            'Preparing DynamoDB membership write.',
-            extra={
-                'route': 'POST /organisations',
-                'table_name': table_name,
-                'pk': membership_item['pk'],
-                'sk': membership_item['sk'],
+                'table_key_schema': [TABLE_PK_ATTRIBUTE, TABLE_SK_ATTRIBUTE],
+                'organisation_item_keys': {
+                    TABLE_PK_ATTRIBUTE: organisation_item[TABLE_PK_ATTRIBUTE],
+                    TABLE_SK_ATTRIBUTE: organisation_item[TABLE_SK_ATTRIBUTE],
+                },
+                'membership_item_keys': {
+                    TABLE_PK_ATTRIBUTE: membership_item[TABLE_PK_ATTRIBUTE],
+                    TABLE_SK_ATTRIBUTE: membership_item[TABLE_SK_ATTRIBUTE],
+                },
             },
         )
 
@@ -179,8 +183,8 @@ class DataStore:
                             'TableName': table_name,
                             'Item': _serialize_item(organisation_item),
                             'ConditionExpression': (
-                                'attribute_not_exists(pk) AND '
-                                'attribute_not_exists(sk)'
+                                f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
+                                f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
                             ),
                         }
                     },
@@ -189,28 +193,43 @@ class DataStore:
                             'TableName': table_name,
                             'Item': _serialize_item(membership_item),
                             'ConditionExpression': (
-                                'attribute_not_exists(pk) AND '
-                                'attribute_not_exists(sk)'
+                                f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
+                                f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
                             ),
                         }
                     },
                 ]
             )
         except Exception as error:
+            cancellation_reasons: Optional[List[Any]] = None
+            try:
+                cancellation_reasons = (
+                    error.response.get('CancellationReasons')  # type: ignore[attr-defined]
+                    if hasattr(error, 'response')
+                    else None
+                )
+            except Exception:
+                cancellation_reasons = None
+
             logger.exception(
                 'DynamoDB transaction failed while creating organisation and membership records.',
                 extra={
                     'route': 'POST /organisations',
                     'table_name': table_name,
-                    'organisation_pk': organisation_item['pk'],
-                    'organisation_sk': organisation_item['sk'],
-                    'membership_pk': membership_item['pk'],
-                    'membership_sk': membership_item['sk'],
+                    'table_key_schema': [TABLE_PK_ATTRIBUTE, TABLE_SK_ATTRIBUTE],
+                    'organisation_item_keys': {
+                        TABLE_PK_ATTRIBUTE: organisation_item[TABLE_PK_ATTRIBUTE],
+                        TABLE_SK_ATTRIBUTE: organisation_item[TABLE_SK_ATTRIBUTE],
+                    },
+                    'membership_item_keys': {
+                        TABLE_PK_ATTRIBUTE: membership_item[TABLE_PK_ATTRIBUTE],
+                        TABLE_SK_ATTRIBUTE: membership_item[TABLE_SK_ATTRIBUTE],
+                    },
+                    'cancellation_reasons': cancellation_reasons,
                     'exception_message': str(error),
                 },
             )
             raise DataStoreError('Failed to create organisation record.') from error
-
         return organisation
 
     def _get_user_membership(self, user_sub: str) -> Optional[Dict[str, Any]]:
@@ -247,6 +266,28 @@ class DataStore:
             value = payload.get(field_name)
             if not isinstance(value, str) or not value.strip():
                 raise ValidationError(f'{field_name} is required.')
+
+    def _validate_transaction_item_keys(self, item: Dict[str, Any], item_name: str) -> None:
+        missing_attributes = [
+            attribute
+            for attribute in (TABLE_PK_ATTRIBUTE, TABLE_SK_ATTRIBUTE)
+            if attribute not in item
+        ]
+        if missing_attributes:
+            raise DataStoreError(
+                f"{item_name} transaction item is missing key attributes: {missing_attributes}."
+            )
+
+        for attribute in (TABLE_PK_ATTRIBUTE, TABLE_SK_ATTRIBUTE):
+            value = item.get(attribute)
+            if value is None:
+                raise DataStoreError(
+                    f'{item_name} transaction item has null key attribute: {attribute}.'
+                )
+            if isinstance(value, str) and not value.strip():
+                raise DataStoreError(
+                    f'{item_name} transaction item has empty key attribute: {attribute}.'
+                )
 
 
 def get_user_from_event(event: Dict[str, Any]) -> UserSummary:
