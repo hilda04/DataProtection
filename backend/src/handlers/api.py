@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from typing import Any
 
 from models.types import ApiResponse
@@ -13,6 +14,8 @@ from services.data_store import (
     get_user_from_event,
 )
 from services.framework_registry import load_framework_catalog
+
+logger = logging.getLogger(__name__)
 
 
 def health(_event: dict[str, Any], _context: Any) -> dict[str, Any]:
@@ -38,11 +41,64 @@ def get_bootstrap(event: dict[str, Any], _context: Any) -> dict[str, Any]:
 
 
 def onboard_organization(event: dict[str, Any], _context: Any) -> dict[str, Any]:
+    route_name = 'POST /organisations'
+    claims_present = _has_claims(event)
+
     try:
         store = DataStore()
-        user = get_user_from_event(event)
-        payload = _load_body(event)
-        organisation = store.create_organisation(user, payload)
+
+        try:
+            user = get_user_from_event(event)
+        except NotAuthenticatedError:
+            logger.exception(
+                'Failed to extract authenticated user for organisation creation.',
+                extra={
+                    'route': route_name,
+                    'claims_present': claims_present,
+                },
+            )
+            raise
+
+        try:
+            payload = _load_body(event)
+        except (TypeError, json.JSONDecodeError):
+            logger.exception(
+                'Failed to parse organisation creation request body.',
+                extra={
+                    'route': route_name,
+                    'claims_present': claims_present,
+                },
+            )
+            return ApiResponse(
+                status_code=400,
+                body={'message': 'Invalid request payload.'},
+            ).to_dict()
+
+        parsed_request_fields = {
+            field: payload.get(field)
+            for field in (
+                'name',
+                'sector',
+                'size',
+                'country',
+                'primaryContactName',
+                'primaryContactEmail',
+            )
+        }
+
+        try:
+            organisation = store.create_organisation(user, payload)
+        except DataStoreError:
+            logger.exception(
+                'Organisation creation failed in data store.',
+                extra={
+                    'route': route_name,
+                    'claims_present': claims_present,
+                    'parsed_request_fields': parsed_request_fields,
+                },
+            )
+            raise
+
         return ApiResponse(status_code=201, body=organisation).to_dict()
     except NotAuthenticatedError as error:
         return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
@@ -85,4 +141,13 @@ def _load_body(event: dict[str, Any]) -> dict[str, Any]:
     body = event.get('body') or '{}'
     if isinstance(body, str):
         return json.loads(body)
-    return body
+    if isinstance(body, dict):
+        return body
+    raise TypeError('Request body must be JSON object.')
+
+
+def _has_claims(event: dict[str, Any]) -> bool:
+    authorizer = event.get('requestContext', {}).get('authorizer', {})
+    jwt_claims = authorizer.get('jwt', {}).get('claims')
+    rest_claims = authorizer.get('claims')
+    return isinstance(jwt_claims, dict) or isinstance(rest_claims, dict)
