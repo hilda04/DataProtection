@@ -1,0 +1,160 @@
+from __future__ import annotations
+
+import json
+from typing import Any
+
+import pytest
+
+from handlers import api
+from services.data_store import ConflictError, ValidationError
+
+
+class FakeStore:
+    def __init__(self, membership: bool = False):
+        self.membership = membership
+        self.organisation = {
+            'organisationId': 'org_123',
+            'name': 'Example Org',
+            'sector': 'Finance',
+            'size': '51-200',
+            'country': 'Zimbabwe',
+            'primaryContactName': 'Tariro Dube',
+            'primaryContactEmail': 'tariro@example.com',
+            'createdBy': 'user-123',
+            'createdAt': '2026-03-23T00:00:00+00:00',
+        }
+
+    def get_bootstrap(self, user: dict[str, str]) -> dict[str, Any]:
+        return {
+            'user': user,
+            'hasOrganisation': self.membership,
+            'organisation': self.organisation if self.membership else None,
+            'frameworks': [
+                {
+                    'frameworkId': 'zim-dpa',
+                    'name': 'Zimbabwe Cyber and Data Protection Act',
+                    'version': '2021',
+                    'description': (
+                        'Self-assessment against key data protection requirements '
+                        'for Zimbabwean organisations.'
+                    ),
+                    'sections': [],
+                }
+            ],
+        }
+
+    def create_organisation(self, _user: dict[str, str], payload: dict[str, Any]) -> dict[str, Any]:
+        if self.membership:
+            raise ConflictError('You already belong to an organisation.')
+        if not payload.get('name'):
+            raise ValidationError('name is required.')
+        return {
+            **self.organisation,
+            **payload,
+            'organisationId': 'org_new',
+            'createdBy': self.organisation['createdBy'],
+        }
+
+    def list_frameworks(self) -> list[dict[str, Any]]:
+        return [
+            {
+                'frameworkId': 'zim-dpa',
+                'name': 'Zimbabwe Cyber and Data Protection Act',
+                'version': '2021',
+                'description': (
+                    'Self-assessment against key data protection requirements for '
+                    'Zimbabwean organisations.'
+                ),
+                'sections': [],
+            }
+        ]
+
+
+@pytest.fixture
+def auth_event() -> dict[str, Any]:
+    return {
+        'requestContext': {
+            'authorizer': {
+                'jwt': {
+                    'claims': {
+                        'sub': 'user-123',
+                        'email': 'user@example.com',
+                    }
+                }
+            }
+        }
+    }
+
+
+def test_get_bootstrap_returns_existing_organisation(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
+
+    response = api.get_bootstrap(auth_event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert body['hasOrganisation'] is True
+    assert body['organisation']['organisationId'] == 'org_123'
+
+
+def test_create_organisation_uses_authenticated_user(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=False))
+    event = {
+        **auth_event,
+        'body': json.dumps(
+            {
+                'name': 'Example Org',
+                'sector': 'Finance',
+                'size': '51-200',
+                'country': 'Zimbabwe',
+                'primaryContactName': 'Tariro Dube',
+                'primaryContactEmail': 'tariro@example.com',
+                'createdBy': 'frontend-user-should-not-win',
+            }
+        ),
+    }
+
+    response = api.onboard_organization(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 201
+    assert body['createdBy'] != 'frontend-user-should-not-win'
+
+
+def test_create_organisation_requires_authentication(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=False))
+
+    response = api.onboard_organization({'body': '{}'}, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 401
+    assert 'claims' in body['message']
+
+
+def test_list_frameworks_returns_metadata(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=False))
+
+    response = api.list_frameworks({}, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert body[0]['frameworkId'] == 'zim-dpa'
+    assert 'description' in body[0]
+
+
+def test_create_assessment_returns_stub(auth_event: dict[str, Any]) -> None:
+    event = {
+        **auth_event,
+        'body': json.dumps({'frameworkId': 'zim-dpa'}),
+    }
+
+    response = api.create_assessment(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 201
+    assert body['frameworkId'] == 'zim-dpa'
+    assert body['status'] == 'coming_next'
