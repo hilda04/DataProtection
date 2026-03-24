@@ -5,7 +5,7 @@ Description: DataProtection backend managed with AWS SAM.
 Parameters:
   EnvironmentName:
     Type: String
-    Default: dev
+    Default: dev-sam
     Description: Deployment environment name used for the stack stage and resource naming.
   CognitoUserPoolId:
     Type: String
