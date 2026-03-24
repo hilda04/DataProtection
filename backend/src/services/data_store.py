@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import os
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
@@ -23,6 +24,9 @@ class ConflictError(DataStoreError):
 
 class ValidationError(DataStoreError):
     pass
+
+
+logger = logging.getLogger(__name__)
 
 
 REQUIRED_ORGANISATION_FIELDS = (
@@ -148,6 +152,25 @@ class DataStore:
         client = self.table.meta.client
         table_name = self.table.name
 
+        logger.info(
+            'Preparing DynamoDB organisation write.',
+            extra={
+                'route': 'POST /organisations',
+                'table_name': table_name,
+                'pk': organisation_item['pk'],
+                'sk': organisation_item['sk'],
+            },
+        )
+        logger.info(
+            'Preparing DynamoDB membership write.',
+            extra={
+                'route': 'POST /organisations',
+                'table_name': table_name,
+                'pk': membership_item['pk'],
+                'sk': membership_item['sk'],
+            },
+        )
+
         try:
             client.transact_write_items(
                 TransactItems=[
@@ -174,6 +197,18 @@ class DataStore:
                 ]
             )
         except Exception as error:
+            logger.exception(
+                'DynamoDB transaction failed while creating organisation and membership records.',
+                extra={
+                    'route': 'POST /organisations',
+                    'table_name': table_name,
+                    'organisation_pk': organisation_item['pk'],
+                    'organisation_sk': organisation_item['sk'],
+                    'membership_pk': membership_item['pk'],
+                    'membership_sk': membership_item['sk'],
+                    'exception_message': str(error),
+                },
+            )
             raise DataStoreError('Failed to create organisation record.') from error
 
         return organisation

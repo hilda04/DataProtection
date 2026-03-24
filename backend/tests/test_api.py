@@ -183,6 +183,23 @@ def test_create_organisation_allows_missing_email_claim(
     assert response['statusCode'] == 201
 
 
+
+
+def test_create_organisation_rejects_invalid_json_body(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=False))
+    event = {
+        **auth_event,
+        'body': '{"name": "Example Org"',
+    }
+
+    response = api.onboard_organization(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 400
+    assert body['message'] == 'Invalid request payload.'
+
 def test_create_organisation_requires_authentication(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=False))
 
