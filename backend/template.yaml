@@ -59,8 +59,8 @@ Resources:
             IdentitySource: "$request.header.Authorization"
             JwtConfiguration:
               audience:
-                - !Ref CognitoAppClientId
-              issuer: !Sub https://cognito-idp.${AWS::Region}.amazonaws.com/${CognitoUserPoolId}
+                - ini1cmdvm498ljb0b64hke9co
+              issuer: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_drQNWrXIr
 
   BackendTable:
     Type: AWS::DynamoDB::Table
