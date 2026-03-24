@@ -6,11 +6,29 @@ from typing import Any
 
 from models.types import FrameworkSummary
 
-FRAMEWORK_PATH = Path(__file__).resolve().parents[3] / 'frameworks' / 'zimbabwe-dpa.json'
+FRAMEWORK_FILENAME = 'zimbabwe-dpa.json'
+
+
+def _framework_search_roots() -> tuple[Path, ...]:
+    service_dir = Path(__file__).resolve().parent
+    src_root = service_dir.parent
+    repository_root = service_dir.parents[2]
+    return (src_root / 'frameworks', repository_root / 'frameworks')
+
+
+def resolve_framework_path(file_name: str = FRAMEWORK_FILENAME) -> Path:
+    for root in _framework_search_roots():
+        candidate = root / file_name
+        if candidate.is_file():
+            return candidate
+
+    searched = ', '.join(str(root / file_name) for root in _framework_search_roots())
+    raise FileNotFoundError(f'Framework file not found. Looked in: {searched}')
 
 
 def load_framework_catalog() -> list[FrameworkSummary]:
-    framework = json.loads(FRAMEWORK_PATH.read_text())
+    framework_path = resolve_framework_path()
+    framework = json.loads(framework_path.read_text(encoding='utf-8'))
     return [
         {
             'frameworkId': framework['frameworkId'],
