@@ -147,10 +147,13 @@ class DataStore:
             'entityType': 'USER_ORGANISATION_MEMBERSHIP',
             'organisationId': organisation_id,
             'userSub': user['sub'],
-            'email': user['email'],
             'role': 'owner',
             'createdAt': created_at,
         }
+
+        user_email = str(user.get('email', '')).strip()
+        if user_email:
+            membership_item['email'] = user_email
 
         client = self.table.meta.client
         table_name = self.table.name
@@ -175,31 +178,56 @@ class DataStore:
             },
         )
 
+        transact_items = [
+            {
+                'Put': {
+                    'TableName': table_name,
+                    'Item': _serialize_item(organisation_item),
+                    'ConditionExpression': 'attribute_not_exists(#pk)',
+                    'ExpressionAttributeNames': {'#pk': TABLE_PK_ATTRIBUTE},
+                }
+            },
+            {
+                'Put': {
+                    'TableName': table_name,
+                    'Item': _serialize_item(membership_item),
+                    'ConditionExpression': 'attribute_not_exists(#pk)',
+                    'ExpressionAttributeNames': {'#pk': TABLE_PK_ATTRIBUTE},
+                }
+            },
+        ]
+
+        self._validate_transact_items(transact_items)
+
+        first_item = transact_items[0]['Put']['Item']
+        first_item_pk = first_item.get(TABLE_PK_ATTRIBUTE)
+        first_item_sk = first_item.get(TABLE_SK_ATTRIBUTE)
+
+        logger.error('DYNAMODB TABLE NAME: %s', table_name)
+        logger.error('TRANSACT ITEMS: %s', transact_items)
+        logger.error('FIRST TRANSACT ITEM PK: %s', first_item_pk)
+        logger.error('FIRST TRANSACT ITEM SK: %s', first_item_sk)
+        logger.error(
+            'FIRST ITEM KEY ATTRIBUTE TYPES: pk=%s sk=%s',
+            type(first_item_pk).__name__,
+            type(first_item_sk).__name__,
+        )
+        logger.error(
+            'FIRST ITEM KEY ATTRIBUTEVALUE SHAPES: pk_has_S=%s sk_has_S=%s',
+            isinstance(first_item_pk, dict) and 'S' in first_item_pk,
+            isinstance(first_item_sk, dict) and 'S' in first_item_sk,
+        )
+
+        for index, transaction in enumerate(transact_items):
+            marshalled_item = transaction.get('Put', {}).get('Item', {})
+            marshalled_types = {
+                key: sorted(value.keys()) if isinstance(value, dict) else str(type(value).__name__)
+                for key, value in marshalled_item.items()
+            }
+            logger.error('TRANSACT ITEM %s ATTRIBUTEVALUE TYPES: %s', index, marshalled_types)
+
         try:
-            client.transact_write_items(
-                TransactItems=[
-                    {
-                        'Put': {
-                            'TableName': table_name,
-                            'Item': _serialize_item(organisation_item),
-                            'ConditionExpression': (
-                                f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
-                                f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
-                            ),
-                        }
-                    },
-                    {
-                        'Put': {
-                            'TableName': table_name,
-                            'Item': _serialize_item(membership_item),
-                            'ConditionExpression': (
-                                f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
-                                f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
-                            ),
-                        }
-                    },
-                ]
-            )
+            client.transact_write_items(TransactItems=transact_items)
         except Exception as error:
             cancellation_reasons: Optional[List[Any]] = None
             try:
@@ -288,6 +316,30 @@ class DataStore:
                 raise DataStoreError(
                     f'{item_name} transaction item has empty key attribute: {attribute}.'
                 )
+
+    def _validate_transact_items(self, transact_items: List[Dict[str, Any]]) -> None:
+        for index, transaction in enumerate(transact_items):
+            put_item = transaction.get('Put', {})
+            marshalled_item = put_item.get('Item')
+
+            if not isinstance(marshalled_item, dict):
+                raise DataStoreError(
+                    f'Transaction item at index {index} is missing a marshalled Item payload.'
+                )
+
+            for attribute in (TABLE_PK_ATTRIBUTE, TABLE_SK_ATTRIBUTE):
+                if attribute not in marshalled_item:
+                    raise DataStoreError(
+                        f'Transaction item at index {index} is missing marshalled key: {attribute}.'
+                    )
+
+                marshalled_attribute = marshalled_item[attribute]
+                if not isinstance(marshalled_attribute, dict) or 'S' not in marshalled_attribute:
+                    raise DataStoreError(
+                        f'Transaction item at index {index} has invalid AttributeValue '
+                        f'for key {attribute}: {marshalled_attribute}.'
+                    )
+
 
 
 def get_user_from_event(event: Dict[str, Any]) -> UserSummary:
