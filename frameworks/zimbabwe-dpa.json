@@ -7,70 +7,70 @@
   "description": "Self-assessment against key data protection requirements for Zimbabwean organisations.",
   "sections": [
     {
-      "id": "governance-accountability",
-      "title": "Governance and accountability",
-      "summary": "Leadership ownership, policies, roles, and oversight for data protection.",
       "questions": [
         {
-          "id": "has-dpo",
           "text": "Has your organisation assigned a person accountable for data protection?",
-          "helpText": "This can be a formal DPO role or a clearly named responsible officer."
+          "helpText": "This can be a formal DPO role or a clearly named responsible officer.",
+          "questionId": "has-dpo"
         },
         {
-          "id": "has-policy",
           "text": "Do you maintain a documented data protection and privacy policy?",
-          "helpText": "The policy should be approved, current, and known by relevant teams."
+          "helpText": "The policy should be approved, current, and known by relevant teams.",
+          "questionId": "has-policy"
         },
         {
-          "id": "governance-review",
           "text": "Does leadership review data protection performance on a regular cadence?",
-          "helpText": "Examples include quarterly risk committee or board updates."
+          "helpText": "Examples include quarterly risk committee or board updates.",
+          "questionId": "governance-review"
         }
-      ]
+      ],
+      "sectionId": "governance-accountability",
+      "name": "Governance and accountability",
+      "description": "Leadership ownership, policies, roles, and oversight for data protection."
     },
     {
-      "id": "lawful-processing-consent",
-      "title": "Lawful processing and consent",
-      "summary": "Legal basis, consent controls, and purpose limitation practices.",
       "questions": [
         {
-          "id": "lawful-basis-register",
           "text": "Have you documented lawful bases for key personal data processing activities?",
-          "helpText": "A processing register can map each activity to its lawful basis."
+          "helpText": "A processing register can map each activity to its lawful basis.",
+          "questionId": "lawful-basis-register"
         },
         {
-          "id": "consent-capture",
           "text": "Do consent collection channels record when and how consent was obtained?",
-          "helpText": "Include digital forms, call centres, and offline channels where relevant."
+          "helpText": "Include digital forms, call centres, and offline channels where relevant.",
+          "questionId": "consent-capture"
         },
         {
-          "id": "purpose-limitation",
           "text": "Do teams check that personal data is only used for stated purposes?",
-          "helpText": "This should include controls before re-using data for new initiatives."
+          "helpText": "This should include controls before re-using data for new initiatives.",
+          "questionId": "purpose-limitation"
         }
-      ]
+      ],
+      "sectionId": "lawful-processing-consent",
+      "name": "Lawful processing and consent",
+      "description": "Legal basis, consent controls, and purpose limitation practices."
     },
     {
-      "id": "security-breach-response",
-      "title": "Security and breach response",
-      "summary": "Security safeguards, incident handling, and breach notification readiness.",
       "questions": [
         {
-          "id": "security-controls",
           "text": "Are baseline technical and organisational security controls in place for personal data?",
-          "helpText": "Examples include access controls, encryption, and endpoint protections."
+          "helpText": "Examples include access controls, encryption, and endpoint protections.",
+          "questionId": "security-controls"
         },
         {
-          "id": "incident-playbook",
           "text": "Do you have a documented incident response process for personal data incidents?",
-          "helpText": "The process should define triage, escalation, and decision ownership."
+          "helpText": "The process should define triage, escalation, and decision ownership.",
+          "questionId": "incident-playbook"
         },
         {
-          "id": "breach-notification",
           "text": "Can your team assess and notify reportable breaches within required timelines?",
-          "helpText": "Include internal escalation timelines and regulator communication steps."
+          "helpText": "Include internal escalation timelines and regulator communication steps.",
+          "questionId": "breach-notification"
         }
-      ]
+      ],
+      "sectionId": "security-breach-response",
+      "name": "Security and breach response",
+      "description": "Security safeguards, incident handling, and breach notification readiness."
     }
   ]
 }

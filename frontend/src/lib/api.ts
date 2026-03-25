@@ -49,6 +49,26 @@ export type AssessmentSummary = {
 };
 
 export type AssessmentDetail = AssessmentSummary & {
+  sections: Array<{
+    sectionId: string;
+    name: string;
+    description?: string;
+    questions?: Array<{
+      questionId: string;
+      text: string;
+      helpText?: string;
+    }>;
+  }>;
+  currentSection: {
+    sectionId: string;
+    name: string;
+    description?: string;
+    questions?: Array<{
+      questionId: string;
+      text: string;
+      helpText?: string;
+    }>;
+  } | null;
   framework: {
     frameworkId: string;
     name: string;

@@ -9,7 +9,7 @@ describe('zimbabwe framework metadata', () => {
     );
 
     expect(framework.frameworkId).toBe('zim-dpa');
-    expect(framework.sections.map((section) => section.title)).toEqual([
+    expect(framework.sections.map((section) => section.name)).toEqual([
       'Governance and accountability',
       'Lawful processing and consent',
       'Security and breach response',
