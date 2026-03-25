@@ -201,18 +201,31 @@ class DataStore:
         self._validate_transact_items(transact_items)
 
         first_item = transact_items[0]['Put']['Item']
-        logger.info(
-            'Submitting DynamoDB transact_write_items for organisation creation.',
-            extra={
-                'route': 'POST /organisations',
-                'table_name': table_name,
-                'first_item_keys': {
-                    TABLE_PK_ATTRIBUTE: first_item.get(TABLE_PK_ATTRIBUTE),
-                    TABLE_SK_ATTRIBUTE: first_item.get(TABLE_SK_ATTRIBUTE),
-                },
-                'transact_items': transact_items,
-            },
+        first_item_pk = first_item.get(TABLE_PK_ATTRIBUTE)
+        first_item_sk = first_item.get(TABLE_SK_ATTRIBUTE)
+
+        logger.error('DYNAMODB TABLE NAME: %s', table_name)
+        logger.error('TRANSACT ITEMS: %s', transact_items)
+        logger.error('FIRST TRANSACT ITEM PK: %s', first_item_pk)
+        logger.error('FIRST TRANSACT ITEM SK: %s', first_item_sk)
+        logger.error(
+            'FIRST ITEM KEY ATTRIBUTE TYPES: pk=%s sk=%s',
+            type(first_item_pk).__name__,
+            type(first_item_sk).__name__,
         )
+        logger.error(
+            'FIRST ITEM KEY ATTRIBUTEVALUE SHAPES: pk_has_S=%s sk_has_S=%s',
+            isinstance(first_item_pk, dict) and 'S' in first_item_pk,
+            isinstance(first_item_sk, dict) and 'S' in first_item_sk,
+        )
+
+        for index, transaction in enumerate(transact_items):
+            marshalled_item = transaction.get('Put', {}).get('Item', {})
+            marshalled_types = {
+                key: sorted(value.keys()) if isinstance(value, dict) else str(type(value).__name__)
+                for key, value in marshalled_item.items()
+            }
+            logger.error('TRANSACT ITEM %s ATTRIBUTEVALUE TYPES: %s', index, marshalled_types)
 
         try:
             client.transact_write_items(TransactItems=transact_items)
