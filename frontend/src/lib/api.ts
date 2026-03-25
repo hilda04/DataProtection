@@ -37,6 +37,37 @@ export type FrameworkSummary = {
   }>;
 };
 
+export type AssessmentSummary = {
+  assessmentId: string;
+  frameworkId: string;
+  organisationId: string;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+  status: 'not_started' | 'in_progress' | 'completed';
+  currentSectionId: string;
+};
+
+export type AssessmentDetail = AssessmentSummary & {
+  framework: {
+    frameworkId: string;
+    name: string;
+    version: string;
+    description: string;
+    sections: Array<{
+      id: string;
+      title: string;
+      summary?: string;
+      questions?: Array<{
+        id: string;
+        text: string;
+        helpText?: string;
+      }>;
+    }>;
+  };
+  responses: Record<string, Array<{ questionId: string; value: number }>>;
+};
+
 export type BootstrapResponse = {
   user: UserSummary;
   hasOrganisation: boolean;
@@ -81,6 +112,45 @@ export async function createOrganisation(
   payload: CreateOrganisationInput,
 ): Promise<ApiResult<OrganisationSummary>> {
   return request<OrganisationSummary>('/organisations', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function createAssessment(
+  frameworkId: string,
+): Promise<ApiResult<AssessmentSummary>> {
+  return request<AssessmentSummary>('/assessments', {
+    method: 'POST',
+    body: JSON.stringify({ frameworkId }),
+  });
+}
+
+export async function getAssessments(
+  frameworkId?: string,
+): Promise<ApiResult<AssessmentSummary[]>> {
+  const query = frameworkId ? `?frameworkId=${encodeURIComponent(frameworkId)}` : '';
+  return request<AssessmentSummary[]>(`/assessments${query}`, {
+    method: 'GET',
+  });
+}
+
+export async function getAssessment(
+  assessmentId: string,
+): Promise<ApiResult<AssessmentDetail>> {
+  return request<AssessmentDetail>(`/assessments/${assessmentId}`, {
+    method: 'GET',
+  });
+}
+
+export async function saveAssessmentResponses(
+  assessmentId: string,
+  payload: {
+    sectionId: string;
+    responses: Array<{ questionId: string; value: number }>;
+  },
+): Promise<ApiResult<AssessmentSummary>> {
+  return request<AssessmentSummary>(`/assessments/${assessmentId}/responses`, {
     method: 'POST',
     body: JSON.stringify(payload),
   });
