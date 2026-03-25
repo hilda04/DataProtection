@@ -41,6 +41,10 @@ REQUIRED_ORGANISATION_FIELDS = (
     'primaryContactEmail',
 )
 
+CREATE_ORGANISATION_CONDITION_EXPRESSION = (
+    'attribute_not_exists(pk) AND attribute_not_exists(sk)'
+)
+
 
 class DataStore:
     def __init__(self, table: Optional[Any] = None, table_name: Optional[str] = None):
@@ -183,20 +187,14 @@ class DataStore:
                 'Put': {
                     'TableName': table_name,
                     'Item': _serialize_item(organisation_item),
-                    'ConditionExpression': (
-                        f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
-                        f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
-                    ),
+                    'ConditionExpression': CREATE_ORGANISATION_CONDITION_EXPRESSION,
                 }
             },
             {
                 'Put': {
                     'TableName': table_name,
                     'Item': _serialize_item(membership_item),
-                    'ConditionExpression': (
-                        f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
-                        f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
-                    ),
+                    'ConditionExpression': CREATE_ORGANISATION_CONDITION_EXPRESSION,
                 }
             },
         ]
@@ -260,7 +258,7 @@ class DataStore:
                     client.put_item(
                         TableName=table_name,
                         Item=_serialize_item(item),
-                        ConditionExpression='attribute_exists(__diagnostic_guard__)',
+                        ConditionExpression=CREATE_ORGANISATION_CONDITION_EXPRESSION,
                     )
                 except Exception as diagnostic_error:
                     diagnostic_response = (
