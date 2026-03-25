@@ -9,17 +9,68 @@
     {
       "id": "governance-accountability",
       "title": "Governance and accountability",
-      "summary": "Leadership ownership, policies, roles, and oversight for data protection."
+      "summary": "Leadership ownership, policies, roles, and oversight for data protection.",
+      "questions": [
+        {
+          "id": "has-dpo",
+          "text": "Has your organisation assigned a person accountable for data protection?",
+          "helpText": "This can be a formal DPO role or a clearly named responsible officer."
+        },
+        {
+          "id": "has-policy",
+          "text": "Do you maintain a documented data protection and privacy policy?",
+          "helpText": "The policy should be approved, current, and known by relevant teams."
+        },
+        {
+          "id": "governance-review",
+          "text": "Does leadership review data protection performance on a regular cadence?",
+          "helpText": "Examples include quarterly risk committee or board updates."
+        }
+      ]
     },
     {
       "id": "lawful-processing-consent",
       "title": "Lawful processing and consent",
-      "summary": "Legal basis, consent controls, and purpose limitation practices."
+      "summary": "Legal basis, consent controls, and purpose limitation practices.",
+      "questions": [
+        {
+          "id": "lawful-basis-register",
+          "text": "Have you documented lawful bases for key personal data processing activities?",
+          "helpText": "A processing register can map each activity to its lawful basis."
+        },
+        {
+          "id": "consent-capture",
+          "text": "Do consent collection channels record when and how consent was obtained?",
+          "helpText": "Include digital forms, call centres, and offline channels where relevant."
+        },
+        {
+          "id": "purpose-limitation",
+          "text": "Do teams check that personal data is only used for stated purposes?",
+          "helpText": "This should include controls before re-using data for new initiatives."
+        }
+      ]
     },
     {
       "id": "security-breach-response",
       "title": "Security and breach response",
-      "summary": "Security safeguards, incident handling, and breach notification readiness."
+      "summary": "Security safeguards, incident handling, and breach notification readiness.",
+      "questions": [
+        {
+          "id": "security-controls",
+          "text": "Are baseline technical and organisational security controls in place for personal data?",
+          "helpText": "Examples include access controls, encryption, and endpoint protections."
+        },
+        {
+          "id": "incident-playbook",
+          "text": "Do you have a documented incident response process for personal data incidents?",
+          "helpText": "The process should define triage, escalation, and decision ownership."
+        },
+        {
+          "id": "breach-notification",
+          "text": "Can your team assess and notify reportable breaches within required timelines?",
+          "helpText": "Include internal escalation timelines and regulator communication steps."
+        }
+      ]
     }
   ]
 }

@@ -69,6 +69,77 @@ class FakeStore:
             }
         ]
 
+    def create_or_resume_assessment(
+        self, user: dict[str, str], framework_id: str
+    ) -> tuple[dict[str, Any], bool]:
+        return (
+            {
+                'assessmentId': 'asm_123',
+                'frameworkId': framework_id,
+                'organisationId': 'org_123',
+                'createdBy': user['sub'],
+                'createdAt': '2026-03-23T00:00:00+00:00',
+                'updatedAt': '2026-03-23T00:00:00+00:00',
+                'status': 'in_progress',
+                'currentSectionId': 'governance-accountability',
+            },
+            False,
+        )
+
+    def list_assessments(
+        self, _user: dict[str, str], framework_id: str | None = None
+    ) -> list[dict[str, Any]]:
+        return [
+            {
+                'assessmentId': 'asm_123',
+                'frameworkId': framework_id or 'zim-dpa',
+                'organisationId': 'org_123',
+                'createdBy': 'user-123',
+                'createdAt': '2026-03-23T00:00:00+00:00',
+                'updatedAt': '2026-03-23T00:00:00+00:00',
+                'status': 'in_progress',
+                'currentSectionId': 'governance-accountability',
+            }
+        ]
+
+    def get_assessment_detail(self, _user: dict[str, str], assessment_id: str) -> dict[str, Any]:
+        return {
+            'assessmentId': assessment_id,
+            'frameworkId': 'zim-dpa',
+            'organisationId': 'org_123',
+            'createdBy': 'user-123',
+            'createdAt': '2026-03-23T00:00:00+00:00',
+            'updatedAt': '2026-03-23T00:00:00+00:00',
+            'status': 'in_progress',
+            'currentSectionId': 'governance-accountability',
+            'framework': {
+                'frameworkId': 'zim-dpa',
+                'name': 'Zimbabwe Cyber and Data Protection Act',
+                'version': '2021',
+                'description': 'desc',
+                'sections': [],
+            },
+            'responses': {},
+        }
+
+    def save_assessment_responses(
+        self,
+        _user: dict[str, str],
+        assessment_id: str,
+        section_id: str,
+        _responses: list[dict[str, Any]],
+    ) -> dict[str, Any]:
+        return {
+            'assessmentId': assessment_id,
+            'frameworkId': 'zim-dpa',
+            'organisationId': 'org_123',
+            'createdBy': 'user-123',
+            'createdAt': '2026-03-23T00:00:00+00:00',
+            'updatedAt': '2026-03-23T00:00:00+00:00',
+            'status': 'in_progress',
+            'currentSectionId': section_id,
+        }
+
 
 @pytest.fixture
 def auth_event() -> dict[str, Any]:
@@ -221,7 +292,10 @@ def test_list_frameworks_returns_metadata(monkeypatch: pytest.MonkeyPatch) -> No
     assert 'description' in body[0]
 
 
-def test_create_assessment_returns_stub(auth_event: dict[str, Any]) -> None:
+def test_create_assessment_returns_record(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
     event = {
         **auth_event,
         'body': json.dumps({'frameworkId': 'zim-dpa'}),
@@ -232,4 +306,57 @@ def test_create_assessment_returns_stub(auth_event: dict[str, Any]) -> None:
 
     assert response['statusCode'] == 201
     assert body['frameworkId'] == 'zim-dpa'
-    assert body['status'] == 'coming_next'
+    assert body['status'] == 'in_progress'
+
+
+def test_list_assessments_returns_latest(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
+    event = {
+        **auth_event,
+        'queryStringParameters': {'frameworkId': 'zim-dpa'},
+    }
+    response = api.list_assessments(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert len(body) == 1
+    assert body[0]['frameworkId'] == 'zim-dpa'
+
+
+def test_get_assessment_returns_detail(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
+    event = {
+        **auth_event,
+        'pathParameters': {'assessmentId': 'asm_123'},
+    }
+    response = api.get_assessment(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert body['assessmentId'] == 'asm_123'
+    assert 'framework' in body
+
+
+def test_save_assessment_responses_updates_assessment(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
+    event = {
+        **auth_event,
+        'pathParameters': {'assessmentId': 'asm_123'},
+        'body': json.dumps(
+            {
+                'sectionId': 'governance-accountability',
+                'responses': [{'questionId': 'has-dpo', 'value': 2}],
+            }
+        ),
+    }
+    response = api.save_assessment_responses(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert body['currentSectionId'] == 'governance-accountability'

@@ -120,21 +120,85 @@ def list_frameworks(_event: dict[str, Any], _context: Any) -> dict[str, Any]:
 
 def create_assessment(event: dict[str, Any], _context: Any) -> dict[str, Any]:
     try:
+        store = DataStore()
         user = get_user_from_event(event)
         payload = _load_body(event)
         framework_id = payload.get('frameworkId', 'zim-dpa')
-        return ApiResponse(
-            status_code=201,
-            body={
-                'assessmentId': 'pending',
-                'frameworkId': framework_id,
-                'status': 'coming_next',
-                'requestedBy': user['sub'],
-                'message': 'Assessment creation is ready for future implementation.',
-            },
-        ).to_dict()
+        assessment, resumed = store.create_or_resume_assessment(user, str(framework_id))
+        return ApiResponse(status_code=200 if resumed else 201, body=assessment).to_dict()
     except NotAuthenticatedError as error:
         return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
+    except ValidationError as error:
+        return ApiResponse(status_code=400, body={'message': str(error)}).to_dict()
+    except DataStoreError as error:
+        return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
+
+
+def list_assessments(event: dict[str, Any], _context: Any) -> dict[str, Any]:
+    try:
+        store = DataStore()
+        user = get_user_from_event(event)
+        query_params = event.get('queryStringParameters') or {}
+        framework_id = query_params.get('frameworkId') if isinstance(query_params, dict) else None
+        assessments = store.list_assessments(user, framework_id=framework_id)
+        return ApiResponse(status_code=200, body=assessments).to_dict()
+    except NotAuthenticatedError as error:
+        return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
+    except ValidationError as error:
+        return ApiResponse(status_code=400, body={'message': str(error)}).to_dict()
+    except DataStoreError as error:
+        return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
+
+
+def get_assessment(event: dict[str, Any], _context: Any) -> dict[str, Any]:
+    try:
+        store = DataStore()
+        user = get_user_from_event(event)
+        assessment_id = str((event.get('pathParameters') or {}).get('assessmentId', '')).strip()
+        if not assessment_id:
+            return ApiResponse(
+                status_code=400, body={'message': 'assessmentId is required.'}
+            ).to_dict()
+        assessment = store.get_assessment_detail(user, assessment_id)
+        return ApiResponse(status_code=200, body=assessment).to_dict()
+    except NotAuthenticatedError as error:
+        return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
+    except ValidationError as error:
+        return ApiResponse(status_code=400, body={'message': str(error)}).to_dict()
+    except DataStoreError as error:
+        return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
+
+
+def save_assessment_responses(event: dict[str, Any], _context: Any) -> dict[str, Any]:
+    try:
+        store = DataStore()
+        user = get_user_from_event(event)
+        assessment_id = str((event.get('pathParameters') or {}).get('assessmentId', '')).strip()
+        if not assessment_id:
+            return ApiResponse(
+                status_code=400, body={'message': 'assessmentId is required.'}
+            ).to_dict()
+
+        payload = _load_body(event)
+        section_id = str(payload.get('sectionId', '')).strip()
+        responses = payload.get('responses')
+        if not section_id:
+            return ApiResponse(
+                status_code=400, body={'message': 'sectionId is required.'}
+            ).to_dict()
+        if not isinstance(responses, list):
+            return ApiResponse(
+                status_code=400, body={'message': 'responses must be an array.'}
+            ).to_dict()
+
+        assessment = store.save_assessment_responses(user, assessment_id, section_id, responses)
+        return ApiResponse(status_code=200, body=assessment).to_dict()
+    except NotAuthenticatedError as error:
+        return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
+    except ValidationError as error:
+        return ApiResponse(status_code=400, body={'message': str(error)}).to_dict()
+    except DataStoreError as error:
+        return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
 
 
 def _load_body(event: dict[str, Any]) -> dict[str, Any]:

@@ -1,7 +1,13 @@
-import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
 import {
+  createAssessment,
   createOrganisation,
+  getAssessment,
+  getAssessments,
   getBootstrap,
+  saveAssessmentResponses,
+  type AssessmentDetail,
+  type AssessmentSummary,
   type BootstrapResponse,
   type CreateOrganisationInput,
   type FrameworkSummary,
@@ -10,7 +16,7 @@ import { isSignedIn, login, logout } from './lib/auth';
 import './styles.css';
 
 type AuthState = 'checking' | 'authenticated' | 'signed_out';
-type AppView = 'loading' | 'signed_out' | 'setup' | 'dashboard';
+type AppView = 'loading' | 'signed_out' | 'setup' | 'dashboard' | 'assessment';
 
 type OrganisationFormState = CreateOrganisationInput;
 
@@ -23,12 +29,20 @@ const initialFormState: OrganisationFormState = {
   primaryContactEmail: '',
 };
 
-const frameworkStatusByVersion: Record<string, 'Not started' | 'In progress'> = {
-  '2024.1': 'Not started',
-};
+const maturityLabels = [
+  '0 · Not in place',
+  '1 · Ad hoc',
+  '2 · Partially documented',
+  '3 · Implemented',
+  '4 · Monitored and reviewed',
+];
 
-function getFrameworkStatus(framework: FrameworkSummary): 'Not started' | 'In progress' {
-  return frameworkStatusByVersion[framework.version] ?? 'Not started';
+function getFrameworkStatus(
+  framework: FrameworkSummary,
+  assessmentsByFramework: Record<string, AssessmentSummary | null>,
+): 'Not started' | 'In progress' {
+  const assessment = assessmentsByFramework[framework.frameworkId];
+  return assessment && assessment.status !== 'completed' ? 'In progress' : 'Not started';
 }
 
 export default function App() {
@@ -40,16 +54,49 @@ export default function App() {
   const [formError, setFormError] = useState('');
   const [isBusy, setIsBusy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [assessmentMessage, setAssessmentMessage] = useState('');
+  const [assessmentError, setAssessmentError] = useState('');
+  const [assessmentNotice, setAssessmentNotice] = useState('');
+  const [assessmentsByFramework, setAssessmentsByFramework] = useState<
+    Record<string, AssessmentSummary | null>
+  >({});
+  const [activeAssessment, setActiveAssessment] = useState<AssessmentDetail | null>(null);
+  const [answersByQuestionId, setAnswersByQuestionId] = useState<Record<string, number>>({});
+  const [isSavingResponses, setIsSavingResponses] = useState(false);
+
+  const currentSection = useMemo(() => {
+    if (!activeAssessment) {
+      return null;
+    }
+
+    const sections = activeAssessment.framework.sections ?? [];
+    return (
+      sections.find((section) => section.id === activeAssessment.currentSectionId) ?? sections[0] ?? null
+    );
+  }, [activeAssessment]);
 
   useEffect(() => {
     void initialiseApp();
   }, []);
 
+  useEffect(() => {
+    if (!activeAssessment || !currentSection) {
+      setAnswersByQuestionId({});
+      return;
+    }
+
+    const sectionResponses = activeAssessment.responses[currentSection.id] ?? [];
+    const nextAnswers: Record<string, number> = {};
+    sectionResponses.forEach((response) => {
+      nextAnswers[response.questionId] = response.value;
+    });
+    setAnswersByQuestionId(nextAnswers);
+  }, [activeAssessment, currentSection]);
+
   async function initialiseApp(): Promise<void> {
     setIsBusy(true);
     setBootstrapError('');
-    setAssessmentMessage('');
+    setAssessmentError('');
+    setAssessmentNotice('');
 
     try {
       const signedIn = await isSignedIn();
@@ -88,7 +135,25 @@ export default function App() {
       ...current,
       primaryContactEmail: current.primaryContactEmail || result.data.user.email,
     }));
-    setView(result.data.hasOrganisation ? 'dashboard' : 'setup');
+
+    if (result.data.hasOrganisation) {
+      await loadAssessmentSummaries(result.data.frameworks);
+      setView('dashboard');
+    } else {
+      setAssessmentsByFramework({});
+      setView('setup');
+    }
+  }
+
+  async function loadAssessmentSummaries(frameworks: FrameworkSummary[]): Promise<void> {
+    const summaryEntries = await Promise.all(
+      frameworks.map(async (framework) => {
+        const response = await getAssessments(framework.frameworkId);
+        return [framework.frameworkId, response.ok && response.data ? (response.data[0] ?? null) : null] as const;
+      }),
+    );
+
+    setAssessmentsByFramework(Object.fromEntries(summaryEntries));
   }
 
   async function handleLogout(): Promise<void> {
@@ -100,7 +165,8 @@ export default function App() {
       setBootstrap(null);
       setBootstrapError('');
       setFormError('');
-      setAssessmentMessage('');
+      setAssessmentError('');
+      setAssessmentNotice('');
     } finally {
       setIsBusy(false);
     }
@@ -131,8 +197,80 @@ export default function App() {
     }));
   }
 
-  function handleStartAssessment(framework: FrameworkSummary): void {
-    setAssessmentMessage(`Next step ready: ${framework.name}. Assessment flow will open here soon.`);
+  async function handleStartAssessment(framework: FrameworkSummary): Promise<void> {
+    setAssessmentError('');
+    setAssessmentNotice('');
+
+    const created = await createAssessment(framework.frameworkId);
+    if (!created.ok || !created.data) {
+      setAssessmentError(created.error ?? 'Unable to start your assessment. Please retry.');
+      return;
+    }
+
+    const detail = await getAssessment(created.data.assessmentId);
+    if (!detail.ok || !detail.data) {
+      setAssessmentError(detail.error ?? 'Unable to load your assessment workspace.');
+      return;
+    }
+
+    setActiveAssessment(detail.data);
+    setAssessmentsByFramework((current) => ({
+      ...current,
+      [framework.frameworkId]: created.data,
+    }));
+    setAssessmentNotice(created.status === 201 ? 'Assessment in progress.' : 'Continuing your assessment.');
+    setView('assessment');
+  }
+
+  function handleAnswerChange(questionId: string, value: number): void {
+    setAnswersByQuestionId((current) => ({
+      ...current,
+      [questionId]: value,
+    }));
+  }
+
+  async function handleSaveAndContinue(): Promise<void> {
+    if (!activeAssessment || !currentSection) {
+      return;
+    }
+
+    const sectionQuestions = currentSection.questions ?? [];
+    const responses = sectionQuestions
+      .filter((question) => typeof answersByQuestionId[question.id] === 'number')
+      .map((question) => ({
+        questionId: question.id,
+        value: answersByQuestionId[question.id],
+      }));
+
+    setIsSavingResponses(true);
+    setAssessmentError('');
+    setAssessmentNotice('');
+
+    const result = await saveAssessmentResponses(activeAssessment.assessmentId, {
+      sectionId: currentSection.id,
+      responses,
+    });
+
+    if (!result.ok || !result.data) {
+      setAssessmentError(result.error ?? 'We could not save this section. Please retry.');
+      setIsSavingResponses(false);
+      return;
+    }
+
+    const detail = await getAssessment(activeAssessment.assessmentId);
+    if (!detail.ok || !detail.data) {
+      setAssessmentError(detail.error ?? 'Saved, but we could not refresh the section state.');
+      setIsSavingResponses(false);
+      return;
+    }
+
+    setActiveAssessment(detail.data);
+    setAssessmentsByFramework((current) => ({
+      ...current,
+      [detail.data.framework.frameworkId]: result.data,
+    }));
+    setAssessmentNotice('Progress saved. Continue later at any time.');
+    setIsSavingResponses(false);
   }
 
   const hasOrganisation = Boolean(bootstrap?.organisation);
@@ -169,16 +307,18 @@ export default function App() {
             <button disabled={isBusy} onClick={() => void initialiseApp()} type="button">
               Retry
             </button>
-            {authState === 'authenticated' ? (
-              <button className="secondary-button" disabled={isBusy} onClick={() => void handleLogout()} type="button">
-                Sign out
-              </button>
-            ) : null}
           </div>
           <details className="technical-details">
             <summary>Technical details</summary>
             <p>{bootstrapError}</p>
           </details>
+        </section>
+      ) : null}
+
+      {assessmentError ? (
+        <section className="card error-banner" role="alert">
+          <h2>We hit a problem</h2>
+          <p>{assessmentError}</p>
         </section>
       ) : null}
 
@@ -279,7 +419,8 @@ export default function App() {
           </section>
 
           {bootstrap.frameworks.map((framework) => {
-            const status = getFrameworkStatus(framework);
+            const status = getFrameworkStatus(framework, assessmentsByFramework);
+            const hasAssessment = Boolean(assessmentsByFramework[framework.frameworkId]);
 
             return (
               <section className="card framework-card" key={framework.frameworkId}>
@@ -305,8 +446,8 @@ export default function App() {
                   </ul>
                 </div>
 
-                <button className="cta-button" onClick={() => handleStartAssessment(framework)} type="button">
-                  Start assessment
+                <button className="cta-button" onClick={() => void handleStartAssessment(framework)} type="button">
+                  {hasAssessment ? 'Continue assessment' : 'Start assessment'}
                 </button>
               </section>
             );
@@ -320,8 +461,63 @@ export default function App() {
               legal, compliance, risk, and IT teams.
             </p>
           </section>
+        </section>
+      ) : null}
 
-          {assessmentMessage ? <p className="inline-message info-text">{assessmentMessage}</p> : null}
+      {view === 'assessment' && bootstrap && activeAssessment && currentSection ? (
+        <section className="dashboard-grid">
+          <section className="card">
+            <p className="section-label">Assessment workspace</p>
+            <h2>{activeAssessment.framework.name}</h2>
+            <p>{bootstrap.organisation?.name}</p>
+            <div className="assessment-meta-row">
+              <span className="status-pill in-progress">Assessment in progress</span>
+              <span className="meta-value">Section: {currentSection.title}</span>
+              <span className="meta-value">Status: {activeAssessment.status.replace('_', ' ')}</span>
+            </div>
+            {currentSection.summary ? <p>{currentSection.summary}</p> : null}
+            <p>
+              Section progress: {Object.keys(activeAssessment.responses).length} / {activeAssessment.framework.sections.length}
+            </p>
+          </section>
+
+          <section className="card">
+            <p className="section-label">Complete this section</p>
+            <h3>{currentSection.title}</h3>
+
+            <div className="question-list">
+              {(currentSection.questions ?? []).map((question) => (
+                <fieldset className="question-card" key={question.id}>
+                  <legend>{question.text}</legend>
+                  {question.helpText ? <p className="question-help">{question.helpText}</p> : null}
+                  <div className="maturity-grid">
+                    {maturityLabels.map((label, value) => (
+                      <label className="maturity-option" key={label}>
+                        <input
+                          checked={answersByQuestionId[question.id] === value}
+                          name={question.id}
+                          onChange={() => handleAnswerChange(question.id, value)}
+                          type="radio"
+                          value={value}
+                        />
+                        <span>{label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              ))}
+            </div>
+
+            <div className="button-row">
+              <button className="cta-button" disabled={isSavingResponses} onClick={() => void handleSaveAndContinue()} type="button">
+                {isSavingResponses ? 'Saving…' : 'Save and continue'}
+              </button>
+              <button className="secondary-button" onClick={() => setView('dashboard')} type="button">
+                Back to dashboard
+              </button>
+            </div>
+            {assessmentNotice ? <p className="info-text">{assessmentNotice}</p> : null}
+          </section>
         </section>
       ) : null}
     </main>
