@@ -243,6 +243,67 @@ class DataStore:
             except Exception:
                 cancellation_reasons = None
 
+            def _run_diagnostic_put_item(
+                item_name: str, item: Dict[str, Any]
+            ) -> Optional[Exception]:
+                logger.error(
+                    'Diagnostic put_item attempt for %s item.',
+                    item_name,
+                    extra={
+                        'route': 'POST /organisations',
+                        'table_name': table_name,
+                        'diagnostic_item_name': item_name,
+                        'diagnostic_item': item,
+                    },
+                )
+                try:
+                    client.put_item(
+                        TableName=table_name,
+                        Item=_serialize_item(item),
+                        ConditionExpression='attribute_exists(__diagnostic_guard__)',
+                    )
+                except Exception as diagnostic_error:
+                    diagnostic_response = (
+                        diagnostic_error.response  # type: ignore[attr-defined]
+                        if hasattr(diagnostic_error, 'response')
+                        else None
+                    )
+                    logger.exception(
+                        'Diagnostic put_item failed for %s item.',
+                        item_name,
+                        extra={
+                            'route': 'POST /organisations',
+                            'table_name': table_name,
+                            'diagnostic_item_name': item_name,
+                            'diagnostic_item': item,
+                            'diagnostic_exception_message': str(diagnostic_error),
+                            'diagnostic_error_response': diagnostic_response,
+                        },
+                    )
+                    return diagnostic_error
+
+                logger.error(
+                    'Diagnostic put_item unexpectedly succeeded for %s item.',
+                    item_name,
+                    extra={
+                        'route': 'POST /organisations',
+                        'table_name': table_name,
+                        'diagnostic_item_name': item_name,
+                        'diagnostic_item': item,
+                    },
+                )
+                return None
+
+            organisation_diagnostic_error = _run_diagnostic_put_item(
+                item_name='organisation', item=organisation_item
+            )
+            if organisation_diagnostic_error is None or (
+                hasattr(organisation_diagnostic_error, 'response')
+                and organisation_diagnostic_error.response.get('Error', {}).get('Code')
+                == 'ConditionalCheckFailedException'
+            ):
+                _run_diagnostic_put_item(item_name='membership', item=membership_item)
+
             logger.exception(
                 'DynamoDB transaction failed while creating organisation and membership records.',
                 extra={
