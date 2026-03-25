@@ -186,47 +186,20 @@ class DataStore:
             {
                 'Put': {
                     'TableName': table_name,
-                    'Item': _serialize_item(organisation_item),
+                    'Item': organisation_item,
                     'ConditionExpression': CREATE_ORGANISATION_CONDITION_EXPRESSION,
                 }
             },
             {
                 'Put': {
                     'TableName': table_name,
-                    'Item': _serialize_item(membership_item),
+                    'Item': membership_item,
                     'ConditionExpression': CREATE_ORGANISATION_CONDITION_EXPRESSION,
                 }
             },
         ]
 
         self._validate_transact_items(transact_items)
-
-        first_item = transact_items[0]['Put']['Item']
-        first_item_pk = first_item.get(TABLE_PK_ATTRIBUTE)
-        first_item_sk = first_item.get(TABLE_SK_ATTRIBUTE)
-
-        logger.error('DYNAMODB TABLE NAME: %s', table_name)
-        logger.error('TRANSACT ITEMS: %s', transact_items)
-        logger.error('FIRST TRANSACT ITEM PK: %s', first_item_pk)
-        logger.error('FIRST TRANSACT ITEM SK: %s', first_item_sk)
-        logger.error(
-            'FIRST ITEM KEY ATTRIBUTE TYPES: pk=%s sk=%s',
-            type(first_item_pk).__name__,
-            type(first_item_sk).__name__,
-        )
-        logger.error(
-            'FIRST ITEM KEY ATTRIBUTEVALUE SHAPES: pk_has_S=%s sk_has_S=%s',
-            isinstance(first_item_pk, dict) and 'S' in first_item_pk,
-            isinstance(first_item_sk, dict) and 'S' in first_item_sk,
-        )
-
-        for index, transaction in enumerate(transact_items):
-            marshalled_item = transaction.get('Put', {}).get('Item', {})
-            marshalled_types = {
-                key: sorted(value.keys()) if isinstance(value, dict) else str(type(value).__name__)
-                for key, value in marshalled_item.items()
-            }
-            logger.error('TRANSACT ITEM %s ATTRIBUTEVALUE TYPES: %s', index, marshalled_types)
 
         try:
             client.transact_write_items(TransactItems=transact_items)
@@ -255,9 +228,8 @@ class DataStore:
                     },
                 )
                 try:
-                    client.put_item(
-                        TableName=table_name,
-                        Item=_serialize_item(item),
+                    self.table.put_item(
+                        Item=item,
                         ConditionExpression=CREATE_ORGANISATION_CONDITION_EXPRESSION,
                     )
                 except Exception as diagnostic_error:
@@ -383,24 +355,24 @@ class DataStore:
     def _validate_transact_items(self, transact_items: List[Dict[str, Any]]) -> None:
         for index, transaction in enumerate(transact_items):
             put_item = transaction.get('Put', {})
-            marshalled_item = put_item.get('Item')
+            item = put_item.get('Item')
 
-            if not isinstance(marshalled_item, dict):
+            if not isinstance(item, dict):
                 raise DataStoreError(
-                    f'Transaction item at index {index} is missing a marshalled Item payload.'
+                    f'Transaction item at index {index} is missing an Item payload.'
                 )
 
             for attribute in (TABLE_PK_ATTRIBUTE, TABLE_SK_ATTRIBUTE):
-                if attribute not in marshalled_item:
+                if attribute not in item:
                     raise DataStoreError(
-                        f'Transaction item at index {index} is missing marshalled key: {attribute}.'
+                        f'Transaction item at index {index} is missing key: {attribute}.'
                     )
 
-                marshalled_attribute = marshalled_item[attribute]
-                if not isinstance(marshalled_attribute, dict) or 'S' not in marshalled_attribute:
+                attribute_value = item[attribute]
+                if not isinstance(attribute_value, str) or not attribute_value.strip():
                     raise DataStoreError(
-                        f'Transaction item at index {index} has invalid AttributeValue '
-                        f'for key {attribute}: {marshalled_attribute}.'
+                        f'Transaction item at index {index} has invalid value for '
+                        f'key {attribute}: {attribute_value}.'
                     )
 
 
@@ -429,9 +401,3 @@ def _dynamodb_key() -> Any:
 
     return Key
 
-
-def _serialize_item(item: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
-    from boto3.dynamodb.types import TypeSerializer
-
-    serializer = TypeSerializer()
-    return {key: serializer.serialize(value) for key, value in item.items()}
