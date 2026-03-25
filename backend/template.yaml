@@ -122,6 +122,24 @@ Resources:
             ApiId: !Ref BackendHttpApi
             Method: POST
             Path: /assessments
+        AssessmentsListRoute:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BackendHttpApi
+            Method: GET
+            Path: /assessments
+        AssessmentDetailRoute:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BackendHttpApi
+            Method: GET
+            Path: /assessments/{assessmentId}
+        AssessmentResponsesRoute:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BackendHttpApi
+            Method: POST
+            Path: /assessments/{assessmentId}/responses
 
 Outputs:
   ApiUrl:

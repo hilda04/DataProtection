@@ -4,10 +4,13 @@ from typing import Any, Callable, Dict, Tuple
 
 from handlers.api import (
     create_assessment,
+    get_assessment,
     get_bootstrap,
     health,
+    list_assessments,
     list_frameworks,
     onboard_organization,
+    save_assessment_responses,
 )
 from models.types import ApiResponse
 
@@ -19,6 +22,7 @@ ROUTES: Dict[Tuple[str, str], RouteHandler] = {
     ('GET', '/app/bootstrap'): get_bootstrap,
     ('POST', '/organisations'): onboard_organization,
     ('POST', '/assessments'): create_assessment,
+    ('GET', '/assessments'): list_assessments,
 }
 
 
@@ -26,11 +30,29 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     method = _resolve_http_method(event)
     path = _resolve_route_path(event)
     handler = ROUTES.get((method, path))
+    routed_event = event
+
+    if handler is None and method == 'GET' and path.startswith('/assessments/'):
+        assessment_id = path.split('/')[2] if len(path.split('/')) > 2 else ''
+        if assessment_id:
+            routed_event = {**event, 'pathParameters': {'assessmentId': assessment_id}}
+            handler = get_assessment
+
+    if (
+        handler is None
+        and method == 'POST'
+        and path.startswith('/assessments/')
+        and path.endswith('/responses')
+    ):
+        parts = path.strip('/').split('/')
+        if len(parts) == 3 and parts[0] == 'assessments' and parts[2] == 'responses':
+            routed_event = {**event, 'pathParameters': {'assessmentId': parts[1]}}
+            handler = save_assessment_responses
 
     if handler is None:
         return ApiResponse(status_code=404, body={'message': 'Route not found.'}).to_dict()
 
-    return handler(event, context)
+    return handler(routed_event, context)
 
 
 def _resolve_http_method(event: Dict[str, Any]) -> str:

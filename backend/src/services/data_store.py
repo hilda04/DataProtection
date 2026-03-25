@@ -7,7 +7,11 @@ from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
 from models.types import FrameworkSummary, OrganisationSummary, UserSummary
-from services.framework_registry import build_framework_seed_items, load_framework_catalog
+from services.framework_registry import (
+    build_framework_seed_items,
+    load_framework_catalog,
+    load_framework_definition,
+)
 
 
 class DataStoreError(RuntimeError):
@@ -40,6 +44,8 @@ REQUIRED_ORGANISATION_FIELDS = (
     'primaryContactName',
     'primaryContactEmail',
 )
+
+VALID_ASSESSMENT_STATUSES = {'not_started', 'in_progress', 'completed'}
 
 CREATE_ORGANISATION_CONDITION_EXPRESSION = (
     'attribute_not_exists(pk) AND attribute_not_exists(sk)'
@@ -115,6 +121,132 @@ class DataStore:
             'organisation': organisation,
             'frameworks': self.list_frameworks(),
         }
+
+    def create_or_resume_assessment(
+        self, user: UserSummary, framework_id: str
+    ) -> tuple[Dict[str, Any], bool]:
+        membership = self._require_membership(user['sub'])
+        organisation_id = membership['organisationId']
+        framework = self._get_framework(framework_id)
+        if framework is None:
+            raise ValidationError(f'Framework not found: {framework_id}.')
+
+        assessments = self._list_assessment_items(organisation_id, framework_id)
+        in_progress = next(
+            (item for item in assessments if item.get('status') == 'in_progress'),
+            None,
+        )
+        if in_progress:
+            return self._serialize_assessment_summary(in_progress), True
+
+        now = datetime.now(timezone.utc).isoformat()
+        assessment_id = f'asm_{uuid4().hex[:12]}'
+        sections = framework.get('sections', [])
+        current_section_id = ''
+        if sections:
+            first_section = sections[0]
+            if not isinstance(first_section, dict):
+                raise ValidationError('Framework metadata is malformed: section must be an object.')
+            current_section_id = str(
+                first_section.get('sectionId') or first_section.get('id') or ''
+            ).strip()
+            if not current_section_id:
+                raise ValidationError(
+                    'Framework metadata is malformed: sectionId is missing for the first section.'
+                )
+        assessment_item = {
+            'pk': f'ORG#{organisation_id}',
+            'sk': f'ASSESSMENT#{assessment_id}',
+            'entityType': 'ASSESSMENT',
+            'assessmentId': assessment_id,
+            'frameworkId': framework_id,
+            'organisationId': organisation_id,
+            'createdBy': user['sub'],
+            'createdAt': now,
+            'updatedAt': now,
+            'status': 'not_started',
+            'currentSectionId': current_section_id,
+        }
+        self.table.put_item(Item=assessment_item)
+        return self._serialize_assessment_summary(assessment_item), False
+
+    def list_assessments(
+        self, user: UserSummary, framework_id: Optional[str] = None
+    ) -> list[Dict[str, Any]]:
+        membership = self._require_membership(user['sub'])
+        items = self._list_assessment_items(membership['organisationId'], framework_id)
+        return [self._serialize_assessment_summary(item) for item in items]
+
+    def get_assessment_detail(self, user: UserSummary, assessment_id: str) -> Dict[str, Any]:
+        membership = self._require_membership(user['sub'])
+        organisation_id = membership['organisationId']
+        assessment = self._get_assessment_item(organisation_id, assessment_id)
+        if not assessment:
+            raise ValidationError('Assessment not found.')
+
+        framework = self._get_framework(assessment['frameworkId'])
+        if framework is None:
+            raise DataStoreError(f"Framework metadata missing for {assessment['frameworkId']}.")
+
+        responses = self._get_assessment_responses(assessment_id)
+        return {
+            **self._serialize_assessment_summary(assessment),
+            'framework': {
+                'frameworkId': framework['frameworkId'],
+                'name': framework['name'],
+                'version': framework['version'],
+                'description': framework['description'],
+                'sections': framework.get('sections', []),
+            },
+            'responses': responses,
+        }
+
+    def save_assessment_responses(
+        self,
+        user: UserSummary,
+        assessment_id: str,
+        section_id: str,
+        responses: list[Dict[str, Any]],
+    ) -> Dict[str, Any]:
+        membership = self._require_membership(user['sub'])
+        organisation_id = membership['organisationId']
+        assessment = self._get_assessment_item(organisation_id, assessment_id)
+        if not assessment:
+            raise ValidationError('Assessment not found.')
+
+        now = datetime.now(timezone.utc).isoformat()
+        response_item = {
+            'pk': f'ASSESSMENT#{assessment_id}',
+            'sk': f'RESPONSE#{section_id}',
+            'entityType': 'ASSESSMENT_SECTION_RESPONSE',
+            'assessmentId': assessment_id,
+            'sectionId': section_id,
+            'responses': responses,
+            'updatedBy': user['sub'],
+            'updatedAt': now,
+        }
+        self.table.put_item(Item=response_item)
+
+        next_status = 'in_progress'
+        if assessment.get('status') == 'completed':
+            next_status = 'completed'
+
+        self.table.update_item(
+            Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'},
+            UpdateExpression=(
+                'SET #status = :status, currentSectionId = :section, updatedAt = :updatedAt'
+            ),
+            ExpressionAttributeNames={'#status': 'status'},
+            ExpressionAttributeValues={
+                ':status': next_status,
+                ':section': section_id,
+                ':updatedAt': now,
+            },
+        )
+        refreshed = self._get_assessment_item(organisation_id, assessment_id)
+        if not refreshed:
+            raise DataStoreError('Assessment update failed.')
+        return self._serialize_assessment_summary(refreshed)
 
     def create_organisation(
         self, user: UserSummary, payload: Dict[str, Any]
@@ -330,6 +462,79 @@ class DataStore:
             if not isinstance(value, str) or not value.strip():
                 raise ValidationError(f'{field_name} is required.')
 
+    def _require_membership(self, user_sub: str) -> Dict[str, Any]:
+        membership = self._get_user_membership(user_sub)
+        if not membership:
+            raise ValidationError('You must create an organisation before starting an assessment.')
+        return membership
+
+    def _get_framework(self, framework_id: str) -> Optional[Dict[str, Any]]:
+        self.ensure_framework_seed_data()
+        result = self.table.get_item(Key={'pk': 'FRAMEWORKS', 'sk': f'FRAMEWORK#{framework_id}'})
+        item = result.get('Item')
+        if item:
+            return item
+        framework = load_framework_definition()
+        if framework.get('frameworkId') == framework_id:
+            return framework
+        return None
+
+    def _list_assessment_items(
+        self, organisation_id: str, framework_id: Optional[str] = None
+    ) -> list[Dict[str, Any]]:
+        key = _dynamodb_key()
+        result = self.table.query(
+            KeyConditionExpression=(
+                key('pk').eq(f'ORG#{organisation_id}') & key('sk').begins_with('ASSESSMENT#')
+            )
+        )
+        items = result.get('Items', [])
+        filtered_items = [
+            item
+            for item in items
+            if item.get('entityType') == 'ASSESSMENT'
+            and item.get('status') in VALID_ASSESSMENT_STATUSES
+            and (framework_id is None or item.get('frameworkId') == framework_id)
+        ]
+        return sorted(filtered_items, key=lambda item: item.get('updatedAt', ''), reverse=True)
+
+    def _get_assessment_item(
+        self, organisation_id: str, assessment_id: str
+    ) -> Optional[Dict[str, Any]]:
+        result = self.table.get_item(
+            Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'}
+        )
+        item = result.get('Item')
+        if not item or item.get('entityType') != 'ASSESSMENT':
+            return None
+        return item
+
+    def _get_assessment_responses(self, assessment_id: str) -> Dict[str, list[Dict[str, Any]]]:
+        key = _dynamodb_key()
+        result = self.table.query(
+            KeyConditionExpression=(
+                key('pk').eq(f'ASSESSMENT#{assessment_id}') & key('sk').begins_with('RESPONSE#')
+            )
+        )
+        mapped: Dict[str, list[Dict[str, Any]]] = {}
+        for item in result.get('Items', []):
+            section_id = item.get('sectionId')
+            if section_id:
+                mapped[str(section_id)] = item.get('responses', [])
+        return mapped
+
+    def _serialize_assessment_summary(self, item: Dict[str, Any]) -> Dict[str, Any]:
+        return {
+            'assessmentId': item['assessmentId'],
+            'frameworkId': item['frameworkId'],
+            'organisationId': item['organisationId'],
+            'createdBy': item['createdBy'],
+            'createdAt': item['createdAt'],
+            'updatedAt': item['updatedAt'],
+            'status': item['status'],
+            'currentSectionId': item.get('currentSectionId', ''),
+        }
+
     def _validate_transaction_item_keys(self, item: Dict[str, Any], item_name: str) -> None:
         missing_attributes = [
             attribute
@@ -400,4 +605,3 @@ def _dynamodb_key() -> Any:
     from boto3.dynamodb.conditions import Key
 
     return Key
-

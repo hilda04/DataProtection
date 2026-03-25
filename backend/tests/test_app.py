@@ -94,3 +94,22 @@ def test_unknown_route_returns_404() -> None:
 
     assert response['statusCode'] == 404
     assert payload['message'] == 'Route not found.'
+
+
+def test_assessment_detail_dynamic_route() -> None:
+    response = lambda_handler(make_event('GET', '/assessments/asm_123'), None)
+
+    assert response['statusCode'] != 404
+
+
+def test_assessment_responses_dynamic_route() -> None:
+    response = lambda_handler(
+        make_event(
+            'POST',
+            '/assessments/asm_123/responses',
+            body={'sectionId': 'governance-accountability', 'responses': []},
+        ),
+        None,
+    )
+
+    assert response['statusCode'] != 404

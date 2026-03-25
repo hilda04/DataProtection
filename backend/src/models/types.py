@@ -31,6 +31,27 @@ class FrameworkSummary(TypedDict):
     sections: List[Dict[str, str]]
 
 
+class FrameworkQuestion(TypedDict, total=False):
+    id: str
+    text: str
+    helpText: str
+
+
+class FrameworkSection(TypedDict, total=False):
+    id: str
+    title: str
+    summary: str
+    questions: List[FrameworkQuestion]
+
+
+class FrameworkDefinition(TypedDict, total=False):
+    frameworkId: str
+    name: str
+    version: str
+    description: str
+    sections: List[FrameworkSection]
+
+
 @dataclass
 class ApiResponse:
     status_code: int

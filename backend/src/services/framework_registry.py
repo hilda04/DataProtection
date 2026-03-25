@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from models.types import FrameworkSummary
+from models.types import FrameworkDefinition, FrameworkSummary
 
 FRAMEWORK_FILENAME = 'zimbabwe-dpa.json'
 
@@ -26,9 +26,13 @@ def resolve_framework_path(file_name: str = FRAMEWORK_FILENAME) -> Path:
     raise FileNotFoundError(f'Framework file not found. Looked in: {searched}')
 
 
-def load_framework_catalog() -> list[FrameworkSummary]:
+def load_framework_definition() -> FrameworkDefinition:
     framework_path = resolve_framework_path()
-    framework = json.loads(framework_path.read_text(encoding='utf-8'))
+    return json.loads(framework_path.read_text(encoding='utf-8'))
+
+
+def load_framework_catalog() -> list[FrameworkSummary]:
+    framework = load_framework_definition()
     return [
         {
             'frameworkId': framework['frameworkId'],
@@ -49,13 +53,17 @@ def load_framework_catalog() -> list[FrameworkSummary]:
 def build_framework_seed_items() -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
 
-    for framework in load_framework_catalog():
+    for framework in [load_framework_definition()]:
         items.append(
             {
                 'pk': f"FRAMEWORK#{framework['frameworkId']}",
                 'sk': 'META',
                 'entityType': 'FRAMEWORK',
-                **framework,
+                'frameworkId': framework['frameworkId'],
+                'name': framework['name'],
+                'version': framework['version'],
+                'description': framework['description'],
+                'sections': framework.get('sections', []),
             }
         )
 
