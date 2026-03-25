@@ -142,7 +142,18 @@ class DataStore:
         now = datetime.now(timezone.utc).isoformat()
         assessment_id = f'asm_{uuid4().hex[:12]}'
         sections = framework.get('sections', [])
-        current_section_id = sections[0]['id'] if sections else ''
+        current_section_id = ''
+        if sections:
+            first_section = sections[0]
+            if not isinstance(first_section, dict):
+                raise ValidationError('Framework metadata is malformed: section must be an object.')
+            current_section_id = str(
+                first_section.get('sectionId') or first_section.get('id') or ''
+            ).strip()
+            if not current_section_id:
+                raise ValidationError(
+                    'Framework metadata is malformed: sectionId is missing for the first section.'
+                )
         assessment_item = {
             'pk': f'ORG#{organisation_id}',
             'sk': f'ASSESSMENT#{assessment_id}',
