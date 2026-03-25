@@ -147,10 +147,13 @@ class DataStore:
             'entityType': 'USER_ORGANISATION_MEMBERSHIP',
             'organisationId': organisation_id,
             'userSub': user['sub'],
-            'email': user['email'],
             'role': 'owner',
             'createdAt': created_at,
         }
+
+        user_email = str(user.get('email', '')).strip()
+        if user_email:
+            membership_item['email'] = user_email
 
         client = self.table.meta.client
         table_name = self.table.name
