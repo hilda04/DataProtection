@@ -175,31 +175,47 @@ class DataStore:
             },
         )
 
+        transact_items = [
+            {
+                'Put': {
+                    'TableName': table_name,
+                    'Item': _serialize_item(organisation_item),
+                    'ConditionExpression': (
+                        f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
+                        f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
+                    ),
+                }
+            },
+            {
+                'Put': {
+                    'TableName': table_name,
+                    'Item': _serialize_item(membership_item),
+                    'ConditionExpression': (
+                        f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
+                        f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
+                    ),
+                }
+            },
+        ]
+
+        self._validate_transact_items(transact_items)
+
+        first_item = transact_items[0]['Put']['Item']
+        logger.info(
+            'Submitting DynamoDB transact_write_items for organisation creation.',
+            extra={
+                'route': 'POST /organisations',
+                'table_name': table_name,
+                'first_item_keys': {
+                    TABLE_PK_ATTRIBUTE: first_item.get(TABLE_PK_ATTRIBUTE),
+                    TABLE_SK_ATTRIBUTE: first_item.get(TABLE_SK_ATTRIBUTE),
+                },
+                'transact_items': transact_items,
+            },
+        )
+
         try:
-            client.transact_write_items(
-                TransactItems=[
-                    {
-                        'Put': {
-                            'TableName': table_name,
-                            'Item': _serialize_item(organisation_item),
-                            'ConditionExpression': (
-                                f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
-                                f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
-                            ),
-                        }
-                    },
-                    {
-                        'Put': {
-                            'TableName': table_name,
-                            'Item': _serialize_item(membership_item),
-                            'ConditionExpression': (
-                                f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
-                                f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
-                            ),
-                        }
-                    },
-                ]
-            )
+            client.transact_write_items(TransactItems=transact_items)
         except Exception as error:
             cancellation_reasons: Optional[List[Any]] = None
             try:
@@ -288,6 +304,30 @@ class DataStore:
                 raise DataStoreError(
                     f'{item_name} transaction item has empty key attribute: {attribute}.'
                 )
+
+    def _validate_transact_items(self, transact_items: List[Dict[str, Any]]) -> None:
+        for index, transaction in enumerate(transact_items):
+            put_item = transaction.get('Put', {})
+            marshalled_item = put_item.get('Item')
+
+            if not isinstance(marshalled_item, dict):
+                raise DataStoreError(
+                    f'Transaction item at index {index} is missing a marshalled Item payload.'
+                )
+
+            for attribute in (TABLE_PK_ATTRIBUTE, TABLE_SK_ATTRIBUTE):
+                if attribute not in marshalled_item:
+                    raise DataStoreError(
+                        f'Transaction item at index {index} is missing marshalled key: {attribute}.'
+                    )
+
+                marshalled_attribute = marshalled_item[attribute]
+                if not isinstance(marshalled_attribute, dict) or 'S' not in marshalled_attribute:
+                    raise DataStoreError(
+                        f'Transaction item at index {index} has invalid AttributeValue '
+                        f'for key {attribute}: {marshalled_attribute}.'
+                    )
+
 
 
 def get_user_from_event(event: Dict[str, Any]) -> UserSummary:
