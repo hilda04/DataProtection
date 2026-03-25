@@ -183,20 +183,16 @@ class DataStore:
                 'Put': {
                     'TableName': table_name,
                     'Item': _serialize_item(organisation_item),
-                    'ConditionExpression': (
-                        f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
-                        f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
-                    ),
+                    'ConditionExpression': 'attribute_not_exists(#pk)',
+                    'ExpressionAttributeNames': {'#pk': TABLE_PK_ATTRIBUTE},
                 }
             },
             {
                 'Put': {
                     'TableName': table_name,
                     'Item': _serialize_item(membership_item),
-                    'ConditionExpression': (
-                        f'attribute_not_exists({TABLE_PK_ATTRIBUTE}) AND '
-                        f'attribute_not_exists({TABLE_SK_ATTRIBUTE})'
-                    ),
+                    'ConditionExpression': 'attribute_not_exists(#pk)',
+                    'ExpressionAttributeNames': {'#pk': TABLE_PK_ATTRIBUTE},
                 }
             },
         ]
