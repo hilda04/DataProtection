@@ -41,10 +41,11 @@ def load_framework_catalog() -> list[FrameworkSummary]:
             'description': framework['description'],
             'sections': [
                 {
-                    'sectionId': section['id'],
-                    'name': section['title'],
+                    'sectionId': section.get('sectionId') or section.get('id'),
+                    'name': section.get('name') or section.get('title'),
                 }
                 for section in framework.get('sections', [])
+                if section.get('sectionId') or section.get('id')
             ],
         }
     ]

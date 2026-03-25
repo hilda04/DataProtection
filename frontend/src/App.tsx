@@ -68,10 +68,12 @@ export default function App() {
       return null;
     }
 
-    const sections = activeAssessment.framework.sections ?? [];
-    return (
-      sections.find((section) => section.id === activeAssessment.currentSectionId) ?? sections[0] ?? null
-    );
+    if (activeAssessment.currentSection) {
+      return activeAssessment.currentSection;
+    }
+
+    const sections = activeAssessment.sections ?? [];
+    return sections.find((section) => section.sectionId === activeAssessment.currentSectionId) ?? sections[0] ?? null;
   }, [activeAssessment]);
 
   useEffect(() => {
@@ -84,7 +86,7 @@ export default function App() {
       return;
     }
 
-    const sectionResponses = activeAssessment.responses[currentSection.id] ?? [];
+    const sectionResponses = activeAssessment.responses[currentSection.sectionId] ?? [];
     const nextAnswers: Record<string, number> = {};
     sectionResponses.forEach((response) => {
       nextAnswers[response.questionId] = response.value;
@@ -236,18 +238,23 @@ export default function App() {
 
     const sectionQuestions = currentSection.questions ?? [];
     const responses = sectionQuestions
-      .filter((question) => typeof answersByQuestionId[question.id] === 'number')
+      .filter((question) => typeof answersByQuestionId[question.questionId] === 'number')
       .map((question) => ({
-        questionId: question.id,
-        value: answersByQuestionId[question.id],
+        questionId: question.questionId,
+        value: answersByQuestionId[question.questionId],
       }));
+
+    if (!activeAssessment.assessmentId || !currentSection.sectionId) {
+      setAssessmentError('Assessment state is incomplete. Please return to dashboard and retry.');
+      return;
+    }
 
     setIsSavingResponses(true);
     setAssessmentError('');
     setAssessmentNotice('');
 
     const result = await saveAssessmentResponses(activeAssessment.assessmentId, {
-      sectionId: currentSection.id,
+      sectionId: currentSection.sectionId,
       responses,
     });
 
@@ -267,7 +274,7 @@ export default function App() {
     setActiveAssessment(detail.data);
     setAssessmentsByFramework((current) => ({
       ...current,
-      [detail.data.framework.frameworkId]: result.data,
+      [detail.data.frameworkId]: result.data,
     }));
     setAssessmentNotice('Progress saved. Continue later at any time.');
     setIsSavingResponses(false);
@@ -472,31 +479,31 @@ export default function App() {
             <p>{bootstrap.organisation?.name}</p>
             <div className="assessment-meta-row">
               <span className="status-pill in-progress">Assessment in progress</span>
-              <span className="meta-value">Section: {currentSection.title}</span>
+              <span className="meta-value">Section: {currentSection.name}</span>
               <span className="meta-value">Status: {activeAssessment.status.replace('_', ' ')}</span>
             </div>
-            {currentSection.summary ? <p>{currentSection.summary}</p> : null}
+            {currentSection.description ? <p>{currentSection.description}</p> : null}
             <p>
-              Section progress: {Object.keys(activeAssessment.responses).length} / {activeAssessment.framework.sections.length}
+              Section progress: {Object.keys(activeAssessment.responses).length} / {activeAssessment.sections.length}
             </p>
           </section>
 
           <section className="card">
             <p className="section-label">Complete this section</p>
-            <h3>{currentSection.title}</h3>
+            <h3>{currentSection.name}</h3>
 
             <div className="question-list">
               {(currentSection.questions ?? []).map((question) => (
-                <fieldset className="question-card" key={question.id}>
+                <fieldset className="question-card" key={question.questionId}>
                   <legend>{question.text}</legend>
                   {question.helpText ? <p className="question-help">{question.helpText}</p> : null}
                   <div className="maturity-grid">
                     {maturityLabels.map((label, value) => (
                       <label className="maturity-option" key={label}>
                         <input
-                          checked={answersByQuestionId[question.id] === value}
-                          name={question.id}
-                          onChange={() => handleAnswerChange(question.id, value)}
+                          checked={answersByQuestionId[question.questionId] === value}
+                          name={question.questionId}
+                          onChange={() => handleAnswerChange(question.questionId, value)}
                           type="radio"
                           value={value}
                         />
@@ -518,6 +525,18 @@ export default function App() {
             </div>
             {assessmentNotice ? <p className="info-text">{assessmentNotice}</p> : null}
           </section>
+        </section>
+      ) : null}
+
+      {view === 'assessment' && bootstrap && activeAssessment && !currentSection ? (
+        <section className="card error-banner" role="alert">
+          <h2>Section unavailable</h2>
+          <p>We could not load the current section for this assessment. Please return to dashboard and retry.</p>
+          <div className="button-row">
+            <button className="secondary-button" onClick={() => setView('dashboard')} type="button">
+              Back to dashboard
+            </button>
+          </div>
         </section>
       ) : null}
     </main>

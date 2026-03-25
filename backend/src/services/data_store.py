@@ -141,14 +141,14 @@ class DataStore:
 
         now = datetime.now(timezone.utc).isoformat()
         assessment_id = f'asm_{uuid4().hex[:12]}'
-        sections = framework.get('sections', [])
+        sections = self._normalise_framework_sections(framework.get('sections', []))
         current_section_id = ''
         if sections:
             first_section = sections[0]
             if not isinstance(first_section, dict):
                 raise ValidationError('Framework metadata is malformed: section must be an object.')
             current_section_id = str(
-                first_section.get('sectionId') or first_section.get('id') or ''
+                first_section.get('sectionId') or ''
             ).strip()
             if not current_section_id:
                 raise ValidationError(
@@ -188,15 +188,19 @@ class DataStore:
         if framework is None:
             raise DataStoreError(f"Framework metadata missing for {assessment['frameworkId']}.")
 
+        sections = self._normalise_framework_sections(framework.get('sections', []))
+        current_section = self._resolve_current_section(sections, assessment.get('currentSectionId', ''))
         responses = self._get_assessment_responses(assessment_id)
         return {
             **self._serialize_assessment_summary(assessment),
+            'sections': sections,
+            'currentSection': current_section,
             'framework': {
                 'frameworkId': framework['frameworkId'],
                 'name': framework['name'],
                 'version': framework['version'],
                 'description': framework['description'],
-                'sections': framework.get('sections', []),
+                'sections': sections,
             },
             'responses': responses,
         }
@@ -213,6 +217,14 @@ class DataStore:
         assessment = self._get_assessment_item(organisation_id, assessment_id)
         if not assessment:
             raise ValidationError('Assessment not found.')
+        framework = self._get_framework(assessment['frameworkId'])
+        if framework is None:
+            raise DataStoreError(f"Framework metadata missing for {assessment['frameworkId']}.")
+
+        sections = self._normalise_framework_sections(framework.get('sections', []))
+        section_ids = [section['sectionId'] for section in sections]
+        if section_id not in section_ids:
+            raise ValidationError('sectionId is invalid for this assessment framework.')
 
         now = datetime.now(timezone.utc).isoformat()
         response_item = {
@@ -228,8 +240,13 @@ class DataStore:
         self.table.put_item(Item=response_item)
 
         next_status = 'in_progress'
-        if assessment.get('status') == 'completed':
-            next_status = 'completed'
+        next_section_id = section_id
+        if section_id in section_ids:
+            section_index = section_ids.index(section_id)
+            has_next = section_index + 1 < len(section_ids)
+            next_section_id = section_ids[section_index + 1] if has_next else section_id
+            if not has_next:
+                next_status = 'completed'
 
         self.table.update_item(
             Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'},
@@ -239,7 +256,7 @@ class DataStore:
             ExpressionAttributeNames={'#status': 'status'},
             ExpressionAttributeValues={
                 ':status': next_status,
-                ':section': section_id,
+                ':section': next_section_id,
                 ':updatedAt': now,
             },
         )
@@ -534,6 +551,51 @@ class DataStore:
             'status': item['status'],
             'currentSectionId': item.get('currentSectionId', ''),
         }
+
+    def _normalise_framework_sections(self, sections: list[Dict[str, Any]]) -> list[Dict[str, Any]]:
+        normalised_sections: list[Dict[str, Any]] = []
+        for section in sections:
+            if not isinstance(section, dict):
+                continue
+            section_id = str(section.get('sectionId') or section.get('id') or '').strip()
+            if not section_id:
+                continue
+            questions = []
+            for question in section.get('questions', []):
+                if not isinstance(question, dict):
+                    continue
+                question_id = str(question.get('questionId') or question.get('id') or '').strip()
+                if not question_id:
+                    continue
+                questions.append(
+                    {
+                        'questionId': question_id,
+                        'text': str(question.get('text', '')).strip(),
+                        'helpText': str(question.get('helpText', '')).strip(),
+                    }
+                )
+            normalised_sections.append(
+                {
+                    'sectionId': section_id,
+                    'name': str(section.get('name') or section.get('title') or '').strip(),
+                    'description': str(
+                        section.get('description') or section.get('summary') or ''
+                    ).strip(),
+                    'questions': questions,
+                }
+            )
+        return normalised_sections
+
+    def _resolve_current_section(
+        self, sections: list[Dict[str, Any]], current_section_id: str
+    ) -> Optional[Dict[str, Any]]:
+        if not sections:
+            return None
+        selected = next(
+            (section for section in sections if section.get('sectionId') == current_section_id),
+            None,
+        )
+        return selected or sections[0]
 
     def _validate_transaction_item_keys(self, item: Dict[str, Any], item_name: str) -> None:
         missing_attributes = [
