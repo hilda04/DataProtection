@@ -139,7 +139,9 @@ def list_assessments(event: dict[str, Any], _context: Any) -> dict[str, Any]:
         store = DataStore()
         user = get_user_from_event(event)
         query_params = event.get('queryStringParameters') or {}
-        framework_id = query_params.get('frameworkId') if isinstance(query_params, dict) else None
+        framework_id = None
+        if isinstance(query_params, dict):
+            framework_id = query_params.get('framework_id') or query_params.get('frameworkId')
         assessments = store.list_assessments(user, framework_id=framework_id)
         return ApiResponse(status_code=200, body=assessments).to_dict()
     except NotAuthenticatedError as error:
@@ -193,6 +195,25 @@ def save_assessment_responses(event: dict[str, Any], _context: Any) -> dict[str,
 
         assessment = store.save_assessment_responses(user, assessment_id, section_id, responses)
         return ApiResponse(status_code=200, body=assessment).to_dict()
+    except NotAuthenticatedError as error:
+        return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
+    except ValidationError as error:
+        return ApiResponse(status_code=400, body={'message': str(error)}).to_dict()
+    except DataStoreError as error:
+        return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
+
+
+def get_assessment_report(event: dict[str, Any], _context: Any) -> dict[str, Any]:
+    try:
+        store = DataStore()
+        user = get_user_from_event(event)
+        assessment_id = str((event.get('pathParameters') or {}).get('assessmentId', '')).strip()
+        if not assessment_id:
+            return ApiResponse(
+                status_code=400, body={'message': 'assessmentId is required.'}
+            ).to_dict()
+        report = store.get_assessment_report_download_url(user, assessment_id)
+        return ApiResponse(status_code=200, body=report).to_dict()
     except NotAuthenticatedError as error:
         return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
     except ValidationError as error:

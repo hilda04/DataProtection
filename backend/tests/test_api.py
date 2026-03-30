@@ -80,7 +80,10 @@ class FakeStore:
                 'createdBy': user['sub'],
                 'createdAt': '2026-03-23T00:00:00+00:00',
                 'updatedAt': '2026-03-23T00:00:00+00:00',
-                'status': 'in_progress',
+                'status': 'IN_PROGRESS',
+                'score': 32.5,
+                'completedAt': None,
+                'reportS3Key': None,
                 'currentSectionId': 'governance-accountability',
             },
             False,
@@ -97,7 +100,10 @@ class FakeStore:
                 'createdBy': 'user-123',
                 'createdAt': '2026-03-23T00:00:00+00:00',
                 'updatedAt': '2026-03-23T00:00:00+00:00',
-                'status': 'in_progress',
+                'status': 'IN_PROGRESS',
+                'score': 32.5,
+                'completedAt': None,
+                'reportS3Key': None,
                 'currentSectionId': 'governance-accountability',
             }
         ]
@@ -110,7 +116,10 @@ class FakeStore:
             'createdBy': 'user-123',
             'createdAt': '2026-03-23T00:00:00+00:00',
             'updatedAt': '2026-03-23T00:00:00+00:00',
-            'status': 'in_progress',
+            'status': 'IN_PROGRESS',
+            'score': 32.5,
+            'completedAt': None,
+            'reportS3Key': None,
             'currentSectionId': 'governance-accountability',
             'framework': {
                 'frameworkId': 'zim-dpa',
@@ -136,9 +145,17 @@ class FakeStore:
             'createdBy': 'user-123',
             'createdAt': '2026-03-23T00:00:00+00:00',
             'updatedAt': '2026-03-23T00:00:00+00:00',
-            'status': 'in_progress',
+            'status': 'IN_PROGRESS',
+            'score': 50.0,
+            'completedAt': None,
+            'reportS3Key': None,
             'currentSectionId': section_id,
         }
+
+    def get_assessment_report_download_url(
+        self, _user: dict[str, str], _assessment_id: str
+    ) -> dict[str, str]:
+        return {'url': 'https://example.com/report.json'}
 
 
 @pytest.fixture
@@ -306,7 +323,7 @@ def test_create_assessment_returns_record(
 
     assert response['statusCode'] == 201
     assert body['frameworkId'] == 'zim-dpa'
-    assert body['status'] == 'in_progress'
+    assert body['status'] == 'IN_PROGRESS'
 
 
 def test_list_assessments_returns_latest(
@@ -360,3 +377,18 @@ def test_save_assessment_responses_updates_assessment(
 
     assert response['statusCode'] == 200
     assert body['currentSectionId'] == 'governance-accountability'
+
+
+def test_get_assessment_report_returns_signed_url(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
+    event = {
+        **auth_event,
+        'pathParameters': {'assessmentId': 'asm_123'},
+    }
+    response = api.get_assessment_report(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert body['url'].startswith('https://')

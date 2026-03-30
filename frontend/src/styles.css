@@ -211,6 +211,11 @@ select {
   background: #dcfce7;
 }
 
+.status-pill.completed {
+  color: #78350f;
+  background: #fef3c7;
+}
+
 .help-card h3,
 .card h2,
 .card h3 {

@@ -3,6 +3,7 @@ import {
   createAssessment,
   createOrganisation,
   getAssessment,
+  getAssessmentReportUrl,
   getAssessments,
   getBootstrap,
   saveAssessmentResponses,
@@ -16,7 +17,7 @@ import { isSignedIn, login, logout } from './lib/auth';
 import './styles.css';
 
 type AuthState = 'checking' | 'authenticated' | 'signed_out';
-type AppView = 'loading' | 'signed_out' | 'setup' | 'dashboard' | 'assessment';
+type AppView = 'loading' | 'signed_out' | 'setup' | 'dashboard' | 'assessment' | 'summary';
 
 type OrganisationFormState = CreateOrganisationInput;
 
@@ -40,9 +41,15 @@ const maturityLabels = [
 function getFrameworkStatus(
   framework: FrameworkSummary,
   assessmentsByFramework: Record<string, AssessmentSummary | null>,
-): 'Not started' | 'In progress' {
+): 'Not started' | 'In progress' | 'Completed' {
   const assessment = assessmentsByFramework[framework.frameworkId];
-  return assessment && assessment.status !== 'completed' ? 'In progress' : 'Not started';
+  if (!assessment) {
+    return 'Not started';
+  }
+  if (assessment.status === 'COMPLETED') {
+    return 'Completed';
+  }
+  return 'In progress';
 }
 
 export default function App() {
@@ -276,8 +283,22 @@ export default function App() {
       ...current,
       [detail.data.frameworkId]: result.data,
     }));
-    setAssessmentNotice('Progress saved. Continue later at any time.');
+    if (result.data.status === 'COMPLETED') {
+      setAssessmentNotice('Assessment completed.');
+      setView('summary');
+    } else {
+      setAssessmentNotice('Progress saved. Continue later at any time.');
+    }
     setIsSavingResponses(false);
+  }
+
+  async function handleViewReport(assessmentId: string): Promise<void> {
+    const result = await getAssessmentReportUrl(assessmentId);
+    if (!result.ok || !result.data?.url) {
+      setAssessmentError(result.error ?? 'Report is not available yet.');
+      return;
+    }
+    window.open(result.data.url, '_blank', 'noopener,noreferrer');
   }
 
   const hasOrganisation = Boolean(bootstrap?.organisation);
@@ -437,7 +458,7 @@ export default function App() {
                     <h3>{framework.name}</h3>
                     <p>Version {framework.version}</p>
                   </div>
-                  <span className={`status-pill ${status === 'In progress' ? 'in-progress' : 'not-started'}`}>
+                  <span className={`status-pill ${status === 'In progress' ? 'in-progress' : status === 'Completed' ? 'completed' : 'not-started'}`}>
                     {status}
                   </span>
                 </div>
@@ -456,6 +477,18 @@ export default function App() {
                 <button className="cta-button" onClick={() => void handleStartAssessment(framework)} type="button">
                   {hasAssessment ? 'Continue assessment' : 'Start assessment'}
                 </button>
+                {hasAssessment && assessmentsByFramework[framework.frameworkId]?.status === 'COMPLETED' ? (
+                  <button
+                    className="secondary-button"
+                    onClick={() => void handleViewReport(assessmentsByFramework[framework.frameworkId]!.assessmentId)}
+                    type="button"
+                  >
+                    View report
+                  </button>
+                ) : null}
+                {hasAssessment ? (
+                  <p className="meta-label">Score: {assessmentsByFramework[framework.frameworkId]?.score ?? 0}%</p>
+                ) : null}
               </section>
             );
           })}
@@ -535,6 +568,24 @@ export default function App() {
           <div className="button-row">
             <button className="secondary-button" onClick={() => setView('dashboard')} type="button">
               Back to dashboard
+            </button>
+          </div>
+        </section>
+      ) : null}
+
+      {view === 'summary' && bootstrap && activeAssessment ? (
+        <section className="card center-card">
+          <p className="section-label">Assessment complete</p>
+          <h2>{activeAssessment.framework.name}</h2>
+          <p>
+            Score: <strong>{activeAssessment.score}%</strong>
+          </p>
+          <div className="button-row">
+            <button className="cta-button" onClick={() => setView('dashboard')} type="button">
+              Back to dashboard
+            </button>
+            <button className="secondary-button" onClick={() => void handleViewReport(activeAssessment.assessmentId)} type="button">
+              View report
             </button>
           </div>
         </section>

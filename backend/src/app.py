@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, Tuple
 from handlers.api import (
     create_assessment,
     get_assessment,
+    get_assessment_report,
     get_bootstrap,
     health,
     list_assessments,
@@ -48,6 +49,17 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         if len(parts) == 3 and parts[0] == 'assessments' and parts[2] == 'responses':
             routed_event = {**event, 'pathParameters': {'assessmentId': parts[1]}}
             handler = save_assessment_responses
+
+    if (
+        handler is None
+        and method == 'GET'
+        and path.startswith('/assessments/')
+        and path.endswith('/report')
+    ):
+        parts = path.strip('/').split('/')
+        if len(parts) == 3 and parts[0] == 'assessments' and parts[2] == 'report':
+            routed_event = {**event, 'pathParameters': {'assessmentId': parts[1]}}
+            handler = get_assessment_report
 
     if handler is None:
         return ApiResponse(status_code=404, body={'message': 'Route not found.'}).to_dict()
