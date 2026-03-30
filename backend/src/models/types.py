@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import dataclass, field
+from decimal import Decimal
 from typing import Any, Dict, List, TypedDict, Union
 
 
@@ -67,5 +68,23 @@ class ApiResponse:
         return {
             'statusCode': self.status_code,
             'headers': self.headers,
-            'body': json.dumps(self.body),
+            'body': safe_json_dumps(self.body),
         }
+
+
+def to_json_safe(value: Any) -> Any:
+    if isinstance(value, Decimal):
+        if value == value.to_integral_value():
+            return int(value)
+        return float(value)
+    if isinstance(value, dict):
+        return {key: to_json_safe(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [to_json_safe(item) for item in value]
+    if isinstance(value, tuple):
+        return [to_json_safe(item) for item in value]
+    return value
+
+
+def safe_json_dumps(value: Any) -> str:
+    return json.dumps(to_json_safe(value))
