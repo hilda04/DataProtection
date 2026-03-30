@@ -189,7 +189,9 @@ class DataStore:
             raise DataStoreError(f"Framework metadata missing for {assessment['frameworkId']}.")
 
         sections = self._normalise_framework_sections(framework.get('sections', []))
-        current_section = self._resolve_current_section(sections, assessment.get('currentSectionId', ''))
+        current_section = self._resolve_current_section(
+            sections, assessment.get('currentSectionId', '')
+        )
         responses = self._get_assessment_responses(assessment_id)
         return {
             **self._serialize_assessment_summary(assessment),
@@ -489,12 +491,64 @@ class DataStore:
         self.ensure_framework_seed_data()
         result = self.table.get_item(Key={'pk': 'FRAMEWORKS', 'sk': f'FRAMEWORK#{framework_id}'})
         item = result.get('Item')
+        framework = load_framework_definition()
+        if item and self._framework_contains_questions(item):
+            return item
+
+        if framework.get('frameworkId') == framework_id:
+            if item:
+                self._refresh_framework_sections(item, framework)
+            return framework
+
         if item:
             return item
-        framework = load_framework_definition()
-        if framework.get('frameworkId') == framework_id:
-            return framework
         return None
+
+    def _framework_contains_questions(self, framework: Dict[str, Any]) -> bool:
+        sections = framework.get('sections', [])
+        if not isinstance(sections, list):
+            return False
+
+        for section in sections:
+            if not isinstance(section, dict):
+                continue
+            questions = section.get('questions') or section.get('controls') or []
+            if not isinstance(questions, list):
+                continue
+            for question in questions:
+                if not isinstance(question, dict):
+                    continue
+                question_id = str(
+                    question.get('questionId')
+                    or question.get('id')
+                    or question.get('controlId')
+                    or ''
+                ).strip()
+                if question_id:
+                    return True
+        return False
+
+    def _refresh_framework_sections(
+        self, existing_framework: Dict[str, Any], framework_definition: Dict[str, Any]
+    ) -> None:
+        try:
+            self.table.update_item(
+                Key={
+                    'pk': 'FRAMEWORKS',
+                    'sk': f"FRAMEWORK#{existing_framework['frameworkId']}",
+                },
+                UpdateExpression='SET #sections = :sections, updatedAt = :updatedAt',
+                ExpressionAttributeNames={'#sections': 'sections'},
+                ExpressionAttributeValues={
+                    ':sections': framework_definition.get('sections', []),
+                    ':updatedAt': datetime.now(timezone.utc).isoformat(),
+                },
+            )
+        except Exception:
+            logger.warning(
+                'Failed to refresh framework sections from local framework definition.',
+                extra={'frameworkId': existing_framework.get('frameworkId')},
+            )
 
     def _list_assessment_items(
         self, organisation_id: str, framework_id: Optional[str] = None
@@ -561,16 +615,27 @@ class DataStore:
             if not section_id:
                 continue
             questions = []
-            for question in section.get('questions', []):
+            for question in section.get('questions') or section.get('controls') or []:
                 if not isinstance(question, dict):
                     continue
-                question_id = str(question.get('questionId') or question.get('id') or '').strip()
+                question_id = str(
+                    question.get('questionId')
+                    or question.get('id')
+                    or question.get('controlId')
+                    or ''
+                ).strip()
                 if not question_id:
                     continue
                 questions.append(
                     {
                         'questionId': question_id,
-                        'text': str(question.get('text', '')).strip(),
+                        'text': str(
+                            question.get('text')
+                            or question.get('prompt')
+                            or question.get('question')
+                            or question.get('title')
+                            or ''
+                        ).strip(),
                         'helpText': str(question.get('helpText', '')).strip(),
                     }
                 )
