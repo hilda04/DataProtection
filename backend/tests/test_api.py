@@ -6,12 +6,13 @@ from typing import Any
 import pytest
 
 from handlers import api
-from services.data_store import ConflictError, ValidationError
+from services.data_store import ConflictError, ReportUnavailableError, ValidationError
 
 
 class FakeStore:
-    def __init__(self, membership: bool = False):
+    def __init__(self, membership: bool = False, report_unavailable: bool = False):
         self.membership = membership
+        self.report_unavailable = report_unavailable
         self.organisation = {
             'organisationId': 'org_123',
             'name': 'Example Org',
@@ -155,6 +156,8 @@ class FakeStore:
     def get_assessment_report_download_url(
         self, _user: dict[str, str], _assessment_id: str
     ) -> dict[str, str]:
+        if self.report_unavailable:
+            raise ReportUnavailableError('Report is not available for this assessment.')
         return {'url': 'https://example.com/report.json'}
 
 
@@ -392,3 +395,23 @@ def test_get_assessment_report_returns_signed_url(
 
     assert response['statusCode'] == 200
     assert body['url'].startswith('https://')
+
+
+def test_get_assessment_report_returns_404_when_report_is_missing(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(
+        api,
+        'DataStore',
+        lambda: FakeStore(membership=True, report_unavailable=True),
+    )
+    event = {
+        **auth_event,
+        'pathParameters': {'assessmentId': 'asm_123'},
+    }
+
+    response = api.get_assessment_report(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 404
+    assert body['message'] == 'Report is not available for this assessment.'
