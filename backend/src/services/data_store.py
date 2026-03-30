@@ -4,6 +4,7 @@ import json
 import logging
 import os
 from datetime import datetime, timezone
+from decimal import Decimal
 from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
@@ -251,7 +252,7 @@ class DataStore:
             'entityType': 'ASSESSMENT_SECTION_RESPONSE',
             'assessmentId': assessment_id,
             'sectionId': section_id,
-            'responses': responses,
+            'responses': _convert_floats_to_decimal(responses),
             'updatedBy': user['sub'],
             'updatedAt': now,
         }
@@ -315,7 +316,7 @@ class DataStore:
             Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'},
             UpdateExpression=update_expression,
             ExpressionAttributeNames={'#status': 'status'},
-            ExpressionAttributeValues=expression_values,
+            ExpressionAttributeValues=_convert_floats_to_decimal(expression_values),
         )
         refreshed = self._get_assessment_item(organisation_id, assessment_id)
         if not refreshed:
@@ -991,3 +992,15 @@ def _dynamodb_key() -> Any:
     from boto3.dynamodb.conditions import Key
 
     return Key
+
+
+def _convert_floats_to_decimal(value: Any) -> Any:
+    if isinstance(value, float):
+        return Decimal(str(value))
+    if isinstance(value, dict):
+        return {key: _convert_floats_to_decimal(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_convert_floats_to_decimal(item) for item in value]
+    if isinstance(value, tuple):
+        return tuple(_convert_floats_to_decimal(item) for item in value)
+    return value

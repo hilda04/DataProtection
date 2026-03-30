@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import sys
+from decimal import Decimal
 from typing import Any
 
-from services.data_store import DataStore, ReportUnavailableError
+from services.data_store import DataStore, ReportUnavailableError, _convert_floats_to_decimal
 
 
 class FakeTable:
@@ -25,6 +26,7 @@ class FakeTable:
             'currentSectionId': 'governance-accountability',
         }
         self.response_item: dict[str, Any] | None = None
+        self.last_update_expression_values: dict[str, Any] | None = None
 
     def query(self, **kwargs: Any) -> dict[str, Any]:
         expression = str(kwargs.get('KeyConditionExpression', ''))
@@ -53,6 +55,7 @@ class FakeTable:
 
     def update_item(self, **kwargs: Any) -> dict[str, Any]:
         values = kwargs['ExpressionAttributeValues']
+        self.last_update_expression_values = values
         self.assessment_item['status'] = values[':status']
         self.assessment_item['currentSectionId'] = values[':section']
         self.assessment_item['updatedAt'] = values[':updatedAt']
@@ -110,16 +113,63 @@ def test_save_assessment_responses_completes_when_report_upload_fails(monkeypatc
         lambda _assessment_id, _report: (_ for _ in ()).throw(RuntimeError('s3 failed')),
     )
 
+    nested_responses = [
+        {
+            'questionId': 'has-dpo',
+            'value': 2,
+            'weight': 0.75,
+            'metadata': {
+                'confidence': 0.8,
+                'scores': [0.1, 1, True, None, {'inner': 0.33}],
+            },
+        }
+    ]
+
     result = store.save_assessment_responses(
         {'sub': 'user-123', 'email': 'user@example.com'},
         'asm_123',
         'governance-accountability',
-        [{'questionId': 'has-dpo', 'value': 2}],
+        nested_responses,
     )
 
     assert result['status'] == 'COMPLETED'
     assert result['completedAt'] is not None
     assert result['reportS3Key'] is None
+    assert isinstance(table.response_item['responses'][0]['weight'], Decimal)
+    assert isinstance(table.response_item['responses'][0]['metadata']['confidence'], Decimal)
+    assert isinstance(table.response_item['responses'][0]['metadata']['scores'][0], Decimal)
+    assert table.response_item['responses'][0]['metadata']['scores'][1] == 1
+    assert table.response_item['responses'][0]['metadata']['scores'][2] is True
+    assert table.response_item['responses'][0]['metadata']['scores'][3] is None
+    assert isinstance(
+        table.response_item['responses'][0]['metadata']['scores'][4]['inner'], Decimal
+    )
+    assert isinstance(table.last_update_expression_values[':score'], Decimal)
+
+
+def test_convert_floats_to_decimal_preserves_supported_types() -> None:
+    payload = {
+        'float_value': 0.5,
+        'int_value': 2,
+        'string_value': 'ok',
+        'bool_value': True,
+        'none_value': None,
+        'list_value': [1.2, {'nested_float': 3.4, 'nested_bool': False}],
+        'tuple_value': (4.5, 'x'),
+    }
+
+    converted = _convert_floats_to_decimal(payload)
+
+    assert converted['float_value'] == Decimal('0.5')
+    assert converted['int_value'] == 2
+    assert converted['string_value'] == 'ok'
+    assert converted['bool_value'] is True
+    assert converted['none_value'] is None
+    assert converted['list_value'][0] == Decimal('1.2')
+    assert converted['list_value'][1]['nested_float'] == Decimal('3.4')
+    assert converted['list_value'][1]['nested_bool'] is False
+    assert converted['tuple_value'][0] == Decimal('4.5')
+    assert converted['tuple_value'][1] == 'x'
 
 
 def test_get_assessment_report_download_url_raises_unavailable_when_report_key_missing() -> None:
