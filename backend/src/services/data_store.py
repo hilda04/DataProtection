@@ -141,7 +141,7 @@ class DataStore:
 
         now = datetime.now(timezone.utc).isoformat()
         assessment_id = f'asm_{uuid4().hex[:12]}'
-        sections = self._normalise_framework_sections(framework.get('sections', []))
+        sections = self._load_assessment_sections(framework)
         current_section_id = ''
         if sections:
             first_section = sections[0]
@@ -188,7 +188,7 @@ class DataStore:
         if framework is None:
             raise DataStoreError(f"Framework metadata missing for {assessment['frameworkId']}.")
 
-        sections = self._normalise_framework_sections(framework.get('sections', []))
+        sections = self._load_assessment_sections(framework)
         current_section = self._resolve_current_section(
             sections, assessment.get('currentSectionId', '')
         )
@@ -223,7 +223,7 @@ class DataStore:
         if framework is None:
             raise DataStoreError(f"Framework metadata missing for {assessment['frameworkId']}.")
 
-        sections = self._normalise_framework_sections(framework.get('sections', []))
+        sections = self._load_assessment_sections(framework)
         section_ids = [section['sectionId'] for section in sections]
         if section_id not in section_ids:
             raise ValidationError('sectionId is invalid for this assessment framework.')
@@ -527,6 +527,27 @@ class DataStore:
                 if question_id:
                     return True
         return False
+
+    def _sections_have_questions(self, sections: list[Dict[str, Any]]) -> bool:
+        return any(section.get('questions') for section in sections if isinstance(section, dict))
+
+    def _load_assessment_sections(self, framework: Dict[str, Any]) -> list[Dict[str, Any]]:
+        sections = self._normalise_framework_sections(framework.get('sections', []))
+        if self._sections_have_questions(sections):
+            return sections
+
+        fallback_framework = load_framework_definition()
+        fallback_sections = self._normalise_framework_sections(
+            fallback_framework.get('sections', [])
+        )
+        if self._sections_have_questions(fallback_sections):
+            logger.warning(
+                'Assessment framework did not contain questions; using local fallback definition.',
+                extra={'frameworkId': framework.get('frameworkId')},
+            )
+            return fallback_sections
+
+        return sections
 
     def _refresh_framework_sections(
         self, existing_framework: Dict[str, Any], framework_definition: Dict[str, Any]

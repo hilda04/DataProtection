@@ -118,3 +118,44 @@ def test_normalise_framework_sections_accepts_legacy_control_shape() -> None:
             ],
         }
     ]
+
+
+def test_load_assessment_sections_falls_back_when_framework_sections_have_no_questions(
+    monkeypatch,
+) -> None:
+    table = FakeTable(
+        {
+            'frameworkId': 'custom-zim-dpa',
+            'name': 'Zimbabwe Cyber and Data Protection Act',
+            'version': '2021',
+            'description': 'Framework metadata',
+            'sections': [{'sectionId': 'governance-accountability', 'name': 'Governance'}],
+        }
+    )
+    store = DataStore(table=table)
+
+    monkeypatch.setattr(
+        data_store_module,
+        'load_framework_definition',
+        lambda: {
+            'frameworkId': 'zim-dpa',
+            'name': 'Zimbabwe Cyber and Data Protection Act',
+            'version': '2021',
+            'description': 'Current framework metadata',
+            'sections': [
+                {
+                    'sectionId': 'governance-accountability',
+                    'name': 'Governance and accountability',
+                    'questions': [
+                        {'questionId': 'has-dpo', 'text': 'Assigned accountable person?'}
+                    ],
+                }
+            ],
+        },
+    )
+
+    sections = store._load_assessment_sections(table.framework_item)
+
+    assert len(sections) == 1
+    assert len(sections[0]['questions']) == 1
+    assert sections[0]['questions'][0]['questionId'] == 'has-dpo'
