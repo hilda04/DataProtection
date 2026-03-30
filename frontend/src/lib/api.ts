@@ -44,7 +44,10 @@ export type AssessmentSummary = {
   createdBy: string;
   createdAt: string;
   updatedAt: string;
-  status: 'not_started' | 'in_progress' | 'completed';
+  status: 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED';
+  score: number;
+  completedAt: string | null;
+  reportS3Key: string | null;
   currentSectionId: string;
 };
 
@@ -149,8 +152,16 @@ export async function createAssessment(
 export async function getAssessments(
   frameworkId?: string,
 ): Promise<ApiResult<AssessmentSummary[]>> {
-  const query = frameworkId ? `?frameworkId=${encodeURIComponent(frameworkId)}` : '';
+  const query = frameworkId ? `?framework_id=${encodeURIComponent(frameworkId)}` : '';
   return request<AssessmentSummary[]>(`/assessments${query}`, {
+    method: 'GET',
+  });
+}
+
+export async function getAssessmentReportUrl(
+  assessmentId: string,
+): Promise<ApiResult<{ url: string }>> {
+  return request<{ url: string }>(`/assessments/${assessmentId}/report`, {
     method: 'GET',
   });
 }

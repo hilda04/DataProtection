@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import logging
 import os
 from datetime import datetime, timezone
@@ -7,11 +8,13 @@ from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
 from models.types import FrameworkSummary, OrganisationSummary, UserSummary
+from services.assessment_engine import calculate_assessment_score, normalize_response_value
 from services.framework_registry import (
     build_framework_seed_items,
     load_framework_catalog,
     load_framework_definition,
 )
+from services.report_builder import build_assessment_report
 
 
 class DataStoreError(RuntimeError):
@@ -45,7 +48,7 @@ REQUIRED_ORGANISATION_FIELDS = (
     'primaryContactEmail',
 )
 
-VALID_ASSESSMENT_STATUSES = {'not_started', 'in_progress', 'completed'}
+VALID_ASSESSMENT_STATUSES = {'NOT_STARTED', 'IN_PROGRESS', 'COMPLETED'}
 
 CREATE_ORGANISATION_CONDITION_EXPRESSION = (
     'attribute_not_exists(pk) AND attribute_not_exists(sk)'
@@ -133,7 +136,11 @@ class DataStore:
 
         assessments = self._list_assessment_items(organisation_id, framework_id)
         in_progress = next(
-            (item for item in assessments if item.get('status') == 'in_progress'),
+            (
+                item
+                for item in assessments
+                if self._normalise_status(item.get('status')) == 'IN_PROGRESS'
+            ),
             None,
         )
         if in_progress:
@@ -164,7 +171,10 @@ class DataStore:
             'createdBy': user['sub'],
             'createdAt': now,
             'updatedAt': now,
-            'status': 'not_started',
+            'status': 'NOT_STARTED',
+            'score': 0.0,
+            'completedAt': None,
+            'reportS3Key': None,
             'currentSectionId': current_section_id,
         }
         self.table.put_item(Item=assessment_item)
@@ -241,26 +251,42 @@ class DataStore:
         }
         self.table.put_item(Item=response_item)
 
-        next_status = 'in_progress'
+        next_status = 'IN_PROGRESS'
         next_section_id = section_id
         if section_id in section_ids:
             section_index = section_ids.index(section_id)
             has_next = section_index + 1 < len(section_ids)
             next_section_id = section_ids[section_index + 1] if has_next else section_id
             if not has_next:
-                next_status = 'completed'
+                next_status = 'COMPLETED'
+
+        all_responses = self._get_assessment_responses(assessment_id)
+        scoring = calculate_assessment_score(all_responses)
+        update_expression = (
+            'SET #status = :status, currentSectionId = :section, '
+            'updatedAt = :updatedAt, score = :score'
+        )
+        expression_values: dict[str, Any] = {
+            ':status': next_status,
+            ':section': next_section_id,
+            ':updatedAt': now,
+            ':score': scoring['score'],
+        }
+        completed_at: Optional[str] = None
+        report_s3_key: Optional[str] = None
+        if next_status == 'COMPLETED':
+            completed_at = now
+            report = self._build_assessment_report(assessment, sections, all_responses, scoring)
+            report_s3_key = self._save_report_to_s3(assessment_id, report)
+            update_expression += ', completedAt = :completedAt, reportS3Key = :reportS3Key'
+            expression_values[':completedAt'] = completed_at
+            expression_values[':reportS3Key'] = report_s3_key
 
         self.table.update_item(
             Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'},
-            UpdateExpression=(
-                'SET #status = :status, currentSectionId = :section, updatedAt = :updatedAt'
-            ),
+            UpdateExpression=update_expression,
             ExpressionAttributeNames={'#status': 'status'},
-            ExpressionAttributeValues={
-                ':status': next_status,
-                ':section': next_section_id,
-                ':updatedAt': now,
-            },
+            ExpressionAttributeValues=expression_values,
         )
         refreshed = self._get_assessment_item(organisation_id, assessment_id)
         if not refreshed:
@@ -585,7 +611,7 @@ class DataStore:
             item
             for item in items
             if item.get('entityType') == 'ASSESSMENT'
-            and item.get('status') in VALID_ASSESSMENT_STATUSES
+            and self._normalise_status(item.get('status')) in VALID_ASSESSMENT_STATUSES
             and (framework_id is None or item.get('frameworkId') == framework_id)
         ]
         return sorted(filtered_items, key=lambda item: item.get('updatedAt', ''), reverse=True)
@@ -616,16 +642,152 @@ class DataStore:
         return mapped
 
     def _serialize_assessment_summary(self, item: Dict[str, Any]) -> Dict[str, Any]:
+        status = self._normalise_status(item.get('status'))
         return {
             'assessmentId': item['assessmentId'],
+            'assessment_id': item['assessmentId'],
             'frameworkId': item['frameworkId'],
+            'framework_id': item['frameworkId'],
             'organisationId': item['organisationId'],
             'createdBy': item['createdBy'],
             'createdAt': item['createdAt'],
             'updatedAt': item['updatedAt'],
-            'status': item['status'],
+            'status': status,
+            'score': float(item.get('score', 0.0)),
+            'completedAt': item.get('completedAt'),
+            'completed_at': item.get('completedAt'),
+            'reportS3Key': item.get('reportS3Key'),
+            'report_s3_key': item.get('reportS3Key'),
             'currentSectionId': item.get('currentSectionId', ''),
         }
+
+    def get_assessment_report_download_url(
+        self, user: UserSummary, assessment_id: str
+    ) -> Dict[str, str]:
+        membership = self._require_membership(user['sub'])
+        assessment = self._get_assessment_item(membership['organisationId'], assessment_id)
+        if not assessment:
+            raise ValidationError('Assessment not found.')
+        report_s3_key = str(assessment.get('reportS3Key') or '').strip()
+        if not report_s3_key:
+            raise ValidationError('Report is not available for this assessment.')
+
+        bucket_name = os.environ.get('REPORTS_BUCKET_NAME', '').strip()
+        if not bucket_name:
+            raise DataStoreError('REPORTS_BUCKET_NAME is not configured.')
+
+        import boto3
+
+        s3_client = boto3.client('s3')
+        signed_url = s3_client.generate_presigned_url(
+            'get_object',
+            Params={'Bucket': bucket_name, 'Key': report_s3_key},
+            ExpiresIn=3600,
+        )
+        return {'url': signed_url}
+
+    def _build_assessment_report(
+        self,
+        assessment: Dict[str, Any],
+        sections: list[Dict[str, Any]],
+        all_responses: Dict[str, list[Dict[str, Any]]],
+        scoring: Dict[str, Any],
+    ) -> Dict[str, Any]:
+        organisation = self._get_organisation(assessment['organisationId'])
+        if organisation is None:
+            raise DataStoreError('Organisation not found for report generation.')
+
+        framework = self._get_framework(assessment['frameworkId'])
+        if framework is None:
+            raise DataStoreError('Framework not found for report generation.')
+
+        question_index = self._build_question_index(sections)
+        risks: list[Dict[str, Any]] = []
+        recommendations: list[Dict[str, Any]] = []
+        for section_id, responses in all_responses.items():
+            for response in responses:
+                response_score = normalize_response_value(response.get('value'))
+                if response_score >= 1.0:
+                    continue
+                question = question_index.get(str(response.get('questionId')), {})
+                risk_level = 'HIGH' if response_score == 0 else 'MEDIUM'
+                risk_item = {
+                    'section_id': section_id,
+                    'question_id': response.get('questionId'),
+                    'question': question.get('text', 'Unknown question'),
+                    'risk_level': risk_level,
+                }
+                risks.append(risk_item)
+                recommendations.append(
+                    {
+                        'section_id': section_id,
+                        'question_id': response.get('questionId'),
+                        'recommendation': (
+                            f"Address control gap for '{risk_item['question']}' "
+                            f"({risk_level.lower()} risk)."
+                        ),
+                    }
+                )
+
+        section_name_lookup = {
+            section['sectionId']: section.get('name', section['sectionId']) for section in sections
+        }
+        section_summaries = [
+            {
+                'name': section_name_lookup.get(item['sectionId'], item['sectionId']),
+                'score': item['score'],
+            }
+            for item in scoring['sectionScores']
+        ]
+
+        return build_assessment_report(
+            organisation=organisation,
+            framework={
+                'framework_id': framework['frameworkId'],
+                'name': framework['name'],
+                'version': framework['version'],
+            },
+            score=scoring['score'],
+            sections=section_summaries,
+            risks=risks,
+            recommendations=recommendations,
+        )
+
+    def _build_question_index(self, sections: list[Dict[str, Any]]) -> dict[str, Dict[str, Any]]:
+        question_index: dict[str, Dict[str, Any]] = {}
+        for section in sections:
+            for question in section.get('questions', []):
+                question_id = str(question.get('questionId', '')).strip()
+                if question_id:
+                    question_index[question_id] = question
+        return question_index
+
+    def _save_report_to_s3(self, assessment_id: str, report: Dict[str, Any]) -> str:
+        bucket_name = os.environ.get('REPORTS_BUCKET_NAME', '').strip()
+        if not bucket_name:
+            raise DataStoreError('REPORTS_BUCKET_NAME is not configured.')
+
+        report_key = f'reports/{assessment_id}.json'
+        import boto3
+
+        s3_client = boto3.client('s3')
+        s3_client.put_object(
+            Bucket=bucket_name,
+            Key=report_key,
+            Body=str.encode(json.dumps(report)),
+            ContentType='application/json',
+        )
+        return report_key
+
+    def _normalise_status(self, value: Any) -> str:
+        normalized = str(value or '').strip().upper()
+        if normalized in {'NOT_STARTED', 'NOT STARTED'}:
+            return 'NOT_STARTED'
+        if normalized in {'IN_PROGRESS', 'IN PROGRESS'}:
+            return 'IN_PROGRESS'
+        if normalized == 'COMPLETED':
+            return 'COMPLETED'
+        return 'NOT_STARTED'
 
     def _normalise_framework_sections(self, sections: list[Dict[str, Any]]) -> list[Dict[str, Any]]:
         normalised_sections: list[Dict[str, Any]] = []

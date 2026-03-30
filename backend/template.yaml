@@ -23,6 +23,10 @@ Parameters:
     Type: String
     Default: dataprotection-dev-main-sam
     Description: DynamoDB table name for the SAM-managed backend.
+  ReportsBucketName:
+    Type: String
+    Default: dataprotection-dev-reports
+    Description: S3 bucket used for storing generated assessment reports.
 
 Globals:
   Function:
@@ -35,6 +39,7 @@ Globals:
         APP_ENV: !Ref EnvironmentName
         DYNAMODB_TABLE_NAME: !Ref DynamoDbTableName
         ALLOWED_FRONTEND_ORIGIN: !Ref AllowedFrontendOrigin
+        REPORTS_BUCKET_NAME: !Ref ReportsBucketName
 
 Resources:
   BackendHttpApi:
@@ -89,6 +94,8 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref DynamoDbTableName
+        - S3CrudPolicy:
+            BucketName: !Ref ReportsBucketName
       Events:
         HealthRoute:
           Type: HttpApi
@@ -140,6 +147,12 @@ Resources:
             ApiId: !Ref BackendHttpApi
             Method: POST
             Path: /assessments/{assessmentId}/responses
+        AssessmentReportRoute:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BackendHttpApi
+            Method: GET
+            Path: /assessments/{assessmentId}/report
 
 Outputs:
   ApiUrl:
