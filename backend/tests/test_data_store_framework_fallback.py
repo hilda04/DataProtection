@@ -67,3 +67,54 @@ def test_get_framework_uses_local_definition_when_seeded_framework_has_no_questi
         table.update_calls[0]['ExpressionAttributeValues'][':sections']
         == local_definition['sections']
     )
+
+
+def test_normalise_framework_sections_accepts_legacy_control_shape() -> None:
+    table = FakeTable(
+        {
+            'frameworkId': 'zim-dpa',
+            'name': 'Zimbabwe Cyber and Data Protection Act',
+            'version': '2021',
+            'description': 'Framework metadata',
+            'sections': [],
+        }
+    )
+    store = DataStore(table=table)
+
+    normalised = store._normalise_framework_sections(
+        [
+            {
+                'id': 'governance-accountability',
+                'title': 'Governance and accountability',
+                'summary': 'Leadership ownership',
+                'controls': [
+                    {
+                        'controlId': 'has-dpo',
+                        'prompt': (
+                            'Has your organisation assigned a person accountable '
+                            'for data protection?'
+                        ),
+                        'helpText': 'Formal role or named responsible officer.',
+                    }
+                ],
+            }
+        ]
+    )
+
+    assert normalised == [
+        {
+            'sectionId': 'governance-accountability',
+            'name': 'Governance and accountability',
+            'description': 'Leadership ownership',
+            'questions': [
+                {
+                    'questionId': 'has-dpo',
+                    'text': (
+                        'Has your organisation assigned a person accountable '
+                        'for data protection?'
+                    ),
+                    'helpText': 'Formal role or named responsible officer.',
+                }
+            ],
+        }
+    ]

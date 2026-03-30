@@ -512,13 +512,18 @@ class DataStore:
         for section in sections:
             if not isinstance(section, dict):
                 continue
-            questions = section.get('questions', [])
+            questions = section.get('questions') or section.get('controls') or []
             if not isinstance(questions, list):
                 continue
             for question in questions:
                 if not isinstance(question, dict):
                     continue
-                question_id = str(question.get('questionId') or question.get('id') or '').strip()
+                question_id = str(
+                    question.get('questionId')
+                    or question.get('id')
+                    or question.get('controlId')
+                    or ''
+                ).strip()
                 if question_id:
                     return True
         return False
@@ -610,16 +615,27 @@ class DataStore:
             if not section_id:
                 continue
             questions = []
-            for question in section.get('questions', []):
+            for question in section.get('questions') or section.get('controls') or []:
                 if not isinstance(question, dict):
                     continue
-                question_id = str(question.get('questionId') or question.get('id') or '').strip()
+                question_id = str(
+                    question.get('questionId')
+                    or question.get('id')
+                    or question.get('controlId')
+                    or ''
+                ).strip()
                 if not question_id:
                     continue
                 questions.append(
                     {
                         'questionId': question_id,
-                        'text': str(question.get('text', '')).strip(),
+                        'text': str(
+                            question.get('text')
+                            or question.get('prompt')
+                            or question.get('question')
+                            or question.get('title')
+                            or ''
+                        ).strip(),
                         'helpText': str(question.get('helpText', '')).strip(),
                     }
                 )
