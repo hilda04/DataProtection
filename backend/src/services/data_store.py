@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
+from botocore.exceptions import ClientError
+
 from models.types import FrameworkSummary, OrganisationSummary, UserSummary
 from services.assessment_engine import calculate_assessment_score, normalize_response_value
 from services.framework_registry import (
@@ -30,6 +32,10 @@ class ConflictError(DataStoreError):
 
 
 class ValidationError(DataStoreError):
+    pass
+
+
+class ReportUnavailableError(DataStoreError):
     pass
 
 
@@ -275,9 +281,32 @@ class DataStore:
         completed_at: Optional[str] = None
         report_s3_key: Optional[str] = None
         if next_status == 'COMPLETED':
+            logger.info(
+                'Assessment completion started.',
+                extra={'assessmentId': assessment_id, 'organisationId': organisation_id},
+            )
             completed_at = now
-            report = self._build_assessment_report(assessment, sections, all_responses, scoring)
-            report_s3_key = self._save_report_to_s3(assessment_id, report)
+            try:
+                logger.info(
+                    'Assessment report generation started.',
+                    extra={
+                        'assessmentId': assessment_id,
+                        'organisationId': organisation_id,
+                    },
+                )
+                report = self._build_assessment_report(
+                    assessment, sections, all_responses, scoring
+                )
+                report_s3_key = self._save_report_to_s3(assessment_id, report)
+            except Exception:
+                logger.exception(
+                    'Assessment report generation or upload failed.',
+                    extra={
+                        'assessmentId': assessment_id,
+                        'organisationId': organisation_id,
+                    },
+                )
+                report_s3_key = None
             update_expression += ', completedAt = :completedAt, reportS3Key = :reportS3Key'
             expression_values[':completedAt'] = completed_at
             expression_values[':reportS3Key'] = report_s3_key
@@ -670,15 +699,33 @@ class DataStore:
             raise ValidationError('Assessment not found.')
         report_s3_key = str(assessment.get('reportS3Key') or '').strip()
         if not report_s3_key:
-            raise ValidationError('Report is not available for this assessment.')
+            raise ReportUnavailableError('Report is not available for this assessment.')
 
-        bucket_name = os.environ.get('REPORTS_BUCKET_NAME', '').strip()
+        bucket_name = self._get_reports_bucket_name(required=False)
         if not bucket_name:
-            raise DataStoreError('REPORTS_BUCKET_NAME is not configured.')
+            raise ReportUnavailableError('Report storage is not configured.')
 
         import boto3
 
         s3_client = boto3.client('s3')
+        try:
+            s3_client.head_object(Bucket=bucket_name, Key=report_s3_key)
+        except ClientError as error:
+            error_code = str(error.response.get('Error', {}).get('Code', '')).strip()
+            if error_code in {'404', 'NoSuchKey', 'NotFound'}:
+                logger.warning(
+                    'Assessment report object not found in S3.',
+                    extra={
+                        'assessmentId': assessment_id,
+                        'reportS3Key': report_s3_key,
+                        'reportsBucketName': bucket_name,
+                    },
+                )
+                raise ReportUnavailableError(
+                    'Report is not available for this assessment.'
+                ) from error
+            raise
+
         signed_url = s3_client.generate_presigned_url(
             'get_object',
             Params={'Bucket': bucket_name, 'Key': report_s3_key},
@@ -762,10 +809,19 @@ class DataStore:
                     question_index[question_id] = question
         return question_index
 
-    def _save_report_to_s3(self, assessment_id: str, report: Dict[str, Any]) -> str:
-        bucket_name = os.environ.get('REPORTS_BUCKET_NAME', '').strip()
+    def _save_report_to_s3(self, assessment_id: str, report: Dict[str, Any]) -> Optional[str]:
+        bucket_name = self._get_reports_bucket_name(required=False)
         if not bucket_name:
-            raise DataStoreError('REPORTS_BUCKET_NAME is not configured.')
+            logger.warning(
+                'Skipping report upload because REPORTS_BUCKET_NAME is not configured.',
+                extra={'assessmentId': assessment_id},
+            )
+            return None
+
+        logger.info(
+            'Uploading assessment report to S3.',
+            extra={'assessmentId': assessment_id, 'reportsBucketName': bucket_name},
+        )
 
         report_key = f'reports/{assessment_id}.json'
         import boto3
@@ -777,7 +833,27 @@ class DataStore:
             Body=str.encode(json.dumps(report)),
             ContentType='application/json',
         )
+        logger.info(
+            'Assessment report upload succeeded.',
+            extra={
+                'assessmentId': assessment_id,
+                'reportS3Key': report_key,
+                'reportsBucketName': bucket_name,
+            },
+        )
         return report_key
+
+    def _get_reports_bucket_name(self, *, required: bool) -> Optional[str]:
+        bucket_name = os.environ.get('REPORTS_BUCKET_NAME', '').strip()
+        if bucket_name:
+            logger.info('Using reports S3 bucket.', extra={'reportsBucketName': bucket_name})
+            return bucket_name
+
+        if required:
+            raise DataStoreError('REPORTS_BUCKET_NAME is not configured.')
+
+        logger.warning('REPORTS_BUCKET_NAME is not configured; report storage is disabled.')
+        return None
 
     def _normalise_status(self, value: Any) -> str:
         normalized = str(value or '').strip().upper()
