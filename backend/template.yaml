@@ -92,6 +92,8 @@ Resources:
 
   BackendApiFunction:
     Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: python3.9
     Properties:
       FunctionName: !Sub dataprotection-${EnvironmentName}-api
       CodeUri: src/

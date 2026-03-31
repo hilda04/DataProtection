@@ -950,7 +950,22 @@ class DataStore:
         report_key = f'reports/{assessment_id}.pdf'
         import boto3
 
-        pdf_bytes = build_assessment_report_pdf(report)
+        try:
+            pdf_bytes = build_assessment_report_pdf(report)
+        except ModuleNotFoundError as error:
+            if error.name == 'reportlab':
+                logger.exception(
+                    (
+                        'PDF generation dependency missing: '
+                        'reportlab is not packaged in this Lambda artifact.'
+                    ),
+                    extra={
+                        'assessmentId': assessment_id,
+                        'reportsBucketName': bucket_name,
+                        'missingDependency': error.name,
+                    },
+                )
+            raise
         if not isinstance(pdf_bytes, (bytes, bytearray)):
             raise TypeError('PDF builder must return bytes.')
         if len(pdf_bytes) < 256:
