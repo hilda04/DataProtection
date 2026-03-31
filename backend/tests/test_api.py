@@ -158,7 +158,22 @@ class FakeStore:
     ) -> dict[str, str]:
         if self.report_unavailable:
             raise ReportUnavailableError('Report is not available for this assessment.')
-        return {'url': 'https://example.com/report.json'}
+        return {'url': 'https://example.com/report.pdf'}
+
+    def restart_assessment(self, _user: dict[str, str], assessment_id: str) -> dict[str, Any]:
+        return {
+            'assessmentId': f'{assessment_id}-restart',
+            'frameworkId': 'zim-dpa',
+            'organisationId': 'org_123',
+            'createdBy': 'user-123',
+            'createdAt': '2026-03-24T00:00:00+00:00',
+            'updatedAt': '2026-03-24T00:00:00+00:00',
+            'status': 'NOT_STARTED',
+            'score': 0.0,
+            'completedAt': None,
+            'reportS3Key': None,
+            'currentSectionId': 'governance-accountability',
+        }
 
 
 @pytest.fixture
@@ -415,3 +430,19 @@ def test_get_assessment_report_returns_404_when_report_is_missing(
 
     assert response['statusCode'] == 404
     assert body['message'] == 'Report is not available for this assessment.'
+
+
+def test_restart_assessment_creates_new_instance(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
+    event = {
+        **auth_event,
+        'pathParameters': {'assessmentId': 'asm_123'},
+    }
+    response = api.restart_assessment(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 201
+    assert body['assessmentId'] == 'asm_123-restart'
+    assert body['status'] == 'NOT_STARTED'

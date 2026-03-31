@@ -25,7 +25,7 @@ def calculate_assessment_score(
 
     for section_id, responses in responses_by_section.items():
         section_total = float(len(responses))
-        section_achieved = sum(normalize_response_value(item.get("value")) for item in responses)
+        section_achieved = sum(normalize_response_value(item) for item in responses)
         total_possible += section_total
         achieved += section_achieved
         section_score = round((section_achieved / section_total) * 100, 2) if section_total else 0.0
@@ -36,6 +36,11 @@ def calculate_assessment_score(
 
 
 def normalize_response_value(value: Any) -> float:
+    if isinstance(value, dict):
+        for candidate_key in ('value', 'answer', 'response', 'selectedOption'):
+            if candidate_key in value:
+                return normalize_response_value(value.get(candidate_key))
+
     if isinstance(value, Decimal):
         value = float(value)
 

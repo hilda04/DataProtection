@@ -11,6 +11,7 @@ from handlers.api import (
     list_assessments,
     list_frameworks,
     onboard_organization,
+    restart_assessment,
     save_assessment_responses,
 )
 from models.types import ApiResponse
@@ -49,6 +50,17 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         if len(parts) == 3 and parts[0] == 'assessments' and parts[2] == 'responses':
             routed_event = {**event, 'pathParameters': {'assessmentId': parts[1]}}
             handler = save_assessment_responses
+
+    if (
+        handler is None
+        and method == 'POST'
+        and path.startswith('/assessments/')
+        and path.endswith('/restart')
+    ):
+        parts = path.strip('/').split('/')
+        if len(parts) == 3 and parts[0] == 'assessments' and parts[2] == 'restart':
+            routed_event = {**event, 'pathParameters': {'assessmentId': parts[1]}}
+            handler = restart_assessment
 
     if (
         handler is None

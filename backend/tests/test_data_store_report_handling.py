@@ -82,7 +82,11 @@ class ExistingReportKeyTable(FakeTable):
     def __init__(self) -> None:
         super().__init__()
         self.assessment_item['status'] = 'COMPLETED'
-        self.assessment_item['reportS3Key'] = 'reports/asm_123.json'
+        self.assessment_item['reportS3Key'] = 'reports/asm_123.pdf'
+
+
+class HistoryTable(FakeTable):
+    pass
 
 
 def test_save_assessment_responses_completes_when_report_upload_fails(monkeypatch) -> None:
@@ -199,7 +203,7 @@ def test_get_assessment_report_download_url_returns_signed_url_when_report_exist
     class FakeS3Client:
         def head_object(self, *, Bucket: str, Key: str) -> dict[str, Any]:
             assert Bucket == 'reports-bucket'
-            assert Key == 'reports/asm_123.json'
+            assert Key == 'reports/asm_123.pdf'
             return {}
 
         def generate_presigned_url(
@@ -209,7 +213,7 @@ def test_get_assessment_report_download_url_returns_signed_url_when_report_exist
             Params: dict[str, str],
             ExpiresIn: int,
         ) -> str:
-            assert Params == {'Bucket': 'reports-bucket', 'Key': 'reports/asm_123.json'}
+            assert Params == {'Bucket': 'reports-bucket', 'Key': 'reports/asm_123.pdf'}
             assert ExpiresIn == 3600
             return 'https://example.com/signed-report-url'
 
@@ -236,7 +240,7 @@ def test_get_assessment_report_download_url_generates_missing_report_on_demand(m
     class FakeS3Client:
         def head_object(self, *, Bucket: str, Key: str) -> dict[str, Any]:
             assert Bucket == 'reports-bucket'
-            assert Key == 'reports/asm_123.json'
+            assert Key == 'reports/asm_123.pdf'
             return {}
 
         def generate_presigned_url(
@@ -246,7 +250,7 @@ def test_get_assessment_report_download_url_generates_missing_report_on_demand(m
             Params: dict[str, str],
             ExpiresIn: int,
         ) -> str:
-            assert Params == {'Bucket': 'reports-bucket', 'Key': 'reports/asm_123.json'}
+            assert Params == {'Bucket': 'reports-bucket', 'Key': 'reports/asm_123.pdf'}
             assert ExpiresIn == 3600
             return 'https://example.com/generated-report-url'
 
@@ -272,7 +276,7 @@ def test_get_assessment_report_download_url_generates_missing_report_on_demand(m
     monkeypatch.setattr(
         store,
         '_save_report_to_s3',
-        lambda *_args, **_kwargs: 'reports/asm_123.json',
+        lambda *_args, **_kwargs: 'reports/asm_123.pdf',
     )
     monkeypatch.setattr(
         store,
@@ -313,7 +317,7 @@ def test_serialize_assessment_summary_includes_presigned_report_url(monkeypatch)
             Params: dict[str, str],
             ExpiresIn: int,
         ) -> str:
-            assert Params == {'Bucket': 'reports-bucket', 'Key': 'reports/asm_123.json'}
+            assert Params == {'Bucket': 'reports-bucket', 'Key': 'reports/asm_123.pdf'}
             assert ExpiresIn == 3600
             return 'https://example.com/detail-report-url'
 
@@ -329,5 +333,88 @@ def test_serialize_assessment_summary_includes_presigned_report_url(monkeypatch)
     store = DataStore(table=ExistingReportKeyTable())
     summary = store._serialize_assessment_summary(store.table.assessment_item)
 
-    assert summary['reportS3Key'] == 'reports/asm_123.json'
+    assert summary['reportS3Key'] == 'reports/asm_123.pdf'
     assert summary['reportUrl'] == 'https://example.com/detail-report-url'
+
+
+def test_restart_assessment_creates_new_record_without_overwrite(monkeypatch) -> None:
+    table = FakeTable()
+    store = DataStore(table=table)
+    store._require_membership = lambda _user_sub: {'organisationId': 'org_123'}  # type: ignore[method-assign]
+    monkeypatch.setattr(
+        store,
+        '_get_framework',
+        lambda _framework_id: {
+            'frameworkId': 'zim-dpa',
+            'name': 'Framework',
+            'version': '2021',
+            'description': 'desc',
+            'sections': [
+                {
+                    'sectionId': 'governance-accountability',
+                    'name': 'Governance',
+                    'questions': [],
+                }
+            ],
+        },
+    )
+    table.assessment_item['status'] = 'COMPLETED'
+    previous_assessment_id = table.assessment_item['assessmentId']
+
+    restarted = store.restart_assessment(
+        {'sub': 'user-123', 'email': 'user@example.com'},
+        previous_assessment_id,
+    )
+
+    assert restarted['assessmentId'] != previous_assessment_id
+    assert restarted['previousAssessmentId'] == previous_assessment_id
+    assert restarted['status'] == 'NOT_STARTED'
+    assert table.assessment_item['assessmentId'] == previous_assessment_id
+
+
+def test_save_report_to_s3_uploads_pdf(monkeypatch) -> None:
+    uploaded: dict[str, Any] = {}
+
+    class FakeS3Client:
+        def put_object(self, **kwargs: Any) -> dict[str, Any]:
+            uploaded.update(kwargs)
+            return {}
+
+    class FakeBoto3Module:
+        @staticmethod
+        def client(name: str) -> FakeS3Client:
+            assert name == 's3'
+            return FakeS3Client()
+
+    monkeypatch.setenv('REPORTS_BUCKET_NAME', 'reports-bucket')
+    monkeypatch.setitem(sys.modules, 'boto3', FakeBoto3Module())
+    store = DataStore(table=FakeTable())
+
+    key = store._save_report_to_s3('asm_123', {'score': 75.0, 'sections': []})
+
+    assert key == 'reports/asm_123.pdf'
+    assert uploaded['Bucket'] == 'reports-bucket'
+    assert uploaded['Key'] == 'reports/asm_123.pdf'
+    assert uploaded['ContentType'] == 'application/pdf'
+    assert isinstance(uploaded['Body'], bytes)
+
+
+def test_list_assessment_history_returns_most_recent_first() -> None:
+    store = DataStore(table=HistoryTable())
+    store._require_membership = lambda _user_sub: {'organisationId': 'org_123'}  # type: ignore[method-assign]
+    store._list_assessment_items = lambda _org_id, _framework_id=None: [  # type: ignore[method-assign]
+        {
+            **store.table.assessment_item,
+            'assessmentId': 'asm_old',
+            'updatedAt': '2026-01-01T00:00:00+00:00',
+        },
+        {
+            **store.table.assessment_item,
+            'assessmentId': 'asm_new',
+            'updatedAt': '2026-02-01T00:00:00+00:00',
+        },
+    ]
+
+    history = store.list_assessments({'sub': 'user-123', 'email': 'user@example.com'}, 'zim-dpa')
+
+    assert [item['assessmentId'] for item in history] == ['asm_old', 'asm_new']
