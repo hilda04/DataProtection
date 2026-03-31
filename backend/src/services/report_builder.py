@@ -326,14 +326,22 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
         )
     )
     story.append(Spacer(1, 8))
-    appendix_rows = [["Gap", "Priority", "Evidence Required", "Status"]]
+    appendix_rows: list[list[Any]] = [["Gap", "Priority", "Evidence Required", "Status"]]
     for idx, gap in enumerate(normalized_actions, start=1):
+        evidence_lines = "<br/>".join(f"• {item}" for item in gap["evidence"])
+        status_lines = "<br/>".join(
+            [
+                "&#9633; Available",
+                "&#9633; In progress",
+                "&#9633; Not available",
+            ]
+        )
         appendix_rows.append(
             [
-                f"Gap {idx}: {gap['title']}",
-                gap["priority"],
-                "• " + "<br/>• ".join(gap["evidence"]),
-                "☐ Available<br/>☐ In progress<br/>☐ Not available",
+                Paragraph(f"Gap {idx}: {gap['title']}", styles["BodyStyle"]),
+                Paragraph(gap["priority"], styles["BodyStyle"]),
+                Paragraph(evidence_lines, styles["BodyStyle"]),
+                Paragraph(status_lines, styles["BodyStyle"]),
             ]
         )
 
