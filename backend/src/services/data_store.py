@@ -678,6 +678,8 @@ class DataStore:
 
     def _serialize_assessment_summary(self, item: Dict[str, Any]) -> Dict[str, Any]:
         status = self._normalise_status(item.get('status'))
+        report_s3_key = item.get('reportS3Key')
+        report_url = self._get_presigned_report_url(report_s3_key)
         return {
             'assessmentId': item['assessmentId'],
             'assessment_id': item['assessmentId'],
@@ -691,8 +693,10 @@ class DataStore:
             'score': float(item.get('score', 0.0)),
             'completedAt': item.get('completedAt'),
             'completed_at': item.get('completedAt'),
-            'reportS3Key': item.get('reportS3Key'),
-            'report_s3_key': item.get('reportS3Key'),
+            'reportS3Key': report_s3_key,
+            'report_s3_key': report_s3_key,
+            'reportUrl': report_url,
+            'report_url': report_url,
             'currentSectionId': item.get('currentSectionId', ''),
         }
 
@@ -775,10 +779,13 @@ class DataStore:
             now = datetime.now(timezone.utc).isoformat()
             self.table.update_item(
                 Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'},
-                UpdateExpression='SET reportS3Key = :reportS3Key, updatedAt = :updatedAt',
+                UpdateExpression=(
+                    'SET reportS3Key = :reportS3Key, score = :score, updatedAt = :updatedAt'
+                ),
                 ExpressionAttributeValues=self._to_dynamodb(
                     {
                         ':reportS3Key': report_s3_key,
+                        ':score': scoring['score'],
                         ':updatedAt': now,
                     }
                 ),
@@ -912,6 +919,30 @@ class DataStore:
 
         logger.warning('REPORTS_BUCKET_NAME is not configured; report storage is disabled.')
         return None
+
+    def _get_presigned_report_url(self, report_s3_key: Any) -> Optional[str]:
+        key = str(report_s3_key or '').strip()
+        if not key:
+            return None
+
+        bucket_name = self._get_reports_bucket_name(required=False)
+        if not bucket_name:
+            return None
+
+        try:
+            import boto3
+
+            s3_client = boto3.client('s3')
+            return str(
+                s3_client.generate_presigned_url(
+                    'get_object',
+                    Params={'Bucket': bucket_name, 'Key': key},
+                    ExpiresIn=3600,
+                )
+            )
+        except Exception:
+            logger.exception('Failed to generate presigned report URL.', extra={'reportS3Key': key})
+            return None
 
     def _normalise_status(self, value: Any) -> str:
         normalized = str(value or '').strip().upper()

@@ -1,6 +1,11 @@
 import unittest
+from decimal import Decimal
 
-from services.assessment_engine import calculate_weighted_score, generate_findings
+from services.assessment_engine import (
+    calculate_assessment_score,
+    calculate_weighted_score,
+    generate_findings,
+)
 
 
 class AssessmentEngineTests(unittest.TestCase):
@@ -66,6 +71,19 @@ class AssessmentEngineTests(unittest.TestCase):
                 }
             ],
         )
+
+    def test_calculate_assessment_score_supports_decimal_values(self) -> None:
+        result = calculate_assessment_score(
+            {
+                "governance": [
+                    {"questionId": "q1", "value": Decimal("4")},
+                    {"questionId": "q2", "value": Decimal("2")},
+                ]
+            }
+        )
+
+        self.assertEqual(result["score"], 75.0)
+        self.assertEqual(result["sectionScores"], [{"sectionId": "governance", "score": 75.0}])
 
 
 if __name__ == "__main__":

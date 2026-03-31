@@ -40,7 +40,7 @@ class FakeTable:
                     }
                 ]
             }
-        if 'ASSESSMENT#asm_123' in expression and self.response_item:
+        if self.response_item:
             return {'Items': [self.response_item]}
         return {'Items': []}
 
@@ -137,8 +137,10 @@ def test_save_assessment_responses_completes_when_report_upload_fails(monkeypatc
     )
 
     assert result['status'] == 'COMPLETED'
+    assert result['score'] == 50.0
     assert result['completedAt'] is not None
     assert result['reportS3Key'] is None
+    assert result['reportUrl'] is None
     assert isinstance(table.response_item['responses'][0]['weight'], Decimal)
     assert isinstance(table.response_item['responses'][0]['metadata']['confidence'], Decimal)
     assert isinstance(table.response_item['responses'][0]['metadata']['scores'][0], Decimal)
@@ -258,6 +260,12 @@ def test_get_assessment_report_download_url_generates_missing_report_on_demand(m
     monkeypatch.setitem(sys.modules, 'boto3', FakeBoto3Module())
 
     table = MissingReportKeyTable()
+    table.response_item = {
+        'pk': 'ASSESSMENT#asm_123',
+        'sk': 'RESPONSE#governance-accountability',
+        'sectionId': 'governance-accountability',
+        'responses': [{'questionId': 'has-dpo', 'value': Decimal('2')}],
+    }
     store = DataStore(table=table)
     store._require_membership = lambda _user_sub: {'organisationId': 'org_123'}  # type: ignore[method-assign]
     monkeypatch.setattr(store, '_build_assessment_report', lambda *_args, **_kwargs: {'ok': True})
@@ -292,3 +300,34 @@ def test_get_assessment_report_download_url_generates_missing_report_on_demand(m
     assert result['url'] == 'https://example.com/generated-report-url'
     assert result['reportUrl'] == 'https://example.com/generated-report-url'
     assert result['signedUrl'] == 'https://example.com/generated-report-url'
+    assert table.assessment_item['score'] == Decimal('50.0')
+    assert table.last_update_expression_values[':score'] == Decimal('50.0')
+
+
+def test_serialize_assessment_summary_includes_presigned_report_url(monkeypatch) -> None:
+    class FakeS3Client:
+        def generate_presigned_url(
+            self,
+            _operation_name: str,
+            *,
+            Params: dict[str, str],
+            ExpiresIn: int,
+        ) -> str:
+            assert Params == {'Bucket': 'reports-bucket', 'Key': 'reports/asm_123.json'}
+            assert ExpiresIn == 3600
+            return 'https://example.com/detail-report-url'
+
+    class FakeBoto3Module:
+        @staticmethod
+        def client(name: str) -> FakeS3Client:
+            assert name == 's3'
+            return FakeS3Client()
+
+    monkeypatch.setenv('REPORTS_BUCKET_NAME', 'reports-bucket')
+    monkeypatch.setitem(sys.modules, 'boto3', FakeBoto3Module())
+
+    store = DataStore(table=ExistingReportKeyTable())
+    summary = store._serialize_assessment_summary(store.table.assessment_item)
+
+    assert summary['reportS3Key'] == 'reports/asm_123.json'
+    assert summary['reportUrl'] == 'https://example.com/detail-report-url'
