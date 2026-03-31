@@ -1,0 +1,434 @@
+{
+  "frameworkId": "nist_csf_2",
+  "name": "NIST CSF 2.0 Assessment",
+  "version": "2.0",
+  "description": "Assessment aligned to the NIST Cybersecurity Framework 2.0",
+  "sections": [
+    {
+      "sectionId": "govern",
+      "name": "Govern",
+      "description": "Govern controls and practices.",
+      "questions": [
+        {
+          "questionId": "govern-q1",
+          "text": "Has leadership approved cybersecurity objectives tied to business outcomes?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Has leadership approved cybersecurity objectives tied to business outcomes?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "govern-q2",
+          "text": "Are cybersecurity roles and responsibilities documented and communicated?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are cybersecurity roles and responsibilities documented and communicated?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "govern-q3",
+          "text": "Are policy exceptions formally approved and time-bound?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are policy exceptions formally approved and time-bound?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "govern-q4",
+          "text": "Are cybersecurity risks reviewed by governance forums on a defined cadence?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are cybersecurity risks reviewed by governance forums on a defined cadence?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "identify",
+      "name": "Identify",
+      "description": "Identify controls and practices.",
+      "questions": [
+        {
+          "questionId": "identify-q1",
+          "text": "Do you maintain an up-to-date inventory of hardware, software, and data assets?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Do you maintain an up-to-date inventory of hardware, software, and data assets?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "identify-q2",
+          "text": "Are critical services mapped to supporting systems and dependencies?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are critical services mapped to supporting systems and dependencies?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "identify-q3",
+          "text": "Are cybersecurity risks identified for new projects before go-live?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are cybersecurity risks identified for new projects before go-live?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "identify-q4",
+          "text": "Are third-party dependencies included in risk identification activities?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are third-party dependencies included in risk identification activities?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "protect",
+      "name": "Protect",
+      "description": "Protect controls and practices.",
+      "questions": [
+        {
+          "questionId": "protect-q1",
+          "text": "Is MFA enforced for privileged and remote access accounts?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is MFA enforced for privileged and remote access accounts?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "protect-q2",
+          "text": "Are secure configuration baselines applied to critical systems?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are secure configuration baselines applied to critical systems?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "protect-q3",
+          "text": "Is sensitive data protected in transit and at rest?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is sensitive data protected in transit and at rest?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "protect-q4",
+          "text": "Are staff granted access based on least privilege and business need?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are staff granted access based on least privilege and business need?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "detect",
+      "name": "Detect",
+      "description": "Detect controls and practices.",
+      "questions": [
+        {
+          "questionId": "detect-q1",
+          "text": "Are security logs from critical systems centrally collected and retained?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are security logs from critical systems centrally collected and retained?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "detect-q2",
+          "text": "Are suspicious activities monitored with defined alert thresholds?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are suspicious activities monitored with defined alert thresholds?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "detect-q3",
+          "text": "Are detection rules regularly tuned based on incidents and threat intelligence?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are detection rules regularly tuned based on incidents and threat intelligence?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "detect-q4",
+          "text": "Are detection coverage gaps tracked and remediated?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are detection coverage gaps tracked and remediated?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "respond",
+      "name": "Respond",
+      "description": "Respond controls and practices.",
+      "questions": [
+        {
+          "questionId": "respond-q1",
+          "text": "Is there a tested incident response plan for cyber events?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is there a tested incident response plan for cyber events?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "respond-q2",
+          "text": "Are incident severity levels and escalation paths clearly defined?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are incident severity levels and escalation paths clearly defined?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "respond-q3",
+          "text": "Are legal, compliance, and communications teams included in incident response?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are legal, compliance, and communications teams included in incident response?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "respond-q4",
+          "text": "Are lessons learned documented and fed into control improvements?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are lessons learned documented and fed into control improvements?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "recover",
+      "name": "Recover",
+      "description": "Recover controls and practices.",
+      "questions": [
+        {
+          "questionId": "recover-q1",
+          "text": "Are disaster recovery plans defined for critical digital services?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are disaster recovery plans defined for critical digital services?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "recover-q2",
+          "text": "Are recovery time objectives tested and reported to management?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are recovery time objectives tested and reported to management?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "recover-q3",
+          "text": "Are backups tested for integrity and restoration success?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are backups tested for integrity and restoration success?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "recover-q4",
+          "text": "Is stakeholder communication prepared for major service disruptions?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is stakeholder communication prepared for major service disruptions?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

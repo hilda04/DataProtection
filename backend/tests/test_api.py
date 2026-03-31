@@ -25,15 +25,17 @@ class FakeStore:
             'createdAt': '2026-03-23T00:00:00+00:00',
         }
 
-    def get_bootstrap(self, user: dict[str, str]) -> dict[str, Any]:
-        return {
+    def get_bootstrap_for_framework(
+        self, user: dict[str, str], framework_id: str | None = None
+    ) -> dict[str, Any]:
+        payload = {
             'user': user,
             'hasOrganisation': self.membership,
             'organisation': self.organisation if self.membership else None,
             'frameworks': [
                 {
-                    'frameworkId': 'zim-dpa',
-                    'name': 'Zimbabwe Cyber and Data Protection Act',
+                    'frameworkId': 'cdpa',
+                    'name': 'CDPA (Zimbabwe Cyber and Data Protection Act)',
                     'version': '2021',
                     'description': (
                         'Self-assessment against key data protection requirements '
@@ -43,6 +45,15 @@ class FakeStore:
                 }
             ],
         }
+        if framework_id:
+            payload['selectedFramework'] = {
+                'frameworkId': framework_id,
+                'framework_id': framework_id,
+                'name': framework_id.upper(),
+                'description': 'Selected framework',
+                'sections': [],
+            }
+        return payload
 
     def create_organisation(self, _user: dict[str, str], payload: dict[str, Any]) -> dict[str, Any]:
         if self.membership:
@@ -59,7 +70,7 @@ class FakeStore:
     def list_frameworks(self) -> list[dict[str, Any]]:
         return [
             {
-                'frameworkId': 'zim-dpa',
+                'frameworkId': 'cdpa',
                 'name': 'Zimbabwe Cyber and Data Protection Act',
                 'version': '2021',
                 'description': (
@@ -96,7 +107,7 @@ class FakeStore:
         return [
             {
                 'assessmentId': 'asm_123',
-                'frameworkId': framework_id or 'zim-dpa',
+                'frameworkId': framework_id or 'cdpa',
                 'organisationId': 'org_123',
                 'createdBy': 'user-123',
                 'createdAt': '2026-03-23T00:00:00+00:00',
@@ -112,7 +123,7 @@ class FakeStore:
     def get_assessment_detail(self, _user: dict[str, str], assessment_id: str) -> dict[str, Any]:
         return {
             'assessmentId': assessment_id,
-            'frameworkId': 'zim-dpa',
+            'frameworkId': 'cdpa',
             'organisationId': 'org_123',
             'createdBy': 'user-123',
             'createdAt': '2026-03-23T00:00:00+00:00',
@@ -123,7 +134,7 @@ class FakeStore:
             'reportS3Key': None,
             'currentSectionId': 'governance-accountability',
             'framework': {
-                'frameworkId': 'zim-dpa',
+                'frameworkId': 'cdpa',
                 'name': 'Zimbabwe Cyber and Data Protection Act',
                 'version': '2021',
                 'description': 'desc',
@@ -141,7 +152,7 @@ class FakeStore:
     ) -> dict[str, Any]:
         return {
             'assessmentId': assessment_id,
-            'frameworkId': 'zim-dpa',
+            'frameworkId': 'cdpa',
             'organisationId': 'org_123',
             'createdBy': 'user-123',
             'createdAt': '2026-03-23T00:00:00+00:00',
@@ -163,7 +174,7 @@ class FakeStore:
     def restart_assessment(self, _user: dict[str, str], assessment_id: str) -> dict[str, Any]:
         return {
             'assessmentId': f'{assessment_id}-restart',
-            'frameworkId': 'zim-dpa',
+            'frameworkId': 'cdpa',
             'organisationId': 'org_123',
             'createdBy': 'user-123',
             'createdAt': '2026-03-24T00:00:00+00:00',
@@ -323,7 +334,7 @@ def test_list_frameworks_returns_metadata(monkeypatch: pytest.MonkeyPatch) -> No
     body = json.loads(response['body'])
 
     assert response['statusCode'] == 200
-    assert body[0]['frameworkId'] == 'zim-dpa'
+    assert body[0]['frameworkId'] == 'cdpa'
     assert 'description' in body[0]
 
 
@@ -333,14 +344,14 @@ def test_create_assessment_returns_record(
     monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
     event = {
         **auth_event,
-        'body': json.dumps({'frameworkId': 'zim-dpa'}),
+        'body': json.dumps({'frameworkId': 'cdpa'}),
     }
 
     response = api.create_assessment(event, None)
     body = json.loads(response['body'])
 
     assert response['statusCode'] == 201
-    assert body['frameworkId'] == 'zim-dpa'
+    assert body['frameworkId'] == 'cdpa'
     assert body['status'] == 'IN_PROGRESS'
 
 
@@ -350,14 +361,14 @@ def test_list_assessments_returns_latest(
     monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
     event = {
         **auth_event,
-        'queryStringParameters': {'frameworkId': 'zim-dpa'},
+        'queryStringParameters': {'frameworkId': 'cdpa'},
     }
     response = api.list_assessments(event, None)
     body = json.loads(response['body'])
 
     assert response['statusCode'] == 200
     assert len(body) == 1
-    assert body[0]['frameworkId'] == 'zim-dpa'
+    assert body[0]['frameworkId'] == 'cdpa'
 
 
 def test_get_assessment_returns_detail(

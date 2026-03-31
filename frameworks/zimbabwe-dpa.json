@@ -1,10 +1,10 @@
 {
-  "frameworkId": "zim-dpa",
-  "name": "Zimbabwe Cyber and Data Protection Act",
+  "frameworkId": "cdpa",
+  "name": "CDPA (Zimbabwe Cyber and Data Protection Act)",
   "version": "2021",
   "jurisdiction": "Zimbabwe",
   "regulationFamily": "Data protection",
-  "description": "Self-assessment against key data protection requirements for Zimbabwean organisations.",
+  "description": "Self-assessment against key data protection requirements for Zimbabwean organisations under CDPA.",
   "sections": [
     {
       "sectionId": "governance-accountability",

@@ -1,0 +1,146 @@
+{
+  "frameworkId": "ipec",
+  "name": "IPEC Guidelines",
+  "version": "1.0",
+  "description": "Self-assessment against IPEC governance and risk expectations.",
+  "sections": [
+    {
+      "sectionId": "governance-and-compliance",
+      "name": "Governance & Compliance",
+      "description": "Governance & Compliance controls and practices.",
+      "questions": [
+        {
+          "questionId": "governance-and-compliance-q1",
+          "text": "Is there a documented policy for governance & compliance?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Address Governance & Compliance policy gaps",
+            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "actions": [
+              "Define and approve policy requirements."
+            ],
+            "evidence": [
+              "Approved policy documentation."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "data-protection-and-confidentiality",
+      "name": "Data Protection & Confidentiality",
+      "description": "Data Protection & Confidentiality controls and practices.",
+      "questions": [
+        {
+          "questionId": "data-protection-and-confidentiality-q1",
+          "text": "Is there a documented policy for data protection & confidentiality?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Address Data Protection & Confidentiality policy gaps",
+            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "actions": [
+              "Define and approve policy requirements."
+            ],
+            "evidence": [
+              "Approved policy documentation."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "risk-management",
+      "name": "Risk Management",
+      "description": "Risk Management controls and practices.",
+      "questions": [
+        {
+          "questionId": "risk-management-q1",
+          "text": "Is there a documented policy for risk management?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Address Risk Management policy gaps",
+            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "actions": [
+              "Define and approve policy requirements."
+            ],
+            "evidence": [
+              "Approved policy documentation."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "it-systems-and-security",
+      "name": "IT Systems & Security",
+      "description": "IT Systems & Security controls and practices.",
+      "questions": [
+        {
+          "questionId": "it-systems-and-security-q1",
+          "text": "Is there a documented policy for it systems & security?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Address IT Systems & Security policy gaps",
+            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "actions": [
+              "Define and approve policy requirements."
+            ],
+            "evidence": [
+              "Approved policy documentation."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "financial-controls",
+      "name": "Financial Controls",
+      "description": "Financial Controls controls and practices.",
+      "questions": [
+        {
+          "questionId": "financial-controls-q1",
+          "text": "Is there a documented policy for financial controls?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Address Financial Controls policy gaps",
+            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "actions": [
+              "Define and approve policy requirements."
+            ],
+            "evidence": [
+              "Approved policy documentation."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "business-continuity",
+      "name": "Business Continuity",
+      "description": "Business Continuity controls and practices.",
+      "questions": [
+        {
+          "questionId": "business-continuity-q1",
+          "text": "Is there a documented policy for business continuity?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Address Business Continuity policy gaps",
+            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "actions": [
+              "Define and approve policy requirements."
+            ],
+            "evidence": [
+              "Approved policy documentation."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

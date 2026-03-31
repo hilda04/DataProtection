@@ -1,0 +1,434 @@
+{
+  "frameworkId": "iso_27001_2022",
+  "name": "ISO/IEC 27001:2022 Assessment",
+  "version": "2022",
+  "description": "Assessment aligned to ISO/IEC 27001:2022 information security management requirements",
+  "sections": [
+    {
+      "sectionId": "context-scope-and-leadership",
+      "name": "Context, Scope and Leadership",
+      "description": "Context, Scope and Leadership controls and practices.",
+      "questions": [
+        {
+          "questionId": "context-scope-and-leadership-q1",
+          "text": "Is the ISMS scope documented, approved, and reviewed when business changes occur?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is the ISMS scope documented, approved, and reviewed when business changes occur?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "context-scope-and-leadership-q2",
+          "text": "Has top management approved information security policy and objectives?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Has top management approved information security policy and objectives?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "context-scope-and-leadership-q3",
+          "text": "Are legal, regulatory, and contractual security requirements identified?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are legal, regulatory, and contractual security requirements identified?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "context-scope-and-leadership-q4",
+          "text": "Are information security responsibilities assigned and communicated?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are information security responsibilities assigned and communicated?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "risk-assessment-and-risk-treatment",
+      "name": "Risk Assessment and Risk Treatment",
+      "description": "Risk Assessment and Risk Treatment controls and practices.",
+      "questions": [
+        {
+          "questionId": "risk-assessment-and-risk-treatment-q1",
+          "text": "Is a repeatable method used to assess information security risks?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is a repeatable method used to assess information security risks?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "risk-assessment-and-risk-treatment-q2",
+          "text": "Are risk treatment plans defined with owners and deadlines?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are risk treatment plans defined with owners and deadlines?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "risk-assessment-and-risk-treatment-q3",
+          "text": "Is a statement of applicability maintained and current?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is a statement of applicability maintained and current?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "risk-assessment-and-risk-treatment-q4",
+          "text": "Are residual risks accepted by authorized management?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are residual risks accepted by authorized management?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "support-and-operation",
+      "name": "Support and Operation",
+      "description": "Support and Operation controls and practices.",
+      "questions": [
+        {
+          "questionId": "support-and-operation-q1",
+          "text": "Are security awareness and competency requirements defined for relevant roles?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are security awareness and competency requirements defined for relevant roles?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "support-and-operation-q2",
+          "text": "Are operational security procedures documented for critical activities?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are operational security procedures documented for critical activities?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "support-and-operation-q3",
+          "text": "Are change and release activities controlled to protect information assets?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are change and release activities controlled to protect information assets?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "support-and-operation-q4",
+          "text": "Are outsourced operational services governed by security requirements?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are outsourced operational services governed by security requirements?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "performance-evaluation-and-improvement",
+      "name": "Performance Evaluation and Improvement",
+      "description": "Performance Evaluation and Improvement controls and practices.",
+      "questions": [
+        {
+          "questionId": "performance-evaluation-and-improvement-q1",
+          "text": "Are ISMS performance metrics defined and reviewed periodically?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are ISMS performance metrics defined and reviewed periodically?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "performance-evaluation-and-improvement-q2",
+          "text": "Are internal ISMS audits conducted against planned criteria?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are internal ISMS audits conducted against planned criteria?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "performance-evaluation-and-improvement-q3",
+          "text": "Are nonconformities tracked with corrective actions to closure?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are nonconformities tracked with corrective actions to closure?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "performance-evaluation-and-improvement-q4",
+          "text": "Does management review ISMS effectiveness at least annually?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Does management review ISMS effectiveness at least annually?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "annex-a-organisational-and-people-controls",
+      "name": "Annex A Organisational and People Controls",
+      "description": "Annex A Organisational and People Controls controls and practices.",
+      "questions": [
+        {
+          "questionId": "annex-a-organisational-and-people-controls-q1",
+          "text": "Are screening and onboarding controls applied before granting access?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are screening and onboarding controls applied before granting access?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "annex-a-organisational-and-people-controls-q2",
+          "text": "Are acceptable use and disciplinary processes defined for security violations?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are acceptable use and disciplinary processes defined for security violations?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "annex-a-organisational-and-people-controls-q3",
+          "text": "Are information classification and handling requirements implemented?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are information classification and handling requirements implemented?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "annex-a-organisational-and-people-controls-q4",
+          "text": "Are supplier relationships governed by security clauses and monitoring?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are supplier relationships governed by security clauses and monitoring?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "annex-a-physical-and-technological-controls",
+      "name": "Annex A Physical and Technological Controls",
+      "description": "Annex A Physical and Technological Controls controls and practices.",
+      "questions": [
+        {
+          "questionId": "annex-a-physical-and-technological-controls-q1",
+          "text": "Is physical access to sensitive areas controlled and logged?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is physical access to sensitive areas controlled and logged?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "annex-a-physical-and-technological-controls-q2",
+          "text": "Are endpoint protection and anti-malware controls active on critical devices?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are endpoint protection and anti-malware controls active on critical devices?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "annex-a-physical-and-technological-controls-q3",
+          "text": "Are network security controls implemented and reviewed regularly?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are network security controls implemented and reviewed regularly?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "annex-a-physical-and-technological-controls-q4",
+          "text": "Are cryptographic controls applied for sensitive information where required?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are cryptographic controls applied for sensitive information where required?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

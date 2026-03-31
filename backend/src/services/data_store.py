@@ -13,6 +13,7 @@ from models.types import FrameworkSummary, OrganisationSummary, UserSummary
 from services.assessment_engine import calculate_assessment_score, normalize_response_value
 from services.framework_registry import (
     build_framework_seed_items,
+    canonical_framework_id,
     load_framework_catalog,
     load_framework_definition,
 )
@@ -117,6 +118,7 @@ class DataStore:
         return [
             {
                 'frameworkId': item['frameworkId'],
+                'id': item['frameworkId'],
                 'name': item['name'],
                 'version': item['version'],
                 'description': item['description'],
@@ -126,17 +128,34 @@ class DataStore:
         ]
 
     def get_bootstrap(self, user: UserSummary) -> Dict[str, Any]:
+        return self.get_bootstrap_for_framework(user=user, framework_id=None)
+
+    def get_bootstrap_for_framework(
+        self, user: UserSummary, framework_id: Optional[str]
+    ) -> Dict[str, Any]:
         membership = self._get_user_membership(user['sub'])
         organisation = None
         if membership:
             organisation = self._get_organisation(membership['organisationId'])
 
-        return {
+        bootstrap_payload: Dict[str, Any] = {
             'user': user,
             'hasOrganisation': organisation is not None,
             'organisation': organisation,
             'frameworks': self.list_frameworks(),
         }
+        if framework_id:
+            framework = self._get_framework(framework_id)
+            if framework is None:
+                raise ValidationError(f'Framework not found: {framework_id}.')
+            bootstrap_payload['selectedFramework'] = {
+                'frameworkId': framework['frameworkId'],
+                'framework_id': framework['frameworkId'],
+                'name': framework['name'],
+                'description': framework.get('description', ''),
+                'sections': self._load_assessment_sections(framework),
+            }
+        return bootstrap_payload
 
     def create_or_resume_assessment(
         self, user: UserSummary, framework_id: str
@@ -146,8 +165,9 @@ class DataStore:
         framework = self._get_framework(framework_id)
         if framework is None:
             raise ValidationError(f'Framework not found: {framework_id}.')
+        resolved_framework_id = framework['frameworkId']
 
-        assessments = self._list_assessment_items(organisation_id, framework_id)
+        assessments = self._list_assessment_items(organisation_id, resolved_framework_id)
         in_progress = next(
             (
                 item
@@ -179,7 +199,7 @@ class DataStore:
             'sk': f'ASSESSMENT#{assessment_id}',
             'entityType': 'ASSESSMENT',
             'assessmentId': assessment_id,
-            'frameworkId': framework_id,
+            'frameworkId': resolved_framework_id,
             'organisationId': organisation_id,
             'createdBy': user['sub'],
             'createdAt': now,
@@ -602,10 +622,13 @@ class DataStore:
         return membership
 
     def _get_framework(self, framework_id: str) -> Optional[Dict[str, Any]]:
+        resolved_framework_id = canonical_framework_id(framework_id)
         self.ensure_framework_seed_data()
-        result = self.table.get_item(Key={'pk': 'FRAMEWORKS', 'sk': f'FRAMEWORK#{framework_id}'})
+        result = self.table.get_item(
+            Key={'pk': 'FRAMEWORKS', 'sk': f'FRAMEWORK#{resolved_framework_id}'}
+        )
         item = result.get('Item')
-        framework = load_framework_definition()
+        framework = load_framework_definition(resolved_framework_id)
         if (
             item
             and self._framework_contains_questions(item)
@@ -613,7 +636,10 @@ class DataStore:
         ):
             return item
 
-        if framework.get('frameworkId') == framework_id:
+        if (
+            canonical_framework_id(str(framework.get('frameworkId') or ''))
+            == resolved_framework_id
+        ):
             if item:
                 self._refresh_framework_sections(item, framework)
             return framework
@@ -720,7 +746,11 @@ class DataStore:
             for item in items
             if item.get('entityType') == 'ASSESSMENT'
             and self._normalise_status(item.get('status')) in VALID_ASSESSMENT_STATUSES
-            and (framework_id is None or item.get('frameworkId') == framework_id)
+            and (
+                framework_id is None
+                or canonical_framework_id(str(item.get('frameworkId') or ''))
+                == canonical_framework_id(framework_id)
+            )
         ]
         return sorted(filtered_items, key=lambda item: item.get('updatedAt', ''), reverse=True)
 
@@ -1139,6 +1169,13 @@ class DataStore:
                             or ''
                         ).strip(),
                         'helpText': str(question.get('helpText', '')).strip(),
+                        'weight': int(question.get('weight', 1)),
+                        'expectedAnswer': str(
+                            question.get('expectedAnswer')
+                            or question.get('expected_answer')
+                            or 'yes'
+                        ).strip()
+                        or 'yes',
                         'guidance': question.get('guidance')
                         if isinstance(question.get('guidance'), dict)
                         else {},

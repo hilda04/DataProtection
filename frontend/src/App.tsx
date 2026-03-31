@@ -99,6 +99,7 @@ export default function App() {
   );
   const [isSavingResponses, setIsSavingResponses] = useState(false);
   const [selectedHistoryFrameworkId, setSelectedHistoryFrameworkId] = useState<string>('');
+  const [selectedFrameworkId, setSelectedFrameworkId] = useState<string>('');
 
   const currentSection = useMemo(() => {
     if (!activeAssessment) {
@@ -157,9 +158,9 @@ export default function App() {
     }
   }
 
-  async function loadBootstrap(): Promise<void> {
+  async function loadBootstrap(frameworkId?: string): Promise<void> {
     setView('loading');
-    const result = await getBootstrap();
+    const result = await getBootstrap(frameworkId);
 
     if (!result.ok || !result.data) {
       setBootstrap(null);
@@ -169,6 +170,7 @@ export default function App() {
     }
 
     setBootstrap(result.data);
+    setSelectedFrameworkId((current) => current || frameworkId || result.data.frameworks[0]?.frameworkId || '');
     setBootstrapError('');
     setFormState((current) => ({
       ...current,
@@ -280,6 +282,24 @@ export default function App() {
     }));
     setAssessmentNotice(created.status === 201 ? 'Assessment in progress.' : 'Continuing your assessment.');
     setView('assessment');
+  }
+
+  async function handleStartSelectedFramework(): Promise<void> {
+    if (!bootstrap || !selectedFrameworkId) {
+      return;
+    }
+    const selectedBootstrap = await getBootstrap(selectedFrameworkId);
+    if (selectedBootstrap.ok && selectedBootstrap.data) {
+      setBootstrap(selectedBootstrap.data);
+    }
+    const framework = (selectedBootstrap.data?.frameworks ?? bootstrap.frameworks).find(
+      (entry) => entry.frameworkId === selectedFrameworkId,
+    );
+    if (!framework) {
+      setAssessmentError('Please select a valid framework before starting.');
+      return;
+    }
+    await handleStartAssessment(framework);
   }
 
   async function handleRestartAssessment(assessmentId: string): Promise<void> {
@@ -521,6 +541,30 @@ export default function App() {
             </p>
           </section>
 
+          <section className="card framework-card">
+            <p className="section-label">Start assessment</p>
+            <h3>Select framework</h3>
+            <p>Choose the framework you want to assess before opening the questionnaire.</p>
+            <label>
+              Framework
+              <select
+                onChange={(event) => setSelectedFrameworkId(event.target.value)}
+                value={selectedFrameworkId}
+              >
+                {bootstrap.frameworks.map((framework) => (
+                  <option key={framework.frameworkId} value={framework.frameworkId}>
+                    {framework.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <div className="framework-actions">
+              <button className="cta-button" onClick={() => void handleStartSelectedFramework()} type="button">
+                Start selected framework
+              </button>
+            </div>
+          </section>
+
           {bootstrap.frameworks.map((framework) => {
             const status = getFrameworkStatus(framework, assessmentsByFramework);
             const latestAssessment = assessmentsByFramework[framework.frameworkId];
@@ -568,7 +612,7 @@ export default function App() {
 
                 <div className="framework-actions">
                   <button className="cta-button" onClick={() => void handleStartAssessment(framework)} type="button">
-                    {hasAssessment ? 'Continue' : 'Start'}
+                    {hasAssessment ? 'Continue' : 'Open'}
                   </button>
                   <button
                     className="secondary-button"

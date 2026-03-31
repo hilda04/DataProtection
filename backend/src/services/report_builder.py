@@ -87,7 +87,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
         rightMargin=16 * mm,
         topMargin=17 * mm,
         bottomMargin=17 * mm,
-        title="Data Protection Compliance Assessment",
+        title=f"{framework_name} Assessment Report",
     )
     story: list[Any] = []
 
@@ -133,7 +133,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     story.extend(
         [
             Spacer(1, 80),
-            Paragraph("Data Protection Compliance Assessment", styles["CoverTitle"]),
+            Paragraph(f"{framework_name} Assessment Report", styles["CoverTitle"]),
             Spacer(1, 10),
             Paragraph(f"{framework_name} v{framework_version}", styles["CoverSubtitle"]),
             Spacer(1, 14),

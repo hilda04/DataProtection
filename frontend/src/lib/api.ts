@@ -124,8 +124,9 @@ export type CreateOrganisationInput = {
   primaryContactEmail: string;
 };
 
-export async function getBootstrap(): Promise<ApiResult<BootstrapResponse>> {
-  return request<BootstrapResponse>('/app/bootstrap', {
+export async function getBootstrap(frameworkId?: string): Promise<ApiResult<BootstrapResponse>> {
+  const query = frameworkId ? `?framework_id=${encodeURIComponent(frameworkId)}` : '';
+  return request<BootstrapResponse>(`/app/bootstrap${query}`, {
     method: 'GET',
   });
 }

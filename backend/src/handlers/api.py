@@ -34,9 +34,18 @@ def get_bootstrap(event: dict[str, Any], _context: Any) -> dict[str, Any]:
     try:
         store = DataStore()
         user = get_user_from_event(event)
-        return ApiResponse(status_code=200, body=store.get_bootstrap(user)).to_dict()
+        query_params = event.get('queryStringParameters') or {}
+        framework_id = None
+        if isinstance(query_params, dict):
+            framework_id = query_params.get('framework_id') or query_params.get('frameworkId')
+        return ApiResponse(
+            status_code=200,
+            body=store.get_bootstrap_for_framework(user=user, framework_id=framework_id),
+        ).to_dict()
     except NotAuthenticatedError as error:
         return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
+    except ValidationError as error:
+        return ApiResponse(status_code=400, body={'message': str(error)}).to_dict()
     except DataStoreError as error:
         return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
 
@@ -124,7 +133,7 @@ def create_assessment(event: dict[str, Any], _context: Any) -> dict[str, Any]:
         store = DataStore()
         user = get_user_from_event(event)
         payload = _load_body(event)
-        framework_id = payload.get('frameworkId', 'zim-dpa')
+        framework_id = payload.get('frameworkId', 'cdpa')
         assessment, resumed = store.create_or_resume_assessment(user, str(framework_id))
         return ApiResponse(status_code=200 if resumed else 201, body=assessment).to_dict()
     except NotAuthenticatedError as error:
