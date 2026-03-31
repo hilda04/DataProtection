@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from decimal import Decimal
+from numbers import Real
 from typing import Any
 
 ANSWER_TO_SCORE = {
@@ -34,12 +36,15 @@ def calculate_assessment_score(
 
 
 def normalize_response_value(value: Any) -> float:
+    if isinstance(value, Decimal):
+        value = float(value)
+
     if isinstance(value, str):
         normalized = value.strip().lower()
         if normalized in ANSWER_TO_SCORE:
             return ANSWER_TO_SCORE[normalized]
 
-    if isinstance(value, (int, float)):
+    if isinstance(value, Real):
         numeric = float(value)
         if numeric <= 0:
             return 0.0
