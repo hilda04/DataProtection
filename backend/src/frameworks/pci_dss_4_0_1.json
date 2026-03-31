@@ -1,0 +1,434 @@
+{
+  "frameworkId": "pci_dss_4_0_1",
+  "name": "PCI DSS v4.0.1 Assessment",
+  "version": "4.0.1",
+  "description": "Assessment aligned to PCI DSS v4.0.1 requirements",
+  "sections": [
+    {
+      "sectionId": "build-and-maintain-a-secure-network-and-systems",
+      "name": "Build and Maintain a Secure Network and Systems",
+      "description": "Build and Maintain a Secure Network and Systems controls and practices.",
+      "questions": [
+        {
+          "questionId": "build-and-maintain-a-secure-network-and-systems-q1",
+          "text": "Are firewall and router rules reviewed at least every six months?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are firewall and router rules reviewed at least every six months?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "build-and-maintain-a-secure-network-and-systems-q2",
+          "text": "Are vendor default passwords removed before systems go into production?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are vendor default passwords removed before systems go into production?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "build-and-maintain-a-secure-network-and-systems-q3",
+          "text": "Is network architecture for cardholder data environment documented and current?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is network architecture for cardholder data environment documented and current?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "build-and-maintain-a-secure-network-and-systems-q4",
+          "text": "Are configuration standards applied to in-scope systems?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are configuration standards applied to in-scope systems?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "protect-account-data",
+      "name": "Protect Account Data",
+      "description": "Protect Account Data controls and practices.",
+      "questions": [
+        {
+          "questionId": "protect-account-data-q1",
+          "text": "Is PAN masked when displayed unless there is a valid business need?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is PAN masked when displayed unless there is a valid business need?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "protect-account-data-q2",
+          "text": "Is stored account data encrypted using strong cryptography?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is stored account data encrypted using strong cryptography?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "protect-account-data-q3",
+          "text": "Are cryptographic keys managed with documented lifecycle controls?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are cryptographic keys managed with documented lifecycle controls?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "protect-account-data-q4",
+          "text": "Is transmission of account data over open networks encrypted?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is transmission of account data over open networks encrypted?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "vulnerability-management",
+      "name": "Vulnerability Management",
+      "description": "Vulnerability Management controls and practices.",
+      "questions": [
+        {
+          "questionId": "vulnerability-management-q1",
+          "text": "Are anti-malware controls deployed and actively managed on in-scope systems?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are anti-malware controls deployed and actively managed on in-scope systems?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "vulnerability-management-q2",
+          "text": "Are security patches applied within defined PCI timelines?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are security patches applied within defined PCI timelines?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "vulnerability-management-q3",
+          "text": "Are internal and external vulnerability scans performed and remediated?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are internal and external vulnerability scans performed and remediated?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "vulnerability-management-q4",
+          "text": "Are penetration tests conducted for the cardholder data environment?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are penetration tests conducted for the cardholder data environment?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "access-control",
+      "name": "Access Control",
+      "description": "Access Control controls and practices.",
+      "questions": [
+        {
+          "questionId": "access-control-q1",
+          "text": "Is access to cardholder data restricted by role and business need?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is access to cardholder data restricted by role and business need?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "access-control-q2",
+          "text": "Are unique IDs used for all users with access to in-scope systems?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are unique IDs used for all users with access to in-scope systems?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "access-control-q3",
+          "text": "Is MFA enforced for administrative access and remote access?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is MFA enforced for administrative access and remote access?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "access-control-q4",
+          "text": "Are dormant or terminated user accounts disabled promptly?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are dormant or terminated user accounts disabled promptly?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "monitoring-and-testing",
+      "name": "Monitoring and Testing",
+      "description": "Monitoring and Testing controls and practices.",
+      "questions": [
+        {
+          "questionId": "monitoring-and-testing-q1",
+          "text": "Are audit logs enabled for critical systems in the cardholder data environment?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are audit logs enabled for critical systems in the cardholder data environment?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "monitoring-and-testing-q2",
+          "text": "Are logs reviewed daily for suspicious activity?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are logs reviewed daily for suspicious activity?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "monitoring-and-testing-q3",
+          "text": "Are file integrity monitoring controls implemented for critical files?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are file integrity monitoring controls implemented for critical files?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "monitoring-and-testing-q4",
+          "text": "Are security control tests performed and evidence retained?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are security control tests performed and evidence retained?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "security-policies-and-programs",
+      "name": "Security Policies and Programs",
+      "description": "Security Policies and Programs controls and practices.",
+      "questions": [
+        {
+          "questionId": "security-policies-and-programs-q1",
+          "text": "Is there an approved information security policy covering PCI scope?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is there an approved information security policy covering PCI scope?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "security-policies-and-programs-q2",
+          "text": "Are personnel with PCI responsibilities trained at least annually?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are personnel with PCI responsibilities trained at least annually?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "security-policies-and-programs-q3",
+          "text": "Is an incident response plan maintained for card data breaches?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is an incident response plan maintained for card data breaches?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "security-policies-and-programs-q4",
+          "text": "Are service providers managed under a formal PCI oversight program?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are service providers managed under a formal PCI oversight program?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

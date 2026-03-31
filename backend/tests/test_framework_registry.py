@@ -8,7 +8,7 @@ from services import framework_registry
 
 
 def test_resolve_framework_path_prefers_packaged_framework_directory() -> None:
-    path = framework_registry.resolve_framework_path()
+    path = framework_registry.resolve_framework_path('zimbabwe-dpa.json')
 
     assert path.name == 'zimbabwe-dpa.json'
     assert path.is_file()
@@ -27,3 +27,19 @@ def test_resolve_framework_path_raises_with_clear_locations(
     message = str(error.value)
     assert str(missing_roots[0] / 'missing.json') in message
     assert str(missing_roots[1] / 'missing.json') in message
+
+
+def test_load_framework_catalog_includes_expected_framework_ids() -> None:
+    framework_ids = {
+        framework['frameworkId'] for framework in framework_registry.load_framework_catalog()
+    }
+
+    assert {
+        'cdpa',
+        'rbz_nps',
+        'ipec',
+        'rbz_cyber',
+        'nist_csf_2',
+        'iso_27001_2022',
+        'pci_dss_4_0_1',
+    }.issubset(framework_ids)

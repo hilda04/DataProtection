@@ -1,0 +1,505 @@
+{
+  "frameworkId": "rbz_cyber",
+  "name": "RBZ Cybersecurity Assessment",
+  "version": "1.0",
+  "description": "Assessment aligned to RBZ cybersecurity and resilience expectations",
+  "sections": [
+    {
+      "sectionId": "governance-and-board-oversight",
+      "name": "Governance and Board Oversight",
+      "description": "Governance and Board Oversight controls and practices.",
+      "questions": [
+        {
+          "questionId": "governance-and-board-oversight-q1",
+          "text": "Has the board approved a cybersecurity policy and reviewed it in the last 12 months?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Has the board approved a cybersecurity policy and reviewed it in the last 12 months?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "governance-and-board-oversight-q2",
+          "text": "Does management submit quarterly cyber risk reports to the board risk committee?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Does management submit quarterly cyber risk reports to the board risk committee?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "governance-and-board-oversight-q3",
+          "text": "Are cyber roles and accountabilities formally assigned across IT, risk, and operations?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are cyber roles and accountabilities formally assigned across IT, risk, and operations?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "governance-and-board-oversight-q4",
+          "text": "Is there an approved cyber budget linked to key risk treatment plans?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is there an approved cyber budget linked to key risk treatment plans?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "cybersecurity-risk-management",
+      "name": "Cybersecurity Risk Management",
+      "description": "Cybersecurity Risk Management controls and practices.",
+      "questions": [
+        {
+          "questionId": "cybersecurity-risk-management-q1",
+          "text": "Do you maintain a current cyber risk register for critical banking systems?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Do you maintain a current cyber risk register for critical banking systems?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "cybersecurity-risk-management-q2",
+          "text": "Are cyber risks rated by likelihood and impact using an approved methodology?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are cyber risks rated by likelihood and impact using an approved methodology?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "cybersecurity-risk-management-q3",
+          "text": "Are high and medium cyber risks assigned owners and target closure dates?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are high and medium cyber risks assigned owners and target closure dates?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "cybersecurity-risk-management-q4",
+          "text": "Is cyber risk integrated into enterprise risk reporting and escalation?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is cyber risk integrated into enterprise risk reporting and escalation?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "risk-management-function",
+      "name": "Risk Management Function",
+      "description": "Risk Management Function controls and practices.",
+      "questions": [
+        {
+          "questionId": "risk-management-function-q1",
+          "text": "Does the second-line risk function independently review cyber controls?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Does the second-line risk function independently review cyber controls?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "risk-management-function-q2",
+          "text": "Are cyber KRIs defined and tracked monthly for key services?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are cyber KRIs defined and tracked monthly for key services?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "risk-management-function-q3",
+          "text": "Are unresolved cyber control issues escalated through formal governance channels?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are unresolved cyber control issues escalated through formal governance channels?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "risk-management-function-q4",
+          "text": "Does internal audit periodically test cybersecurity governance effectiveness?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Does internal audit periodically test cybersecurity governance effectiveness?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "technology-security-controls",
+      "name": "Technology Security Controls",
+      "description": "Technology Security Controls controls and practices.",
+      "questions": [
+        {
+          "questionId": "technology-security-controls-q1",
+          "text": "Are privileged accounts protected with MFA and periodic access reviews?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are privileged accounts protected with MFA and periodic access reviews?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "technology-security-controls-q2",
+          "text": "Are critical servers and endpoints patched within approved timelines?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are critical servers and endpoints patched within approved timelines?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "technology-security-controls-q3",
+          "text": "Is network segmentation enforced between user, server, and payment environments?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is network segmentation enforced between user, server, and payment environments?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "technology-security-controls-q4",
+          "text": "Are backups encrypted, tested, and protected from unauthorized changes?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are backups encrypted, tested, and protected from unauthorized changes?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "incident-management-and-resilience",
+      "name": "Incident Management and Resilience",
+      "description": "Incident Management and Resilience controls and practices.",
+      "questions": [
+        {
+          "questionId": "incident-management-and-resilience-q1",
+          "text": "Do you have a documented cyber incident response plan with clear roles?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Do you have a documented cyber incident response plan with clear roles?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "incident-management-and-resilience-q2",
+          "text": "Are major cyber incidents reported to regulators within required timelines?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are major cyber incidents reported to regulators within required timelines?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "incident-management-and-resilience-q3",
+          "text": "Do you conduct at least annual cyber incident simulation exercises?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Do you conduct at least annual cyber incident simulation exercises?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "incident-management-and-resilience-q4",
+          "text": "Are post-incident root cause actions tracked to closure?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are post-incident root cause actions tracked to closure?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "third-party-and-outsourcing-security",
+      "name": "Third-Party and Outsourcing Security",
+      "description": "Third-Party and Outsourcing Security controls and practices.",
+      "questions": [
+        {
+          "questionId": "third-party-and-outsourcing-security-q1",
+          "text": "Are third-party service providers assessed for cybersecurity before onboarding?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are third-party service providers assessed for cybersecurity before onboarding?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "third-party-and-outsourcing-security-q2",
+          "text": "Do contracts require security controls, breach notification, and audit rights?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Do contracts require security controls, breach notification, and audit rights?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "third-party-and-outsourcing-security-q3",
+          "text": "Are high-risk vendors monitored regularly for control performance?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are high-risk vendors monitored regularly for control performance?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "third-party-and-outsourcing-security-q4",
+          "text": "Is outsourced data access limited to least privilege and monitored?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Is outsourced data access limited to least privilege and monitored?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "training-awareness-and-reporting",
+      "name": "Training, Awareness and Reporting",
+      "description": "Training, Awareness and Reporting controls and practices.",
+      "questions": [
+        {
+          "questionId": "training-awareness-and-reporting-q1",
+          "text": "Do all staff complete cybersecurity awareness training at least annually?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Do all staff complete cybersecurity awareness training at least annually?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "training-awareness-and-reporting-q2",
+          "text": "Are phishing simulations performed and results reported to management?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are phishing simulations performed and results reported to management?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "training-awareness-and-reporting-q3",
+          "text": "Are cyber metrics and incidents reported monthly to executive management?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Are cyber metrics and incidents reported monthly to executive management?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "training-awareness-and-reporting-q4",
+          "text": "Do high-risk teams receive role-based security training?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "guidance": {
+            "title": "Do high-risk teams receive role-based security training?",
+            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "actions": [
+              "Define, implement, and evidence this control."
+            ],
+            "evidence": [
+              "Policy, records, and approval evidence."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

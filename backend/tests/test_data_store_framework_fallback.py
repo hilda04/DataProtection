@@ -28,7 +28,7 @@ def test_get_framework_uses_local_definition_when_seeded_framework_has_no_questi
     monkeypatch,
 ) -> None:
     stale_framework = {
-        'frameworkId': 'zim-dpa',
+        'frameworkId': 'cdpa',
         'name': 'Zimbabwe Cyber and Data Protection Act',
         'version': '2021',
         'description': 'Outdated framework metadata',
@@ -43,7 +43,7 @@ def test_get_framework_uses_local_definition_when_seeded_framework_has_no_questi
     store = DataStore(table=table)
 
     local_definition = {
-        'frameworkId': 'zim-dpa',
+        'frameworkId': 'cdpa',
         'name': 'Zimbabwe Cyber and Data Protection Act',
         'version': '2021',
         'description': 'Current framework metadata',
@@ -57,9 +57,13 @@ def test_get_framework_uses_local_definition_when_seeded_framework_has_no_questi
             }
         ],
     }
-    monkeypatch.setattr(data_store_module, 'load_framework_definition', lambda: local_definition)
+    monkeypatch.setattr(
+        data_store_module,
+        'load_framework_definition',
+        lambda framework_id='cdpa': local_definition,
+    )
 
-    framework = store._get_framework('zim-dpa')
+    framework = store._get_framework('cdpa')
 
     assert framework == local_definition
     assert len(table.update_calls) == 1
@@ -72,7 +76,7 @@ def test_get_framework_uses_local_definition_when_seeded_framework_has_no_questi
 def test_normalise_framework_sections_accepts_legacy_control_shape() -> None:
     table = FakeTable(
         {
-            'frameworkId': 'zim-dpa',
+            'frameworkId': 'cdpa',
             'name': 'Zimbabwe Cyber and Data Protection Act',
             'version': '2021',
             'description': 'Framework metadata',
@@ -114,6 +118,8 @@ def test_normalise_framework_sections_accepts_legacy_control_shape() -> None:
                         'for data protection?'
                     ),
                     'helpText': 'Formal role or named responsible officer.',
+                    'weight': 1,
+                    'expectedAnswer': 'yes',
                     'guidance': {},
                 }
             ],
@@ -138,8 +144,8 @@ def test_load_assessment_sections_falls_back_when_framework_sections_have_no_que
     monkeypatch.setattr(
         data_store_module,
         'load_framework_definition',
-        lambda: {
-            'frameworkId': 'zim-dpa',
+        lambda framework_id='cdpa': {
+            'frameworkId': 'cdpa',
             'name': 'Zimbabwe Cyber and Data Protection Act',
             'version': '2021',
             'description': 'Current framework metadata',
@@ -166,7 +172,7 @@ def test_get_framework_uses_local_definition_when_seeded_framework_has_no_guidan
     monkeypatch,
 ) -> None:
     stale_framework = {
-        'frameworkId': 'zim-dpa',
+        'frameworkId': 'cdpa',
         'name': 'Zimbabwe Cyber and Data Protection Act',
         'version': '2021',
         'description': 'Outdated framework metadata',
@@ -184,7 +190,7 @@ def test_get_framework_uses_local_definition_when_seeded_framework_has_no_guidan
     store = DataStore(table=table)
 
     local_definition = {
-        'frameworkId': 'zim-dpa',
+        'frameworkId': 'cdpa',
         'name': 'Zimbabwe Cyber and Data Protection Act',
         'version': '2021',
         'description': 'Current framework metadata',
@@ -207,9 +213,13 @@ def test_get_framework_uses_local_definition_when_seeded_framework_has_no_guidan
             }
         ],
     }
-    monkeypatch.setattr(data_store_module, 'load_framework_definition', lambda: local_definition)
+    monkeypatch.setattr(
+        data_store_module,
+        'load_framework_definition',
+        lambda framework_id='cdpa': local_definition,
+    )
 
-    framework = store._get_framework('zim-dpa')
+    framework = store._get_framework('cdpa')
 
     assert framework == local_definition
     assert len(table.update_calls) == 1
