@@ -606,7 +606,11 @@ class DataStore:
         result = self.table.get_item(Key={'pk': 'FRAMEWORKS', 'sk': f'FRAMEWORK#{framework_id}'})
         item = result.get('Item')
         framework = load_framework_definition()
-        if item and self._framework_contains_questions(item):
+        if (
+            item
+            and self._framework_contains_questions(item)
+            and self._framework_contains_guidance(item)
+        ):
             return item
 
         if framework.get('frameworkId') == framework_id:
@@ -644,6 +648,20 @@ class DataStore:
 
     def _sections_have_questions(self, sections: list[Dict[str, Any]]) -> bool:
         return any(section.get('questions') for section in sections if isinstance(section, dict))
+
+    def _framework_contains_guidance(self, framework: Dict[str, Any]) -> bool:
+        sections = self._normalise_framework_sections(framework.get('sections', []))
+        for section in sections:
+            for question in section.get('questions', []):
+                guidance = question.get('guidance')
+                if not isinstance(guidance, dict):
+                    return False
+                if not all(
+                    guidance.get(field)
+                    for field in ('title', 'risk', 'actions', 'evidence')
+                ):
+                    return False
+        return True
 
     def _load_assessment_sections(self, framework: Dict[str, Any]) -> list[Dict[str, Any]]:
         sections = self._normalise_framework_sections(framework.get('sections', []))
@@ -951,21 +969,12 @@ class DataStore:
         guidance = question.get('guidance')
         guidance_obj = guidance if isinstance(guidance, dict) else {}
 
-        title = str(guidance_obj.get('title') or question_title).strip() or question_title
-        risk = str(guidance_obj.get('risk') or '').strip() or (
-            'Risk level elevated due to missing or weak control coverage.'
-        )
-
         actions = guidance_obj.get('actions')
         if isinstance(actions, list):
             normalised_actions = [str(action).strip() for action in actions if str(action).strip()]
         else:
             action_value = str(guidance_obj.get('action') or '').strip()
             normalised_actions = [action_value] if action_value else []
-        if not normalised_actions:
-            normalised_actions = [
-                f"Address control gap for '{question_title}' with a documented remediation plan."
-            ]
 
         evidence = guidance_obj.get('evidence')
         if isinstance(evidence, list):
@@ -974,12 +983,24 @@ class DataStore:
             ]
         else:
             normalised_evidence = []
-        if not normalised_evidence:
-            normalised_evidence = ['Documented policy or procedure updates with approval records.']
+
+        if (
+            not str(guidance_obj.get('title') or '').strip()
+            or not str(guidance_obj.get('risk') or '').strip()
+            or not normalised_actions
+            or not normalised_evidence
+        ):
+            fallback_text = question_title or 'Control gap identified'
+            return {
+                'title': fallback_text,
+                'risk': fallback_text,
+                'actions': [fallback_text],
+                'evidence': [fallback_text],
+            }
 
         return {
-            'title': title,
-            'risk': risk,
+            'title': str(guidance_obj['title']).strip(),
+            'risk': str(guidance_obj['risk']).strip(),
             'actions': normalised_actions,
             'evidence': normalised_evidence,
         }

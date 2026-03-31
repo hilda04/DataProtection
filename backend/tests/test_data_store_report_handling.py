@@ -209,11 +209,13 @@ def test_build_assessment_report_recommended_actions_fallback_when_guidance_miss
         'Has your organisation assigned a person accountable for data protection?'
     )
     assert report['recommendations'][0]['risk'] == (
-        'Risk level elevated due to missing or weak control coverage.'
+        'Has your organisation assigned a person accountable for data protection?'
     )
-    assert 'Address control gap' in report['recommendations'][0]['actions'][0]
+    assert report['recommendations'][0]['actions'] == [
+        'Has your organisation assigned a person accountable for data protection?'
+    ]
     assert report['recommendations'][0]['evidence'] == [
-        'Documented policy or procedure updates with approval records.'
+        'Has your organisation assigned a person accountable for data protection?'
     ]
 
 
