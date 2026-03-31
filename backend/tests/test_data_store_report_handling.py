@@ -90,6 +90,109 @@ class HistoryTable(FakeTable):
     pass
 
 
+def test_build_assessment_report_recommended_actions_use_guidance_and_sort_severity() -> None:
+    table = FakeTable()
+    store = DataStore(table=table)
+    store._get_organisation = lambda _org_id: {'name': 'Example Org'}  # type: ignore[method-assign]
+    store._get_framework = lambda _framework_id: {  # type: ignore[method-assign]
+        'frameworkId': 'zim-dpa',
+        'name': 'Zimbabwe Cyber and Data Protection Act',
+        'version': '2021',
+    }
+
+    sections = [
+        {
+            'sectionId': 'governance-accountability',
+            'name': 'Governance and accountability',
+            'questions': [
+                {
+                    'questionId': 'has-dpo',
+                    'text': (
+                        'Has your organisation assigned a person accountable '
+                        'for data protection?'
+                    ),
+                    'guidance': {
+                        'risk': 'No owner for privacy decisions.',
+                        'action': 'Assign a DPO.',
+                    },
+                },
+                {
+                    'questionId': 'has-policy',
+                    'text': 'Do you maintain a documented data protection and privacy policy?',
+                    'guidance': {
+                        'risk': 'Policy controls may be inconsistent.',
+                        'action': 'Approve and publish a policy.',
+                    },
+                },
+            ],
+        }
+    ]
+    report = store._build_assessment_report(
+        assessment={'organisationId': 'org_123', 'frameworkId': 'zim-dpa'},
+        sections=sections,
+        all_responses={
+            'governance-accountability': [
+                {'questionId': 'has-policy', 'value': 'partial'},
+                {'questionId': 'has-dpo', 'value': 'no'},
+            ]
+        },
+        scoring={
+            'score': 25.0,
+            'sectionScores': [
+                {'sectionId': 'governance-accountability', 'score': 25.0}
+            ],
+        },
+    )
+
+    assert report['recommendations'][0]['severity'] == 'no'
+    assert report['recommendations'][0]['risk'] == 'No owner for privacy decisions.'
+    assert report['recommendations'][0]['action'] == 'Assign a DPO.'
+    assert report['recommendations'][1]['severity'] == 'partial'
+
+
+def test_build_assessment_report_recommended_actions_fallback_when_guidance_missing() -> None:
+    table = FakeTable()
+    store = DataStore(table=table)
+    store._get_organisation = lambda _org_id: {'name': 'Example Org'}  # type: ignore[method-assign]
+    store._get_framework = lambda _framework_id: {  # type: ignore[method-assign]
+        'frameworkId': 'zim-dpa',
+        'name': 'Zimbabwe Cyber and Data Protection Act',
+        'version': '2021',
+    }
+
+    sections = [
+        {
+            'sectionId': 'governance-accountability',
+            'name': 'Governance and accountability',
+            'questions': [
+                {
+                    'questionId': 'has-dpo',
+                    'text': (
+                        'Has your organisation assigned a person accountable '
+                        'for data protection?'
+                    ),
+                }
+            ],
+        }
+    ]
+    report = store._build_assessment_report(
+        assessment={'organisationId': 'org_123', 'frameworkId': 'zim-dpa'},
+        sections=sections,
+        all_responses={
+            'governance-accountability': [{'questionId': 'has-dpo', 'value': 'no'}]
+        },
+        scoring={
+            'score': 0.0,
+            'sectionScores': [{'sectionId': 'governance-accountability', 'score': 0.0}],
+        },
+    )
+
+    assert report['recommendations'][0]['risk'] == (
+        'High risk due to missing or weak control coverage.'
+    )
+    assert 'Address control gap' in report['recommendations'][0]['action']
+
+
 def test_save_assessment_responses_completes_when_report_upload_fails(monkeypatch) -> None:
     table = FakeTable()
     store = DataStore(table=table)
