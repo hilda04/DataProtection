@@ -32,11 +32,20 @@ def build_assessment_report(
 
 
 def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
+    from reportlab import rl_config
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import A4
     from reportlab.lib.styles import getSampleStyleSheet
     from reportlab.lib.units import mm
-    from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+    from reportlab.platypus import (
+        KeepTogether,
+        Paragraph,
+        SimpleDocTemplate,
+        Spacer,
+        Table,
+        TableStyle,
+    )
+    rl_config.pageCompression = 0
 
     organisation = report.get('organisation', {})
     framework = report.get('framework', {})
@@ -116,6 +125,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
             )
         )
     else:
+        normalized_actions: list[dict[str, Any]] = []
         for item in recommended_actions:
             issue = str(
                 item.get('title')
@@ -130,34 +140,51 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                 actions = [
                     str(fallback_action or 'Define and implement corrective controls.').strip()
                 ]
-            priority = str(item.get('priority') or item.get('severity') or 'MEDIUM').upper()
-            story.append(Paragraph(f"<b>Gap:</b> {issue}", styles['BodyText']))
-            story.append(Paragraph(f"<b>Priority:</b> {priority}", styles['BodyText']))
-            story.append(Paragraph(f"<b>Risk:</b> {risk}", styles['BodyText']))
-            story.append(Paragraph("<b>Actions:</b>", styles['BodyText']))
-            for action in actions:
-                story.append(Paragraph(f"[ ] {str(action).strip()}", styles['BodyText']))
-            story.append(Spacer(1, 8))
-
-    story.append(Spacer(1, 8))
-    story.append(Paragraph('Evidence Checklist', styles['Heading2']))
-    if not recommended_actions:
-        story.append(Paragraph('No additional evidence requested.', styles['BodyText']))
-    else:
-        for item in recommended_actions:
-            issue = str(
-                item.get('title')
-                or item.get('issue')
-                or item.get('question')
-                or 'Control gap identified'
-            )
             evidence = item.get('evidence')
             if not isinstance(evidence, list) or not evidence:
                 evidence = ['Implementation plan and approval records.']
-            story.append(Paragraph(f"<b>{issue}</b>", styles['BodyText']))
-            for evidence_item in evidence:
-                story.append(Paragraph(f"- {str(evidence_item).strip()}", styles['BodyText']))
-            story.append(Spacer(1, 8))
+            priority = str(item.get('priority') or item.get('severity') or 'MEDIUM').upper()
+            normalized_actions.append(
+                {
+                    'title': issue,
+                    'risk': risk,
+                    'priority': priority if priority in {'HIGH', 'MEDIUM'} else 'MEDIUM',
+                    'actions': [str(action).strip() for action in actions if str(action).strip()],
+                    'evidence': [
+                        str(evidence_item).strip()
+                        for evidence_item in evidence
+                        if str(evidence_item).strip()
+                    ],
+                }
+            )
+
+        gap_number = 1
+        for priority in ('HIGH', 'MEDIUM'):
+            priority_gaps = [item for item in normalized_actions if item['priority'] == priority]
+            if not priority_gaps:
+                continue
+            story.append(Paragraph(f'{priority} Priority Gaps', styles['Heading3']))
+            story.append(Spacer(1, 4))
+
+            for gap in priority_gaps:
+                gap_block = [
+                    Paragraph(
+                        f"<b>{gap_number}. Gap title:</b> {gap['title']}",
+                        styles['BodyText'],
+                    ),
+                    Paragraph(f"<b>Risk:</b> {gap['risk']}", styles['BodyText']),
+                    Paragraph('<b>Actions:</b>', styles['BodyText']),
+                ]
+                for action in gap['actions']:
+                    gap_block.append(Paragraph(f"[ ] {action}", styles['BodyText']))
+
+                gap_block.append(Paragraph('<b>Evidence Required:</b>', styles['BodyText']))
+                for evidence_item in gap['evidence']:
+                    gap_block.append(Paragraph(f"- {evidence_item}", styles['BodyText']))
+
+                story.append(KeepTogether(gap_block))
+                story.append(Spacer(1, 10))
+                gap_number += 1
 
     document.build(story)
     return buffer.getvalue()
