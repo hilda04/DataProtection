@@ -700,6 +700,8 @@ class DataStore:
             raise ValidationError('Assessment not found.')
         report_s3_key = str(assessment.get('reportS3Key') or '').strip()
         if not report_s3_key:
+            report_s3_key = self._generate_report_for_completed_assessment(assessment)
+        if not report_s3_key:
             raise ReportUnavailableError('Report is not available for this assessment.')
 
         bucket_name = self._get_reports_bucket_name(required=False)
@@ -732,7 +734,55 @@ class DataStore:
             Params={'Bucket': bucket_name, 'Key': report_s3_key},
             ExpiresIn=3600,
         )
-        return {'url': signed_url}
+        return {
+            'url': signed_url,
+            'reportUrl': signed_url,
+            'signedUrl': signed_url,
+        }
+
+    def _generate_report_for_completed_assessment(
+        self, assessment: Dict[str, Any]
+    ) -> Optional[str]:
+        assessment_id = str(assessment.get('assessmentId') or '').strip()
+        organisation_id = str(assessment.get('organisationId') or '').strip()
+        if not assessment_id or not organisation_id:
+            return None
+        if self._normalise_status(assessment.get('status')) != 'COMPLETED':
+            return None
+
+        logger.info(
+            'Attempting on-demand report generation for completed assessment.',
+            extra={'assessmentId': assessment_id, 'organisationId': organisation_id},
+        )
+
+        try:
+            framework = self._get_framework(str(assessment.get('frameworkId') or '').strip())
+            if framework is None:
+                return None
+            sections = self._load_assessment_sections(framework)
+            all_responses = self._get_assessment_responses(assessment_id)
+            scoring = calculate_assessment_score(all_responses)
+            report = self._build_assessment_report(assessment, sections, all_responses, scoring)
+            report_s3_key = self._save_report_to_s3(assessment_id, report)
+            if not report_s3_key:
+                return None
+
+            now = datetime.now(timezone.utc).isoformat()
+            self.table.update_item(
+                Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'},
+                UpdateExpression='SET reportS3Key = :reportS3Key, updatedAt = :updatedAt',
+                ExpressionAttributeValues={
+                    ':reportS3Key': report_s3_key,
+                    ':updatedAt': now,
+                },
+            )
+            return report_s3_key
+        except Exception:
+            logger.exception(
+                'On-demand report generation failed.',
+                extra={'assessmentId': assessment_id, 'organisationId': organisation_id},
+            )
+            return None
 
     def _build_assessment_report(
         self,

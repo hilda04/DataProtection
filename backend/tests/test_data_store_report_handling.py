@@ -56,10 +56,14 @@ class FakeTable:
     def update_item(self, **kwargs: Any) -> dict[str, Any]:
         values = kwargs['ExpressionAttributeValues']
         self.last_update_expression_values = values
-        self.assessment_item['status'] = values[':status']
-        self.assessment_item['currentSectionId'] = values[':section']
-        self.assessment_item['updatedAt'] = values[':updatedAt']
-        self.assessment_item['score'] = values[':score']
+        if ':status' in values:
+            self.assessment_item['status'] = values[':status']
+        if ':section' in values:
+            self.assessment_item['currentSectionId'] = values[':section']
+        if ':updatedAt' in values:
+            self.assessment_item['updatedAt'] = values[':updatedAt']
+        if ':score' in values:
+            self.assessment_item['score'] = values[':score']
         if ':completedAt' in values:
             self.assessment_item['completedAt'] = values[':completedAt']
         if ':reportS3Key' in values:
@@ -224,3 +228,67 @@ def test_get_assessment_report_download_url_returns_signed_url_when_report_exist
     )
 
     assert result['url'] == 'https://example.com/signed-report-url'
+
+
+def test_get_assessment_report_download_url_generates_missing_report_on_demand(monkeypatch) -> None:
+    class FakeS3Client:
+        def head_object(self, *, Bucket: str, Key: str) -> dict[str, Any]:
+            assert Bucket == 'reports-bucket'
+            assert Key == 'reports/asm_123.json'
+            return {}
+
+        def generate_presigned_url(
+            self,
+            _operation_name: str,
+            *,
+            Params: dict[str, str],
+            ExpiresIn: int,
+        ) -> str:
+            assert Params == {'Bucket': 'reports-bucket', 'Key': 'reports/asm_123.json'}
+            assert ExpiresIn == 3600
+            return 'https://example.com/generated-report-url'
+
+    class FakeBoto3Module:
+        @staticmethod
+        def client(name: str) -> FakeS3Client:
+            assert name == 's3'
+            return FakeS3Client()
+
+    monkeypatch.setenv('REPORTS_BUCKET_NAME', 'reports-bucket')
+    monkeypatch.setitem(sys.modules, 'boto3', FakeBoto3Module())
+
+    table = MissingReportKeyTable()
+    store = DataStore(table=table)
+    store._require_membership = lambda _user_sub: {'organisationId': 'org_123'}  # type: ignore[method-assign]
+    monkeypatch.setattr(store, '_build_assessment_report', lambda *_args, **_kwargs: {'ok': True})
+    monkeypatch.setattr(
+        store,
+        '_save_report_to_s3',
+        lambda *_args, **_kwargs: 'reports/asm_123.json',
+    )
+    monkeypatch.setattr(
+        store,
+        '_get_framework',
+        lambda _framework_id: {
+            'frameworkId': 'zim-dpa',
+            'name': 'Framework',
+            'version': '2021',
+            'description': 'desc',
+            'sections': [
+                {
+                    'sectionId': 'governance-accountability',
+                    'name': 'Governance and accountability',
+                    'questions': [],
+                }
+            ],
+        },
+    )
+
+    result = store.get_assessment_report_download_url(
+        {'sub': 'user-123', 'email': 'user@example.com'},
+        'asm_123',
+    )
+
+    assert result['url'] == 'https://example.com/generated-report-url'
+    assert result['reportUrl'] == 'https://example.com/generated-report-url'
+    assert result['signedUrl'] == 'https://example.com/generated-report-url'

@@ -293,6 +293,7 @@ export default function App() {
   }
 
   async function handleViewReport(assessmentId: string): Promise<void> {
+    setAssessmentError('');
     const result = await getAssessmentReportUrl(assessmentId);
     if (!result.ok || !result.data?.url) {
       setAssessmentError(result.error ?? 'Report is not available yet.');
