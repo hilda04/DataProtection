@@ -6,6 +6,7 @@ import {
   getAssessmentReportUrl,
   getAssessments,
   getBootstrap,
+  restartAssessment,
   saveAssessmentResponses,
   type AssessmentDetail,
   type AssessmentSummary,
@@ -17,7 +18,14 @@ import { isSignedIn, login, logout } from './lib/auth';
 import './styles.css';
 
 type AuthState = 'checking' | 'authenticated' | 'signed_out';
-type AppView = 'loading' | 'signed_out' | 'setup' | 'dashboard' | 'assessment' | 'summary';
+type AppView =
+  | 'loading'
+  | 'signed_out'
+  | 'setup'
+  | 'dashboard'
+  | 'assessment'
+  | 'summary'
+  | 'history';
 
 type OrganisationFormState = CreateOrganisationInput;
 
@@ -30,12 +38,10 @@ const initialFormState: OrganisationFormState = {
   primaryContactEmail: '',
 };
 
-const maturityLabels = [
-  '0 · Not in place',
-  '1 · Ad hoc',
-  '2 · Partially documented',
-  '3 · Implemented',
-  '4 · Monitored and reviewed',
+const responseLabels: Array<{ value: string; label: string }> = [
+  { value: 'no', label: 'No' },
+  { value: 'partial', label: 'Partial' },
+  { value: 'yes', label: 'Yes' },
 ];
 
 function getFrameworkStatus(
@@ -52,6 +58,13 @@ function getFrameworkStatus(
   return 'In progress';
 }
 
+function getMaturityLabel(score: number): string {
+  if (score <= 40) return 'Basic';
+  if (score <= 60) return 'Developing';
+  if (score <= 80) return 'Defined';
+  return 'Managed';
+}
+
 export default function App() {
   const [authState, setAuthState] = useState<AuthState>('checking');
   const [view, setView] = useState<AppView>('loading');
@@ -66,9 +79,15 @@ export default function App() {
   const [assessmentsByFramework, setAssessmentsByFramework] = useState<
     Record<string, AssessmentSummary | null>
   >({});
+  const [assessmentHistoryByFramework, setAssessmentHistoryByFramework] = useState<
+    Record<string, AssessmentSummary[]>
+  >({});
   const [activeAssessment, setActiveAssessment] = useState<AssessmentDetail | null>(null);
-  const [answersByQuestionId, setAnswersByQuestionId] = useState<Record<string, number>>({});
+  const [answersByQuestionId, setAnswersByQuestionId] = useState<Record<string, number | string>>(
+    {},
+  );
   const [isSavingResponses, setIsSavingResponses] = useState(false);
+  const [selectedHistoryFrameworkId, setSelectedHistoryFrameworkId] = useState<string>('');
 
   const currentSection = useMemo(() => {
     if (!activeAssessment) {
@@ -163,6 +182,27 @@ export default function App() {
     );
 
     setAssessmentsByFramework(Object.fromEntries(summaryEntries));
+    setAssessmentHistoryByFramework((current) => {
+      const next = { ...current };
+      summaryEntries.forEach(([frameworkId]) => {
+        if (!next[frameworkId]) {
+          next[frameworkId] = [];
+        }
+      });
+      return next;
+    });
+  }
+
+  async function loadFrameworkHistory(frameworkId: string): Promise<void> {
+    const response = await getAssessments(frameworkId);
+    if (!response.ok || !response.data) {
+      setAssessmentError(response.error ?? 'Unable to load assessment history.');
+      return;
+    }
+    setAssessmentHistoryByFramework((current) => ({
+      ...current,
+      [frameworkId]: response.data,
+    }));
   }
 
   async function handleLogout(): Promise<void> {
@@ -231,7 +271,30 @@ export default function App() {
     setView('assessment');
   }
 
-  function handleAnswerChange(questionId: string, value: number): void {
+  async function handleRestartAssessment(assessmentId: string): Promise<void> {
+    setAssessmentError('');
+    const restarted = await restartAssessment(assessmentId);
+    if (!restarted.ok || !restarted.data) {
+      setAssessmentError(restarted.error ?? 'Unable to restart assessment.');
+      return;
+    }
+    await loadAssessmentSummaries(bootstrap?.frameworks ?? []);
+    const detail = await getAssessment(restarted.data.assessmentId);
+    if (!detail.ok || !detail.data) {
+      setAssessmentError(detail.error ?? 'Assessment restarted, but failed to open the new assessment.');
+      return;
+    }
+    setActiveAssessment(detail.data);
+    setView('assessment');
+  }
+
+  async function handleOpenHistory(frameworkId: string): Promise<void> {
+    await loadFrameworkHistory(frameworkId);
+    setSelectedHistoryFrameworkId(frameworkId);
+    setView('history');
+  }
+
+  function handleAnswerChange(questionId: string, value: number | string): void {
     setAnswersByQuestionId((current) => ({
       ...current,
       [questionId]: value,
@@ -245,7 +308,7 @@ export default function App() {
 
     const sectionQuestions = currentSection.questions ?? [];
     const responses = sectionQuestions
-      .filter((question) => typeof answersByQuestionId[question.questionId] === 'number')
+      .filter((question) => answersByQuestionId[question.questionId] !== undefined)
       .map((question) => ({
         questionId: question.questionId,
         value: answersByQuestionId[question.questionId],
@@ -449,7 +512,8 @@ export default function App() {
 
           {bootstrap.frameworks.map((framework) => {
             const status = getFrameworkStatus(framework, assessmentsByFramework);
-            const hasAssessment = Boolean(assessmentsByFramework[framework.frameworkId]);
+            const latestAssessment = assessmentsByFramework[framework.frameworkId];
+            const hasAssessment = Boolean(latestAssessment);
 
             return (
               <section className="card framework-card" key={framework.frameworkId}>
@@ -478,18 +542,24 @@ export default function App() {
                 <button className="cta-button" onClick={() => void handleStartAssessment(framework)} type="button">
                   {hasAssessment ? 'Continue assessment' : 'Start assessment'}
                 </button>
-                {hasAssessment && assessmentsByFramework[framework.frameworkId]?.status === 'COMPLETED' ? (
+                {latestAssessment?.status === 'COMPLETED' ? (
                   <button
                     className="secondary-button"
-                    onClick={() => void handleViewReport(assessmentsByFramework[framework.frameworkId]!.assessmentId)}
+                    onClick={() => void handleViewReport(latestAssessment.assessmentId)}
                     type="button"
                   >
-                    View report
+                    View latest report
                   </button>
                 ) : null}
-                {hasAssessment ? (
-                  <p className="meta-label">Score: {assessmentsByFramework[framework.frameworkId]?.score ?? 0}%</p>
+                {latestAssessment?.status === 'COMPLETED' ? (
+                  <button className="secondary-button" onClick={() => void handleRestartAssessment(latestAssessment.assessmentId)} type="button">
+                    Restart assessment
+                  </button>
                 ) : null}
+                <button className="secondary-button" onClick={() => void handleOpenHistory(framework.frameworkId)} type="button">
+                  View history
+                </button>
+                {hasAssessment ? <p className="meta-label">Latest score: {latestAssessment?.score ?? 0}% · {latestAssessment?.completedAt ?? 'Not completed'}</p> : null}
               </section>
             );
           })}
@@ -532,16 +602,16 @@ export default function App() {
                   <legend>{question.text}</legend>
                   {question.helpText ? <p className="question-help">{question.helpText}</p> : null}
                   <div className="maturity-grid">
-                    {maturityLabels.map((label, value) => (
-                      <label className="maturity-option" key={label}>
+                    {responseLabels.map((option) => (
+                      <label className="maturity-option" key={option.value}>
                         <input
-                          checked={answersByQuestionId[question.questionId] === value}
+                          checked={answersByQuestionId[question.questionId] === option.value}
                           name={question.questionId}
-                          onChange={() => handleAnswerChange(question.questionId, value)}
+                          onChange={() => handleAnswerChange(question.questionId, option.value)}
                           type="radio"
-                          value={value}
+                          value={option.value}
                         />
-                        <span>{label}</span>
+                        <span>{option.label}</span>
                       </label>
                     ))}
                   </div>
@@ -581,14 +651,92 @@ export default function App() {
           <p>
             Score: <strong>{activeAssessment.score}%</strong>
           </p>
+          <p>
+            Maturity level: <strong>{activeAssessment.maturityLevel ?? getMaturityLabel(activeAssessment.score)}</strong>
+          </p>
+          {activeAssessment.sectionScores?.length ? (
+            <div>
+              <p className="section-label">Section breakdown</p>
+              <ul>
+                {activeAssessment.sectionScores.map((item) => (
+                  <li key={item.sectionId}>
+                    {item.sectionId}: {item.score}%
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
           <div className="button-row">
             <button className="cta-button" onClick={() => setView('dashboard')} type="button">
               Back to dashboard
             </button>
             <button className="secondary-button" onClick={() => void handleViewReport(activeAssessment.assessmentId)} type="button">
-              View report
+              Download report
+            </button>
+            <button className="secondary-button" onClick={() => void handleRestartAssessment(activeAssessment.assessmentId)} type="button">
+              Restart assessment
             </button>
           </div>
+        </section>
+      ) : null}
+
+      {view === 'history' && bootstrap ? (
+        <section className="card">
+          <p className="section-label">Assessment history</p>
+          <h2>{selectedHistoryFrameworkId}</h2>
+          <div className="button-row">
+            <button className="secondary-button" onClick={() => setView('dashboard')} type="button">
+              Back to dashboard
+            </button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Score</th>
+                <th>Maturity</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(assessmentHistoryByFramework[selectedHistoryFrameworkId] ?? []).map((item) => (
+                <tr key={item.assessmentId}>
+                  <td>{item.createdAt}</td>
+                  <td>{item.status}</td>
+                  <td>{item.score}%</td>
+                  <td>{item.maturityLevel ?? getMaturityLabel(item.score)}</td>
+                  <td>
+                    <div className="button-row">
+                      {item.status === 'COMPLETED' ? (
+                        <>
+                          <button className="secondary-button" onClick={() => void handleViewReport(item.assessmentId)} type="button">
+                            View report
+                          </button>
+                          <button className="secondary-button" onClick={() => void handleRestartAssessment(item.assessmentId)} type="button">
+                            Restart
+                          </button>
+                        </>
+                      ) : (
+                        <button
+                          className="secondary-button"
+                          onClick={() => {
+                            const framework = bootstrap.frameworks.find((entry) => entry.frameworkId === item.frameworkId);
+                            if (framework) {
+                              void handleStartAssessment(framework);
+                            }
+                          }}
+                          type="button"
+                        >
+                          Open
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
       ) : null}
     </main>
