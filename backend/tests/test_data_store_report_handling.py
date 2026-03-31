@@ -4,6 +4,7 @@ import sys
 from decimal import Decimal
 from typing import Any
 
+import services.data_store as data_store_module
 from services.data_store import DataStore, ReportUnavailableError, _convert_floats_to_decimal
 
 
@@ -388,6 +389,11 @@ def test_save_report_to_s3_uploads_pdf(monkeypatch) -> None:
 
     monkeypatch.setenv('REPORTS_BUCKET_NAME', 'reports-bucket')
     monkeypatch.setitem(sys.modules, 'boto3', FakeBoto3Module())
+    monkeypatch.setattr(
+        data_store_module,
+        'build_assessment_report_pdf',
+        lambda _report: b'%PDF-1.4\n' + (b'0' * 600),
+    )
     store = DataStore(table=FakeTable())
 
     key = store._save_report_to_s3('asm_123', {'score': 75.0, 'sections': []})
@@ -396,6 +402,7 @@ def test_save_report_to_s3_uploads_pdf(monkeypatch) -> None:
     assert uploaded['Bucket'] == 'reports-bucket'
     assert uploaded['Key'] == 'reports/asm_123.pdf'
     assert uploaded['ContentType'] == 'application/pdf'
+    assert uploaded['ContentDisposition'] == 'inline; filename="assessment-report-asm_123.pdf"'
     assert isinstance(uploaded['Body'], bytes)
 
 
@@ -418,3 +425,20 @@ def test_list_assessment_history_returns_most_recent_first() -> None:
     history = store.list_assessments({'sub': 'user-123', 'email': 'user@example.com'}, 'zim-dpa')
 
     assert [item['assessmentId'] for item in history] == ['asm_old', 'asm_new']
+
+
+def test_save_report_to_s3_rejects_non_pdf_bytes(monkeypatch) -> None:
+    monkeypatch.setenv('REPORTS_BUCKET_NAME', 'reports-bucket')
+    monkeypatch.setattr(
+        data_store_module,
+        'build_assessment_report_pdf',
+        lambda _report: b'not-a-pdf' + (b'x' * 600),
+    )
+    store = DataStore(table=FakeTable())
+
+    try:
+        store._save_report_to_s3('asm_123', {'score': 75.0})
+    except ValueError as error:
+        assert str(error) == 'Generated report is not a valid PDF.'
+    else:
+        raise AssertionError('Expected _save_report_to_s3 to reject invalid PDF bytes.')

@@ -951,12 +951,19 @@ class DataStore:
         import boto3
 
         pdf_bytes = build_assessment_report_pdf(report)
+        if not isinstance(pdf_bytes, (bytes, bytearray)):
+            raise TypeError('PDF builder must return bytes.')
+        if len(pdf_bytes) < 256:
+            raise ValueError('Generated report PDF is unexpectedly small.')
+        if not bytes(pdf_bytes).startswith(b'%PDF'):
+            raise ValueError('Generated report is not a valid PDF.')
         s3_client = boto3.client('s3')
         s3_client.put_object(
             Bucket=bucket_name,
             Key=report_key,
             Body=pdf_bytes,
             ContentType='application/pdf',
+            ContentDisposition=f'inline; filename="assessment-report-{assessment_id}.pdf"',
         )
         logger.info(
             'Assessment report upload succeeded.',
