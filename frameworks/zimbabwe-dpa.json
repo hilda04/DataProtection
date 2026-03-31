@@ -7,178 +7,536 @@
   "description": "Self-assessment against key data protection requirements for Zimbabwean organisations.",
   "sections": [
     {
-      "questions": [
-        {
-          "text": "Has your organisation assigned a person accountable for data protection?",
-          "helpText": "This can be a formal DPO role or a clearly named responsible officer.",
-          "questionId": "has-dpo",
-          "guidance": {
-            "title": "Has your organisation assigned a person accountable for data protection?",
-            "risk": "No clear accountability owner can delay privacy decisions and incident response.",
-            "actions": [
-              "Assign a named data protection lead with formal responsibilities and executive visibility."
-            ],
-            "evidence": [
-              "Updated policy/procedure document.",
-              "Implementation evidence (tickets, configs, or logs).",
-              "Management approval or review record."
-            ]
-          }
-        },
-        {
-          "text": "Do you maintain a documented data protection and privacy policy?",
-          "helpText": "The policy should be approved, current, and known by relevant teams.",
-          "questionId": "has-policy",
-          "guidance": {
-            "title": "Do you maintain a documented data protection and privacy policy?",
-            "risk": "Without an approved policy, teams may process data inconsistently and non-compliantly.",
-            "actions": [
-              "Publish and approve a privacy policy, then communicate it to all relevant teams."
-            ],
-            "evidence": [
-              "Updated policy/procedure document.",
-              "Implementation evidence (tickets, configs, or logs).",
-              "Management approval or review record."
-            ]
-          }
-        },
-        {
-          "text": "Does leadership review data protection performance on a regular cadence?",
-          "helpText": "Examples include quarterly risk committee or board updates.",
-          "questionId": "governance-review",
-          "guidance": {
-            "title": "Does leadership review data protection performance on a regular cadence?",
-            "risk": "Lack of leadership review weakens oversight and slows remediation of key risks.",
-            "actions": [
-              "Set a recurring leadership review cadence with tracked actions and owners."
-            ],
-            "evidence": [
-              "Updated policy/procedure document.",
-              "Implementation evidence (tickets, configs, or logs).",
-              "Management approval or review record."
-            ]
-          }
-        }
-      ],
       "sectionId": "governance-accountability",
       "name": "Governance and accountability",
-      "description": "Leadership ownership, policies, roles, and oversight for data protection."
-    },
-    {
+      "description": "Leadership ownership, policies, roles, and oversight for data protection.",
       "questions": [
         {
-          "text": "Have you documented lawful bases for key personal data processing activities?",
-          "helpText": "A processing register can map each activity to its lawful basis.",
-          "questionId": "lawful-basis-register",
+          "questionId": "has-dpo",
+          "text": "Has your organisation assigned a person accountable for data protection?",
+          "helpText": "This can be a formal DPO role or a clearly named responsible officer.",
           "guidance": {
-            "title": "Have you documented lawful bases for key personal data processing activities?",
-            "risk": "Processing activities without lawful basis mapping increase regulatory exposure.",
+            "title": "Appoint and empower a data protection accountability owner",
+            "risk": "Without a designated accountable owner, privacy decisions, incident escalation, and regulator engagement are inconsistent and delayed.",
             "actions": [
-              "Create and maintain a register mapping each processing activity to a lawful basis."
+              "Issue a signed appointment letter naming the data protection lead and clearly defining authority to approve privacy controls.",
+              "Publish a RACI matrix for legal, security, HR, and product teams that identifies who approves, executes, and reviews privacy decisions.",
+              "Add a standing privacy governance agenda item to monthly leadership meetings with owner-led status reporting on open risks.",
+              "Define succession and backup coverage so the accountability role is always staffed during leave or staff transitions."
             ],
             "evidence": [
-              "Updated policy/procedure document.",
-              "Implementation evidence (tickets, configs, or logs).",
-              "Management approval or review record."
+              "Signed appointment letter and approved role description.",
+              "Current RACI matrix version with document control metadata.",
+              "Leadership meeting minutes showing privacy risk review and assigned actions.",
+              "Business continuity or succession plan naming alternate accountability owners."
             ]
           }
         },
         {
-          "text": "Do consent collection channels record when and how consent was obtained?",
-          "helpText": "Include digital forms, call centres, and offline channels where relevant.",
-          "questionId": "consent-capture",
+          "questionId": "has-policy",
+          "text": "Do you maintain a documented data protection and privacy policy?",
+          "helpText": "The policy should be approved, current, and known by relevant teams.",
           "guidance": {
-            "title": "Do consent collection channels record when and how consent was obtained?",
-            "risk": "Inability to evidence consent undermines defensibility of data processing.",
+            "title": "Maintain an approved and operational privacy policy",
+            "risk": "If the policy is outdated or not embedded into operations, teams handle personal data inconsistently and create avoidable compliance failures.",
             "actions": [
-              "Implement auditable consent records with timestamp, channel, and purpose captured."
+              "Publish a version-controlled privacy policy that maps each control statement to a process owner and review frequency.",
+              "Set a mandatory annual policy review workflow with legal and security sign-off before the policy expiry date.",
+              "Link policy requirements to onboarding and operational procedures used by HR, product, and support teams.",
+              "Distribute policy updates through tracked communications and require acknowledgement from relevant employees."
             ],
             "evidence": [
-              "Updated policy/procedure document.",
-              "Implementation evidence (tickets, configs, or logs).",
-              "Management approval or review record."
+              "Current approved policy version with owner, approver, and effective date.",
+              "Policy review records including legal/security comments and closure status.",
+              "Procedure documents cross-referencing policy clauses.",
+              "Communication logs and employee acknowledgement reports."
             ]
           }
         },
         {
-          "text": "Do teams check that personal data is only used for stated purposes?",
-          "helpText": "This should include controls before re-using data for new initiatives.",
-          "questionId": "purpose-limitation",
+          "questionId": "governance-review",
+          "text": "Does leadership review data protection performance on a regular cadence?",
+          "helpText": "Examples include quarterly risk committee or board updates.",
           "guidance": {
-            "title": "Do teams check that personal data is only used for stated purposes?",
-            "risk": "Data reused beyond original purposes can breach legal obligations and trust.",
+            "title": "Operationalize leadership oversight for privacy performance",
+            "risk": "Absent leadership review allows unresolved control failures to persist and weakens defensibility during audits or investigations.",
             "actions": [
-              "Add checks in project and change workflows to validate purpose limitation compliance."
+              "Define quarterly privacy KPI/KRI reporting with thresholds for training completion, DSR timeliness, incidents, and overdue remediation.",
+              "Escalate high-risk privacy items to the executive risk register with due dates and accountable owners.",
+              "Track governance decisions and remediation commitments in a central action log reviewed at each meeting.",
+              "Require leadership sign-off for risk acceptance decisions where controls cannot be implemented immediately."
             ],
             "evidence": [
-              "Updated policy/procedure document.",
-              "Implementation evidence (tickets, configs, or logs).",
-              "Management approval or review record."
+              "Quarterly dashboards showing privacy KPIs/KRIs and threshold breaches.",
+              "Risk register entries with owner, treatment plan, and target completion dates.",
+              "Meeting minutes with decisions, approvals, and action follow-up.",
+              "Documented risk acceptance memos signed by designated approvers."
             ]
           }
         }
-      ],
+      ]
+    },
+    {
       "sectionId": "lawful-processing-consent",
       "name": "Lawful processing and consent",
-      "description": "Legal basis, consent controls, and purpose limitation practices."
-    },
-    {
+      "description": "Legal basis, consent controls, and purpose limitation practices.",
       "questions": [
         {
-          "text": "Are baseline technical and organisational security controls in place for personal data?",
-          "helpText": "Examples include access controls, encryption, and endpoint protections.",
-          "questionId": "security-controls",
+          "questionId": "lawful-basis-register",
+          "text": "Have you documented lawful bases for key personal data processing activities?",
+          "helpText": "A processing register can map each activity to its lawful basis.",
           "guidance": {
-            "title": "Are baseline technical and organisational security controls in place for personal data?",
-            "risk": "Weak baseline safeguards increase likelihood of unauthorized access and data loss.",
+            "title": "Document lawful basis for each processing activity",
+            "risk": "Processing without clear lawful basis mapping creates legal exposure and weakens response capability for complaints.",
             "actions": [
-              "Implement minimum security controls, including access control, encryption, and endpoint hardening."
+              "Build a processing activity register that lists purpose, categories of data, lawful basis, and responsible business owner.",
+              "Introduce a privacy review gate in project intake so new processing cannot go live without lawful basis validation.",
+              "Perform semi-annual sampling of active systems to confirm processing activities match the registered lawful basis.",
+              "Update privacy notices and internal records immediately when lawful basis changes due to product or legal changes."
             ],
             "evidence": [
-              "Updated policy/procedure document.",
-              "Implementation evidence (tickets, configs, or logs).",
-              "Management approval or review record."
+              "Current processing activity register export with last review timestamp.",
+              "Project intake records showing lawful basis approval before deployment.",
+              "Sampling/audit reports with findings and corrective actions.",
+              "Change history of privacy notices and lawful basis updates."
             ]
           }
         },
         {
-          "text": "Do you have a documented incident response process for personal data incidents?",
-          "helpText": "The process should define triage, escalation, and decision ownership.",
-          "questionId": "incident-playbook",
+          "questionId": "consent-capture",
+          "text": "Do consent collection channels record when and how consent was obtained?",
+          "helpText": "Include digital forms, call centres, and offline channels where relevant.",
           "guidance": {
-            "title": "Do you have a documented incident response process for personal data incidents?",
-            "risk": "Unclear incident handling delays containment and escalation during breaches.",
+            "title": "Capture auditable consent records across all channels",
+            "risk": "Inability to prove consent validity undermines legal defensibility and may require processing suspension.",
             "actions": [
-              "Document and rehearse an incident response playbook with clear roles and escalation paths."
+              "Configure digital consent capture to store timestamp, policy version, source channel, and purpose at the individual record level.",
+              "Implement call-centre scripting and CRM fields that require explicit consent capture before proceeding with optional processing.",
+              "Create a withdrawal workflow that propagates consent changes to downstream systems within a defined SLA.",
+              "Run monthly reconciliation between consent records and active marketing or profiling lists to remove unauthorized records."
             ],
             "evidence": [
-              "Updated policy/procedure document.",
-              "Implementation evidence (tickets, configs, or logs).",
-              "Management approval or review record."
+              "Database schema or application screenshots showing consent metadata fields.",
+              "Call-centre SOP and call logs with recorded consent statements.",
+              "Workflow records demonstrating withdrawal processing and completion times.",
+              "Monthly reconciliation reports with exceptions and resolution evidence."
             ]
           }
         },
         {
-          "text": "Can your team assess and notify reportable breaches within required timelines?",
-          "helpText": "Include internal escalation timelines and regulator communication steps.",
-          "questionId": "breach-notification",
+          "questionId": "purpose-limitation",
+          "text": "Do teams check that personal data is only used for stated purposes?",
+          "helpText": "This should include controls before re-using data for new initiatives.",
           "guidance": {
-            "title": "Can your team assess and notify reportable breaches within required timelines?",
-            "risk": "Delayed breach notification can create legal penalties and reputational damage.",
+            "title": "Enforce purpose limitation in change and analytics workflows",
+            "risk": "Repurposing personal data without assessment can violate legal obligations and trigger customer trust issues.",
             "actions": [
-              "Define breach assessment and notification timelines aligned to legal requirements."
+              "Add a mandatory purpose-compatibility assessment step to change management tickets for new data uses.",
+              "Block analytics dataset access unless the approved purpose tag matches the requesting use case.",
+              "Require legal/privacy approval for secondary use scenarios such as model training or cross-sell targeting.",
+              "Perform quarterly access/use reviews to detect and remediate unauthorized purpose expansion."
             ],
             "evidence": [
-              "Updated policy/procedure document.",
-              "Implementation evidence (tickets, configs, or logs).",
-              "Management approval or review record."
+              "Change tickets with completed purpose-compatibility assessments.",
+              "Access-control rules and logs showing purpose-based enforcement.",
+              "Approval records for secondary use exceptions.",
+              "Quarterly review reports and remediation closure records."
             ]
           }
         }
-      ],
-      "sectionId": "security-breach-response",
-      "name": "Security and breach response",
-      "description": "Security safeguards, incident handling, and breach notification readiness."
+      ]
+    },
+    {
+      "sectionId": "data-subject-rights",
+      "name": "Data Subject Rights",
+      "description": "Processes and controls for handling access, correction, deletion, and objection requests.",
+      "questions": [
+        {
+          "questionId": "dsr-intake-tracking",
+          "text": "Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?",
+          "helpText": "Cover access, correction, deletion, objection, and restriction request types.",
+          "guidance": {
+            "title": "Implement an end-to-end DSR case management workflow",
+            "risk": "Unstructured DSR handling causes missed deadlines, inconsistent outcomes, and inability to evidence compliance.",
+            "actions": [
+              "Deploy a centralized case workflow with request type, intake date, due date, owner, and status fields.",
+              "Define identity verification steps for each request channel and require completion before disclosure or deletion actions.",
+              "Set automated SLA reminders and escalation rules for cases approaching legal deadlines.",
+              "Maintain templated responses for approvals, partial disclosures, and lawful refusals with legal review checkpoints."
+            ],
+            "evidence": [
+              "DSR tracker export showing case lifecycle fields and timestamps.",
+              "Identity verification SOPs and sample completed verification records.",
+              "SLA breach dashboard or escalation logs.",
+              "Approved response templates and legal sign-off records."
+            ]
+          }
+        },
+        {
+          "questionId": "dsr-fulfilment-quality",
+          "text": "Can you fulfil DSR requests completely across all systems containing personal data?",
+          "helpText": "This includes production systems, backups, and processor-held data where applicable.",
+          "guidance": {
+            "title": "Assure complete and timely DSR fulfilment across data estates",
+            "risk": "Partial fulfilment leaves residual personal data in scope systems, increasing complaint and enforcement risk.",
+            "actions": [
+              "Map DSR fulfilment playbooks to each in-scope system, including who executes extraction, correction, deletion, or restriction.",
+              "Integrate processor notification steps so outsourced systems are included in fulfilment timelines.",
+              "Run quarterly fulfilment simulations to test end-to-end retrieval and deletion coverage.",
+              "Implement quality checks requiring peer review before closing high-impact DSR cases."
+            ],
+            "evidence": [
+              "System-specific DSR playbooks with owner assignments.",
+              "Processor communication logs for DSR propagation.",
+              "Simulation reports with gap remediation actions.",
+              "Closed case records with peer-review and closure approval fields."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "data-inventory-classification",
+      "name": "Data Inventory & Classification",
+      "description": "Discovery, cataloguing, and classification of personal data assets and flows.",
+      "questions": [
+        {
+          "questionId": "inventory-coverage",
+          "text": "Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?",
+          "helpText": "Inventory should include source, purpose, location, and transfer points.",
+          "guidance": {
+            "title": "Maintain a complete and current personal data inventory",
+            "risk": "Unknown data stores prevent effective risk management, DSR fulfilment, and breach impact analysis.",
+            "actions": [
+              "Create a centralized inventory that records system owner, data categories, storage location, and inbound/outbound transfers.",
+              "Require inventory updates as a release criterion for new systems or schema changes involving personal data.",
+              "Run periodic discovery scans and reconcile results against the inventory for missing assets.",
+              "Track data flow diagrams for high-risk processes and review them after major architecture changes."
+            ],
+            "evidence": [
+              "Current inventory export with change history and ownership metadata.",
+              "Release checklist records proving inventory update completion.",
+              "Discovery scan reports and reconciliation tickets.",
+              "Approved data flow diagrams with last review dates."
+            ]
+          }
+        },
+        {
+          "questionId": "classification-standard",
+          "text": "Is personal data classified using a defined sensitivity taxonomy that drives control requirements?",
+          "helpText": "Classification should trigger access, encryption, and retention rules.",
+          "guidance": {
+            "title": "Apply enforceable data classification for personal data",
+            "risk": "Without consistent classification, sensitive data may receive inadequate protection or excessive access.",
+            "actions": [
+              "Define classification tiers with explicit handling requirements for access controls, encryption, and sharing.",
+              "Tag data assets with classification labels in databases, storage platforms, and BI tools.",
+              "Enforce policy-as-code checks that block deployments when required classification tags are missing.",
+              "Train data owners on classification decision criteria and exception approval workflow."
+            ],
+            "evidence": [
+              "Published classification standard and handling matrix.",
+              "System screenshots or exports showing classification tags.",
+              "CI/CD or policy engine logs demonstrating enforcement failures and approvals.",
+              "Training attendance and assessment records for data owners."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "security-safeguards",
+      "name": "Security Safeguards",
+      "description": "Technical and organizational measures protecting personal data confidentiality, integrity, and availability.",
+      "questions": [
+        {
+          "questionId": "access-control-hardening",
+          "text": "Are access controls for personal data based on least privilege and regularly reviewed?",
+          "helpText": "Include privileged access, shared accounts, and joiner-mover-leaver processes.",
+          "guidance": {
+            "title": "Harden access controls for personal data systems",
+            "risk": "Excessive or stale access increases the chance of unauthorized disclosure and insider misuse.",
+            "actions": [
+              "Implement role-based access control with segregation of duties for administrative and data export functions.",
+              "Enforce MFA for privileged and remote access to systems processing personal data.",
+              "Run monthly access recertification for high-risk systems and disable unapproved or dormant accounts.",
+              "Eliminate shared accounts or place them behind managed vault workflows with session logging."
+            ],
+            "evidence": [
+              "RBAC matrix and system permission mappings.",
+              "MFA policy and authentication logs demonstrating enforcement.",
+              "Access recertification reports and deprovisioning tickets.",
+              "Privileged access vault logs and account ownership attestations."
+            ]
+          }
+        },
+        {
+          "questionId": "data-protection-controls",
+          "text": "Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?",
+          "helpText": "Cover data at rest, data in transit, and endpoint data leakage controls.",
+          "guidance": {
+            "title": "Implement layered technical safeguards for personal data",
+            "risk": "Weak encryption or insecure configurations materially increase breach likelihood and impact.",
+            "actions": [
+              "Encrypt personal data at rest using approved algorithms and managed key rotation schedules.",
+              "Enforce TLS for internal and external data transmission paths handling personal data.",
+              "Deploy endpoint DLP and removable media controls for teams handling high-sensitivity records.",
+              "Baseline hardening standards for servers and databases, with automated drift detection and remediation."
+            ],
+            "evidence": [
+              "Encryption standards and key management rotation logs.",
+              "Network/security configuration exports proving TLS enforcement.",
+              "Endpoint DLP policy configurations and alert investigation records.",
+              "Hardening benchmark reports and drift remediation tickets."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "incident-breach-management",
+      "name": "Incident & Breach Management",
+      "description": "Preparedness, detection, response, notification, and lessons learned for personal data incidents.",
+      "questions": [
+        {
+          "questionId": "incident-playbook",
+          "text": "Do you operate a tested incident response playbook for personal data incidents?",
+          "helpText": "The process should define triage, escalation, legal review, and communication steps.",
+          "guidance": {
+            "title": "Operationalize and test data incident response procedures",
+            "risk": "An untested playbook causes delayed containment and inconsistent decision-making during high-pressure incidents.",
+            "actions": [
+              "Document a privacy incident playbook with severity levels, decision authorities, and communication channels.",
+              "Integrate legal, security, and communications teams into a single on-call escalation workflow.",
+              "Conduct at least two tabletop exercises annually covering ransomware and unauthorized disclosure scenarios.",
+              "Track corrective actions from exercises and incidents to verified closure within agreed timelines."
+            ],
+            "evidence": [
+              "Approved incident response playbook and contact roster.",
+              "On-call schedule and escalation runbook records.",
+              "Tabletop exercise agendas, participant lists, and outcome reports.",
+              "Post-incident action register with closure evidence."
+            ]
+          }
+        },
+        {
+          "questionId": "breach-notification",
+          "text": "Can your team assess reportability and notify regulators/data subjects within required timelines?",
+          "helpText": "Include criteria for harm assessment and notification approval workflow.",
+          "guidance": {
+            "title": "Deliver compliant breach assessment and notification",
+            "risk": "Late or incomplete breach notifications can trigger enforcement action and reputational harm.",
+            "actions": [
+              "Define a breach reportability decision tree with legal thresholds and mandatory consultation points.",
+              "Use notification templates pre-approved by legal and communications for regulators and affected individuals.",
+              "Implement a timer-based workflow from incident detection to notification submission with documented checkpoints.",
+              "Run periodic quality reviews of past incidents to verify timeline adherence and notification completeness."
+            ],
+            "evidence": [
+              "Reportability decision tree and legal approval records.",
+              "Notification templates and version history.",
+              "Incident timeline logs with decision timestamps.",
+              "Quality review reports and remediation actions from prior incidents."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "third-party-data-sharing",
+      "name": "Third-Party & Data Sharing",
+      "description": "Due diligence, contractual controls, and monitoring of processors and data-sharing partners.",
+      "questions": [
+        {
+          "questionId": "third-party-due-diligence",
+          "text": "Do you perform privacy and security due diligence before onboarding third parties that process personal data?",
+          "helpText": "Apply risk-based review depth depending on data sensitivity and processing scale.",
+          "guidance": {
+            "title": "Institutionalize third-party privacy due diligence",
+            "risk": "Onboarding processors without due diligence transfers unmanaged privacy risk into your processing chain.",
+            "actions": [
+              "Adopt a risk-tiering questionnaire covering data types, sub-processors, breach history, and control maturity.",
+              "Require review of independent assurance artifacts such as SOC reports or equivalent control attestations.",
+              "Block procurement approval until privacy/security findings have an agreed remediation plan and owner.",
+              "Reassess high-risk vendors annually and after major service or ownership changes."
+            ],
+            "evidence": [
+              "Completed due diligence assessments with risk ratings.",
+              "Assurance reports and control-gap analysis documents.",
+              "Procurement workflow records showing privacy/security sign-off.",
+              "Annual reassessment reports and updated risk treatment plans."
+            ]
+          }
+        },
+        {
+          "questionId": "data-sharing-agreements",
+          "text": "Are data sharing and processor agreements complete, current, and enforceable?",
+          "helpText": "Contracts should include purpose limits, breach notification, security controls, and audit rights.",
+          "guidance": {
+            "title": "Strengthen contractual controls for external data processing",
+            "risk": "Weak or outdated agreements limit legal recourse and hinder coordinated response when incidents occur.",
+            "actions": [
+              "Standardize contract clauses for purpose limitation, confidentiality, security controls, sub-processor approval, and audit rights.",
+              "Track agreement expiry dates and renewal milestones in a contract register with automated reminders.",
+              "Validate that executed contracts align with actual data flows and current service architecture.",
+              "Enforce incident notification clauses with tested communication channels and response obligations."
+            ],
+            "evidence": [
+              "Executed contracts and approved clause library.",
+              "Contract register with renewal and owner metadata.",
+              "Data flow-to-contract mapping review records.",
+              "Vendor incident communication test results or drill reports."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "data-retention-disposal",
+      "name": "Data Retention & Disposal",
+      "description": "Retention schedules, deletion workflows, and secure disposal controls for personal data.",
+      "questions": [
+        {
+          "questionId": "retention-schedule",
+          "text": "Do you enforce documented retention periods for each personal data category?",
+          "helpText": "Retention should align to legal obligations and business need with clear ownership.",
+          "guidance": {
+            "title": "Define and enforce retention schedules",
+            "risk": "Over-retention increases breach impact and regulatory risk, while under-retention can break legal obligations.",
+            "actions": [
+              "Create a retention schedule that maps each data category to legal basis, retention duration, and owner.",
+              "Implement system-level retention rules and archival controls that automatically enforce scheduled expiry.",
+              "Require legal approval for retention exceptions and set explicit sunset dates for each exception.",
+              "Review retention rule effectiveness quarterly against actual data age distributions."
+            ],
+            "evidence": [
+              "Approved retention schedule and governance approval records.",
+              "System configuration exports showing retention enforcement settings.",
+              "Exception register with legal approvals and expiry dates.",
+              "Quarterly metrics showing aged data reduction and exception closure."
+            ]
+          }
+        },
+        {
+          "questionId": "secure-disposal",
+          "text": "Do you securely dispose of personal data across live systems, archives, and media?",
+          "helpText": "Include logical deletion, cryptographic erasure, and physical media destruction where relevant.",
+          "guidance": {
+            "title": "Execute verifiable and secure data disposal",
+            "risk": "Incomplete disposal leaves recoverable personal data that can be exposed through compromise or mishandling.",
+            "actions": [
+              "Implement deletion workflows that cover production, backups, archives, and replicated environments.",
+              "Use cryptographic erasure or approved sanitization procedures for storage media leaving service.",
+              "Require dual-control approval for bulk deletion jobs involving high-volume personal data.",
+              "Sample-test disposed datasets to confirm irrecoverability and document test outcomes."
+            ],
+            "evidence": [
+              "Deletion workflow logs spanning all data environments.",
+              "Media sanitization or destruction certificates from approved providers.",
+              "Approval records for bulk deletion operations.",
+              "Validation test reports confirming disposal effectiveness."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "training-awareness",
+      "name": "Training & Awareness",
+      "description": "Role-based privacy training, awareness reinforcement, and behavioral control validation.",
+      "questions": [
+        {
+          "questionId": "role-based-training",
+          "text": "Do employees and contractors receive role-based privacy and data handling training?",
+          "helpText": "Training should differ for high-impact roles such as HR, support, engineering, and marketing.",
+          "guidance": {
+            "title": "Deliver role-specific privacy capability training",
+            "risk": "Generic or infrequent training leaves high-risk teams without practical knowledge to prevent handling errors.",
+            "actions": [
+              "Define training curricula by role with required modules on lawful use, incident escalation, and secure handling.",
+              "Require completion of role-based training within onboarding windows and annual refresh cycles.",
+              "Apply minimum pass-score assessments and remedial training for failed attempts.",
+              "Report completion and assessment metrics to department heads for accountability."
+            ],
+            "evidence": [
+              "Role-to-curriculum mapping document and approved learning objectives.",
+              "LMS completion reports with timestamps and user populations.",
+              "Assessment score reports and remedial completion records.",
+              "Management review records of training compliance metrics."
+            ]
+          }
+        },
+        {
+          "questionId": "awareness-effectiveness",
+          "text": "Do you measure whether privacy awareness activities improve employee behavior?",
+          "helpText": "Use measurable outcomes beyond attendance, such as incident trends and campaign results.",
+          "guidance": {
+            "title": "Measure and improve privacy awareness effectiveness",
+            "risk": "Awareness programs without outcome measurement do not reliably reduce privacy handling errors.",
+            "actions": [
+              "Define behavioral metrics such as misdirected disclosures, policy violations, and incident reporting lag.",
+              "Run targeted awareness campaigns for recurring failure patterns identified in incidents or audits.",
+              "Use post-campaign quizzes or simulations to validate retention of key handling practices.",
+              "Adjust training content quarterly based on measured behavior and control failures."
+            ],
+            "evidence": [
+              "Awareness KPI definitions and periodic measurement reports.",
+              "Campaign materials with targeted audience and schedule.",
+              "Quiz/simulation results and trend analysis.",
+              "Content update logs linked to observed behavioral outcomes."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "monitoring-continuous-improvement",
+      "name": "Monitoring & Continuous Improvement",
+      "description": "Control monitoring, internal assurance, and remediation lifecycle management.",
+      "questions": [
+        {
+          "questionId": "control-monitoring",
+          "text": "Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?",
+          "helpText": "Metrics should cover preventive, detective, and corrective controls.",
+          "guidance": {
+            "title": "Establish measurable privacy control monitoring",
+            "risk": "Without control monitoring, issues remain undetected and mature into repeat audit findings or incidents.",
+            "actions": [
+              "Define control KPIs with thresholds for DSR SLA, retention exceptions, access recertification, and incident response timeliness.",
+              "Automate monthly control metric collection from ticketing, IAM, SIEM, and case management tools.",
+              "Trigger remediation tickets automatically for threshold breaches with assigned owners and due dates.",
+              "Review control performance trends in governance forums and adjust controls where repeated breaches occur."
+            ],
+            "evidence": [
+              "KPI catalogue with thresholds and control ownership.",
+              "Automated metric extracts or dashboard snapshots.",
+              "Remediation tickets linked to threshold breach events.",
+              "Governance meeting records showing trend review decisions."
+            ]
+          }
+        },
+        {
+          "questionId": "assurance-remediation",
+          "text": "Do you run periodic internal assessments and close remediation actions to verified completion?",
+          "helpText": "Assessments may include internal audit, control self-assessment, and targeted deep dives.",
+          "guidance": {
+            "title": "Run recurring assurance and validate remediation closure",
+            "risk": "Findings that are tracked but not validated to closure create recurring non-conformance and audit fatigue.",
+            "actions": [
+              "Schedule annual privacy control self-assessments and risk-based internal audits across critical processing areas.",
+              "Track all findings in a remediation register with root cause, owner, due date, and validation method.",
+              "Require independent validation before marking corrective actions complete.",
+              "Analyze recurring findings quarterly to identify systemic process redesign opportunities."
+            ],
+            "evidence": [
+              "Approved assurance plan and completed assessment reports.",
+              "Central remediation register with current status and aging.",
+              "Validation records signed by independent reviewers.",
+              "Quarterly recurring-findings analysis with action plans."
+            ]
+          }
+        }
+      ]
     }
   ]
 }

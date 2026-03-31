@@ -38,6 +38,8 @@ def test_build_assessment_report_pdf_returns_valid_pdf_bytes() -> None:
     assert len(pdf_bytes) > 500
     decoded = pdf_bytes.decode('latin-1', errors='ignore')
     assert 'Remediation Plan' in decoded
+    assert 'HIGH Priority Gaps' in decoded
+    assert '1. Gap title:' in decoded
     assert '[ ] Formalise incident-response RACI and approvals.' in decoded
-    assert 'Evidence Checklist' in decoded
+    assert 'Evidence Required:' in decoded
     assert 'Approved incident-response procedure' in decoded
