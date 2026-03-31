@@ -225,6 +225,25 @@ def get_assessment_report(event: dict[str, Any], _context: Any) -> dict[str, Any
         return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
 
 
+def restart_assessment(event: dict[str, Any], _context: Any) -> dict[str, Any]:
+    try:
+        store = DataStore()
+        user = get_user_from_event(event)
+        assessment_id = str((event.get('pathParameters') or {}).get('assessmentId', '')).strip()
+        if not assessment_id:
+            return ApiResponse(
+                status_code=400, body={'message': 'assessmentId is required.'}
+            ).to_dict()
+        restarted = store.restart_assessment(user, assessment_id)
+        return ApiResponse(status_code=201, body=restarted).to_dict()
+    except NotAuthenticatedError as error:
+        return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
+    except ValidationError as error:
+        return ApiResponse(status_code=400, body={'message': str(error)}).to_dict()
+    except DataStoreError as error:
+        return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
+
+
 def _load_body(event: dict[str, Any]) -> dict[str, Any]:
     body = event.get('body') or '{}'
     if isinstance(body, str):

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import logging
 import os
 from datetime import datetime, timezone
@@ -17,7 +16,11 @@ from services.framework_registry import (
     load_framework_catalog,
     load_framework_definition,
 )
-from services.report_builder import build_assessment_report
+from services.report_builder import (
+    build_assessment_report,
+    build_assessment_report_pdf,
+    map_maturity_level,
+)
 
 
 class DataStoreError(RuntimeError):
@@ -185,6 +188,8 @@ class DataStore:
             'completedAt': None,
             'reportS3Key': None,
             'currentSectionId': current_section_id,
+            'previousAssessmentId': None,
+            'sectionScores': [],
         }
         self.table.put_item(Item=self._to_dynamodb(assessment_item))
         return self._serialize_assessment_summary(assessment_item), False
@@ -271,15 +276,25 @@ class DataStore:
 
         all_responses = self._get_assessment_responses(assessment_id)
         scoring = calculate_assessment_score(all_responses)
+        logger.info(
+            'Assessment scoring calculated.',
+            extra={
+                'assessmentId': assessment_id,
+                'status': next_status,
+                'responseCount': sum(len(items) for items in all_responses.values()),
+                'calculatedScore': scoring['score'],
+            },
+        )
         update_expression = (
             'SET #status = :status, currentSectionId = :section, '
-            'updatedAt = :updatedAt, score = :score'
+            'updatedAt = :updatedAt, score = :score, sectionScores = :sectionScores'
         )
         expression_values: dict[str, Any] = {
             ':status': next_status,
             ':section': next_section_id,
             ':updatedAt': now,
             ':score': scoring['score'],
+            ':sectionScores': scoring['sectionScores'],
         }
         completed_at: Optional[str] = None
         report_s3_key: Optional[str] = None
@@ -324,6 +339,45 @@ class DataStore:
         if not refreshed:
             raise DataStoreError('Assessment update failed.')
         return self._serialize_assessment_summary(refreshed)
+
+    def restart_assessment(self, user: UserSummary, assessment_id: str) -> Dict[str, Any]:
+        membership = self._require_membership(user['sub'])
+        organisation_id = membership['organisationId']
+        previous = self._get_assessment_item(organisation_id, assessment_id)
+        if not previous:
+            raise ValidationError('Assessment not found.')
+        if self._normalise_status(previous.get('status')) != 'COMPLETED':
+            raise ValidationError('Only completed assessments can be restarted.')
+
+        framework_id = str(previous.get('frameworkId') or '').strip()
+        framework = self._get_framework(framework_id)
+        if framework is None:
+            raise ValidationError(f'Framework not found: {framework_id}.')
+
+        now = datetime.now(timezone.utc).isoformat()
+        new_assessment_id = f'asm_{uuid4().hex[:12]}'
+        sections = self._load_assessment_sections(framework)
+        current_section_id = sections[0]['sectionId'] if sections else ''
+        assessment_item = {
+            'pk': f'ORG#{organisation_id}',
+            'sk': f'ASSESSMENT#{new_assessment_id}',
+            'entityType': 'ASSESSMENT',
+            'assessmentId': new_assessment_id,
+            'frameworkId': framework_id,
+            'organisationId': organisation_id,
+            'createdBy': user['sub'],
+            'createdAt': now,
+            'updatedAt': now,
+            'status': 'NOT_STARTED',
+            'score': 0.0,
+            'completedAt': None,
+            'reportS3Key': None,
+            'currentSectionId': current_section_id,
+            'previousAssessmentId': assessment_id,
+            'sectionScores': [],
+        }
+        self.table.put_item(Item=self._to_dynamodb(assessment_item))
+        return self._serialize_assessment_summary(assessment_item)
 
     def create_organisation(
         self, user: UserSummary, payload: Dict[str, Any]
@@ -698,6 +752,9 @@ class DataStore:
             'reportUrl': report_url,
             'report_url': report_url,
             'currentSectionId': item.get('currentSectionId', ''),
+            'previousAssessmentId': item.get('previousAssessmentId'),
+            'sectionScores': item.get('sectionScores', []),
+            'maturityLevel': map_maturity_level(float(item.get('score', 0.0))),
         }
 
     def get_assessment_report_download_url(
@@ -780,12 +837,14 @@ class DataStore:
             self.table.update_item(
                 Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'},
                 UpdateExpression=(
-                    'SET reportS3Key = :reportS3Key, score = :score, updatedAt = :updatedAt'
+                    'SET reportS3Key = :reportS3Key, score = :score, '
+                    'sectionScores = :sectionScores, updatedAt = :updatedAt'
                 ),
                 ExpressionAttributeValues=self._to_dynamodb(
                     {
                         ':reportS3Key': report_s3_key,
                         ':score': scoring['score'],
+                        ':sectionScores': scoring['sectionScores'],
                         ':updatedAt': now,
                     }
                 ),
@@ -888,15 +947,23 @@ class DataStore:
             extra={'assessmentId': assessment_id, 'reportsBucketName': bucket_name},
         )
 
-        report_key = f'reports/{assessment_id}.json'
+        report_key = f'reports/{assessment_id}.pdf'
         import boto3
 
+        pdf_bytes = build_assessment_report_pdf(report)
+        if not isinstance(pdf_bytes, (bytes, bytearray)):
+            raise TypeError('PDF builder must return bytes.')
+        if len(pdf_bytes) < 256:
+            raise ValueError('Generated report PDF is unexpectedly small.')
+        if not bytes(pdf_bytes).startswith(b'%PDF'):
+            raise ValueError('Generated report is not a valid PDF.')
         s3_client = boto3.client('s3')
         s3_client.put_object(
             Bucket=bucket_name,
             Key=report_key,
-            Body=str.encode(json.dumps(report)),
-            ContentType='application/json',
+            Body=pdf_bytes,
+            ContentType='application/pdf',
+            ContentDisposition=f'inline; filename="assessment-report-{assessment_id}.pdf"',
         )
         logger.info(
             'Assessment report upload succeeded.',

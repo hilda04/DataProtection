@@ -49,6 +49,9 @@ export type AssessmentSummary = {
   completedAt: string | null;
   reportS3Key: string | null;
   currentSectionId: string;
+  previousAssessmentId?: string | null;
+  sectionScores?: Array<{ sectionId: string; score: number }>;
+  maturityLevel?: string;
 };
 
 export type AssessmentDetail = AssessmentSummary & {
@@ -88,7 +91,7 @@ export type AssessmentDetail = AssessmentSummary & {
       }>;
     }>;
   };
-  responses: Record<string, Array<{ questionId: string; value: number }>>;
+  responses: Record<string, Array<{ questionId: string; value: number | string }>>;
 };
 
 export type BootstrapResponse = {
@@ -200,12 +203,20 @@ export async function saveAssessmentResponses(
   assessmentId: string,
   payload: {
     sectionId: string;
-    responses: Array<{ questionId: string; value: number }>;
+    responses: Array<{ questionId: string; value: number | string }>;
   },
 ): Promise<ApiResult<AssessmentSummary>> {
   return request<AssessmentSummary>(`/assessments/${assessmentId}/responses`, {
     method: 'POST',
     body: JSON.stringify(payload),
+  });
+}
+
+export async function restartAssessment(
+  assessmentId: string,
+): Promise<ApiResult<AssessmentSummary>> {
+  return request<AssessmentSummary>(`/assessments/${assessmentId}/restart`, {
+    method: 'POST',
   });
 }
 
