@@ -81,15 +81,19 @@ class DataStore:
             self.table = boto3.resource('dynamodb').Table(resolved_table_name)
 
     def ensure_framework_seed_data(self) -> None:
+        catalog_items = build_framework_seed_items()
+        catalog_by_id = {item['frameworkId']: item for item in catalog_items}
         key = _dynamodb_key()
         result = self.table.query(
             KeyConditionExpression=key('pk').eq('FRAMEWORKS') & key('sk').begins_with('FRAMEWORK#')
         )
-        if result.get('Items'):
-            return
+        existing_items = result.get('Items', [])
+        existing_ids = {str(item.get('frameworkId') or '').strip() for item in existing_items}
 
         with self.table.batch_writer() as batch:
-            for item in build_framework_seed_items():
+            for framework_id, item in catalog_by_id.items():
+                if framework_id in existing_ids:
+                    continue
                 batch.put_item(
                     Item=self._to_dynamodb(
                         {
@@ -115,17 +119,30 @@ class DataStore:
         if not items:
             return load_framework_catalog()
 
-        return [
-            {
-                'frameworkId': item['frameworkId'],
-                'id': item['frameworkId'],
-                'name': item['name'],
-                'version': item['version'],
-                'description': item['description'],
-                'sections': item.get('sections', []),
+        framework_map: Dict[str, FrameworkSummary] = {
+            framework['frameworkId']: framework for framework in load_framework_catalog()
+        }
+        for item in items:
+            framework_id = str(item.get('frameworkId') or '').strip()
+            if not framework_id:
+                continue
+            existing_framework = framework_map.get(framework_id)
+            framework_map[framework_id] = {
+                'frameworkId': framework_id,
+                'id': framework_id,
+                'name': item.get('name', existing_framework['name'] if existing_framework else ''),
+                'version': item.get(
+                    'version', existing_framework['version'] if existing_framework else ''
+                ),
+                'description': item.get(
+                    'description', existing_framework['description'] if existing_framework else ''
+                ),
+                'sections': item.get(
+                    'sections', existing_framework['sections'] if existing_framework else []
+                ),
             }
-            for item in items
-        ]
+
+        return list(framework_map.values())
 
     def get_bootstrap(self, user: UserSummary) -> Dict[str, Any]:
         return self.get_bootstrap_for_framework(user=user, framework_id=None)

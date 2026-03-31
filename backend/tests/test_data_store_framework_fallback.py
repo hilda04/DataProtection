@@ -10,6 +10,7 @@ class FakeTable:
     def __init__(self, framework_item: dict[str, Any]):
         self.framework_item = framework_item
         self.update_calls: list[dict[str, Any]] = []
+        self.batch_put_items: list[dict[str, Any]] = []
 
     def query(self, **_kwargs: Any) -> dict[str, Any]:
         return {'Items': [self.framework_item]}
@@ -22,6 +23,35 @@ class FakeTable:
     def update_item(self, **kwargs: Any) -> dict[str, Any]:
         self.update_calls.append(kwargs)
         return {}
+
+    def batch_writer(self) -> 'FakeBatchWriter':
+        return FakeBatchWriter(self)
+
+
+class FakeBatchWriter:
+    def __init__(self, table: 'FrameworkSeedTable'):
+        self.table = table
+
+    def __enter__(self) -> 'FakeBatchWriter':
+        return self
+
+    def __exit__(self, *_args: Any) -> None:
+        return None
+
+    def put_item(self, Item: dict[str, Any]) -> None:
+        self.table.batch_put_items.append(Item)
+
+
+class FrameworkSeedTable:
+    def __init__(self, framework_items: list[dict[str, Any]]):
+        self.framework_items = framework_items
+        self.batch_put_items: list[dict[str, Any]] = []
+
+    def query(self, **_kwargs: Any) -> dict[str, Any]:
+        return {'Items': self.framework_items}
+
+    def batch_writer(self) -> FakeBatchWriter:
+        return FakeBatchWriter(self)
 
 
 def test_get_framework_uses_local_definition_when_seeded_framework_has_no_questions(
@@ -71,6 +101,35 @@ def test_get_framework_uses_local_definition_when_seeded_framework_has_no_questi
         table.update_calls[0]['ExpressionAttributeValues'][':sections']
         == local_definition['sections']
     )
+
+
+def test_list_frameworks_backfills_missing_seeded_frameworks() -> None:
+    table = FrameworkSeedTable(
+        [
+            {
+                'frameworkId': 'cdpa',
+                'name': 'CDPA (Zimbabwe Cyber and Data Protection Act)',
+                'version': '2021',
+                'description': 'Existing seeded metadata',
+                'sections': [],
+            }
+        ]
+    )
+    store = DataStore(table=table)
+
+    frameworks = store.list_frameworks()
+    framework_ids = {framework['frameworkId'] for framework in frameworks}
+
+    assert {
+        'cdpa',
+        'rbz_nps',
+        'ipec',
+        'rbz_cyber',
+        'nist_csf_2',
+        'iso_27001_2022',
+        'pci_dss_4_0_1',
+    }.issubset(framework_ids)
+    assert table.batch_put_items
 
 
 def test_normalise_framework_sections_accepts_legacy_control_shape() -> None:
