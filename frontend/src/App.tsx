@@ -576,7 +576,7 @@ export default function App() {
                     onClick={() => latestAssessment?.assessmentId && void handleViewReport(latestAssessment.assessmentId)}
                     type="button"
                   >
-                    View report
+                    Download Audit Pack
                   </button>
                   <button className="secondary-button" onClick={() => void handleOpenHistory(framework.frameworkId)} type="button">
                     History
@@ -703,7 +703,7 @@ export default function App() {
               Back to dashboard
             </button>
             <button className="secondary-button" onClick={() => void handleViewReport(activeAssessment.assessmentId)} type="button">
-              Download report
+              Download Audit Pack
             </button>
             <button className="secondary-button" onClick={() => void handleRestartAssessment(activeAssessment.assessmentId)} type="button">
               Restart assessment

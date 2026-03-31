@@ -59,6 +59,7 @@ REQUIRED_ORGANISATION_FIELDS = (
 )
 
 VALID_ASSESSMENT_STATUSES = {'NOT_STARTED', 'IN_PROGRESS', 'COMPLETED'}
+REMEDIATION_PRIORITY_ORDER = {'HIGH': 0, 'MEDIUM': 1}
 
 CREATE_ORGANISATION_CONDITION_EXPRESSION = (
     'attribute_not_exists(pk) AND attribute_not_exists(sk)'
@@ -889,37 +890,27 @@ class DataStore:
                     'risk_level': risk_level,
                 }
                 risks.append(risk_item)
-                guidance = question.get('guidance', {})
-                guidance_risk = (
-                    str(guidance.get('risk') or '').strip()
-                    if isinstance(guidance, dict)
-                    else ''
-                )
-                guidance_action = (
-                    str(guidance.get('action') or '').strip()
-                    if isinstance(guidance, dict)
-                    else ''
-                )
+                guidance = self._normalise_question_guidance(question)
+                primary_action = guidance['actions'][0]
                 recommended_actions.append(
                     {
                         'section_id': section_id,
                         'question_id': response.get('questionId'),
                         'severity': 'no' if response_score == 0 else 'partial',
-                        'issue': risk_item['question'],
-                        'risk': guidance_risk
-                        or (
-                            f'{risk_level.title()} risk due to missing or weak '
-                            'control coverage.'
-                        ),
-                        'action': guidance_action or (
-                            f"Address control gap for '{risk_item['question']}' "
-                            f"({risk_level.lower()} risk)."
-                        ),
+                        'priority': risk_level,
+                        'title': guidance['title'],
+                        'issue': guidance['title'],
+                        'risk': guidance['risk'],
+                        'actions': guidance['actions'],
+                        'action': primary_action,
+                        'evidence': guidance['evidence'],
                     }
                 )
 
         recommended_actions.sort(
-            key=lambda item: 0 if str(item.get('severity', '')).lower() == 'no' else 1
+            key=lambda item: REMEDIATION_PRIORITY_ORDER.get(
+                str(item.get('priority', 'MEDIUM')).upper(), 99
+            )
         )
 
         section_name_lookup = {
@@ -954,6 +945,44 @@ class DataStore:
                 if question_id:
                     question_index[question_id] = question
         return question_index
+
+    def _normalise_question_guidance(self, question: Dict[str, Any]) -> Dict[str, Any]:
+        question_title = str(question.get('text') or 'Control gap identified').strip()
+        guidance = question.get('guidance')
+        guidance_obj = guidance if isinstance(guidance, dict) else {}
+
+        title = str(guidance_obj.get('title') or question_title).strip() or question_title
+        risk = str(guidance_obj.get('risk') or '').strip() or (
+            'Risk level elevated due to missing or weak control coverage.'
+        )
+
+        actions = guidance_obj.get('actions')
+        if isinstance(actions, list):
+            normalised_actions = [str(action).strip() for action in actions if str(action).strip()]
+        else:
+            action_value = str(guidance_obj.get('action') or '').strip()
+            normalised_actions = [action_value] if action_value else []
+        if not normalised_actions:
+            normalised_actions = [
+                f"Address control gap for '{question_title}' with a documented remediation plan."
+            ]
+
+        evidence = guidance_obj.get('evidence')
+        if isinstance(evidence, list):
+            normalised_evidence = [
+                str(item).strip() for item in evidence if str(item).strip()
+            ]
+        else:
+            normalised_evidence = []
+        if not normalised_evidence:
+            normalised_evidence = ['Documented policy or procedure updates with approval records.']
+
+        return {
+            'title': title,
+            'risk': risk,
+            'actions': normalised_actions,
+            'evidence': normalised_evidence,
+        }
 
     def _save_report_to_s3(self, assessment_id: str, report: Dict[str, Any]) -> Optional[str]:
         bucket_name = self._get_reports_bucket_name(required=False)

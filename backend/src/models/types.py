@@ -36,7 +36,7 @@ class FrameworkQuestion(TypedDict, total=False):
     id: str
     text: str
     helpText: str
-    guidance: Dict[str, str]
+    guidance: Dict[str, Any]
 
 
 class FrameworkSection(TypedDict, total=False):
