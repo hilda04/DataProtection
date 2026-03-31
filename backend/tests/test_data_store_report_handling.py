@@ -442,3 +442,22 @@ def test_save_report_to_s3_rejects_non_pdf_bytes(monkeypatch) -> None:
         assert str(error) == 'Generated report is not a valid PDF.'
     else:
         raise AssertionError('Expected _save_report_to_s3 to reject invalid PDF bytes.')
+
+
+def test_save_report_to_s3_logs_missing_reportlab_dependency(monkeypatch, caplog) -> None:
+    monkeypatch.setenv('REPORTS_BUCKET_NAME', 'reports-bucket')
+
+    def _raise_dependency_error(_report: dict[str, Any]) -> bytes:
+        raise ModuleNotFoundError("No module named 'reportlab'", name='reportlab')
+
+    monkeypatch.setattr(data_store_module, 'build_assessment_report_pdf', _raise_dependency_error)
+    store = DataStore(table=FakeTable())
+
+    try:
+        store._save_report_to_s3('asm_123', {'score': 75.0})
+    except ModuleNotFoundError as error:
+        assert error.name == 'reportlab'
+    else:
+        raise AssertionError('Expected _save_report_to_s3 to propagate missing reportlab error.')
+
+    assert 'PDF generation dependency missing' in caplog.text
