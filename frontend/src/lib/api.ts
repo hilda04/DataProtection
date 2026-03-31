@@ -64,8 +64,11 @@ export type AssessmentDetail = AssessmentSummary & {
       text: string;
       helpText?: string;
       guidance?: {
+        title?: string;
         risk?: string;
         action?: string;
+        actions?: string[];
+        evidence?: string[];
       };
     }>;
   }>;
@@ -78,8 +81,11 @@ export type AssessmentDetail = AssessmentSummary & {
       text: string;
       helpText?: string;
       guidance?: {
+        title?: string;
         risk?: string;
         action?: string;
+        actions?: string[];
+        evidence?: string[];
       };
     }>;
   } | null;

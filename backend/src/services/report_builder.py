@@ -20,6 +20,10 @@ def build_assessment_report(
         "framework": framework,
         "score": score,
         "maturity_level": maturity_level,
+        "summary": (
+            f"Overall maturity is {maturity_level} with a score of {score:.2f}%. "
+            "Review remediation priorities and evidence requirements in the Audit Pack."
+        ),
         "completed_at": datetime.utcnow().isoformat() + "Z",
         "sections": sections,
         "risks": risks,
@@ -40,6 +44,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     maturity = str(report.get('maturity_level') or map_maturity_level(score))
     sections = report.get('sections') or []
     recommended_actions = report.get('recommendedActions') or report.get('recommendations') or []
+    summary = str(report.get('summary') or '').strip()
 
     buffer = BytesIO()
     document = SimpleDocTemplate(
@@ -70,6 +75,9 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     story.append(Paragraph('Executive Summary', styles['Heading2']))
     story.append(Paragraph(f"Overall score: <b>{score:.2f}%</b>", styles['BodyText']))
     story.append(Paragraph(f"Maturity level: <b>{maturity}</b>", styles['BodyText']))
+    if summary:
+        story.append(Spacer(1, 4))
+        story.append(Paragraph(summary, styles['BodyText']))
     story.append(Spacer(1, 14))
 
     story.append(Paragraph('Section Scores', styles['Heading2']))
@@ -99,7 +107,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     story.append(section_table)
     story.append(Spacer(1, 14))
 
-    story.append(Paragraph('Recommended Actions', styles['Heading2']))
+    story.append(Paragraph('Remediation Plan', styles['Heading2']))
     if not recommended_actions:
         story.append(
             Paragraph(
@@ -109,16 +117,46 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
         )
     else:
         for item in recommended_actions:
-            issue = str(item.get('issue') or item.get('question') or 'Control gap identified')
-            risk = str(item.get('risk') or item.get('risk_level') or 'Risk not specified')
-            action = str(
-                item.get('action')
-                or item.get('recommendation')
-                or 'Define and implement corrective controls.'
+            issue = str(
+                item.get('title')
+                or item.get('issue')
+                or item.get('question')
+                or 'Control gap identified'
             )
-            story.append(Paragraph(f"<b>Issue:</b> {issue}", styles['BodyText']))
+            risk = str(item.get('risk') or item.get('risk_level') or 'Risk not specified')
+            actions = item.get('actions')
+            if not isinstance(actions, list) or not actions:
+                fallback_action = item.get('action') or item.get('recommendation')
+                actions = [
+                    str(fallback_action or 'Define and implement corrective controls.').strip()
+                ]
+            priority = str(item.get('priority') or item.get('severity') or 'MEDIUM').upper()
+            story.append(Paragraph(f"<b>Gap:</b> {issue}", styles['BodyText']))
+            story.append(Paragraph(f"<b>Priority:</b> {priority}", styles['BodyText']))
             story.append(Paragraph(f"<b>Risk:</b> {risk}", styles['BodyText']))
-            story.append(Paragraph(f"<b>Action:</b> {action}", styles['BodyText']))
+            story.append(Paragraph("<b>Actions:</b>", styles['BodyText']))
+            for action in actions:
+                story.append(Paragraph(f"[ ] {str(action).strip()}", styles['BodyText']))
+            story.append(Spacer(1, 8))
+
+    story.append(Spacer(1, 8))
+    story.append(Paragraph('Evidence Checklist', styles['Heading2']))
+    if not recommended_actions:
+        story.append(Paragraph('No additional evidence requested.', styles['BodyText']))
+    else:
+        for item in recommended_actions:
+            issue = str(
+                item.get('title')
+                or item.get('issue')
+                or item.get('question')
+                or 'Control gap identified'
+            )
+            evidence = item.get('evidence')
+            if not isinstance(evidence, list) or not evidence:
+                evidence = ['Implementation plan and approval records.']
+            story.append(Paragraph(f"<b>{issue}</b>", styles['BodyText']))
+            for evidence_item in evidence:
+                story.append(Paragraph(f"- {str(evidence_item).strip()}", styles['BodyText']))
             story.append(Spacer(1, 8))
 
     document.build(story)

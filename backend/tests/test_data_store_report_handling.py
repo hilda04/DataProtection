@@ -112,16 +112,23 @@ def test_build_assessment_report_recommended_actions_use_guidance_and_sort_sever
                         'for data protection?'
                     ),
                     'guidance': {
+                        'title': 'Assign accountable privacy owner',
                         'risk': 'No owner for privacy decisions.',
-                        'action': 'Assign a DPO.',
+                        'actions': [
+                            'Assign a DPO.',
+                            'Publish responsibilities in governance terms.',
+                        ],
+                        'evidence': ['Role description', 'Board-approved governance charter'],
                     },
                 },
                 {
                     'questionId': 'has-policy',
                     'text': 'Do you maintain a documented data protection and privacy policy?',
                     'guidance': {
+                        'title': 'Maintain approved privacy policy',
                         'risk': 'Policy controls may be inconsistent.',
-                        'action': 'Approve and publish a policy.',
+                        'actions': ['Approve and publish a policy.'],
+                        'evidence': ['Approved policy document'],
                     },
                 },
             ],
@@ -144,9 +151,19 @@ def test_build_assessment_report_recommended_actions_use_guidance_and_sort_sever
         },
     )
 
+    assert report['recommendations'][0]['priority'] == 'HIGH'
     assert report['recommendations'][0]['severity'] == 'no'
+    assert report['recommendations'][0]['title'] == 'Assign accountable privacy owner'
     assert report['recommendations'][0]['risk'] == 'No owner for privacy decisions.'
-    assert report['recommendations'][0]['action'] == 'Assign a DPO.'
+    assert report['recommendations'][0]['actions'] == [
+        'Assign a DPO.',
+        'Publish responsibilities in governance terms.',
+    ]
+    assert report['recommendations'][0]['evidence'] == [
+        'Role description',
+        'Board-approved governance charter',
+    ]
+    assert report['recommendations'][1]['priority'] == 'MEDIUM'
     assert report['recommendations'][1]['severity'] == 'partial'
 
 
@@ -187,10 +204,17 @@ def test_build_assessment_report_recommended_actions_fallback_when_guidance_miss
         },
     )
 
-    assert report['recommendations'][0]['risk'] == (
-        'High risk due to missing or weak control coverage.'
+    assert report['recommendations'][0]['priority'] == 'HIGH'
+    assert report['recommendations'][0]['title'] == (
+        'Has your organisation assigned a person accountable for data protection?'
     )
-    assert 'Address control gap' in report['recommendations'][0]['action']
+    assert report['recommendations'][0]['risk'] == (
+        'Risk level elevated due to missing or weak control coverage.'
+    )
+    assert 'Address control gap' in report['recommendations'][0]['actions'][0]
+    assert report['recommendations'][0]['evidence'] == [
+        'Documented policy or procedure updates with approval records.'
+    ]
 
 
 def test_save_assessment_responses_completes_when_report_upload_fails(monkeypatch) -> None:

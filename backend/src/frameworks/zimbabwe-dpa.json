@@ -13,8 +13,16 @@
           "helpText": "This can be a formal DPO role or a clearly named responsible officer.",
           "questionId": "has-dpo",
           "guidance": {
+            "title": "Has your organisation assigned a person accountable for data protection?",
             "risk": "No clear accountability owner can delay privacy decisions and incident response.",
-            "action": "Assign a named data protection lead with formal responsibilities and executive visibility."
+            "actions": [
+              "Assign a named data protection lead with formal responsibilities and executive visibility."
+            ],
+            "evidence": [
+              "Updated policy/procedure document.",
+              "Implementation evidence (tickets, configs, or logs).",
+              "Management approval or review record."
+            ]
           }
         },
         {
@@ -22,8 +30,16 @@
           "helpText": "The policy should be approved, current, and known by relevant teams.",
           "questionId": "has-policy",
           "guidance": {
+            "title": "Do you maintain a documented data protection and privacy policy?",
             "risk": "Without an approved policy, teams may process data inconsistently and non-compliantly.",
-            "action": "Publish and approve a privacy policy, then communicate it to all relevant teams."
+            "actions": [
+              "Publish and approve a privacy policy, then communicate it to all relevant teams."
+            ],
+            "evidence": [
+              "Updated policy/procedure document.",
+              "Implementation evidence (tickets, configs, or logs).",
+              "Management approval or review record."
+            ]
           }
         },
         {
@@ -31,8 +47,16 @@
           "helpText": "Examples include quarterly risk committee or board updates.",
           "questionId": "governance-review",
           "guidance": {
+            "title": "Does leadership review data protection performance on a regular cadence?",
             "risk": "Lack of leadership review weakens oversight and slows remediation of key risks.",
-            "action": "Set a recurring leadership review cadence with tracked actions and owners."
+            "actions": [
+              "Set a recurring leadership review cadence with tracked actions and owners."
+            ],
+            "evidence": [
+              "Updated policy/procedure document.",
+              "Implementation evidence (tickets, configs, or logs).",
+              "Management approval or review record."
+            ]
           }
         }
       ],
@@ -47,8 +71,16 @@
           "helpText": "A processing register can map each activity to its lawful basis.",
           "questionId": "lawful-basis-register",
           "guidance": {
+            "title": "Have you documented lawful bases for key personal data processing activities?",
             "risk": "Processing activities without lawful basis mapping increase regulatory exposure.",
-            "action": "Create and maintain a register mapping each processing activity to a lawful basis."
+            "actions": [
+              "Create and maintain a register mapping each processing activity to a lawful basis."
+            ],
+            "evidence": [
+              "Updated policy/procedure document.",
+              "Implementation evidence (tickets, configs, or logs).",
+              "Management approval or review record."
+            ]
           }
         },
         {
@@ -56,8 +88,16 @@
           "helpText": "Include digital forms, call centres, and offline channels where relevant.",
           "questionId": "consent-capture",
           "guidance": {
+            "title": "Do consent collection channels record when and how consent was obtained?",
             "risk": "Inability to evidence consent undermines defensibility of data processing.",
-            "action": "Implement auditable consent records with timestamp, channel, and purpose captured."
+            "actions": [
+              "Implement auditable consent records with timestamp, channel, and purpose captured."
+            ],
+            "evidence": [
+              "Updated policy/procedure document.",
+              "Implementation evidence (tickets, configs, or logs).",
+              "Management approval or review record."
+            ]
           }
         },
         {
@@ -65,8 +105,16 @@
           "helpText": "This should include controls before re-using data for new initiatives.",
           "questionId": "purpose-limitation",
           "guidance": {
+            "title": "Do teams check that personal data is only used for stated purposes?",
             "risk": "Data reused beyond original purposes can breach legal obligations and trust.",
-            "action": "Add checks in project and change workflows to validate purpose limitation compliance."
+            "actions": [
+              "Add checks in project and change workflows to validate purpose limitation compliance."
+            ],
+            "evidence": [
+              "Updated policy/procedure document.",
+              "Implementation evidence (tickets, configs, or logs).",
+              "Management approval or review record."
+            ]
           }
         }
       ],
@@ -81,8 +129,16 @@
           "helpText": "Examples include access controls, encryption, and endpoint protections.",
           "questionId": "security-controls",
           "guidance": {
+            "title": "Are baseline technical and organisational security controls in place for personal data?",
             "risk": "Weak baseline safeguards increase likelihood of unauthorized access and data loss.",
-            "action": "Implement minimum security controls, including access control, encryption, and endpoint hardening."
+            "actions": [
+              "Implement minimum security controls, including access control, encryption, and endpoint hardening."
+            ],
+            "evidence": [
+              "Updated policy/procedure document.",
+              "Implementation evidence (tickets, configs, or logs).",
+              "Management approval or review record."
+            ]
           }
         },
         {
@@ -90,8 +146,16 @@
           "helpText": "The process should define triage, escalation, and decision ownership.",
           "questionId": "incident-playbook",
           "guidance": {
+            "title": "Do you have a documented incident response process for personal data incidents?",
             "risk": "Unclear incident handling delays containment and escalation during breaches.",
-            "action": "Document and rehearse an incident response playbook with clear roles and escalation paths."
+            "actions": [
+              "Document and rehearse an incident response playbook with clear roles and escalation paths."
+            ],
+            "evidence": [
+              "Updated policy/procedure document.",
+              "Implementation evidence (tickets, configs, or logs).",
+              "Management approval or review record."
+            ]
           }
         },
         {
@@ -99,8 +163,16 @@
           "helpText": "Include internal escalation timelines and regulator communication steps.",
           "questionId": "breach-notification",
           "guidance": {
+            "title": "Can your team assess and notify reportable breaches within required timelines?",
             "risk": "Delayed breach notification can create legal penalties and reputational damage.",
-            "action": "Define breach assessment and notification timelines aligned to legal requirements."
+            "actions": [
+              "Define breach assessment and notification timelines aligned to legal requirements."
+            ],
+            "evidence": [
+              "Updated policy/procedure document.",
+              "Implementation evidence (tickets, configs, or logs).",
+              "Management approval or review record."
+            ]
           }
         }
       ],

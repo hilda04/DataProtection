@@ -13,11 +13,31 @@ def test_build_assessment_report_pdf_returns_valid_pdf_bytes() -> None:
             'framework': {'name': 'Zimbabwe DPA', 'version': '2021'},
             'score': 72.5,
             'maturity_level': 'Defined',
+            'summary': 'Summary text for executive review.',
             'sections': [{'name': 'Governance', 'score': 80}],
-            'recommendations': [{'recommendation': 'Improve incident response controls.'}],
+            'recommendations': [
+                {
+                    'title': 'Document incident response governance',
+                    'risk': 'Delayed breach handling can increase legal exposure.',
+                    'actions': [
+                        'Formalise incident-response RACI and approvals.',
+                        'Run at least one breach-notification exercise.',
+                    ],
+                    'evidence': [
+                        'Approved incident-response procedure',
+                        'Exercise report with lessons learned',
+                    ],
+                    'priority': 'HIGH',
+                }
+            ],
         }
     )
 
     assert isinstance(pdf_bytes, bytes)
     assert pdf_bytes.startswith(b'%PDF')
     assert len(pdf_bytes) > 500
+    decoded = pdf_bytes.decode('latin-1', errors='ignore')
+    assert 'Remediation Plan' in decoded
+    assert '[ ] Formalise incident-response RACI and approvals.' in decoded
+    assert 'Evidence Checklist' in decoded
+    assert 'Approved incident-response procedure' in decoded
