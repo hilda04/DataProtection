@@ -84,7 +84,6 @@ Resources:
   ReportsBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub dataprotection-${EnvironmentName}-${AWS::AccountId}-${AWS::Region}-reports
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
