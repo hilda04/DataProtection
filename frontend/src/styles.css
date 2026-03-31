@@ -194,6 +194,34 @@ select {
   color: #334155;
 }
 
+.framework-score-panel {
+  margin: 1rem 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid #dbe4f1;
+  border-radius: 0.85rem;
+  background: #f8fbff;
+}
+
+.framework-score-value {
+  margin: 0.2rem 0;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.framework-maturity,
+.framework-updated {
+  margin: 0.25rem 0;
+  color: #334155;
+}
+
+.framework-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.65rem;
+}
+
 .status-pill {
   border-radius: 999px;
   padding: 0.3rem 0.7rem;
@@ -220,6 +248,36 @@ select {
 .card h2,
 .card h3 {
   margin: 0.35rem 0 0.6rem;
+}
+
+.completion-card {
+  text-align: center;
+}
+
+.completion-score {
+  margin: 0.35rem 0;
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 800;
+  color: #1d4ed8;
+}
+
+.completion-maturity {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.completion-summary {
+  max-width: 620px;
+  margin: 0.8rem auto 1rem;
+  color: #475569;
+}
+
+.completion-breakdown {
+  text-align: left;
+  max-width: 480px;
+  margin: 0 auto 1rem;
 }
 
 .error-text {
@@ -282,6 +340,35 @@ select {
 .maturity-option input {
   width: auto;
   margin-top: 0.2rem;
+}
+
+.history-card {
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+}
+
+.history-table th,
+.history-table td {
+  text-align: left;
+  padding: 0.7rem;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+.history-table th {
+  color: #475569;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.history-actions {
+  gap: 0.5rem;
 }
 
 @media (max-width: 760px) {

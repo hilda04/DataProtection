@@ -63,6 +63,10 @@ export type AssessmentDetail = AssessmentSummary & {
       questionId: string;
       text: string;
       helpText?: string;
+      guidance?: {
+        risk?: string;
+        action?: string;
+      };
     }>;
   }>;
   currentSection: {
@@ -73,6 +77,10 @@ export type AssessmentDetail = AssessmentSummary & {
       questionId: string;
       text: string;
       helpText?: string;
+      guidance?: {
+        risk?: string;
+        action?: string;
+      };
     }>;
   } | null;
   framework: {

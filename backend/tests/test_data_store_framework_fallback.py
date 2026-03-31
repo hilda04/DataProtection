@@ -114,6 +114,7 @@ def test_normalise_framework_sections_accepts_legacy_control_shape() -> None:
                         'for data protection?'
                     ),
                     'helpText': 'Formal role or named responsible officer.',
+                    'guidance': {},
                 }
             ],
         }

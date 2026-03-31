@@ -874,7 +874,7 @@ class DataStore:
 
         question_index = self._build_question_index(sections)
         risks: list[Dict[str, Any]] = []
-        recommendations: list[Dict[str, Any]] = []
+        recommended_actions: list[Dict[str, Any]] = []
         for section_id, responses in all_responses.items():
             for response in responses:
                 response_score = normalize_response_value(response.get('value'))
@@ -889,16 +889,38 @@ class DataStore:
                     'risk_level': risk_level,
                 }
                 risks.append(risk_item)
-                recommendations.append(
+                guidance = question.get('guidance', {})
+                guidance_risk = (
+                    str(guidance.get('risk') or '').strip()
+                    if isinstance(guidance, dict)
+                    else ''
+                )
+                guidance_action = (
+                    str(guidance.get('action') or '').strip()
+                    if isinstance(guidance, dict)
+                    else ''
+                )
+                recommended_actions.append(
                     {
                         'section_id': section_id,
                         'question_id': response.get('questionId'),
-                        'recommendation': (
+                        'severity': 'no' if response_score == 0 else 'partial',
+                        'issue': risk_item['question'],
+                        'risk': guidance_risk
+                        or (
+                            f'{risk_level.title()} risk due to missing or weak '
+                            'control coverage.'
+                        ),
+                        'action': guidance_action or (
                             f"Address control gap for '{risk_item['question']}' "
                             f"({risk_level.lower()} risk)."
                         ),
                     }
                 )
+
+        recommended_actions.sort(
+            key=lambda item: 0 if str(item.get('severity', '')).lower() == 'no' else 1
+        )
 
         section_name_lookup = {
             section['sectionId']: section.get('name', section['sectionId']) for section in sections
@@ -921,7 +943,7 @@ class DataStore:
             score=scoring['score'],
             sections=section_summaries,
             risks=risks,
-            recommendations=recommendations,
+            recommendations=recommended_actions,
         )
 
     def _build_question_index(self, sections: list[Dict[str, Any]]) -> dict[str, Dict[str, Any]]:
@@ -1067,6 +1089,9 @@ class DataStore:
                             or ''
                         ).strip(),
                         'helpText': str(question.get('helpText', '')).strip(),
+                        'guidance': question.get('guidance')
+                        if isinstance(question.get('guidance'), dict)
+                        else {},
                     }
                 )
             normalised_sections.append(

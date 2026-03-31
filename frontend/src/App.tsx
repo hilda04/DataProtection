@@ -65,6 +65,17 @@ function getMaturityLabel(score: number): string {
   return 'Managed';
 }
 
+function formatAssessmentDate(value: string | null | undefined): string {
+  if (!value) {
+    return 'Not available';
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+  return date.toLocaleString();
+}
+
 export default function App() {
   const [authState, setAuthState] = useState<AuthState>('checking');
   const [view, setView] = useState<AppView>('loading');
@@ -514,6 +525,11 @@ export default function App() {
             const status = getFrameworkStatus(framework, assessmentsByFramework);
             const latestAssessment = assessmentsByFramework[framework.frameworkId];
             const hasAssessment = Boolean(latestAssessment);
+            const frameworkMaturity = latestAssessment
+              ? latestAssessment.maturityLevel ?? getMaturityLabel(latestAssessment.score)
+              : 'Not rated';
+            const statusClass =
+              status === 'Completed' ? 'completed' : status === 'In progress' ? 'in-progress' : 'not-started';
 
             return (
               <section className="card framework-card" key={framework.frameworkId}>
@@ -523,12 +539,23 @@ export default function App() {
                     <h3>{framework.name}</h3>
                     <p>Version {framework.version}</p>
                   </div>
-                  <span className={`status-pill ${status === 'In progress' ? 'in-progress' : status === 'Completed' ? 'completed' : 'not-started'}`}>
+                  <span className={`status-pill ${statusClass}`}>
                     {status}
                   </span>
                 </div>
 
                 <p>{framework.description}</p>
+
+                <div className="framework-score-panel">
+                  <p className="meta-label">Latest score</p>
+                  <p className="framework-score-value">{latestAssessment?.score ?? 0}%</p>
+                  <p className="framework-maturity">
+                    Maturity: <strong>{frameworkMaturity}</strong>
+                  </p>
+                  <p className="framework-updated">
+                    Last updated: {formatAssessmentDate(latestAssessment?.completedAt ?? latestAssessment?.updatedAt)}
+                  </p>
+                </div>
 
                 <div>
                   <p className="section-label">Starter sections</p>
@@ -539,27 +566,30 @@ export default function App() {
                   </ul>
                 </div>
 
-                <button className="cta-button" onClick={() => void handleStartAssessment(framework)} type="button">
-                  {hasAssessment ? 'Continue assessment' : 'Start assessment'}
-                </button>
-                {latestAssessment?.status === 'COMPLETED' ? (
+                <div className="framework-actions">
+                  <button className="cta-button" onClick={() => void handleStartAssessment(framework)} type="button">
+                    {hasAssessment ? 'Continue' : 'Start'}
+                  </button>
                   <button
                     className="secondary-button"
-                    onClick={() => void handleViewReport(latestAssessment.assessmentId)}
+                    disabled={latestAssessment?.status !== 'COMPLETED'}
+                    onClick={() => latestAssessment?.assessmentId && void handleViewReport(latestAssessment.assessmentId)}
                     type="button"
                   >
-                    View latest report
+                    View report
                   </button>
-                ) : null}
-                {latestAssessment?.status === 'COMPLETED' ? (
-                  <button className="secondary-button" onClick={() => void handleRestartAssessment(latestAssessment.assessmentId)} type="button">
-                    Restart assessment
+                  <button className="secondary-button" onClick={() => void handleOpenHistory(framework.frameworkId)} type="button">
+                    History
                   </button>
-                ) : null}
-                <button className="secondary-button" onClick={() => void handleOpenHistory(framework.frameworkId)} type="button">
-                  View history
-                </button>
-                {hasAssessment ? <p className="meta-label">Latest score: {latestAssessment?.score ?? 0}% · {latestAssessment?.completedAt ?? 'Not completed'}</p> : null}
+                  <button
+                    className="secondary-button"
+                    disabled={latestAssessment?.status !== 'COMPLETED'}
+                    onClick={() => latestAssessment?.assessmentId && void handleRestartAssessment(latestAssessment.assessmentId)}
+                    type="button"
+                  >
+                    Restart
+                  </button>
+                </div>
               </section>
             );
           })}
@@ -645,17 +675,19 @@ export default function App() {
       ) : null}
 
       {view === 'summary' && bootstrap && activeAssessment ? (
-        <section className="card center-card">
+        <section className="card center-card completion-card">
           <p className="section-label">Assessment complete</p>
           <h2>{activeAssessment.framework.name}</h2>
-          <p>
-            Score: <strong>{activeAssessment.score}%</strong>
+          <p className="completion-score">{activeAssessment.score}%</p>
+          <p className="completion-maturity">
+            {activeAssessment.maturityLevel ?? getMaturityLabel(activeAssessment.score)}
           </p>
-          <p>
-            Maturity level: <strong>{activeAssessment.maturityLevel ?? getMaturityLabel(activeAssessment.score)}</strong>
+          <p className="completion-summary">
+            Your assessment is complete. Use the section breakdown and recommendations in your report
+            to prioritise next remediation actions.
           </p>
           {activeAssessment.sectionScores?.length ? (
-            <div>
+            <div className="completion-breakdown">
               <p className="section-label">Section breakdown</p>
               <ul>
                 {activeAssessment.sectionScores.map((item) => (
@@ -681,7 +713,7 @@ export default function App() {
       ) : null}
 
       {view === 'history' && bootstrap ? (
-        <section className="card">
+        <section className="card history-card">
           <p className="section-label">Assessment history</p>
           <h2>{selectedHistoryFrameworkId}</h2>
           <div className="button-row">
@@ -689,7 +721,7 @@ export default function App() {
               Back to dashboard
             </button>
           </div>
-          <table>
+          <table className="history-table">
             <thead>
               <tr>
                 <th>Date</th>
@@ -702,12 +734,24 @@ export default function App() {
             <tbody>
               {(assessmentHistoryByFramework[selectedHistoryFrameworkId] ?? []).map((item) => (
                 <tr key={item.assessmentId}>
-                  <td>{item.createdAt}</td>
-                  <td>{item.status}</td>
+                  <td>{formatAssessmentDate(item.createdAt)}</td>
+                  <td>
+                    <span
+                      className={`status-pill ${
+                        item.status === 'COMPLETED'
+                          ? 'completed'
+                          : item.status === 'IN_PROGRESS'
+                            ? 'in-progress'
+                            : 'not-started'
+                      }`}
+                    >
+                      {item.status.replace('_', ' ')}
+                    </span>
+                  </td>
                   <td>{item.score}%</td>
                   <td>{item.maturityLevel ?? getMaturityLabel(item.score)}</td>
                   <td>
-                    <div className="button-row">
+                    <div className="button-row history-actions">
                       {item.status === 'COMPLETED' ? (
                         <>
                           <button className="secondary-button" onClick={() => void handleViewReport(item.assessmentId)} type="button">
