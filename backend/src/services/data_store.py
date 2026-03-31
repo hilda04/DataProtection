@@ -86,7 +86,8 @@ class DataStore:
         with self.table.batch_writer() as batch:
             for item in build_framework_seed_items():
                 batch.put_item(
-                    Item={
+                    Item=self._to_dynamodb(
+                        {
                         'pk': 'FRAMEWORKS',
                         'sk': f"FRAMEWORK#{item['frameworkId']}",
                         'entityType': item['entityType'],
@@ -95,7 +96,8 @@ class DataStore:
                         'version': item['version'],
                         'description': item['description'],
                         'sections': item['sections'],
-                    }
+                        }
+                    ),
                 )
 
     def list_frameworks(self) -> List[FrameworkSummary]:
@@ -184,7 +186,7 @@ class DataStore:
             'reportS3Key': None,
             'currentSectionId': current_section_id,
         }
-        self.table.put_item(Item=assessment_item)
+        self.table.put_item(Item=self._to_dynamodb(assessment_item))
         return self._serialize_assessment_summary(assessment_item), False
 
     def list_assessments(
@@ -252,11 +254,11 @@ class DataStore:
             'entityType': 'ASSESSMENT_SECTION_RESPONSE',
             'assessmentId': assessment_id,
             'sectionId': section_id,
-            'responses': _convert_floats_to_decimal(responses),
+            'responses': responses,
             'updatedBy': user['sub'],
             'updatedAt': now,
         }
-        self.table.put_item(Item=response_item)
+        self.table.put_item(Item=self._to_dynamodb(response_item))
 
         next_status = 'IN_PROGRESS'
         next_section_id = section_id
@@ -316,7 +318,7 @@ class DataStore:
             Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'},
             UpdateExpression=update_expression,
             ExpressionAttributeNames={'#status': 'status'},
-            ExpressionAttributeValues=_convert_floats_to_decimal(expression_values),
+            ExpressionAttributeValues=self._to_dynamodb(expression_values),
         )
         refreshed = self._get_assessment_item(organisation_id, assessment_id)
         if not refreshed:
@@ -406,6 +408,7 @@ class DataStore:
             },
         ]
 
+        transact_items = self._to_dynamodb(transact_items)
         self._validate_transact_items(transact_items)
 
         try:
@@ -436,7 +439,7 @@ class DataStore:
                 )
                 try:
                     self.table.put_item(
-                        Item=item,
+                        Item=self._to_dynamodb(item),
                         ConditionExpression=CREATE_ORGANISATION_CONDITION_EXPRESSION,
                     )
                 except Exception as diagnostic_error:
@@ -616,10 +619,12 @@ class DataStore:
                 },
                 UpdateExpression='SET #sections = :sections, updatedAt = :updatedAt',
                 ExpressionAttributeNames={'#sections': 'sections'},
-                ExpressionAttributeValues={
-                    ':sections': framework_definition.get('sections', []),
-                    ':updatedAt': datetime.now(timezone.utc).isoformat(),
-                },
+                ExpressionAttributeValues=self._to_dynamodb(
+                    {
+                        ':sections': framework_definition.get('sections', []),
+                        ':updatedAt': datetime.now(timezone.utc).isoformat(),
+                    }
+                ),
             )
         except Exception:
             logger.warning(
@@ -771,10 +776,12 @@ class DataStore:
             self.table.update_item(
                 Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'},
                 UpdateExpression='SET reportS3Key = :reportS3Key, updatedAt = :updatedAt',
-                ExpressionAttributeValues={
-                    ':reportS3Key': report_s3_key,
-                    ':updatedAt': now,
-                },
+                ExpressionAttributeValues=self._to_dynamodb(
+                    {
+                        ':reportS3Key': report_s3_key,
+                        ':updatedAt': now,
+                    }
+                ),
             )
             return report_s3_key
         except Exception:
@@ -1016,6 +1023,9 @@ class DataStore:
                         f'Transaction item at index {index} has invalid value for '
                         f'key {attribute}: {attribute_value}.'
                     )
+
+    def _to_dynamodb(self, value: Any) -> Any:
+        return _convert_floats_to_decimal(value)
 
 
 
