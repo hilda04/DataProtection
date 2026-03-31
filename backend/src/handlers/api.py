@@ -10,6 +10,7 @@ from services.data_store import (
     DataStore,
     DataStoreError,
     NotAuthenticatedError,
+    ReportUnavailableError,
     ValidationError,
     get_user_from_event,
 )
@@ -218,6 +219,8 @@ def get_assessment_report(event: dict[str, Any], _context: Any) -> dict[str, Any
         return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
     except ValidationError as error:
         return ApiResponse(status_code=400, body={'message': str(error)}).to_dict()
+    except ReportUnavailableError as error:
+        return ApiResponse(status_code=404, body={'message': str(error)}).to_dict()
     except DataStoreError as error:
         return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
 

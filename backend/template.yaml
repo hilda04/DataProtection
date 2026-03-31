@@ -23,10 +23,6 @@ Parameters:
     Type: String
     Default: dataprotection-dev-main-sam
     Description: DynamoDB table name for the SAM-managed backend.
-  ReportsBucketName:
-    Type: String
-    Default: dataprotection-dev-reports
-    Description: S3 bucket used for storing generated assessment reports.
 
 Globals:
   Function:
@@ -39,7 +35,7 @@ Globals:
         APP_ENV: !Ref EnvironmentName
         DYNAMODB_TABLE_NAME: !Ref DynamoDbTableName
         ALLOWED_FRONTEND_ORIGIN: !Ref AllowedFrontendOrigin
-        REPORTS_BUCKET_NAME: !Ref ReportsBucketName
+        REPORTS_BUCKET_NAME: !Ref ReportsBucket
 
 Resources:
   BackendHttpApi:
@@ -85,6 +81,15 @@ Resources:
       PointInTimeRecoverySpecification:
         PointInTimeRecoveryEnabled: true
 
+  ReportsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
   BackendApiFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -94,8 +99,17 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref DynamoDbTableName
-        - S3CrudPolicy:
-            BucketName: !Ref ReportsBucketName
+        - Statement:
+            - Effect: Allow
+              Action:
+                - s3:PutObject
+                - s3:GetObject
+                - s3:DeleteObject
+              Resource: !Sub arn:${AWS::Partition}:s3:::${ReportsBucket}/*
+            - Effect: Allow
+              Action:
+                - s3:ListBucket
+              Resource: !Sub arn:${AWS::Partition}:s3:::${ReportsBucket}
       Events:
         HealthRoute:
           Type: HttpApi
@@ -167,3 +181,6 @@ Outputs:
   DynamoDbTableName:
     Description: DynamoDB table name used by the backend.
     Value: !Ref BackendTable
+  ReportsBucketName:
+    Description: S3 bucket used for generated assessment reports.
+    Value: !Ref ReportsBucket

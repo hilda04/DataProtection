@@ -161,9 +161,31 @@ export async function getAssessments(
 export async function getAssessmentReportUrl(
   assessmentId: string,
 ): Promise<ApiResult<{ url: string }>> {
-  return request<{ url: string }>(`/assessments/${assessmentId}/report`, {
-    method: 'GET',
-  });
+  const response = await request<{ url?: string; reportUrl?: string; signedUrl?: string }>(
+    `/assessments/${assessmentId}/report`,
+    {
+      method: 'GET',
+    },
+  );
+
+  if (!response.ok) {
+    return response as ApiResult<{ url: string }>;
+  }
+
+  const normalizedUrl = response.data?.url ?? response.data?.reportUrl ?? response.data?.signedUrl;
+  if (!normalizedUrl) {
+    return {
+      ok: false,
+      status: response.status,
+      error: 'Report URL is missing from response.',
+    };
+  }
+
+  return {
+    ok: true,
+    status: response.status,
+    data: { url: normalizedUrl },
+  };
 }
 
 export async function getAssessment(
