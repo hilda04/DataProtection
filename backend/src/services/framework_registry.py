@@ -8,6 +8,15 @@ from models.types import FrameworkDefinition, FrameworkSummary
 
 DEFAULT_FRAMEWORK_ID = 'cdpa'
 LEGACY_FRAMEWORK_IDS = {'zim-dpa': DEFAULT_FRAMEWORK_ID}
+REGISTERED_FRAMEWORK_FILES = (
+    'zimbabwe-dpa.json',
+    'rbz_nps.json',
+    'ipec.json',
+    'rbz_cyber.json',
+    'nist_csf_2.json',
+    'iso_27001_2022.json',
+    'pci_dss_4_0_1.json',
+)
 
 
 def _framework_search_roots() -> tuple[Path, ...]:
@@ -29,11 +38,16 @@ def resolve_framework_path(file_name: str) -> Path:
 
 def _framework_file_candidates() -> list[Path]:
     # Developer note:
-    # Add future frameworks by dropping a new JSON file in backend/src/frameworks
-    # (and optionally frameworks/ for local parity) using the same structure:
-    # frameworkId, name, description, version, sections[], and questions[].
+    # Framework files used by the API must be listed in REGISTERED_FRAMEWORK_FILES.
+    # This keeps the API's framework catalog explicit and predictable.
     candidates: list[Path] = []
     seen_names: set[str] = set()
+
+    for file_name in REGISTERED_FRAMEWORK_FILES:
+        candidates.append(resolve_framework_path(file_name))
+        seen_names.add(file_name)
+
+    # Include extra files during local development without overriding registered entries.
     for root in _framework_search_roots():
         if not root.is_dir():
             continue

@@ -194,6 +194,39 @@ select {
   color: #334155;
 }
 
+.framework-selector-label {
+  display: block;
+  margin-top: 0.75rem;
+  color: #334155;
+  font-weight: 600;
+}
+
+.framework-selector {
+  margin-top: 0.45rem;
+}
+
+.framework-selector-input {
+  width: 100%;
+  margin-top: 0;
+  border-radius: 0.8rem;
+  border: 1px solid #cbd5e1;
+  padding: 0.75rem 0.85rem;
+  background: #fff;
+  color: #0f172a;
+}
+
+.framework-selector-input:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-color: #2563eb;
+}
+
+.framework-selector-description {
+  margin: 0.45rem 0 0;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
 .framework-score-panel {
   margin: 1rem 0;
   padding: 0.9rem 1rem;

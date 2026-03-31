@@ -76,6 +76,20 @@ function formatAssessmentDate(value: string | null | undefined): string {
   return date.toLocaleString();
 }
 
+function resolveSelectedFrameworkId(
+  frameworks: FrameworkSummary[],
+  currentFrameworkId: string,
+  requestedFrameworkId?: string,
+): string {
+  const candidateIds = [currentFrameworkId, requestedFrameworkId ?? ''].filter(Boolean);
+  for (const candidateId of candidateIds) {
+    if (frameworks.some((framework) => framework.frameworkId === candidateId)) {
+      return candidateId;
+    }
+  }
+  return frameworks[0]?.frameworkId ?? '';
+}
+
 export default function App() {
   const [authState, setAuthState] = useState<AuthState>('checking');
   const [view, setView] = useState<AppView>('loading');
@@ -170,7 +184,9 @@ export default function App() {
     }
 
     setBootstrap(result.data);
-    setSelectedFrameworkId((current) => current || frameworkId || result.data.frameworks[0]?.frameworkId || '');
+    setSelectedFrameworkId((current) =>
+      resolveSelectedFrameworkId(result.data.frameworks, current, frameworkId),
+    );
     setBootstrapError('');
     setFormState((current) => ({
       ...current,
@@ -397,6 +413,9 @@ export default function App() {
   }
 
   const hasOrganisation = Boolean(bootstrap?.organisation);
+  const selectedFramework = bootstrap?.frameworks.find(
+    (framework) => framework.frameworkId === selectedFrameworkId,
+  );
 
   return (
     <main className="app-shell">
@@ -545,19 +564,27 @@ export default function App() {
             <p className="section-label">Start assessment</p>
             <h3>Select framework</h3>
             <p>Choose the framework you want to assess before opening the questionnaire.</p>
-            <label>
-              Framework
+            <label className="framework-selector-label" htmlFor="framework-selector">
+              Framework catalog
+            </label>
+            <div className="framework-selector">
               <select
+                className="framework-selector-input"
+                id="framework-selector"
                 onChange={(event) => setSelectedFrameworkId(event.target.value)}
                 value={selectedFrameworkId}
               >
+                {/* Framework options are driven by the backend framework catalog (/frameworks). */}
                 {bootstrap.frameworks.map((framework) => (
                   <option key={framework.frameworkId} value={framework.frameworkId}>
                     {framework.name}
                   </option>
                 ))}
               </select>
-            </label>
+            </div>
+            <p className="framework-selector-description">
+              {selectedFramework?.description ?? 'Select a framework to view its summary.'}
+            </p>
             <div className="framework-actions">
               <button className="cta-button" onClick={() => void handleStartSelectedFramework()} type="button">
                 Start selected framework
