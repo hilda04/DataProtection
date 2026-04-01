@@ -17,6 +17,10 @@ REGISTERED_FRAMEWORK_FILES = (
     'iso_27001_2022.json',
     'pci_dss_4_0_1.json',
 )
+# Developer note:
+# New framework question banks must define `recommendation`, `evidence_required`, and
+# `compliance_relevance` on every question to keep report output framework-specific
+# and audit-grade.
 
 
 def _framework_search_roots() -> tuple[Path, ...]:

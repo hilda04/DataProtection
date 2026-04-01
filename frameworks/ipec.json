@@ -15,13 +15,55 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Governance & Compliance policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for governance & compliance?",
+            "risk": "For governance-and-compliance-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for governance & compliance?' is governed, executed, and reviewable within Governance & Compliance. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-compliance-q1.",
             "actions": [
-              "Define and approve policy requirements."
+              "Define and approve a targeted remediation plan for governance-and-compliance-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for governance & compliance?'.",
+              "Perform management review and control assurance testing for governance-and-compliance-q1, then formally close findings."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to governance-and-compliance-q1 and section 'Governance & Compliance'.",
+              "Dated operating records showing execution of 'Is there a documented policy for governance & compliance?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-compliance-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for governance & compliance?' operates effectively and exceptions are remediated."
+            ]
+          },
+          "recommendation": "In Governance & Compliance, close gap governance-and-compliance-q1 by formalizing control execution for 'Is there a documented policy for governance & compliance?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for governance-and-compliance-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to governance-and-compliance-q1 and section 'Governance & Compliance'.",
+            "Dated operating records showing execution of 'Is there a documented policy for governance & compliance?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-compliance-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for governance & compliance?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For governance-and-compliance-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for governance & compliance?' is governed, executed, and reviewable within Governance & Compliance. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-compliance-q1."
+        },
+        {
+          "questionId": "governance-and-compliance-q2",
+          "text": "Is there a formally approved control effectiveness review cadence for Governance & Compliance, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Governance & Compliance with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Governance & Compliance oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for governance-and-compliance-q2.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Governance & Compliance findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Governance & Compliance by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Governance & Compliance, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Governance & Compliance by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Governance & Compliance.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for governance-and-compliance-q2.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Governance & Compliance oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for governance-and-compliance-q2.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Governance & Compliance findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
           }
         }
@@ -38,13 +80,55 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Data Protection & Confidentiality policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for data protection & confidentiality?",
+            "risk": "For data-protection-and-confidentiality-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for data protection & confidentiality?' is governed, executed, and reviewable within Data Protection & Confidentiality. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for data-protection-and-confidentiality-q1.",
             "actions": [
-              "Define and approve policy requirements."
+              "Define and approve a targeted remediation plan for data-protection-and-confidentiality-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for data protection & confidentiality?'.",
+              "Perform management review and control assurance testing for data-protection-and-confidentiality-q1, then formally close findings."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to data-protection-and-confidentiality-q1 and section 'Data Protection & Confidentiality'.",
+              "Dated operating records showing execution of 'Is there a documented policy for data protection & confidentiality?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for data-protection-and-confidentiality-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for data protection & confidentiality?' operates effectively and exceptions are remediated."
+            ]
+          },
+          "recommendation": "In Data Protection & Confidentiality, close gap data-protection-and-confidentiality-q1 by formalizing control execution for 'Is there a documented policy for data protection & confidentiality?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for data-protection-and-confidentiality-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to data-protection-and-confidentiality-q1 and section 'Data Protection & Confidentiality'.",
+            "Dated operating records showing execution of 'Is there a documented policy for data protection & confidentiality?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for data-protection-and-confidentiality-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for data protection & confidentiality?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For data-protection-and-confidentiality-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for data protection & confidentiality?' is governed, executed, and reviewable within Data Protection & Confidentiality. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for data-protection-and-confidentiality-q1."
+        },
+        {
+          "questionId": "data-protection-and-confidentiality-q2",
+          "text": "Is there a formally approved control effectiveness review cadence for Data Protection & Confidentiality, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Data Protection & Confidentiality with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Data Protection & Confidentiality oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for data-protection-and-confidentiality-q2.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Data Protection & Confidentiality findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Data Protection & Confidentiality by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Data Protection & Confidentiality, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Data Protection & Confidentiality by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Data Protection & Confidentiality.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for data-protection-and-confidentiality-q2.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Data Protection & Confidentiality oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for data-protection-and-confidentiality-q2.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Data Protection & Confidentiality findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
           }
         }
@@ -61,13 +145,55 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Risk Management policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for risk management?",
+            "risk": "For risk-management-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for risk management?' is governed, executed, and reviewable within Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-q1.",
             "actions": [
-              "Define and approve policy requirements."
+              "Define and approve a targeted remediation plan for risk-management-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for risk management?'.",
+              "Perform management review and control assurance testing for risk-management-q1, then formally close findings."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to risk-management-q1 and section 'Risk Management'.",
+              "Dated operating records showing execution of 'Is there a documented policy for risk management?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for risk management?' operates effectively and exceptions are remediated."
+            ]
+          },
+          "recommendation": "In Risk Management, close gap risk-management-q1 by formalizing control execution for 'Is there a documented policy for risk management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for risk-management-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to risk-management-q1 and section 'Risk Management'.",
+            "Dated operating records showing execution of 'Is there a documented policy for risk management?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for risk management?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For risk-management-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for risk management?' is governed, executed, and reviewable within Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-q1."
+        },
+        {
+          "questionId": "risk-management-q2",
+          "text": "Is there a formally approved control effectiveness review cadence for Risk Management, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Risk Management with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Risk Management oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for risk-management-q2.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Risk Management findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Risk Management by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Risk Management, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Risk Management by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Risk Management.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for risk-management-q2.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Risk Management oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for risk-management-q2.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Risk Management findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
           }
         }
@@ -84,13 +210,55 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address IT Systems & Security policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for it systems & security?",
+            "risk": "For it-systems-and-security-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for it systems & security?' is governed, executed, and reviewable within IT Systems & Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for it-systems-and-security-q1.",
             "actions": [
-              "Define and approve policy requirements."
+              "Define and approve a targeted remediation plan for it-systems-and-security-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for it systems & security?'.",
+              "Perform management review and control assurance testing for it-systems-and-security-q1, then formally close findings."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to it-systems-and-security-q1 and section 'IT Systems & Security'.",
+              "Dated operating records showing execution of 'Is there a documented policy for it systems & security?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for it-systems-and-security-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for it systems & security?' operates effectively and exceptions are remediated."
+            ]
+          },
+          "recommendation": "In IT Systems & Security, close gap it-systems-and-security-q1 by formalizing control execution for 'Is there a documented policy for it systems & security?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for it-systems-and-security-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to it-systems-and-security-q1 and section 'IT Systems & Security'.",
+            "Dated operating records showing execution of 'Is there a documented policy for it systems & security?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for it-systems-and-security-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for it systems & security?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For it-systems-and-security-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for it systems & security?' is governed, executed, and reviewable within IT Systems & Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for it-systems-and-security-q1."
+        },
+        {
+          "questionId": "it-systems-and-security-q2",
+          "text": "Is there a formally approved control effectiveness review cadence for IT Systems & Security, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for IT Systems & Security with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for IT Systems & Security oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for it-systems-and-security-q2.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for IT Systems & Security findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for IT Systems & Security by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for IT Systems & Security, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for IT Systems & Security by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for IT Systems & Security.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for it-systems-and-security-q2.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for IT Systems & Security oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for it-systems-and-security-q2.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for IT Systems & Security findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
           }
         }
@@ -107,13 +275,55 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Financial Controls policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for financial controls?",
+            "risk": "For financial-controls-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for financial controls?' is governed, executed, and reviewable within Financial Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for financial-controls-q1.",
             "actions": [
-              "Define and approve policy requirements."
+              "Define and approve a targeted remediation plan for financial-controls-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for financial controls?'.",
+              "Perform management review and control assurance testing for financial-controls-q1, then formally close findings."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to financial-controls-q1 and section 'Financial Controls'.",
+              "Dated operating records showing execution of 'Is there a documented policy for financial controls?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for financial-controls-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for financial controls?' operates effectively and exceptions are remediated."
+            ]
+          },
+          "recommendation": "In Financial Controls, close gap financial-controls-q1 by formalizing control execution for 'Is there a documented policy for financial controls?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for financial-controls-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to financial-controls-q1 and section 'Financial Controls'.",
+            "Dated operating records showing execution of 'Is there a documented policy for financial controls?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for financial-controls-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for financial controls?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For financial-controls-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for financial controls?' is governed, executed, and reviewable within Financial Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for financial-controls-q1."
+        },
+        {
+          "questionId": "financial-controls-q2",
+          "text": "Is there a formally approved control effectiveness review cadence for Financial Controls, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Financial Controls with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Financial Controls oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for financial-controls-q2.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Financial Controls findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Financial Controls by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Financial Controls, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Financial Controls by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Financial Controls.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for financial-controls-q2.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Financial Controls oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for financial-controls-q2.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Financial Controls findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
           }
         }
@@ -130,13 +340,55 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Business Continuity policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for business continuity?",
+            "risk": "For business-continuity-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for business-continuity-q1.",
             "actions": [
-              "Define and approve policy requirements."
+              "Define and approve a targeted remediation plan for business-continuity-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for business continuity?'.",
+              "Perform management review and control assurance testing for business-continuity-q1, then formally close findings."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to business-continuity-q1 and section 'Business Continuity'.",
+              "Dated operating records showing execution of 'Is there a documented policy for business continuity?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for business continuity?' operates effectively and exceptions are remediated."
+            ]
+          },
+          "recommendation": "In Business Continuity, close gap business-continuity-q1 by formalizing control execution for 'Is there a documented policy for business continuity?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for business-continuity-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to business-continuity-q1 and section 'Business Continuity'.",
+            "Dated operating records showing execution of 'Is there a documented policy for business continuity?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for business continuity?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For business-continuity-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for business-continuity-q1."
+        },
+        {
+          "questionId": "business-continuity-q2",
+          "text": "Is there a formally approved control effectiveness review cadence for Business Continuity, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Business Continuity with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Business Continuity oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for business-continuity-q2.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Business Continuity findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Business Continuity by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Business Continuity, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Business Continuity by evidencing periodic control evaluation, timely escalation, and accountable remediation under IPEC insurance governance, prudential conduct, and policyholder protection.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Business Continuity.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for business-continuity-q2.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Business Continuity oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for business-continuity-q2.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Business Continuity findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
           }
         }

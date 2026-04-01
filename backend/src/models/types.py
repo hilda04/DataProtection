@@ -36,6 +36,9 @@ class FrameworkQuestion(TypedDict, total=False):
     id: str
     text: str
     helpText: str
+    recommendation: str
+    evidence_required: List[str]
+    compliance_relevance: str
     guidance: Dict[str, Any]
 
 
