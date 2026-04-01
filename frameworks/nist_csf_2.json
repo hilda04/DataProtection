@@ -124,6 +124,43 @@
             "Independent testing or QA validation confirming 'Are cybersecurity risks reviewed by governance forums on a defined cadence?' operates effectively and exceptions are remediated."
           ],
           "compliance_relevance": "For govern-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are cybersecurity risks reviewed by governance forums on a defined cadence?' is governed, executed, and reviewable within Govern. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for govern-q4."
+        },
+        {
+          "questionId": "govern-q5",
+          "text": "Is there a formally approved control effectiveness review cadence for Govern, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Govern with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Govern oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for govern-q5.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Govern findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Govern by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Govern, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Govern by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Govern.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for govern-q5.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Govern oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for govern-q5.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Govern findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+            ]
+          },
+          "recommendation": "In Govern, close gap govern-q4 by formalizing control execution for 'Are cybersecurity risks reviewed by governance forums on a defined cadence?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for govern-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to govern-q4 and section 'Govern'.",
+            "Dated operating records showing execution of 'Are cybersecurity risks reviewed by governance forums on a defined cadence?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for govern-q4.",
+            "Independent testing or QA validation confirming 'Are cybersecurity risks reviewed by governance forums on a defined cadence?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For govern-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are cybersecurity risks reviewed by governance forums on a defined cadence?' is governed, executed, and reviewable within Govern. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for govern-q4."
         }
       ]
     },
@@ -237,6 +274,43 @@
               "Dated operating records showing execution of 'Are third-party dependencies included in risk identification activities?' over the latest review cycle.",
               "Management or committee evidence confirming oversight decisions and remediation tracking for identify-q4.",
               "Independent testing or QA validation confirming 'Are third-party dependencies included in risk identification activities?' operates effectively and exceptions are remediated."
+            ]
+          },
+          "recommendation": "In Identify, close gap identify-q4 by formalizing control execution for 'Are third-party dependencies included in risk identification activities?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for identify-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to identify-q4 and section 'Identify'.",
+            "Dated operating records showing execution of 'Are third-party dependencies included in risk identification activities?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for identify-q4.",
+            "Independent testing or QA validation confirming 'Are third-party dependencies included in risk identification activities?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For identify-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are third-party dependencies included in risk identification activities?' is governed, executed, and reviewable within Identify. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for identify-q4."
+        },
+        {
+          "questionId": "identify-q5",
+          "text": "Is there a formally approved control effectiveness review cadence for Identify, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Identify with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Identify oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for identify-q5.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Identify findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Identify by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Identify, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Identify by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Identify.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for identify-q5.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Identify oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for identify-q5.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Identify findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
           },
           "recommendation": "In Identify, close gap identify-q4 by formalizing control execution for 'Are third-party dependencies included in risk identification activities?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for identify-q4 in governance reporting until sustained effectiveness is demonstrated.",
@@ -370,6 +444,43 @@
             "Independent testing or QA validation confirming 'Are staff granted access based on least privilege and business need?' operates effectively and exceptions are remediated."
           ],
           "compliance_relevance": "For protect-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are staff granted access based on least privilege and business need?' is governed, executed, and reviewable within Protect. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for protect-q4."
+        },
+        {
+          "questionId": "protect-q5",
+          "text": "Is there a formally approved control effectiveness review cadence for Protect, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Protect with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Protect oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for protect-q5.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Protect findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Protect by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Protect, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Protect by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Protect.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for protect-q5.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Protect oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for protect-q5.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Protect findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+            ]
+          },
+          "recommendation": "In Protect, close gap protect-q4 by formalizing control execution for 'Are staff granted access based on least privilege and business need?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for protect-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to protect-q4 and section 'Protect'.",
+            "Dated operating records showing execution of 'Are staff granted access based on least privilege and business need?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for protect-q4.",
+            "Independent testing or QA validation confirming 'Are staff granted access based on least privilege and business need?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For protect-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are staff granted access based on least privilege and business need?' is governed, executed, and reviewable within Protect. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for protect-q4."
         }
       ]
     },
@@ -483,6 +594,43 @@
               "Dated operating records showing execution of 'Are detection coverage gaps tracked and remediated?' over the latest review cycle.",
               "Management or committee evidence confirming oversight decisions and remediation tracking for detect-q4.",
               "Independent testing or QA validation confirming 'Are detection coverage gaps tracked and remediated?' operates effectively and exceptions are remediated."
+            ]
+          },
+          "recommendation": "In Detect, close gap detect-q4 by formalizing control execution for 'Are detection coverage gaps tracked and remediated?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for detect-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to detect-q4 and section 'Detect'.",
+            "Dated operating records showing execution of 'Are detection coverage gaps tracked and remediated?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for detect-q4.",
+            "Independent testing or QA validation confirming 'Are detection coverage gaps tracked and remediated?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For detect-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are detection coverage gaps tracked and remediated?' is governed, executed, and reviewable within Detect. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for detect-q4."
+        },
+        {
+          "questionId": "detect-q5",
+          "text": "Is there a formally approved control effectiveness review cadence for Detect, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Detect with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Detect oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for detect-q5.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Detect findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Detect by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Detect, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Detect by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Detect.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for detect-q5.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Detect oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for detect-q5.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Detect findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
           },
           "recommendation": "In Detect, close gap detect-q4 by formalizing control execution for 'Are detection coverage gaps tracked and remediated?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for detect-q4 in governance reporting until sustained effectiveness is demonstrated.",
@@ -616,6 +764,43 @@
             "Independent testing or QA validation confirming 'Are lessons learned documented and fed into control improvements?' operates effectively and exceptions are remediated."
           ],
           "compliance_relevance": "For respond-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are lessons learned documented and fed into control improvements?' is governed, executed, and reviewable within Respond. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for respond-q4."
+        },
+        {
+          "questionId": "respond-q5",
+          "text": "Is there a formally approved control effectiveness review cadence for Respond, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Respond with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Respond oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for respond-q5.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Respond findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Respond by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Respond, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Respond by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Respond.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for respond-q5.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Respond oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for respond-q5.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Respond findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+            ]
+          },
+          "recommendation": "In Respond, close gap respond-q4 by formalizing control execution for 'Are lessons learned documented and fed into control improvements?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for respond-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to respond-q4 and section 'Respond'.",
+            "Dated operating records showing execution of 'Are lessons learned documented and fed into control improvements?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for respond-q4.",
+            "Independent testing or QA validation confirming 'Are lessons learned documented and fed into control improvements?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For respond-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are lessons learned documented and fed into control improvements?' is governed, executed, and reviewable within Respond. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for respond-q4."
         }
       ]
     },
@@ -729,6 +914,43 @@
               "Dated operating records showing execution of 'Is stakeholder communication prepared for major service disruptions?' over the latest review cycle.",
               "Management or committee evidence confirming oversight decisions and remediation tracking for recover-q4.",
               "Independent testing or QA validation confirming 'Is stakeholder communication prepared for major service disruptions?' operates effectively and exceptions are remediated."
+            ]
+          },
+          "recommendation": "In Recover, close gap recover-q4 by formalizing control execution for 'Is stakeholder communication prepared for major service disruptions?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for recover-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to recover-q4 and section 'Recover'.",
+            "Dated operating records showing execution of 'Is stakeholder communication prepared for major service disruptions?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for recover-q4.",
+            "Independent testing or QA validation confirming 'Is stakeholder communication prepared for major service disruptions?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For recover-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Is stakeholder communication prepared for major service disruptions?' is governed, executed, and reviewable within Recover. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for recover-q4."
+        },
+        {
+          "questionId": "recover-q5",
+          "text": "Is there a formally approved control effectiveness review cadence for Recover, including escalation thresholds and accountable owners?",
+          "weight": 1,
+          "expectedAnswer": "yes",
+          "recommendation": "Establish a documented quarterly control-effectiveness review for Recover with defined escalation criteria, assigned owners, and tracked remediation deadlines. Integrate outputs into executive risk reporting to maintain continuous assurance aligned with NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "evidence_required": [
+            "Approved review calendar and terms of reference for Recover oversight activities.",
+            "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for recover-q5.",
+            "Risk committee or management minutes confirming escalation decisions and closure owners for Recover findings.",
+            "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
+          ],
+          "compliance_relevance": "Demonstrates sustained governance and audit-ready oversight for Recover by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+          "guidance": {
+            "title": "Is there a formally approved control effectiveness review cadence for Recover, including escalation thresholds and accountable owners?",
+            "risk": "Demonstrates sustained governance and audit-ready oversight for Recover by evidencing periodic control evaluation, timely escalation, and accountable remediation under NIST CSF 2.0 risk lifecycle governance, protection, detection, response, and recovery.",
+            "actions": [
+              "Approve and publish a control review cadence and RACI model for Recover.",
+              "Run periodic effectiveness reviews, capture findings, and assign remediation owners for recover-q5.",
+              "Report open exceptions to governance forums and verify closure through independent retesting."
+            ],
+            "evidence": [
+              "Approved review calendar and terms of reference for Recover oversight activities.",
+              "Completed review packs showing KPI/KRI outcomes, exceptions, and root-cause analysis for recover-q5.",
+              "Risk committee or management minutes confirming escalation decisions and closure owners for Recover findings.",
+              "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
           },
           "recommendation": "In Recover, close gap recover-q4 by formalizing control execution for 'Is stakeholder communication prepared for major service disruptions?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for recover-q4 in governance reporting until sustained effectiveness is demonstrated.",
