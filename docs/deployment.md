@@ -46,3 +46,14 @@ curl -i "${API_URL}/health"
 ```
 
 `/health` should return HTTP 200 with JSON body containing `ok: true`.
+
+## Framework content source of truth
+
+- `GET /frameworks` is served from the backend framework registry (`backend/src/services/framework_registry.py`) through `DataStore.list_frameworks`.
+- Assessment questions are snapshotted into each assessment record at creation/restart time (`assessmentSections` in DynamoDB).
+- Report recommendations/evidence for new assessments are resolved from question metadata fields first:
+  - `recommendation`
+  - `evidence_required`
+  Legacy `guidance` is used only as a backward-compatible fallback.
+
+Operationally, this means framework JSON updates appear immediately for new assessments, while older assessments keep their original snapshot unless explicitly migrated.

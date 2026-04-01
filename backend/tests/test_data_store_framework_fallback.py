@@ -189,9 +189,7 @@ def test_normalise_framework_sections_accepts_legacy_control_shape() -> None:
     ]
 
 
-def test_load_assessment_sections_falls_back_when_framework_sections_have_no_questions(
-    monkeypatch,
-) -> None:
+def test_load_assessment_sections_does_not_cross_fallback_to_other_framework() -> None:
     table = FakeTable(
         {
             'frameworkId': 'custom-zim-dpa',
@@ -203,31 +201,11 @@ def test_load_assessment_sections_falls_back_when_framework_sections_have_no_que
     )
     store = DataStore(table=table)
 
-    monkeypatch.setattr(
-        data_store_module,
-        'load_framework_definition',
-        lambda framework_id='cdpa': {
-            'frameworkId': 'cdpa',
-            'name': 'Zimbabwe Cyber and Data Protection Act',
-            'version': '2021',
-            'description': 'Current framework metadata',
-            'sections': [
-                {
-                    'sectionId': 'governance-accountability',
-                    'name': 'Governance and accountability',
-                    'questions': [
-                        {'questionId': 'has-dpo', 'text': 'Assigned accountable person?'}
-                    ],
-                }
-            ],
-        },
-    )
-
     sections = store._load_assessment_sections(table.framework_item)
 
     assert len(sections) == 1
-    assert len(sections[0]['questions']) == 1
-    assert sections[0]['questions'][0]['questionId'] == 'has-dpo'
+    assert sections[0]['sectionId'] == 'governance-accountability'
+    assert sections[0]['questions'] == []
 
 
 def test_get_framework_uses_local_definition_when_seeded_framework_has_no_guidance(

@@ -88,26 +88,49 @@ class DataStore:
             KeyConditionExpression=key('pk').eq('FRAMEWORKS') & key('sk').begins_with('FRAMEWORK#')
         )
         existing_items = result.get('Items', [])
-        existing_ids = {str(item.get('frameworkId') or '').strip() for item in existing_items}
+        existing_by_id = {
+            str(item.get('frameworkId') or '').strip(): item for item in existing_items
+        }
 
         with self.table.batch_writer() as batch:
             for framework_id, item in catalog_by_id.items():
-                if framework_id in existing_ids:
+                existing = existing_by_id.get(framework_id)
+                if existing is None:
+                    batch.put_item(
+                        Item=self._to_dynamodb(
+                            {
+                                'pk': 'FRAMEWORKS',
+                                'sk': f"FRAMEWORK#{item['frameworkId']}",
+                                'entityType': item['entityType'],
+                                'frameworkId': item['frameworkId'],
+                                'name': item['name'],
+                                'version': item['version'],
+                                'description': item['description'],
+                                'sections': item['sections'],
+                            }
+                        ),
+                    )
                     continue
-                batch.put_item(
-                    Item=self._to_dynamodb(
-                        {
-                        'pk': 'FRAMEWORKS',
-                        'sk': f"FRAMEWORK#{item['frameworkId']}",
-                        'entityType': item['entityType'],
-                        'frameworkId': item['frameworkId'],
-                        'name': item['name'],
-                        'version': item['version'],
-                        'description': item['description'],
-                        'sections': item['sections'],
-                        }
-                    ),
-                )
+
+                if (
+                    existing.get('name') != item.get('name')
+                    or existing.get('version') != item.get('version')
+                    or existing.get('description') != item.get('description')
+                ):
+                    batch.put_item(
+                        Item=self._to_dynamodb(
+                            {
+                                **existing,
+                                'pk': 'FRAMEWORKS',
+                                'sk': f"FRAMEWORK#{item['frameworkId']}",
+                                'entityType': item['entityType'],
+                                'frameworkId': item['frameworkId'],
+                                'name': item['name'],
+                                'version': item['version'],
+                                'description': item['description'],
+                            }
+                        ),
+                    )
 
     def list_frameworks(self) -> List[FrameworkSummary]:
         self.ensure_framework_seed_data()
@@ -126,20 +149,15 @@ class DataStore:
             framework_id = str(item.get('frameworkId') or '').strip()
             if not framework_id:
                 continue
-            existing_framework = framework_map.get(framework_id)
+            if framework_id in framework_map:
+                continue
             framework_map[framework_id] = {
                 'frameworkId': framework_id,
                 'id': framework_id,
-                'name': item.get('name', existing_framework['name'] if existing_framework else ''),
-                'version': item.get(
-                    'version', existing_framework['version'] if existing_framework else ''
-                ),
-                'description': item.get(
-                    'description', existing_framework['description'] if existing_framework else ''
-                ),
-                'sections': item.get(
-                    'sections', existing_framework['sections'] if existing_framework else []
-                ),
+                'name': str(item.get('name') or '').strip(),
+                'version': str(item.get('version') or '').strip(),
+                'description': str(item.get('description') or '').strip(),
+                'sections': item.get('sections') if isinstance(item.get('sections'), list) else [],
             }
 
         return list(framework_map.values())
@@ -228,6 +246,11 @@ class DataStore:
             'currentSectionId': current_section_id,
             'previousAssessmentId': None,
             'sectionScores': [],
+            # Developer note:
+            # Assessments persist a snapshot of framework sections/questions at creation time.
+            # Existing assessments retain their original snapshot even if framework files are
+            # updated later; create a new assessment/restart to use the latest framework version.
+            'assessmentSections': sections,
         }
         self.table.put_item(Item=self._to_dynamodb(assessment_item))
         return self._serialize_assessment_summary(assessment_item), False
@@ -250,7 +273,7 @@ class DataStore:
         if framework is None:
             raise DataStoreError(f"Framework metadata missing for {assessment['frameworkId']}.")
 
-        sections = self._load_assessment_sections(framework)
+        sections = self._resolve_assessment_sections(assessment, framework)
         current_section = self._resolve_current_section(
             sections, assessment.get('currentSectionId', '')
         )
@@ -285,7 +308,7 @@ class DataStore:
         if framework is None:
             raise DataStoreError(f"Framework metadata missing for {assessment['frameworkId']}.")
 
-        sections = self._load_assessment_sections(framework)
+        sections = self._resolve_assessment_sections(assessment, framework)
         section_ids = [section['sectionId'] for section in sections]
         if section_id not in section_ids:
             raise ValidationError('sectionId is invalid for this assessment framework.')
@@ -413,6 +436,7 @@ class DataStore:
             'currentSectionId': current_section_id,
             'previousAssessmentId': assessment_id,
             'sectionScores': [],
+            'assessmentSections': sections,
         }
         self.table.put_item(Item=self._to_dynamodb(assessment_item))
         return self._serialize_assessment_summary(assessment_item)
@@ -646,6 +670,14 @@ class DataStore:
         )
         item = result.get('Item')
         framework = load_framework_definition(resolved_framework_id)
+        logger.info(
+            'Resolving framework metadata.',
+            extra={
+                'requestedFrameworkId': framework_id,
+                'resolvedFrameworkId': resolved_framework_id,
+                'seedItemFound': bool(item),
+            },
+        )
         if (
             item
             and self._framework_contains_questions(item)
@@ -708,21 +740,22 @@ class DataStore:
 
     def _load_assessment_sections(self, framework: Dict[str, Any]) -> list[Dict[str, Any]]:
         sections = self._normalise_framework_sections(framework.get('sections', []))
-        if self._sections_have_questions(sections):
-            return sections
-
-        fallback_framework = load_framework_definition()
-        fallback_sections = self._normalise_framework_sections(
-            fallback_framework.get('sections', [])
-        )
-        if self._sections_have_questions(fallback_sections):
+        if not self._sections_have_questions(sections):
             logger.warning(
-                'Assessment framework did not contain questions; using local fallback definition.',
+                'Assessment framework sections do not include questions.',
                 extra={'frameworkId': framework.get('frameworkId')},
             )
-            return fallback_sections
-
         return sections
+
+    def _resolve_assessment_sections(
+        self, assessment: Dict[str, Any], framework: Dict[str, Any]
+    ) -> list[Dict[str, Any]]:
+        snapshot_sections = self._normalise_framework_sections(
+            assessment.get('assessmentSections') or []
+        )
+        if self._sections_have_questions(snapshot_sections):
+            return snapshot_sections
+        return self._load_assessment_sections(framework)
 
     def _refresh_framework_sections(
         self, existing_framework: Dict[str, Any], framework_definition: Dict[str, Any]
@@ -891,7 +924,7 @@ class DataStore:
             framework = self._get_framework(str(assessment.get('frameworkId') or '').strip())
             if framework is None:
                 return None
-            sections = self._load_assessment_sections(framework)
+            sections = self._resolve_assessment_sections(assessment, framework)
             all_responses = self._get_assessment_responses(assessment_id)
             scoring = calculate_assessment_score(all_responses)
             report = self._build_assessment_report(assessment, sections, all_responses, scoring)
@@ -1022,10 +1055,17 @@ class DataStore:
             else []
         )
 
-        if recommendation and compliance_relevance and normalised_evidence_required:
+        if recommendation and normalised_evidence_required:
+            logger.debug(
+                'Using question metadata for report recommendation.',
+                extra={
+                    'questionId': question.get('questionId'),
+                    'hasComplianceRelevance': bool(compliance_relevance),
+                },
+            )
             return {
                 'title': question_title,
-                'risk': compliance_relevance,
+                'risk': compliance_relevance or question_title,
                 'actions': [recommendation],
                 'evidence': normalised_evidence_required,
             }
@@ -1052,6 +1092,10 @@ class DataStore:
         risk = str(guidance_obj.get('risk') or '').strip() or question_title
         actions = normalised_actions or [question_title]
         evidence = normalised_evidence or [question_title]
+        logger.debug(
+            'Falling back to legacy guidance for report recommendation.',
+            extra={'questionId': question.get('questionId')},
+        )
 
         return {'title': title, 'risk': risk, 'actions': actions, 'evidence': evidence}
 
