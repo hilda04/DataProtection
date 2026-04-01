@@ -39,7 +39,6 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
     from reportlab.lib.units import mm
     from reportlab.platypus import (
-        Flowable,
         KeepTogether,
         ListFlowable,
         ListItem,
@@ -57,34 +56,16 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
         "navy": colors.HexColor("#12344D"),
         "teal": colors.HexColor("#1F8A8A"),
         "green": colors.HexColor("#2E7D32"),
-        "light_green": colors.HexColor("#4CAF50"),
         "amber": colors.HexColor("#F9A825"),
         "orange": colors.HexColor("#EF6C00"),
         "red": colors.HexColor("#C62828"),
-        "critical": colors.HexColor("#C62828"),
         "off_white": colors.HexColor("#F7F9FB"),
-        "row_alt": colors.HexColor("#F4F7FA"),
-        "track": colors.HexColor("#E6ECF2"),
+        "row_alt": colors.HexColor("#FAFCFE"),
         "light_border": colors.HexColor("#D9E2EC"),
         "body": colors.HexColor("#243B53"),
         "muted": colors.HexColor("#5C6B7A"),
     }
     styles = _build_pdf_styles(palette, getSampleStyleSheet(), ParagraphStyle, colors)
-
-    class _ProgressBar(Flowable):
-        def __init__(self, value: float, color: Any) -> None:
-            super().__init__()
-            self.value = max(0.0, min(100.0, value))
-            self.color = color
-            self.width = 34 * mm
-            self.height = 4 * mm
-
-        def draw(self) -> None:
-            self.canv.setFillColor(palette["track"])
-            self.canv.roundRect(0, 0, self.width, self.height, 1.5, stroke=0, fill=1)
-            fill_width = (self.value / 100.0) * self.width
-            self.canv.setFillColor(self.color)
-            self.canv.roundRect(0, 0, fill_width, self.height, 1.5, stroke=0, fill=1)
 
     organisation = report.get("organisation", {})
     framework = report.get("framework", {})
@@ -115,18 +96,8 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     )
     story: list[Any] = []
 
-    score_box = Paragraph(
-        (
-            f"<font color='white' backColor='{_color_hex(_score_color(score, palette))}'>"
-            f"&nbsp;&nbsp;<b>{score:.2f}%</b>&nbsp;&nbsp;"
-            "</font>"
-        ),
-        styles["ScoreBoxStyle"],
-    )
-    maturity_pill = Paragraph(
-        _badge_html(maturity, _score_color(score, palette)),
-        styles["BadgeStyle"],
-    )
+    score_box = _value_pill(f"{score:.2f}%", _score_band_fill(score, palette), styles)
+    maturity_pill = _value_pill(maturity, _maturity_band_fill(maturity, palette), styles)
     cover_score = Table(
         [
             [
@@ -186,14 +157,9 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
 
     story.append(Paragraph("Executive Summary", styles["SectionHeading"]))
     story.append(Spacer(1, 10))
-    overall_score_html = (
-        f"<font color='white' backColor='{_color_hex(_score_color(score, palette))}'>"
-        f"&nbsp;&nbsp;<b>{score:.2f}%</b>&nbsp;&nbsp;"
-        "</font>"
-    )
     metric_values = [
-        ["Overall Score", overall_score_html],
-        ["Maturity Level", _badge_html(maturity, _score_color(score, palette))],
+        ["Overall Score", _value_pill(f"{score:.2f}%", _score_band_fill(score, palette), styles)],
+        ["Maturity Level", _value_pill(maturity, _maturity_band_fill(maturity, palette), styles)],
         ["Priority Gaps", str(len(high_medium))],
     ]
     metric_cards = []
@@ -251,28 +217,29 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
 
     story.append(Paragraph("Section Performance", styles["SectionHeading"]))
     story.append(Spacer(1, 10))
-    section_rows = [["Section", "Score", "Progress", "Status"]]
+    section_rows = [["Section", "Score", "Status"]]
+    score_backgrounds: list[tuple[int, Any]] = []
+    status_backgrounds: list[tuple[int, Any]] = []
     for section in sections:
         section_score = float(section.get("score", 0))
         section_status = _score_status(section_score)
-        status_color = _status_color(section_status, palette)
-        bar = _ProgressBar(section_score, status_color)
+        score_fill = _score_band_fill(section_score, palette)
+        status_fill = _maturity_band_fill(section_status, palette)
+        row_index = len(section_rows)
+        score_backgrounds.append((row_index, score_fill))
+        status_backgrounds.append((row_index, status_fill))
         section_rows.append(
             [
                 Paragraph(str(section.get("name", "Section")), styles["BodyStyle"]),
                 Paragraph(f"{section_score:.2f}%", styles["BodyStyle"]),
-                bar,
-                Paragraph(
-                    f"<font color='{_color_hex(status_color)}'><b>{section_status}</b></font>",
-                    styles["BodyStyle"],
-                ),
+                Paragraph(f"<b>{section_status}</b>", styles["BodyStyleCentered"]),
             ]
         )
 
     section_table = Table(
         section_rows,
-        colWidths=[78 * mm, 25 * mm, 43 * mm, 22 * mm],
-        rowHeights=9.5 * mm,
+        colWidths=[100 * mm, 28 * mm, 40 * mm],
+        rowHeights=9 * mm,
     )
     alternating_rows = [
         ("BACKGROUND", (0, row), (-1, row), palette["row_alt"])
@@ -293,9 +260,16 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                 ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
                 ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                 ("ALIGN", (1, 1), (1, -1), "RIGHT"),
-                ("ALIGN", (3, 1), (3, -1), "CENTER"),
-                ("ALIGN", (3, 0), (3, -1), "CENTER"),
+                ("ALIGN", (1, 0), (2, -1), "CENTER"),
                 *alternating_rows,
+            ]
+            + [
+                ("BACKGROUND", (1, row), (1, row), color)
+                for row, color in score_backgrounds
+            ]
+            + [
+                ("BACKGROUND", (2, row), (2, row), color)
+                for row, color in status_backgrounds
             ]
         )
     )
@@ -365,56 +339,63 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
             story.append(KeepTogether([card]))
             story.append(Spacer(1, 12))
 
-    story.append(PageBreak())
-    story.append(
-        Paragraph(
-            "Appendix A: Evidence Checklist for Audit Readiness",
-            styles["SectionHeading"],
+    if normalized_actions:
+        story.append(PageBreak())
+        story.append(
+            Paragraph(
+                "Appendix A: Evidence Checklist for Audit Readiness",
+                styles["SectionHeading"],
+            )
         )
-    )
-    story.append(Spacer(1, 8))
-    appendix_rows: list[list[Any]] = [["Gap", "Priority", "Evidence Required", "Status"]]
-    for idx, gap in enumerate(normalized_actions, start=1):
-        evidence_lines = "<br/>".join(f"• {item}" for item in gap["evidence"])
-        status_lines = "<br/>".join(
-            [
-                "☐ Available",
-                "☐ In progress",
-                "☐ Not available",
-            ]
-        )
-        appendix_rows.append(
-            [
-                Paragraph(f"Gap {idx}: {gap['title']}", styles["BodyStyle"]),
-                Paragraph(
-                    _badge_html(gap["priority"], _priority_color(gap["priority"], palette)),
-                    styles["BadgeStyle"],
-                ),
-                Paragraph(evidence_lines, styles["BodyStyle"]),
-                Paragraph(status_lines, styles["ChecklistStyle"]),
-            ]
-        )
+        story.append(Spacer(1, 8))
+        appendix_rows: list[list[Any]] = [["Gap", "Priority", "Evidence Required", "Status"]]
+        for idx, gap in enumerate(normalized_actions, start=1):
+            evidence_lines = "<br/>".join(f"• {item}" for item in gap["evidence"])
+            status_lines = "<br/>".join(
+                [
+                    "☐ Available",
+                    "☐ In progress",
+                    "☐ Not available",
+                ]
+            )
+            appendix_rows.append(
+                [
+                    Paragraph(f"Gap {idx}: {gap['title']}", styles["BodyStyle"]),
+                    Paragraph(
+                        _value_pill(
+                            gap["priority"],
+                            _priority_fill(gap["priority"], palette),
+                            styles,
+                        ),
+                        styles["BodyStyleCentered"],
+                    ),
+                    Paragraph(evidence_lines, styles["BodyStyle"]),
+                    Paragraph(status_lines, styles["ChecklistStyle"]),
+                ]
+            )
 
-    appendix = Table(appendix_rows, colWidths=[52 * mm, 22 * mm, 59 * mm, 35 * mm], repeatRows=1)
-    appendix.setStyle(
-        TableStyle(
-            [
-                ("BACKGROUND", (0, 0), (-1, 0), palette["off_white"]),
-                ("TEXTCOLOR", (0, 0), (-1, 0), palette["navy"]),
-                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-                ("BOX", (0, 0), (-1, -1), 0.8, palette["light_border"]),
-                ("INNERGRID", (0, 0), (-1, -1), 0.4, palette["light_border"]),
-                ("LEFTPADDING", (0, 0), (-1, -1), 7),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 7),
-                ("TOPPADDING", (0, 0), (-1, -1), 6),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
-                ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                ("ALIGN", (1, 1), (1, -1), "CENTER"),
-                ("ALIGN", (3, 1), (3, -1), "LEFT"),
-            ]
+        appendix = Table(
+            appendix_rows, colWidths=[52 * mm, 24 * mm, 57 * mm, 35 * mm], repeatRows=1
         )
-    )
-    story.append(appendix)
+        appendix.setStyle(
+            TableStyle(
+                [
+                    ("BACKGROUND", (0, 0), (-1, 0), palette["off_white"]),
+                    ("TEXTCOLOR", (0, 0), (-1, 0), palette["navy"]),
+                    ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                    ("BOX", (0, 0), (-1, -1), 0.8, palette["light_border"]),
+                    ("INNERGRID", (0, 0), (-1, -1), 0.4, palette["light_border"]),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 8),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+                    ("TOPPADDING", (0, 0), (-1, -1), 7),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("ALIGN", (1, 1), (1, -1), "CENTER"),
+                    ("ALIGN", (3, 1), (3, -1), "LEFT"),
+                ]
+            )
+        )
+        story.append(appendix)
 
     def _cover_page(canvas_obj: Any, doc: Any) -> None:
         _draw_page_chrome(
@@ -497,6 +478,15 @@ def _build_pdf_styles(
             leading=14,
             textColor=palette["body"],
         ),
+        "BodyStyleCentered": paragraph_style(
+            "BodyStyleCentered",
+            parent=base,
+            fontName="Helvetica",
+            fontSize=10,
+            leading=14,
+            textColor=palette["body"],
+            alignment=1,
+        ),
         "MutedStyle": paragraph_style(
             "MutedStyle",
             parent=base,
@@ -552,7 +542,7 @@ def _build_pdf_styles(
             fontName="Helvetica-Bold",
             fontSize=9.5,
             leading=12,
-            textColor=colors_mod.white,
+            textColor=palette["body"],
             alignment=1,
         ),
         "ScoreBoxStyle": paragraph_style(
@@ -561,7 +551,7 @@ def _build_pdf_styles(
             fontName="Helvetica-Bold",
             fontSize=13,
             leading=16,
-            textColor=colors_mod.white,
+            textColor=palette["body"],
         ),
         "ChecklistStyle": paragraph_style(
             "ChecklistStyle",
@@ -671,43 +661,29 @@ def _sanitize_visible_text(value: str) -> str:
     return cleaned
 
 
-def _score_color(score: float, palette: dict[str, Any]) -> Any:
-    # Score-to-color mapping for consistent grading across score cards.
+def _score_band_fill(score: float, palette: dict[str, Any]) -> Any:
     if score >= 80:
-        return palette["green"]
+        return colors_whiter(palette["green"])
     if score >= 60:
-        return palette["teal"]
+        return colors_whiter(palette["teal"])
     if score >= 40:
-        return palette["amber"]
+        return colors_whiter(palette["amber"])
     if score >= 20:
-        return palette["orange"]
-    return palette["red"]
+        return colors_whiter(palette["orange"])
+    return colors_whiter(palette["red"])
 
 
-def _maturity_color(maturity: str, palette: dict[str, Any]) -> Any:
+def _maturity_band_fill(maturity: str, palette: dict[str, Any]) -> Any:
     label = maturity.strip().lower()
     if label in {"advanced", "strong"}:
-        return palette["green"]
+        return colors_whiter(palette["green"])
     if label in {"managed", "established", "defined"}:
-        return palette["teal"]
+        return colors_whiter(palette["teal"])
     if label in {"developing", "needs improvement"}:
-        return palette["amber"]
-    if label in {"weak", "initial", "basic"}:
-        return palette["orange"]
-    if label in {"critical", "poor"}:
-        return palette["red"]
-    return palette["teal"]
-
-
-def _status_color(status: str, palette: dict[str, Any]) -> Any:
-    lowered = status.lower()
-    if lowered in {"strong"}:
-        return palette["green"]
-    if lowered in {"moderate"}:
-        return palette["teal"]
-    if lowered in {"needs improvement", "developing"}:
-        return palette["amber"]
-    return palette["red"]
+        return colors_whiter(palette["amber"])
+    if label in {"weak", "initial", "basic", "critical", "poor"}:
+        return colors_whiter(palette["red"])
+    return colors_whiter(palette["teal"])
 
 
 def _priority_color(priority: str, palette: dict[str, Any]) -> Any:
@@ -718,12 +694,31 @@ def _priority_color(priority: str, palette: dict[str, Any]) -> Any:
     return palette["teal"]
 
 
+def _priority_fill(priority: str, palette: dict[str, Any]) -> Any:
+    return colors_whiter(_priority_color(priority, palette))
+
+
 def _color_hex(color: Any) -> str:
     return getattr(color, "hexval", lambda: "#12344D")().replace("0x", "#")
 
 
 def _badge_html(label: str, color: Any) -> str:
-    return f"<font color='white' backColor='{_color_hex(color)}'>  {label}  </font>"
+    return f"<font color='#243B53' backColor='{_color_hex(color)}'>  {label}  </font>"
+
+
+def _value_pill(label: str, fill_color: Any, styles: dict[str, Any]) -> str:
+    safe_label = _sanitize_visible_text(str(label))
+    return (
+        f"<font color='#243B53' backColor='{_color_hex(fill_color)}'>"
+        f"&nbsp;&nbsp;<b>{safe_label}</b>&nbsp;&nbsp;"
+        "</font>"
+    )
+
+
+def colors_whiter(color: Any) -> Any:
+    from reportlab.lib import colors
+
+    return colors.Whiter(color, 0.82)
 
 
 def _draw_page_chrome(
