@@ -20,11 +20,14 @@ def test_build_assessment_report_pdf_returns_valid_pdf_bytes() -> None:
                     'title': 'Document incident response governance',
                     'risk': 'Delayed breach handling can increase legal exposure.',
                     'actions': [
-                        'Formalise incident-response RACI and approvals.',
+                        'business-continuity-q1 Formalise incident-response RACI and approvals.',
                         'Run at least one breach-notification exercise.',
                     ],
                     'evidence': [
-                        'Approved incident-response procedure',
+                        (
+                            'data-protection-and-confidentiality-q1 '
+                            'Approved incident-response procedure'
+                        ),
                         'Exercise report with lessons learned',
                     ],
                     'priority': 'HIGH',
@@ -43,9 +46,11 @@ def test_build_assessment_report_pdf_returns_valid_pdf_bytes() -> None:
     assert 'Section Performance' in decoded
     assert 'Remediation Plan' in decoded
     assert 'Gap 1' in decoded
-    assert 'Compliance Relevance' in decoded
+    assert 'Compliance Relevance' not in decoded
     assert 'Appendix A: Evidence Checklist for Audit Readiness' in decoded
     assert 'Approved incident-response procedure' in decoded
+    assert 'business-continuity-q1' not in decoded
+    assert 'data-protection-and-confidentiality-q1' not in decoded
 
 
 def test_build_assessment_report_pdf_hides_compliance_relevance_when_missing() -> None:
