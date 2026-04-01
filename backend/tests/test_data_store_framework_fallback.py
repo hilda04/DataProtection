@@ -179,6 +179,9 @@ def test_normalise_framework_sections_accepts_legacy_control_shape() -> None:
                     'helpText': 'Formal role or named responsible officer.',
                     'weight': 1,
                     'expectedAnswer': 'yes',
+                    'recommendation': '',
+                    'evidence_required': [],
+                    'compliance_relevance': '',
                     'guidance': {},
                 }
             ],

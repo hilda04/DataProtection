@@ -1013,6 +1013,23 @@ class DataStore:
 
     def _normalise_question_guidance(self, question: Dict[str, Any]) -> Dict[str, Any]:
         question_title = str(question.get('text') or 'Control gap identified').strip()
+        recommendation = str(question.get('recommendation') or '').strip()
+        compliance_relevance = str(question.get('compliance_relevance') or '').strip()
+        evidence_required = question.get('evidence_required')
+        normalised_evidence_required = (
+            [str(item).strip() for item in evidence_required if str(item).strip()]
+            if isinstance(evidence_required, list)
+            else []
+        )
+
+        if recommendation and compliance_relevance and normalised_evidence_required:
+            return {
+                'title': question_title,
+                'risk': compliance_relevance,
+                'actions': [recommendation],
+                'evidence': normalised_evidence_required,
+            }
+
         guidance = question.get('guidance')
         guidance_obj = guidance if isinstance(guidance, dict) else {}
 
@@ -1031,26 +1048,12 @@ class DataStore:
         else:
             normalised_evidence = []
 
-        if (
-            not str(guidance_obj.get('title') or '').strip()
-            or not str(guidance_obj.get('risk') or '').strip()
-            or not normalised_actions
-            or not normalised_evidence
-        ):
-            fallback_text = question_title or 'Control gap identified'
-            return {
-                'title': fallback_text,
-                'risk': fallback_text,
-                'actions': [fallback_text],
-                'evidence': [fallback_text],
-            }
+        title = str(guidance_obj.get('title') or '').strip() or question_title
+        risk = str(guidance_obj.get('risk') or '').strip() or question_title
+        actions = normalised_actions or [question_title]
+        evidence = normalised_evidence or [question_title]
 
-        return {
-            'title': str(guidance_obj['title']).strip(),
-            'risk': str(guidance_obj['risk']).strip(),
-            'actions': normalised_actions,
-            'evidence': normalised_evidence,
-        }
+        return {'title': title, 'risk': risk, 'actions': actions, 'evidence': evidence}
 
     def _save_report_to_s3(self, assessment_id: str, report: Dict[str, Any]) -> Optional[str]:
         bucket_name = self._get_reports_bucket_name(required=False)
@@ -1193,6 +1196,15 @@ class DataStore:
                             or 'yes'
                         ).strip()
                         or 'yes',
+                        'recommendation': str(question.get('recommendation') or '').strip(),
+                        'evidence_required': [
+                            str(item).strip()
+                            for item in (question.get('evidence_required') or [])
+                            if str(item).strip()
+                        ],
+                        'compliance_relevance': str(
+                            question.get('compliance_relevance') or ''
+                        ).strip(),
                         'guidance': question.get('guidance')
                         if isinstance(question.get('guidance'), dict)
                         else {},
