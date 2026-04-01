@@ -115,21 +115,27 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     )
     story: list[Any] = []
 
+    score_box = Paragraph(
+        (
+            f"<font color='white' backColor='{_color_hex(_score_color(score, palette))}'>"
+            f"&nbsp;&nbsp;<b>{score:.2f}%</b>&nbsp;&nbsp;"
+            "</font>"
+        ),
+        styles["ScoreBoxStyle"],
+    )
+    maturity_pill = Paragraph(
+        _badge_html(maturity, _score_color(score, palette)),
+        styles["BadgeStyle"],
+    )
     cover_score = Table(
         [
             [
                 Paragraph("Overall Score", styles["LabelStyle"]),
-                Paragraph(
-                    f"<font color='{_color_hex(_score_color(score, palette))}'>{score:.2f}%</font>",
-                    styles["CoverMetric"],
-                ),
+                score_box,
             ],
             [
                 Paragraph("Maturity Level", styles["LabelStyle"]),
-                Paragraph(
-                    _badge_html(maturity, _maturity_color(maturity, palette)),
-                    styles["BadgeStyle"],
-                ),
+                maturity_pill,
             ],
             [
                 Paragraph("Summary", styles["LabelStyle"]),
@@ -181,11 +187,13 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     story.append(Paragraph("Executive Summary", styles["SectionHeading"]))
     story.append(Spacer(1, 10))
     overall_score_html = (
-        f"<font color='{_color_hex(_score_color(score, palette))}'>{score:.2f}%</font>"
+        f"<font color='white' backColor='{_color_hex(_score_color(score, palette))}'>"
+        f"&nbsp;&nbsp;<b>{score:.2f}%</b>&nbsp;&nbsp;"
+        "</font>"
     )
     metric_values = [
         ["Overall Score", overall_score_html],
-        ["Maturity Level", _badge_html(maturity, _maturity_color(maturity, palette))],
+        ["Maturity Level", _badge_html(maturity, _score_color(score, palette))],
         ["Priority Gaps", str(len(high_medium))],
     ]
     metric_cards = []
@@ -263,8 +271,8 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
 
     section_table = Table(
         section_rows,
-        colWidths=[81 * mm, 26 * mm, 38 * mm, 23 * mm],
-        rowHeights=10 * mm,
+        colWidths=[78 * mm, 25 * mm, 43 * mm, 22 * mm],
+        rowHeights=9.5 * mm,
     )
     alternating_rows = [
         ("BACKGROUND", (0, row), (-1, row), palette["row_alt"])
@@ -286,6 +294,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                 ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                 ("ALIGN", (1, 1), (1, -1), "RIGHT"),
                 ("ALIGN", (3, 1), (3, -1), "CENTER"),
+                ("ALIGN", (3, 0), (3, -1), "CENTER"),
                 *alternating_rows,
             ]
         )
@@ -308,7 +317,8 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
             actions_list = ListFlowable(
                 [ListItem(Paragraph(action, styles["BodyStyle"])) for action in gap["actions"]],
                 bulletType="bullet",
-                start="☐",
+                leftIndent=12,
+                bulletFontSize=8,
             )
             evidence_list = ListFlowable(
                 [
@@ -316,27 +326,23 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                     for evidence in gap["evidence"]
                 ],
                 bulletType="bullet",
+                leftIndent=12,
+                bulletFontSize=8,
             )
 
             # Keep priority + gap heading + first risk block together.
-            intro_block = KeepTogether(
-                [
-                    Paragraph(_badge_html(gap["priority"], priority_color), styles["BadgeStyle"]),
-                    Spacer(1, 4),
-                    Paragraph(f"Gap {gap_number}", styles["MutedStyle"]),
-                    Paragraph(gap["title"], styles["CardTitle"]),
-                    Spacer(1, 4),
-                    Paragraph("Risk", styles["LabelStyle"]),
-                    Paragraph(gap["risk"], styles["BodyStyle"]),
-                ]
-            )
             detail_block = [
+                [Paragraph(_badge_html(gap["priority"], priority_color), styles["BadgeStyle"])],
+                [Paragraph(f"Gap {gap_number}", styles["MutedStyle"])],
+                [Paragraph(gap["title"], styles["CardTitle"])],
+                [Paragraph("Risk", styles["LabelStyle"])],
+                [Paragraph(gap["risk"], styles["BodyStyle"])],
                 [Paragraph("Recommended Actions", styles["LabelStyle"])],
                 [actions_list],
                 [Paragraph("Evidence Required", styles["LabelStyle"])],
                 [evidence_list],
             ]
-            card = Table(detail_block, colWidths=[168 * mm])
+            card = Table(detail_block, colWidths=[168 * mm], splitByRow=0)
             card.setStyle(
                 TableStyle(
                     [
@@ -344,15 +350,19 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                         ("BOX", (0, 0), (-1, -1), 0.8, palette["light_border"]),
                         ("LEFTPADDING", (0, 0), (-1, -1), 10),
                         ("RIGHTPADDING", (0, 0), (-1, -1), 10),
-                        ("TOPPADDING", (0, 0), (-1, -1), 7),
-                        ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+                        ("TOPPADDING", (0, 0), (-1, -1), 6),
+                        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
                         ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                        ("TOPPADDING", (0, 2), (0, 2), 1),
+                        ("BOTTOMPADDING", (0, 2), (0, 2), 4),
+                        ("TOPPADDING", (0, 3), (0, 3), 3),
+                        ("TOPPADDING", (0, 5), (0, 5), 5),
+                        ("TOPPADDING", (0, 7), (0, 7), 5),
                     ]
                 )
             )
-            story.append(intro_block)
-            story.append(Spacer(1, 4))
-            story.append(card)
+            # Keep each gap as one cohesive block for cleaner pagination.
+            story.append(KeepTogether([card]))
             story.append(Spacer(1, 12))
 
     story.append(PageBreak())
@@ -368,9 +378,9 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
         evidence_lines = "<br/>".join(f"• {item}" for item in gap["evidence"])
         status_lines = "<br/>".join(
             [
-                "&#9633; Available",
-                "&#9633; In progress",
-                "&#9633; Not available",
+                "☐ Available",
+                "☐ In progress",
+                "☐ Not available",
             ]
         )
         appendix_rows.append(
@@ -381,11 +391,11 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                     styles["BadgeStyle"],
                 ),
                 Paragraph(evidence_lines, styles["BodyStyle"]),
-                Paragraph(status_lines, styles["BodyStyle"]),
+                Paragraph(status_lines, styles["ChecklistStyle"]),
             ]
         )
 
-    appendix = Table(appendix_rows, colWidths=[45 * mm, 24 * mm, 62 * mm, 37 * mm])
+    appendix = Table(appendix_rows, colWidths=[52 * mm, 22 * mm, 59 * mm, 35 * mm], repeatRows=1)
     appendix.setStyle(
         TableStyle(
             [
@@ -400,6 +410,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                 ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
                 ("VALIGN", (0, 0), (-1, -1), "TOP"),
                 ("ALIGN", (1, 1), (1, -1), "CENTER"),
+                ("ALIGN", (3, 1), (3, -1), "LEFT"),
             ]
         )
     )
@@ -544,6 +555,22 @@ def _build_pdf_styles(
             textColor=colors_mod.white,
             alignment=1,
         ),
+        "ScoreBoxStyle": paragraph_style(
+            "ScoreBoxStyle",
+            parent=base,
+            fontName="Helvetica-Bold",
+            fontSize=13,
+            leading=16,
+            textColor=colors_mod.white,
+        ),
+        "ChecklistStyle": paragraph_style(
+            "ChecklistStyle",
+            parent=base,
+            fontName="Helvetica",
+            fontSize=9.5,
+            leading=13,
+            textColor=palette["body"],
+        ),
     }
 
 
@@ -629,8 +656,19 @@ def _score_status(score: float) -> str:
 
 
 def _sanitize_visible_text(value: str) -> str:
-    # Strip internal control/question IDs from user-facing PDF text.
-    return re.sub(r"\b[a-z0-9]+(?:-[a-z0-9]+)*-q\d+\b", "", value, flags=re.IGNORECASE).strip()
+    # Remove internal IDs, normalize spacing, and patch common sentence fragments.
+    cleaned = re.sub(r"\b[a-z0-9]+(?:-[a-z0-9]+)*-q\d+\b", "", value, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    replacements = {
+        r"\bmapped to and section\b": "mapped to this control and its respective section",
+        r"tracking for \.": "tracking for this control.",
+        r"\bFor\s*,\s*this control\b": "This control",
+        r"\bFor\s*,": "This control",
+    }
+    for pattern, replacement in replacements.items():
+        cleaned = re.sub(pattern, replacement, cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s+([,.;:])", r"\1", cleaned)
+    return cleaned
 
 
 def _score_color(score: float, palette: dict[str, Any]) -> Any:
@@ -665,7 +703,9 @@ def _status_color(status: str, palette: dict[str, Any]) -> Any:
     lowered = status.lower()
     if lowered in {"strong"}:
         return palette["green"]
-    if lowered in {"needs improvement", "developing", "moderate"}:
+    if lowered in {"moderate"}:
+        return palette["teal"]
+    if lowered in {"needs improvement", "developing"}:
         return palette["amber"]
     return palette["red"]
 
