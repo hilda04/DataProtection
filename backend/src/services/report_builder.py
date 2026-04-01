@@ -55,11 +55,12 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     palette = {
         "navy": colors.HexColor("#12344D"),
         "teal": colors.HexColor("#1F8A8A"),
+        "slate": colors.HexColor("#334E68"),
         "green": colors.HexColor("#2E7D32"),
         "amber": colors.HexColor("#F9A825"),
         "orange": colors.HexColor("#EF6C00"),
         "red": colors.HexColor("#C62828"),
-        "off_white": colors.HexColor("#F7F9FB"),
+        "off_white": colors.HexColor("#F5F8FC"),
         "row_alt": colors.HexColor("#FAFCFE"),
         "light_border": colors.HexColor("#D9E2EC"),
         "body": colors.HexColor("#243B53"),
@@ -133,6 +134,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                 ("RIGHTPADDING", (0, 0), (-1, -1), 10),
                 ("TOPPADDING", (0, 0), (-1, -1), 8),
                 ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+                ("LINEBEFORE", (1, 0), (1, -1), 0.8, palette["light_border"]),
             ]
         )
     )
@@ -155,7 +157,8 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
         ]
     )
 
-    story.append(Paragraph("Executive Summary", styles["SectionHeading"]))
+    story.append(Paragraph("01  Executive Summary", styles["SectionHeading"]))
+    story.append(Paragraph("Assessment Overview", styles["SectionSubheading"]))
     story.append(Spacer(1, 10))
     metric_values = [
         ["Overall Score", _value_pill(f"{score:.2f}%", _score_band_fill(score, palette), styles)],
@@ -181,7 +184,11 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
             )
         )
         metric_cards.append(metric)
-    story.append(Table([metric_cards], colWidths=[56 * mm, 56 * mm, 56 * mm]))
+    metric_table = Table([metric_cards], colWidths=[56 * mm, 56 * mm, 56 * mm])
+    metric_table.setStyle(
+        TableStyle([("BOTTOMPADDING", (0, 0), (-1, -1), 2), ("TOPPADDING", (0, 0), (-1, -1), 2)])
+    )
+    story.append(metric_table)
 
     strongest, weakest = _section_highlights(sections)
     story.append(Spacer(1, 14))
@@ -197,6 +204,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     )
 
     story.append(Spacer(1, 10))
+    story.append(Spacer(1, 8))
     story.append(Paragraph("Top 5 Immediate Actions", styles["CardTitle"]))
     top_actions = high_medium[:5] if high_medium else normalized_actions[:5]
     story.append(
@@ -215,7 +223,8 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     )
     story.append(PageBreak())
 
-    story.append(Paragraph("Section Performance", styles["SectionHeading"]))
+    story.append(Paragraph("02  Section Performance", styles["SectionHeading"]))
+    story.append(Paragraph("Control Domain Breakdown", styles["SectionSubheading"]))
     story.append(Spacer(1, 10))
     section_rows = [["Section", "Score", "Status"]]
     score_backgrounds: list[tuple[int, Any]] = []
@@ -249,7 +258,8 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
         TableStyle(
             [
                 ("BACKGROUND", (0, 0), (-1, 0), palette["off_white"]),
-                ("TEXTCOLOR", (0, 0), (-1, 0), palette["navy"]),
+                ("BACKGROUND", (0, 0), (-1, 0), palette["navy"]),
+                ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
                 ("LINEBELOW", (0, 0), (-1, 0), 0.8, palette["light_border"]),
                 ("BOX", (0, 0), (-1, -1), 0.8, palette["light_border"]),
                 ("INNERGRID", (0, 0), (-1, -1), 0.4, palette["light_border"]),
@@ -276,7 +286,8 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
     story.append(section_table)
     story.append(PageBreak())
 
-    story.append(Paragraph("Remediation Plan", styles["SectionHeading"]))
+    story.append(Paragraph("03  Remediation Plan", styles["SectionHeading"]))
+    story.append(Paragraph("Prioritised Corrective Actions", styles["SectionSubheading"]))
     story.append(Spacer(1, 8))
     if not normalized_actions:
         story.append(
@@ -322,6 +333,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                     [
                         ("BACKGROUND", (0, 0), (-1, -1), palette["off_white"]),
                         ("BOX", (0, 0), (-1, -1), 0.8, palette["light_border"]),
+                        ("LINEBEFORE", (0, 0), (0, -1), 2.2, priority_color),
                         ("LEFTPADDING", (0, 0), (-1, -1), 10),
                         ("RIGHTPADDING", (0, 0), (-1, -1), 10),
                         ("TOPPADDING", (0, 0), (-1, -1), 6),
@@ -347,6 +359,7 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                 styles["SectionHeading"],
             )
         )
+        story.append(Paragraph("Documentary Evidence Tracker", styles["SectionSubheading"]))
         story.append(Spacer(1, 8))
         appendix_rows: list[list[Any]] = [["Gap", "Priority", "Evidence Required", "Status"]]
         for idx, gap in enumerate(normalized_actions, start=1):
@@ -380,8 +393,8 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
         appendix.setStyle(
             TableStyle(
                 [
-                    ("BACKGROUND", (0, 0), (-1, 0), palette["off_white"]),
-                    ("TEXTCOLOR", (0, 0), (-1, 0), palette["navy"]),
+                    ("BACKGROUND", (0, 0), (-1, 0), palette["navy"]),
+                    ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
                     ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
                     ("BOX", (0, 0), (-1, -1), 0.8, palette["light_border"]),
                     ("INNERGRID", (0, 0), (-1, -1), 0.4, palette["light_border"]),
@@ -452,6 +465,15 @@ def _build_pdf_styles(
             fontSize=15,
             leading=19,
             textColor=palette["navy"],
+        ),
+        "SectionSubheading": paragraph_style(
+            "SectionSubheading",
+            parent=base,
+            fontName="Helvetica",
+            fontSize=10,
+            leading=13,
+            textColor=palette["slate"],
+            spaceAfter=1,
         ),
         "CardTitle": paragraph_style(
             "CardTitle",
