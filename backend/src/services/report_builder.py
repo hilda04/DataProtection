@@ -510,10 +510,10 @@ def _normalize_recommendations(items: list[dict[str, Any]]) -> list[dict[str, An
         actions = item.get("actions")
         if not isinstance(actions, list) or not actions:
             fallback = item.get("action") or item.get("recommendation")
-            actions = [str(fallback or "Define and implement corrective controls.").strip()]
+            actions = [str(fallback or issue).strip()]
         evidence = item.get("evidence")
         if not isinstance(evidence, list) or not evidence:
-            evidence = ["Implementation plan and approval records."]
+            evidence = [issue]
         priority = str(item.get("priority") or item.get("severity") or "MEDIUM").upper()
         normalized_actions.append(
             {

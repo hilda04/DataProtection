@@ -16,14 +16,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Has leadership approved cybersecurity objectives tied to business outcomes?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For govern-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Has leadership approved cybersecurity objectives tied to business outcomes?' is governed, executed, and reviewable within Govern.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Govern, close gap govern-q1 by formalizing control execution for 'Has leadership approved cybersecurity objectives tied to business outcomes?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to govern-q1 and section 'Govern'.",
+              "Dated operating records showing execution of 'Has leadership approved cybersecurity objectives tied to business outcomes?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for govern-q1."
             ]
-          }
+          },
+          "recommendation": "In Govern, close gap govern-q1 by formalizing control execution for 'Has leadership approved cybersecurity objectives tied to business outcomes?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to govern-q1 and section 'Govern'.",
+            "Dated operating records showing execution of 'Has leadership approved cybersecurity objectives tied to business outcomes?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for govern-q1."
+          ],
+          "compliance_relevance": "For govern-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Has leadership approved cybersecurity objectives tied to business outcomes?' is governed, executed, and reviewable within Govern."
         },
         {
           "questionId": "govern-q2",
@@ -32,14 +41,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are cybersecurity roles and responsibilities documented and communicated?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For govern-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are cybersecurity roles and responsibilities documented and communicated?' is governed, executed, and reviewable within Govern.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Govern, close gap govern-q2 by formalizing control execution for 'Are cybersecurity roles and responsibilities documented and communicated?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to govern-q2 and section 'Govern'.",
+              "Dated operating records showing execution of 'Are cybersecurity roles and responsibilities documented and communicated?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for govern-q2."
             ]
-          }
+          },
+          "recommendation": "In Govern, close gap govern-q2 by formalizing control execution for 'Are cybersecurity roles and responsibilities documented and communicated?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to govern-q2 and section 'Govern'.",
+            "Dated operating records showing execution of 'Are cybersecurity roles and responsibilities documented and communicated?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for govern-q2."
+          ],
+          "compliance_relevance": "For govern-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are cybersecurity roles and responsibilities documented and communicated?' is governed, executed, and reviewable within Govern."
         },
         {
           "questionId": "govern-q3",
@@ -48,14 +66,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are policy exceptions formally approved and time-bound?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For govern-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are policy exceptions formally approved and time-bound?' is governed, executed, and reviewable within Govern.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Govern, close gap govern-q3 by formalizing control execution for 'Are policy exceptions formally approved and time-bound?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to govern-q3 and section 'Govern'.",
+              "Dated operating records showing execution of 'Are policy exceptions formally approved and time-bound?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for govern-q3."
             ]
-          }
+          },
+          "recommendation": "In Govern, close gap govern-q3 by formalizing control execution for 'Are policy exceptions formally approved and time-bound?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to govern-q3 and section 'Govern'.",
+            "Dated operating records showing execution of 'Are policy exceptions formally approved and time-bound?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for govern-q3."
+          ],
+          "compliance_relevance": "For govern-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are policy exceptions formally approved and time-bound?' is governed, executed, and reviewable within Govern."
         },
         {
           "questionId": "govern-q4",
@@ -64,14 +91,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are cybersecurity risks reviewed by governance forums on a defined cadence?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For govern-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are cybersecurity risks reviewed by governance forums on a defined cadence?' is governed, executed, and reviewable within Govern.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Govern, close gap govern-q4 by formalizing control execution for 'Are cybersecurity risks reviewed by governance forums on a defined cadence?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to govern-q4 and section 'Govern'.",
+              "Dated operating records showing execution of 'Are cybersecurity risks reviewed by governance forums on a defined cadence?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for govern-q4."
             ]
-          }
+          },
+          "recommendation": "In Govern, close gap govern-q4 by formalizing control execution for 'Are cybersecurity risks reviewed by governance forums on a defined cadence?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to govern-q4 and section 'Govern'.",
+            "Dated operating records showing execution of 'Are cybersecurity risks reviewed by governance forums on a defined cadence?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for govern-q4."
+          ],
+          "compliance_relevance": "For govern-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are cybersecurity risks reviewed by governance forums on a defined cadence?' is governed, executed, and reviewable within Govern."
         }
       ]
     },
@@ -87,14 +123,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Do you maintain an up-to-date inventory of hardware, software, and data assets?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For identify-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Do you maintain an up-to-date inventory of hardware, software, and data assets?' is governed, executed, and reviewable within Identify.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Identify, close gap identify-q1 by formalizing control execution for 'Do you maintain an up-to-date inventory of hardware, software, and data assets?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to identify-q1 and section 'Identify'.",
+              "Dated operating records showing execution of 'Do you maintain an up-to-date inventory of hardware, software, and data assets?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for identify-q1."
             ]
-          }
+          },
+          "recommendation": "In Identify, close gap identify-q1 by formalizing control execution for 'Do you maintain an up-to-date inventory of hardware, software, and data assets?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to identify-q1 and section 'Identify'.",
+            "Dated operating records showing execution of 'Do you maintain an up-to-date inventory of hardware, software, and data assets?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for identify-q1."
+          ],
+          "compliance_relevance": "For identify-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Do you maintain an up-to-date inventory of hardware, software, and data assets?' is governed, executed, and reviewable within Identify."
         },
         {
           "questionId": "identify-q2",
@@ -103,14 +148,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are critical services mapped to supporting systems and dependencies?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For identify-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are critical services mapped to supporting systems and dependencies?' is governed, executed, and reviewable within Identify.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Identify, close gap identify-q2 by formalizing control execution for 'Are critical services mapped to supporting systems and dependencies?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to identify-q2 and section 'Identify'.",
+              "Dated operating records showing execution of 'Are critical services mapped to supporting systems and dependencies?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for identify-q2."
             ]
-          }
+          },
+          "recommendation": "In Identify, close gap identify-q2 by formalizing control execution for 'Are critical services mapped to supporting systems and dependencies?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to identify-q2 and section 'Identify'.",
+            "Dated operating records showing execution of 'Are critical services mapped to supporting systems and dependencies?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for identify-q2."
+          ],
+          "compliance_relevance": "For identify-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are critical services mapped to supporting systems and dependencies?' is governed, executed, and reviewable within Identify."
         },
         {
           "questionId": "identify-q3",
@@ -119,14 +173,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are cybersecurity risks identified for new projects before go-live?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For identify-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are cybersecurity risks identified for new projects before go-live?' is governed, executed, and reviewable within Identify.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Identify, close gap identify-q3 by formalizing control execution for 'Are cybersecurity risks identified for new projects before go-live?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to identify-q3 and section 'Identify'.",
+              "Dated operating records showing execution of 'Are cybersecurity risks identified for new projects before go-live?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for identify-q3."
             ]
-          }
+          },
+          "recommendation": "In Identify, close gap identify-q3 by formalizing control execution for 'Are cybersecurity risks identified for new projects before go-live?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to identify-q3 and section 'Identify'.",
+            "Dated operating records showing execution of 'Are cybersecurity risks identified for new projects before go-live?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for identify-q3."
+          ],
+          "compliance_relevance": "For identify-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are cybersecurity risks identified for new projects before go-live?' is governed, executed, and reviewable within Identify."
         },
         {
           "questionId": "identify-q4",
@@ -135,14 +198,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are third-party dependencies included in risk identification activities?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For identify-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are third-party dependencies included in risk identification activities?' is governed, executed, and reviewable within Identify.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Identify, close gap identify-q4 by formalizing control execution for 'Are third-party dependencies included in risk identification activities?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to identify-q4 and section 'Identify'.",
+              "Dated operating records showing execution of 'Are third-party dependencies included in risk identification activities?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for identify-q4."
             ]
-          }
+          },
+          "recommendation": "In Identify, close gap identify-q4 by formalizing control execution for 'Are third-party dependencies included in risk identification activities?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to identify-q4 and section 'Identify'.",
+            "Dated operating records showing execution of 'Are third-party dependencies included in risk identification activities?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for identify-q4."
+          ],
+          "compliance_relevance": "For identify-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are third-party dependencies included in risk identification activities?' is governed, executed, and reviewable within Identify."
         }
       ]
     },
@@ -158,14 +230,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is MFA enforced for privileged and remote access accounts?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For protect-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Is MFA enforced for privileged and remote access accounts?' is governed, executed, and reviewable within Protect.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Protect, close gap protect-q1 by formalizing control execution for 'Is MFA enforced for privileged and remote access accounts?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to protect-q1 and section 'Protect'.",
+              "Dated operating records showing execution of 'Is MFA enforced for privileged and remote access accounts?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for protect-q1."
             ]
-          }
+          },
+          "recommendation": "In Protect, close gap protect-q1 by formalizing control execution for 'Is MFA enforced for privileged and remote access accounts?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to protect-q1 and section 'Protect'.",
+            "Dated operating records showing execution of 'Is MFA enforced for privileged and remote access accounts?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for protect-q1."
+          ],
+          "compliance_relevance": "For protect-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Is MFA enforced for privileged and remote access accounts?' is governed, executed, and reviewable within Protect."
         },
         {
           "questionId": "protect-q2",
@@ -174,14 +255,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are secure configuration baselines applied to critical systems?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For protect-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are secure configuration baselines applied to critical systems?' is governed, executed, and reviewable within Protect.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Protect, close gap protect-q2 by formalizing control execution for 'Are secure configuration baselines applied to critical systems?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to protect-q2 and section 'Protect'.",
+              "Dated operating records showing execution of 'Are secure configuration baselines applied to critical systems?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for protect-q2."
             ]
-          }
+          },
+          "recommendation": "In Protect, close gap protect-q2 by formalizing control execution for 'Are secure configuration baselines applied to critical systems?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to protect-q2 and section 'Protect'.",
+            "Dated operating records showing execution of 'Are secure configuration baselines applied to critical systems?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for protect-q2."
+          ],
+          "compliance_relevance": "For protect-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are secure configuration baselines applied to critical systems?' is governed, executed, and reviewable within Protect."
         },
         {
           "questionId": "protect-q3",
@@ -190,14 +280,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is sensitive data protected in transit and at rest?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For protect-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Is sensitive data protected in transit and at rest?' is governed, executed, and reviewable within Protect.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Protect, close gap protect-q3 by formalizing control execution for 'Is sensitive data protected in transit and at rest?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to protect-q3 and section 'Protect'.",
+              "Dated operating records showing execution of 'Is sensitive data protected in transit and at rest?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for protect-q3."
             ]
-          }
+          },
+          "recommendation": "In Protect, close gap protect-q3 by formalizing control execution for 'Is sensitive data protected in transit and at rest?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to protect-q3 and section 'Protect'.",
+            "Dated operating records showing execution of 'Is sensitive data protected in transit and at rest?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for protect-q3."
+          ],
+          "compliance_relevance": "For protect-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Is sensitive data protected in transit and at rest?' is governed, executed, and reviewable within Protect."
         },
         {
           "questionId": "protect-q4",
@@ -206,14 +305,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are staff granted access based on least privilege and business need?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For protect-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are staff granted access based on least privilege and business need?' is governed, executed, and reviewable within Protect.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Protect, close gap protect-q4 by formalizing control execution for 'Are staff granted access based on least privilege and business need?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to protect-q4 and section 'Protect'.",
+              "Dated operating records showing execution of 'Are staff granted access based on least privilege and business need?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for protect-q4."
             ]
-          }
+          },
+          "recommendation": "In Protect, close gap protect-q4 by formalizing control execution for 'Are staff granted access based on least privilege and business need?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to protect-q4 and section 'Protect'.",
+            "Dated operating records showing execution of 'Are staff granted access based on least privilege and business need?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for protect-q4."
+          ],
+          "compliance_relevance": "For protect-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are staff granted access based on least privilege and business need?' is governed, executed, and reviewable within Protect."
         }
       ]
     },
@@ -229,14 +337,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are security logs from critical systems centrally collected and retained?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For detect-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are security logs from critical systems centrally collected and retained?' is governed, executed, and reviewable within Detect.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Detect, close gap detect-q1 by formalizing control execution for 'Are security logs from critical systems centrally collected and retained?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to detect-q1 and section 'Detect'.",
+              "Dated operating records showing execution of 'Are security logs from critical systems centrally collected and retained?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for detect-q1."
             ]
-          }
+          },
+          "recommendation": "In Detect, close gap detect-q1 by formalizing control execution for 'Are security logs from critical systems centrally collected and retained?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to detect-q1 and section 'Detect'.",
+            "Dated operating records showing execution of 'Are security logs from critical systems centrally collected and retained?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for detect-q1."
+          ],
+          "compliance_relevance": "For detect-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are security logs from critical systems centrally collected and retained?' is governed, executed, and reviewable within Detect."
         },
         {
           "questionId": "detect-q2",
@@ -245,14 +362,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are suspicious activities monitored with defined alert thresholds?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For detect-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are suspicious activities monitored with defined alert thresholds?' is governed, executed, and reviewable within Detect.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Detect, close gap detect-q2 by formalizing control execution for 'Are suspicious activities monitored with defined alert thresholds?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to detect-q2 and section 'Detect'.",
+              "Dated operating records showing execution of 'Are suspicious activities monitored with defined alert thresholds?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for detect-q2."
             ]
-          }
+          },
+          "recommendation": "In Detect, close gap detect-q2 by formalizing control execution for 'Are suspicious activities monitored with defined alert thresholds?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to detect-q2 and section 'Detect'.",
+            "Dated operating records showing execution of 'Are suspicious activities monitored with defined alert thresholds?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for detect-q2."
+          ],
+          "compliance_relevance": "For detect-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are suspicious activities monitored with defined alert thresholds?' is governed, executed, and reviewable within Detect."
         },
         {
           "questionId": "detect-q3",
@@ -261,14 +387,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are detection rules regularly tuned based on incidents and threat intelligence?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For detect-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are detection rules regularly tuned based on incidents and threat intelligence?' is governed, executed, and reviewable within Detect.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Detect, close gap detect-q3 by formalizing control execution for 'Are detection rules regularly tuned based on incidents and threat intelligence?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to detect-q3 and section 'Detect'.",
+              "Dated operating records showing execution of 'Are detection rules regularly tuned based on incidents and threat intelligence?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for detect-q3."
             ]
-          }
+          },
+          "recommendation": "In Detect, close gap detect-q3 by formalizing control execution for 'Are detection rules regularly tuned based on incidents and threat intelligence?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to detect-q3 and section 'Detect'.",
+            "Dated operating records showing execution of 'Are detection rules regularly tuned based on incidents and threat intelligence?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for detect-q3."
+          ],
+          "compliance_relevance": "For detect-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are detection rules regularly tuned based on incidents and threat intelligence?' is governed, executed, and reviewable within Detect."
         },
         {
           "questionId": "detect-q4",
@@ -277,14 +412,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are detection coverage gaps tracked and remediated?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For detect-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are detection coverage gaps tracked and remediated?' is governed, executed, and reviewable within Detect.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Detect, close gap detect-q4 by formalizing control execution for 'Are detection coverage gaps tracked and remediated?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to detect-q4 and section 'Detect'.",
+              "Dated operating records showing execution of 'Are detection coverage gaps tracked and remediated?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for detect-q4."
             ]
-          }
+          },
+          "recommendation": "In Detect, close gap detect-q4 by formalizing control execution for 'Are detection coverage gaps tracked and remediated?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to detect-q4 and section 'Detect'.",
+            "Dated operating records showing execution of 'Are detection coverage gaps tracked and remediated?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for detect-q4."
+          ],
+          "compliance_relevance": "For detect-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are detection coverage gaps tracked and remediated?' is governed, executed, and reviewable within Detect."
         }
       ]
     },
@@ -300,14 +444,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is there a tested incident response plan for cyber events?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For respond-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Is there a tested incident response plan for cyber events?' is governed, executed, and reviewable within Respond.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Respond, close gap respond-q1 by formalizing control execution for 'Is there a tested incident response plan for cyber events?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to respond-q1 and section 'Respond'.",
+              "Dated operating records showing execution of 'Is there a tested incident response plan for cyber events?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for respond-q1."
             ]
-          }
+          },
+          "recommendation": "In Respond, close gap respond-q1 by formalizing control execution for 'Is there a tested incident response plan for cyber events?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to respond-q1 and section 'Respond'.",
+            "Dated operating records showing execution of 'Is there a tested incident response plan for cyber events?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for respond-q1."
+          ],
+          "compliance_relevance": "For respond-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Is there a tested incident response plan for cyber events?' is governed, executed, and reviewable within Respond."
         },
         {
           "questionId": "respond-q2",
@@ -316,14 +469,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are incident severity levels and escalation paths clearly defined?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For respond-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are incident severity levels and escalation paths clearly defined?' is governed, executed, and reviewable within Respond.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Respond, close gap respond-q2 by formalizing control execution for 'Are incident severity levels and escalation paths clearly defined?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to respond-q2 and section 'Respond'.",
+              "Dated operating records showing execution of 'Are incident severity levels and escalation paths clearly defined?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for respond-q2."
             ]
-          }
+          },
+          "recommendation": "In Respond, close gap respond-q2 by formalizing control execution for 'Are incident severity levels and escalation paths clearly defined?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to respond-q2 and section 'Respond'.",
+            "Dated operating records showing execution of 'Are incident severity levels and escalation paths clearly defined?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for respond-q2."
+          ],
+          "compliance_relevance": "For respond-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are incident severity levels and escalation paths clearly defined?' is governed, executed, and reviewable within Respond."
         },
         {
           "questionId": "respond-q3",
@@ -332,14 +494,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are legal, compliance, and communications teams included in incident response?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For respond-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are legal, compliance, and communications teams included in incident response?' is governed, executed, and reviewable within Respond.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Respond, close gap respond-q3 by formalizing control execution for 'Are legal, compliance, and communications teams included in incident response?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to respond-q3 and section 'Respond'.",
+              "Dated operating records showing execution of 'Are legal, compliance, and communications teams included in incident response?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for respond-q3."
             ]
-          }
+          },
+          "recommendation": "In Respond, close gap respond-q3 by formalizing control execution for 'Are legal, compliance, and communications teams included in incident response?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to respond-q3 and section 'Respond'.",
+            "Dated operating records showing execution of 'Are legal, compliance, and communications teams included in incident response?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for respond-q3."
+          ],
+          "compliance_relevance": "For respond-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are legal, compliance, and communications teams included in incident response?' is governed, executed, and reviewable within Respond."
         },
         {
           "questionId": "respond-q4",
@@ -348,14 +519,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are lessons learned documented and fed into control improvements?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For respond-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are lessons learned documented and fed into control improvements?' is governed, executed, and reviewable within Respond.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Respond, close gap respond-q4 by formalizing control execution for 'Are lessons learned documented and fed into control improvements?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to respond-q4 and section 'Respond'.",
+              "Dated operating records showing execution of 'Are lessons learned documented and fed into control improvements?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for respond-q4."
             ]
-          }
+          },
+          "recommendation": "In Respond, close gap respond-q4 by formalizing control execution for 'Are lessons learned documented and fed into control improvements?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to respond-q4 and section 'Respond'.",
+            "Dated operating records showing execution of 'Are lessons learned documented and fed into control improvements?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for respond-q4."
+          ],
+          "compliance_relevance": "For respond-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are lessons learned documented and fed into control improvements?' is governed, executed, and reviewable within Respond."
         }
       ]
     },
@@ -371,14 +551,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are disaster recovery plans defined for critical digital services?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For recover-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are disaster recovery plans defined for critical digital services?' is governed, executed, and reviewable within Recover.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Recover, close gap recover-q1 by formalizing control execution for 'Are disaster recovery plans defined for critical digital services?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to recover-q1 and section 'Recover'.",
+              "Dated operating records showing execution of 'Are disaster recovery plans defined for critical digital services?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for recover-q1."
             ]
-          }
+          },
+          "recommendation": "In Recover, close gap recover-q1 by formalizing control execution for 'Are disaster recovery plans defined for critical digital services?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to recover-q1 and section 'Recover'.",
+            "Dated operating records showing execution of 'Are disaster recovery plans defined for critical digital services?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for recover-q1."
+          ],
+          "compliance_relevance": "For recover-q1, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are disaster recovery plans defined for critical digital services?' is governed, executed, and reviewable within Recover."
         },
         {
           "questionId": "recover-q2",
@@ -387,14 +576,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are recovery time objectives tested and reported to management?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For recover-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are recovery time objectives tested and reported to management?' is governed, executed, and reviewable within Recover.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Recover, close gap recover-q2 by formalizing control execution for 'Are recovery time objectives tested and reported to management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to recover-q2 and section 'Recover'.",
+              "Dated operating records showing execution of 'Are recovery time objectives tested and reported to management?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for recover-q2."
             ]
-          }
+          },
+          "recommendation": "In Recover, close gap recover-q2 by formalizing control execution for 'Are recovery time objectives tested and reported to management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to recover-q2 and section 'Recover'.",
+            "Dated operating records showing execution of 'Are recovery time objectives tested and reported to management?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for recover-q2."
+          ],
+          "compliance_relevance": "For recover-q2, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are recovery time objectives tested and reported to management?' is governed, executed, and reviewable within Recover."
         },
         {
           "questionId": "recover-q3",
@@ -403,14 +601,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are backups tested for integrity and restoration success?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For recover-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are backups tested for integrity and restoration success?' is governed, executed, and reviewable within Recover.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Recover, close gap recover-q3 by formalizing control execution for 'Are backups tested for integrity and restoration success?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to recover-q3 and section 'Recover'.",
+              "Dated operating records showing execution of 'Are backups tested for integrity and restoration success?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for recover-q3."
             ]
-          }
+          },
+          "recommendation": "In Recover, close gap recover-q3 by formalizing control execution for 'Are backups tested for integrity and restoration success?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to recover-q3 and section 'Recover'.",
+            "Dated operating records showing execution of 'Are backups tested for integrity and restoration success?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for recover-q3."
+          ],
+          "compliance_relevance": "For recover-q3, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Are backups tested for integrity and restoration success?' is governed, executed, and reviewable within Recover."
         },
         {
           "questionId": "recover-q4",
@@ -419,14 +626,23 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is stakeholder communication prepared for major service disruptions?",
-            "risk": "If this is not in place, control reliability and compliance evidence may be weak.",
+            "risk": "For recover-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Is stakeholder communication prepared for major service disruptions?' is governed, executed, and reviewable within Recover.",
             "actions": [
-              "Define, implement, and evidence this control."
+              "In Recover, close gap recover-q4 by formalizing control execution for 'Is stakeholder communication prepared for major service disruptions?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions."
             ],
             "evidence": [
-              "Policy, records, and approval evidence."
+              "Approved procedure or standard mapped to recover-q4 and section 'Recover'.",
+              "Dated operating records showing execution of 'Is stakeholder communication prepared for major service disruptions?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for recover-q4."
             ]
-          }
+          },
+          "recommendation": "In Recover, close gap recover-q4 by formalizing control execution for 'Is stakeholder communication prepared for major service disruptions?'. Document accountable ownership, implementation milestones, and operating cadence aligned to the NIST CSF 2.0 lifecycle across Govern, Identify, Protect, Detect, Respond, and Recover functions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to recover-q4 and section 'Recover'.",
+            "Dated operating records showing execution of 'Is stakeholder communication prepared for major service disruptions?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for recover-q4."
+          ],
+          "compliance_relevance": "For recover-q4, this control improves measurable risk-management maturity and repeatable cybersecurity lifecycle execution by proving that 'Is stakeholder communication prepared for major service disruptions?' is governed, executed, and reviewable within Recover."
         }
       ]
     }

@@ -15,15 +15,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Governance & Compliance policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for governance & compliance?",
+            "risk": "For governance-and-compliance-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for governance & compliance?' is governed, executed, and reviewable within Governance & Compliance.",
             "actions": [
-              "Define and approve policy requirements."
+              "In Governance & Compliance, close gap governance-and-compliance-q1 by formalizing control execution for 'Is there a documented policy for governance & compliance?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to governance-and-compliance-q1 and section 'Governance & Compliance'.",
+              "Dated operating records showing execution of 'Is there a documented policy for governance & compliance?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-compliance-q1."
             ]
-          }
+          },
+          "recommendation": "In Governance & Compliance, close gap governance-and-compliance-q1 by formalizing control execution for 'Is there a documented policy for governance & compliance?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to governance-and-compliance-q1 and section 'Governance & Compliance'.",
+            "Dated operating records showing execution of 'Is there a documented policy for governance & compliance?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-compliance-q1."
+          ],
+          "compliance_relevance": "For governance-and-compliance-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for governance & compliance?' is governed, executed, and reviewable within Governance & Compliance."
         }
       ]
     },
@@ -38,15 +47,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Data Protection & Confidentiality policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for data protection & confidentiality?",
+            "risk": "For data-protection-and-confidentiality-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for data protection & confidentiality?' is governed, executed, and reviewable within Data Protection & Confidentiality.",
             "actions": [
-              "Define and approve policy requirements."
+              "In Data Protection & Confidentiality, close gap data-protection-and-confidentiality-q1 by formalizing control execution for 'Is there a documented policy for data protection & confidentiality?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to data-protection-and-confidentiality-q1 and section 'Data Protection & Confidentiality'.",
+              "Dated operating records showing execution of 'Is there a documented policy for data protection & confidentiality?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for data-protection-and-confidentiality-q1."
             ]
-          }
+          },
+          "recommendation": "In Data Protection & Confidentiality, close gap data-protection-and-confidentiality-q1 by formalizing control execution for 'Is there a documented policy for data protection & confidentiality?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to data-protection-and-confidentiality-q1 and section 'Data Protection & Confidentiality'.",
+            "Dated operating records showing execution of 'Is there a documented policy for data protection & confidentiality?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for data-protection-and-confidentiality-q1."
+          ],
+          "compliance_relevance": "For data-protection-and-confidentiality-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for data protection & confidentiality?' is governed, executed, and reviewable within Data Protection & Confidentiality."
         }
       ]
     },
@@ -61,15 +79,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Risk Management policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for risk management?",
+            "risk": "For risk-management-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for risk management?' is governed, executed, and reviewable within Risk Management.",
             "actions": [
-              "Define and approve policy requirements."
+              "In Risk Management, close gap risk-management-q1 by formalizing control execution for 'Is there a documented policy for risk management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to risk-management-q1 and section 'Risk Management'.",
+              "Dated operating records showing execution of 'Is there a documented policy for risk management?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-q1."
             ]
-          }
+          },
+          "recommendation": "In Risk Management, close gap risk-management-q1 by formalizing control execution for 'Is there a documented policy for risk management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to risk-management-q1 and section 'Risk Management'.",
+            "Dated operating records showing execution of 'Is there a documented policy for risk management?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-q1."
+          ],
+          "compliance_relevance": "For risk-management-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for risk management?' is governed, executed, and reviewable within Risk Management."
         }
       ]
     },
@@ -84,15 +111,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address IT Systems & Security policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for it systems & security?",
+            "risk": "For it-systems-and-security-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for it systems & security?' is governed, executed, and reviewable within IT Systems & Security.",
             "actions": [
-              "Define and approve policy requirements."
+              "In IT Systems & Security, close gap it-systems-and-security-q1 by formalizing control execution for 'Is there a documented policy for it systems & security?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to it-systems-and-security-q1 and section 'IT Systems & Security'.",
+              "Dated operating records showing execution of 'Is there a documented policy for it systems & security?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for it-systems-and-security-q1."
             ]
-          }
+          },
+          "recommendation": "In IT Systems & Security, close gap it-systems-and-security-q1 by formalizing control execution for 'Is there a documented policy for it systems & security?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to it-systems-and-security-q1 and section 'IT Systems & Security'.",
+            "Dated operating records showing execution of 'Is there a documented policy for it systems & security?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for it-systems-and-security-q1."
+          ],
+          "compliance_relevance": "For it-systems-and-security-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for it systems & security?' is governed, executed, and reviewable within IT Systems & Security."
         }
       ]
     },
@@ -107,15 +143,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Financial Controls policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for financial controls?",
+            "risk": "For financial-controls-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for financial controls?' is governed, executed, and reviewable within Financial Controls.",
             "actions": [
-              "Define and approve policy requirements."
+              "In Financial Controls, close gap financial-controls-q1 by formalizing control execution for 'Is there a documented policy for financial controls?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to financial-controls-q1 and section 'Financial Controls'.",
+              "Dated operating records showing execution of 'Is there a documented policy for financial controls?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for financial-controls-q1."
             ]
-          }
+          },
+          "recommendation": "In Financial Controls, close gap financial-controls-q1 by formalizing control execution for 'Is there a documented policy for financial controls?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to financial-controls-q1 and section 'Financial Controls'.",
+            "Dated operating records showing execution of 'Is there a documented policy for financial controls?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for financial-controls-q1."
+          ],
+          "compliance_relevance": "For financial-controls-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for financial controls?' is governed, executed, and reviewable within Financial Controls."
         }
       ]
     },
@@ -130,15 +175,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Business Continuity policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for business continuity?",
+            "risk": "For business-continuity-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity.",
             "actions": [
-              "Define and approve policy requirements."
+              "In Business Continuity, close gap business-continuity-q1 by formalizing control execution for 'Is there a documented policy for business continuity?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to business-continuity-q1 and section 'Business Continuity'.",
+              "Dated operating records showing execution of 'Is there a documented policy for business continuity?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1."
             ]
-          }
+          },
+          "recommendation": "In Business Continuity, close gap business-continuity-q1 by formalizing control execution for 'Is there a documented policy for business continuity?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to business-continuity-q1 and section 'Business Continuity'.",
+            "Dated operating records showing execution of 'Is there a documented policy for business continuity?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1."
+          ],
+          "compliance_relevance": "For business-continuity-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity."
         }
       ]
     }

@@ -15,15 +15,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Governance & Oversight policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for governance & oversight?",
+            "risk": "For governance-and-oversight-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for governance & oversight?' is governed, executed, and reviewable within Governance & Oversight.",
             "actions": [
-              "Define and approve policy requirements."
+              "In Governance & Oversight, close gap governance-and-oversight-q1 by formalizing control execution for 'Is there a documented policy for governance & oversight?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to governance-and-oversight-q1 and section 'Governance & Oversight'.",
+              "Dated operating records showing execution of 'Is there a documented policy for governance & oversight?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-oversight-q1."
             ]
-          }
+          },
+          "recommendation": "In Governance & Oversight, close gap governance-and-oversight-q1 by formalizing control execution for 'Is there a documented policy for governance & oversight?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to governance-and-oversight-q1 and section 'Governance & Oversight'.",
+            "Dated operating records showing execution of 'Is there a documented policy for governance & oversight?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-oversight-q1."
+          ],
+          "compliance_relevance": "For governance-and-oversight-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for governance & oversight?' is governed, executed, and reviewable within Governance & Oversight."
         }
       ]
     },
@@ -38,15 +47,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Risk Management Framework policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for risk management framework?",
+            "risk": "For risk-management-framework-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for risk management framework?' is governed, executed, and reviewable within Risk Management Framework.",
             "actions": [
-              "Define and approve policy requirements."
+              "In Risk Management Framework, close gap risk-management-framework-q1 by formalizing control execution for 'Is there a documented policy for risk management framework?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to risk-management-framework-q1 and section 'Risk Management Framework'.",
+              "Dated operating records showing execution of 'Is there a documented policy for risk management framework?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-framework-q1."
             ]
-          }
+          },
+          "recommendation": "In Risk Management Framework, close gap risk-management-framework-q1 by formalizing control execution for 'Is there a documented policy for risk management framework?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to risk-management-framework-q1 and section 'Risk Management Framework'.",
+            "Dated operating records showing execution of 'Is there a documented policy for risk management framework?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-framework-q1."
+          ],
+          "compliance_relevance": "For risk-management-framework-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for risk management framework?' is governed, executed, and reviewable within Risk Management Framework."
         }
       ]
     },
@@ -61,15 +79,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Operational Risk policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for operational risk?",
+            "risk": "For operational-risk-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for operational risk?' is governed, executed, and reviewable within Operational Risk.",
             "actions": [
-              "Define and approve policy requirements."
+              "In Operational Risk, close gap operational-risk-q1 by formalizing control execution for 'Is there a documented policy for operational risk?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to operational-risk-q1 and section 'Operational Risk'.",
+              "Dated operating records showing execution of 'Is there a documented policy for operational risk?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for operational-risk-q1."
             ]
-          }
+          },
+          "recommendation": "In Operational Risk, close gap operational-risk-q1 by formalizing control execution for 'Is there a documented policy for operational risk?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to operational-risk-q1 and section 'Operational Risk'.",
+            "Dated operating records showing execution of 'Is there a documented policy for operational risk?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for operational-risk-q1."
+          ],
+          "compliance_relevance": "For operational-risk-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for operational risk?' is governed, executed, and reviewable within Operational Risk."
         }
       ]
     },
@@ -84,15 +111,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address IT & Systems Security policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for it & systems security?",
+            "risk": "For it-and-systems-security-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for it & systems security?' is governed, executed, and reviewable within IT & Systems Security.",
             "actions": [
-              "Define and approve policy requirements."
+              "In IT & Systems Security, close gap it-and-systems-security-q1 by formalizing control execution for 'Is there a documented policy for it & systems security?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to it-and-systems-security-q1 and section 'IT & Systems Security'.",
+              "Dated operating records showing execution of 'Is there a documented policy for it & systems security?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for it-and-systems-security-q1."
             ]
-          }
+          },
+          "recommendation": "In IT & Systems Security, close gap it-and-systems-security-q1 by formalizing control execution for 'Is there a documented policy for it & systems security?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to it-and-systems-security-q1 and section 'IT & Systems Security'.",
+            "Dated operating records showing execution of 'Is there a documented policy for it & systems security?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for it-and-systems-security-q1."
+          ],
+          "compliance_relevance": "For it-and-systems-security-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for it & systems security?' is governed, executed, and reviewable within IT & Systems Security."
         }
       ]
     },
@@ -107,15 +143,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Business Continuity policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for business continuity?",
+            "risk": "For business-continuity-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity.",
             "actions": [
-              "Define and approve policy requirements."
+              "In Business Continuity, close gap business-continuity-q1 by formalizing control execution for 'Is there a documented policy for business continuity?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to business-continuity-q1 and section 'Business Continuity'.",
+              "Dated operating records showing execution of 'Is there a documented policy for business continuity?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1."
             ]
-          }
+          },
+          "recommendation": "In Business Continuity, close gap business-continuity-q1 by formalizing control execution for 'Is there a documented policy for business continuity?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to business-continuity-q1 and section 'Business Continuity'.",
+            "Dated operating records showing execution of 'Is there a documented policy for business continuity?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1."
+          ],
+          "compliance_relevance": "For business-continuity-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity."
         }
       ]
     },
@@ -130,15 +175,24 @@
           "weight": 1,
           "expectedAnswer": "yes",
           "guidance": {
-            "title": "Address Compliance & Reporting policy gaps",
-            "risk": "Lack of documented controls can increase compliance and operational risk.",
+            "title": "Is there a documented policy for compliance & reporting?",
+            "risk": "For compliance-and-reporting-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for compliance & reporting?' is governed, executed, and reviewable within Compliance & Reporting.",
             "actions": [
-              "Define and approve policy requirements."
+              "In Compliance & Reporting, close gap compliance-and-reporting-q1 by formalizing control execution for 'Is there a documented policy for compliance & reporting?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
             ],
             "evidence": [
-              "Approved policy documentation."
+              "Approved procedure or standard mapped to compliance-and-reporting-q1 and section 'Compliance & Reporting'.",
+              "Dated operating records showing execution of 'Is there a documented policy for compliance & reporting?' over the latest review cycle.",
+              "Management or committee evidence confirming oversight decisions and remediation tracking for compliance-and-reporting-q1."
             ]
-          }
+          },
+          "recommendation": "In Compliance & Reporting, close gap compliance-and-reporting-q1 by formalizing control execution for 'Is there a documented policy for compliance & reporting?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to compliance-and-reporting-q1 and section 'Compliance & Reporting'.",
+            "Dated operating records showing execution of 'Is there a documented policy for compliance & reporting?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for compliance-and-reporting-q1."
+          ],
+          "compliance_relevance": "For compliance-and-reporting-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for compliance & reporting?' is governed, executed, and reviewable within Compliance & Reporting."
         }
       ]
     }
