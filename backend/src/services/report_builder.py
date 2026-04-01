@@ -286,10 +286,16 @@ def build_assessment_report_pdf(report: dict[str, Any]) -> bytes:
                 Spacer(1, 4),
                 Paragraph("Evidence Required", styles["LabelStyle"]),
                 evidence_list,
-                Spacer(1, 4),
-                Paragraph("Compliance Relevance", styles["LabelStyle"]),
-                Paragraph(gap["compliance_relevance"], styles["BodyStyle"]),
             ]
+            compliance_relevance = str(gap.get("compliance_relevance") or "").strip()
+            if compliance_relevance:
+                card_content.extend(
+                    [
+                        Spacer(1, 4),
+                        Paragraph("Compliance Relevance", styles["LabelStyle"]),
+                        Paragraph(compliance_relevance, styles["BodyStyle"]),
+                    ]
+                )
 
             card = Table(
                 [[Paragraph(gap["priority"], priority_style)], [card_content]],
@@ -509,11 +515,15 @@ def _normalize_recommendations(items: list[dict[str, Any]]) -> list[dict[str, An
         risk = str(item.get("risk") or item.get("risk_level") or "Risk not specified")
         actions = item.get("actions")
         if not isinstance(actions, list) or not actions:
-            fallback = item.get("action") or item.get("recommendation")
-            actions = [str(fallback or issue).strip()]
+            fallback = str(item.get("action") or item.get("recommendation") or "").strip()
+            actions = (
+                [fallback]
+                if fallback
+                else ["Review this control and define a remediation plan."]
+            )
         evidence = item.get("evidence")
         if not isinstance(evidence, list) or not evidence:
-            evidence = [issue]
+            evidence = ["Documented remediation plan and implementation evidence."]
         priority = str(item.get("priority") or item.get("severity") or "MEDIUM").upper()
         normalized_actions.append(
             {
@@ -522,32 +532,20 @@ def _normalize_recommendations(items: list[dict[str, Any]]) -> list[dict[str, An
                 "priority": priority if priority in {"HIGH", "MEDIUM"} else "MEDIUM",
                 "actions": [str(action).strip() for action in actions if str(action).strip()],
                 "evidence": [str(entry).strip() for entry in evidence if str(entry).strip()],
-                "compliance_relevance": _compliance_relevance(item, issue, risk),
+                "compliance_relevance": _compliance_relevance(item),
             }
         )
     return normalized_actions
 
 
-def _compliance_relevance(item: dict[str, Any], title: str, risk: str) -> str:
+def _compliance_relevance(item: dict[str, Any]) -> str:
     explicit = item.get("compliance_relevance") or item.get("complianceRelevance")
     if explicit:
         return str(explicit).strip()
     legal_context = item.get("legal_context") or item.get("legalContext")
     if legal_context:
         return str(legal_context).strip()
-    lowered_title = title.lower()
-    lowered_risk = risk.lower()
-    if "incident" in lowered_title or "breach" in lowered_title or "breach" in lowered_risk:
-        return (
-            "Supports timely breach governance and reduces regulatory exposure "
-            "from delayed response."
-        )
-    if "retention" in lowered_title or "disposal" in lowered_title:
-        return (
-            "Supports accountable data lifecycle management and reduces regulatory exposure "
-            "from weak retention and disposal controls."
-        )
-    return "Strengthens demonstrable accountability and supports defensible compliance oversight."
+    return ""
 
 
 def _section_highlights(sections: list[dict[str, Any]]) -> tuple[str, str]:

@@ -235,6 +235,7 @@ class DataStore:
             'entityType': 'ASSESSMENT',
             'assessmentId': assessment_id,
             'frameworkId': resolved_framework_id,
+            'frameworkVersion': str(framework.get('version') or ''),
             'organisationId': organisation_id,
             'createdBy': user['sub'],
             'createdAt': now,
@@ -425,6 +426,7 @@ class DataStore:
             'entityType': 'ASSESSMENT',
             'assessmentId': new_assessment_id,
             'frameworkId': framework_id,
+            'frameworkVersion': str(framework.get('version') or ''),
             'organisationId': organisation_id,
             'createdBy': user['sub'],
             'createdAt': now,
@@ -678,10 +680,14 @@ class DataStore:
                 'seedItemFound': bool(item),
             },
         )
+        local_sections = self._load_assessment_sections(framework)
         if (
             item
             and self._framework_contains_questions(item)
-            and self._framework_contains_guidance(item)
+            and not self._assessment_sections_are_stale(
+                self._normalise_framework_sections(item.get('sections', [])),
+                local_sections,
+            )
         ):
             return item
 
@@ -724,22 +730,20 @@ class DataStore:
     def _sections_have_questions(self, sections: list[Dict[str, Any]]) -> bool:
         return any(section.get('questions') for section in sections if isinstance(section, dict))
 
-    def _framework_contains_guidance(self, framework: Dict[str, Any]) -> bool:
-        sections = self._normalise_framework_sections(framework.get('sections', []))
-        for section in sections:
-            for question in section.get('questions', []):
-                guidance = question.get('guidance')
-                if not isinstance(guidance, dict):
-                    return False
-                if not all(
-                    guidance.get(field)
-                    for field in ('title', 'risk', 'actions', 'evidence')
-                ):
-                    return False
-        return True
-
     def _load_assessment_sections(self, framework: Dict[str, Any]) -> list[Dict[str, Any]]:
         sections = self._normalise_framework_sections(framework.get('sections', []))
+        logger.info(
+            'Loaded framework sections for assessment snapshot.',
+            extra={
+                'frameworkId': framework.get('frameworkId'),
+                'frameworkVersion': framework.get('version'),
+                'sectionCount': len(sections),
+                'questionCountBySection': {
+                    section.get('sectionId'): len(section.get('questions', []))
+                    for section in sections
+                },
+            },
+        )
         if not self._sections_have_questions(sections):
             logger.warning(
                 'Assessment framework sections do not include questions.',
@@ -753,9 +757,73 @@ class DataStore:
         snapshot_sections = self._normalise_framework_sections(
             assessment.get('assessmentSections') or []
         )
-        if self._sections_have_questions(snapshot_sections):
+        current_sections = self._load_assessment_sections(framework)
+        if self._sections_have_questions(
+            snapshot_sections
+        ) and not self._assessment_sections_are_stale(
+            snapshot_sections,
+            current_sections,
+        ):
             return snapshot_sections
-        return self._load_assessment_sections(framework)
+        logger.info(
+            'Assessment section snapshot is stale; using latest framework definition.',
+            extra={
+                'assessmentId': assessment.get('assessmentId'),
+                'frameworkId': framework.get('frameworkId'),
+                'frameworkVersion': framework.get('version'),
+            },
+        )
+        return current_sections
+
+    def _assessment_sections_are_stale(
+        self, snapshot_sections: list[Dict[str, Any]], framework_sections: list[Dict[str, Any]]
+    ) -> bool:
+        # Developer note:
+        # Framework freshness is enforced here by comparing each stored snapshot section/question
+        # against the latest framework definition. If stale, callers must reload from framework.
+        framework_section_lookup = {
+            str(section.get('sectionId')): section for section in framework_sections
+        }
+        for snapshot_section in snapshot_sections:
+            snapshot_section_id = str(snapshot_section.get('sectionId') or '').strip()
+            if not snapshot_section_id:
+                return True
+            framework_section = framework_section_lookup.get(snapshot_section_id)
+            if framework_section is None:
+                return True
+            if self._section_snapshot_is_stale(snapshot_section, framework_section):
+                return True
+        return False
+
+    def _section_snapshot_is_stale(
+        self, snapshot_section: Dict[str, Any], framework_section: Dict[str, Any]
+    ) -> bool:
+        snapshot_questions = snapshot_section.get('questions', [])
+        framework_questions = framework_section.get('questions', [])
+        if len(snapshot_questions) < len(framework_questions):
+            return True
+        return any(
+            self._question_snapshot_is_stale(question) for question in snapshot_questions
+        )
+
+    def _question_snapshot_is_stale(self, question: Dict[str, Any]) -> bool:
+        # Developer note:
+        # Question snapshots are stale if guidance/compliance metadata used by report rendering
+        # is incomplete (missing title/actions/evidence/compliance_relevance).
+        guidance = question.get('guidance')
+        if not isinstance(guidance, dict):
+            return True
+        if not str(question.get('compliance_relevance') or '').strip():
+            return True
+        actions = guidance.get('actions')
+        evidence = guidance.get('evidence')
+        return not (
+            str(guidance.get('title') or '').strip()
+            and isinstance(actions, list)
+            and len([item for item in actions if str(item).strip()]) > 0
+            and isinstance(evidence, list)
+            and len([item for item in evidence if str(item).strip()]) > 0
+        )
 
     def _refresh_framework_sections(
         self, existing_framework: Dict[str, Any], framework_definition: Dict[str, Any]
@@ -838,6 +906,8 @@ class DataStore:
             'assessment_id': item['assessmentId'],
             'frameworkId': item['frameworkId'],
             'framework_id': item['frameworkId'],
+            'frameworkVersion': str(item.get('frameworkVersion') or ''),
+            'framework_version': str(item.get('frameworkVersion') or ''),
             'organisationId': item['organisationId'],
             'createdBy': item['createdBy'],
             'createdAt': item['createdAt'],
@@ -971,7 +1041,11 @@ class DataStore:
         if framework is None:
             raise DataStoreError('Framework not found for report generation.')
 
-        question_index = self._build_question_index(sections)
+        enriched_sections = self._enrich_sections_for_reporting(
+            sections=sections,
+            framework_sections=self._load_assessment_sections(framework),
+        )
+        question_index = self._build_question_index(enriched_sections)
         risks: list[Dict[str, Any]] = []
         recommended_actions: list[Dict[str, Any]] = []
         for section_id, responses in all_responses.items():
@@ -1002,6 +1076,9 @@ class DataStore:
                         'actions': guidance['actions'],
                         'action': primary_action,
                         'evidence': guidance['evidence'],
+                        'compliance_relevance': str(
+                            question.get('compliance_relevance') or ''
+                        ).strip(),
                     }
                 )
 
@@ -1012,7 +1089,8 @@ class DataStore:
         )
 
         section_name_lookup = {
-            section['sectionId']: section.get('name', section['sectionId']) for section in sections
+            section['sectionId']: section.get('name', section['sectionId'])
+            for section in enriched_sections
         }
         section_summaries = [
             {
@@ -1034,6 +1112,53 @@ class DataStore:
             risks=risks,
             recommendations=recommended_actions,
         )
+
+    def _enrich_sections_for_reporting(
+        self, sections: list[Dict[str, Any]], framework_sections: list[Dict[str, Any]]
+    ) -> list[Dict[str, Any]]:
+        # Developer note:
+        # Report-time enrichment safely merges latest non-answer metadata into old snapshots
+        # without changing responses, scoring, or assessment status.
+        framework_question_index = self._build_question_index(framework_sections)
+        enriched_sections: list[Dict[str, Any]] = []
+        for section in sections:
+            section_questions = []
+            for question in section.get('questions', []):
+                question_id = str(question.get('questionId') or '').strip()
+                if not question_id:
+                    continue
+                latest_question = framework_question_index.get(question_id, {})
+                section_questions.append(self._merge_question_metadata(question, latest_question))
+            enriched_sections.append({**section, 'questions': section_questions})
+        return enriched_sections
+
+    def _merge_question_metadata(
+        self, snapshot_question: Dict[str, Any], latest_question: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        merged_question = dict(snapshot_question)
+        for field in ('guidance', 'compliance_relevance', 'helpText'):
+            current_value = merged_question.get(field)
+            if field == 'guidance':
+                if isinstance(current_value, dict) and not self._question_snapshot_is_stale(
+                    {
+                        'guidance': current_value,
+                        'compliance_relevance': merged_question.get(
+                            'compliance_relevance'
+                        ),
+                    }
+                ):
+                    continue
+                latest_value = latest_question.get(field)
+                if isinstance(latest_value, dict):
+                    merged_question[field] = latest_value
+                continue
+
+            if str(current_value or '').strip():
+                continue
+            latest_value = latest_question.get(field)
+            if isinstance(latest_value, str) and latest_value.strip():
+                merged_question[field] = latest_value.strip()
+        return merged_question
 
     def _build_question_index(self, sections: list[Dict[str, Any]]) -> dict[str, Dict[str, Any]]:
         question_index: dict[str, Dict[str, Any]] = {}
@@ -1088,10 +1213,12 @@ class DataStore:
         else:
             normalised_evidence = []
 
-        title = str(guidance_obj.get('title') or '').strip() or question_title
-        risk = str(guidance_obj.get('risk') or '').strip() or question_title
-        actions = normalised_actions or [question_title]
-        evidence = normalised_evidence or [question_title]
+        title = str(guidance_obj.get('title') or '').strip() or 'Control improvement required'
+        risk = str(guidance_obj.get('risk') or '').strip() or 'Control gap requires review.'
+        actions = normalised_actions or ['Review this control and define a remediation plan.']
+        evidence = normalised_evidence or [
+            'Documented remediation plan and implementation evidence.'
+        ]
         logger.debug(
             'Falling back to legacy guidance for report recommendation.',
             extra={'questionId': question.get('questionId')},

@@ -205,18 +205,75 @@ def test_build_assessment_report_recommended_actions_fallback_when_guidance_miss
     )
 
     assert report['recommendations'][0]['priority'] == 'HIGH'
-    assert report['recommendations'][0]['title'] == (
-        'Has your organisation assigned a person accountable for data protection?'
-    )
-    assert report['recommendations'][0]['risk'] == (
-        'Has your organisation assigned a person accountable for data protection?'
-    )
+    assert report['recommendations'][0]['title'] == 'Control improvement required'
+    assert report['recommendations'][0]['risk'] == 'Control gap requires review.'
     assert report['recommendations'][0]['actions'] == [
-        'Has your organisation assigned a person accountable for data protection?'
+        'Review this control and define a remediation plan.'
     ]
     assert report['recommendations'][0]['evidence'] == [
-        'Has your organisation assigned a person accountable for data protection?'
+        'Documented remediation plan and implementation evidence.'
     ]
+
+
+def test_build_assessment_report_enriches_stored_snapshot_with_latest_framework_guidance() -> None:
+    table = FakeTable()
+    store = DataStore(table=table)
+    store._get_organisation = lambda _org_id: {'name': 'Example Org'}  # type: ignore[method-assign]
+    store._get_framework = lambda _framework_id: {  # type: ignore[method-assign]
+        'frameworkId': 'zim-dpa',
+        'name': 'Zimbabwe Cyber and Data Protection Act',
+        'version': '2026.03',
+        'sections': [
+            {
+                'sectionId': 'governance-accountability',
+                'name': 'Governance and accountability',
+                'questions': [
+                    {
+                        'questionId': 'has-dpo',
+                        'text': 'Has your organisation assigned a person accountable?',
+                        'compliance_relevance': 'Supports demonstrable accountability.',
+                        'guidance': {
+                            'title': 'Assign accountable privacy owner',
+                            'risk': 'No owner for privacy decisions.',
+                            'actions': ['Assign and approve accountable ownership.'],
+                            'evidence': ['Approved accountability charter'],
+                        },
+                    }
+                ],
+            }
+        ],
+    }
+
+    sections = [
+        {
+            'sectionId': 'governance-accountability',
+            'name': 'Governance and accountability',
+            'questions': [
+                {
+                    'questionId': 'has-dpo',
+                    'text': 'Has your organisation assigned a person accountable?',
+                }
+            ],
+        }
+    ]
+
+    report = store._build_assessment_report(
+        assessment={'organisationId': 'org_123', 'frameworkId': 'zim-dpa'},
+        sections=sections,
+        all_responses={
+            'governance-accountability': [{'questionId': 'has-dpo', 'value': 'no'}]
+        },
+        scoring={
+            'score': 10.0,
+            'sectionScores': [{'sectionId': 'governance-accountability', 'score': 10.0}],
+        },
+    )
+
+    assert report['recommendations'][0]['title'] == 'Assign accountable privacy owner'
+    assert report['recommendations'][0]['risk'] == 'No owner for privacy decisions.'
+    assert report['recommendations'][0]['compliance_relevance'] == (
+        'Supports demonstrable accountability.'
+    )
 
 
 def test_save_assessment_responses_completes_when_report_upload_fails(monkeypatch) -> None:
