@@ -64,6 +64,7 @@ def test_create_or_resume_assessment_converts_score_to_decimal() -> None:
     assert summary['status'] == 'NOT_STARTED'
     assert table.saved_item is not None
     assert table.saved_item['score'] == Decimal('0.0')
+    assert table.saved_item['frameworkVersion'] == '2021'
     assert _contains_float(table.saved_item) is False
 
 

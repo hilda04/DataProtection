@@ -28,6 +28,7 @@ def test_build_assessment_report_pdf_returns_valid_pdf_bytes() -> None:
                         'Exercise report with lessons learned',
                     ],
                     'priority': 'HIGH',
+                    'compliance_relevance': 'Supports statutory incident governance duties.',
                 }
             ],
         }
@@ -45,3 +46,27 @@ def test_build_assessment_report_pdf_returns_valid_pdf_bytes() -> None:
     assert 'Compliance Relevance' in decoded
     assert 'Appendix A: Evidence Checklist for Audit Readiness' in decoded
     assert 'Approved incident-response procedure' in decoded
+
+
+def test_build_assessment_report_pdf_hides_compliance_relevance_when_missing() -> None:
+    pytest.importorskip('reportlab')
+    pdf_bytes = build_assessment_report_pdf(
+        {
+            'organisation': {'name': 'Example Org'},
+            'framework': {'name': 'Zimbabwe DPA', 'version': '2021'},
+            'score': 72.5,
+            'sections': [{'name': 'Governance', 'score': 80}],
+            'recommendations': [
+                {
+                    'title': 'Document incident response governance',
+                    'risk': 'Delayed breach handling can increase legal exposure.',
+                    'actions': ['Formalise incident-response approvals.'],
+                    'evidence': ['Approved incident-response procedure'],
+                    'priority': 'HIGH',
+                }
+            ],
+        }
+    )
+
+    decoded = pdf_bytes.decode('latin-1', errors='ignore')
+    assert 'Compliance Relevance' not in decoded
