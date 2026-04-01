@@ -267,3 +267,72 @@ def test_get_framework_uses_local_definition_when_seeded_framework_has_no_guidan
         table.update_calls[0]['ExpressionAttributeValues'][':sections']
         == local_definition['sections']
     )
+
+
+def test_resolve_assessment_sections_uses_latest_when_snapshot_section_is_stale() -> None:
+    table = FakeTable(
+        {
+            'frameworkId': 'cdpa',
+            'name': 'Zimbabwe Cyber and Data Protection Act',
+            'version': '2026.03',
+            'description': 'Framework metadata',
+            'sections': [],
+        }
+    )
+    store = DataStore(table=table)
+
+    framework = {
+        'frameworkId': 'cdpa',
+        'version': '2026.03',
+        'sections': [
+            {
+                'sectionId': 'governance-accountability',
+                'name': 'Governance',
+                'questions': [
+                    {
+                        'questionId': 'has-dpo',
+                        'text': 'Has DPO?',
+                        'compliance_relevance': 'Accountability',
+                        'guidance': {
+                            'title': 'Assign accountable privacy owner',
+                            'risk': 'No owner for privacy decisions.',
+                            'actions': ['Assign accountable owner'],
+                            'evidence': ['Role definition'],
+                        },
+                    },
+                    {
+                        'questionId': 'has-policy',
+                        'text': 'Has policy?',
+                        'compliance_relevance': 'Policy governance',
+                        'guidance': {
+                            'title': 'Approve policy',
+                            'risk': 'No approved policy.',
+                            'actions': ['Approve policy'],
+                            'evidence': ['Approved policy'],
+                        },
+                    },
+                ],
+            }
+        ],
+    }
+    assessment = {
+        'assessmentId': 'asm_1',
+        'assessmentSections': [
+            {
+                'sectionId': 'governance-accountability',
+                'name': 'Governance',
+                'questions': [
+                    {
+                        'questionId': 'has-dpo',
+                        'text': 'Has DPO?',
+                        'guidance': {},
+                        'compliance_relevance': '',
+                    }
+                ],
+            }
+        ],
+    }
+
+    sections = store._resolve_assessment_sections(assessment, framework)
+
+    assert len(sections[0]['questions']) == 2

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from services.report_builder import build_assessment_report_pdf
+from services.report_builder import _sanitize_visible_text, build_assessment_report_pdf
 
 
 def test_build_assessment_report_pdf_returns_valid_pdf_bytes() -> None:
@@ -20,14 +20,18 @@ def test_build_assessment_report_pdf_returns_valid_pdf_bytes() -> None:
                     'title': 'Document incident response governance',
                     'risk': 'Delayed breach handling can increase legal exposure.',
                     'actions': [
-                        'Formalise incident-response RACI and approvals.',
+                        'business-continuity-q1 Formalise incident-response RACI and approvals.',
                         'Run at least one breach-notification exercise.',
                     ],
                     'evidence': [
-                        'Approved incident-response procedure',
+                        (
+                            'data-protection-and-confidentiality-q1 '
+                            'Approved incident-response procedure'
+                        ),
                         'Exercise report with lessons learned',
                     ],
                     'priority': 'HIGH',
+                    'compliance_relevance': 'Supports statutory incident governance duties.',
                 }
             ],
         }
@@ -42,6 +46,45 @@ def test_build_assessment_report_pdf_returns_valid_pdf_bytes() -> None:
     assert 'Section Performance' in decoded
     assert 'Remediation Plan' in decoded
     assert 'Gap 1' in decoded
-    assert 'Compliance Relevance' in decoded
+    assert 'Compliance Relevance' not in decoded
     assert 'Appendix A: Evidence Checklist for Audit Readiness' in decoded
     assert 'Approved incident-response procedure' in decoded
+    assert 'business-continuity-q1' not in decoded
+    assert 'data-protection-and-confidentiality-q1' not in decoded
+
+
+def test_build_assessment_report_pdf_hides_compliance_relevance_when_missing() -> None:
+    pytest.importorskip('reportlab')
+    pdf_bytes = build_assessment_report_pdf(
+        {
+            'organisation': {'name': 'Example Org'},
+            'framework': {'name': 'Zimbabwe DPA', 'version': '2021'},
+            'score': 72.5,
+            'sections': [{'name': 'Governance', 'score': 80}],
+            'recommendations': [
+                {
+                    'title': 'Document incident response governance',
+                    'risk': 'Delayed breach handling can increase legal exposure.',
+                    'actions': ['Formalise incident-response approvals.'],
+                    'evidence': ['Approved incident-response procedure'],
+                    'priority': 'HIGH',
+                }
+            ],
+        }
+    )
+
+    decoded = pdf_bytes.decode('latin-1', errors='ignore')
+    assert 'Compliance Relevance' not in decoded
+
+
+def test_sanitize_visible_text_repairs_common_broken_phrases() -> None:
+    assert (
+        _sanitize_visible_text('Control is mapped to and section business-continuity-q1')
+        == 'Control is mapped to this control and its respective section'
+    )
+    assert _sanitize_visible_text('Maintain tracking for .') == (
+        'Maintain tracking for this control.'
+    )
+    assert _sanitize_visible_text('For , this control requires evidence.') == (
+        'This control requires evidence.'
+    )

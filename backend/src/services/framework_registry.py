@@ -18,8 +18,8 @@ REGISTERED_FRAMEWORK_FILES = (
     'pci_dss_4_0_1.json',
 )
 # Developer note:
-# New framework question banks must define `recommendation`, `evidence_required`, and
-# `compliance_relevance` on every question to keep report output framework-specific
+# New framework question banks must define `guidance` and `compliance_relevance`
+# on every question to keep report output framework-specific
 # and audit-grade.
 
 
