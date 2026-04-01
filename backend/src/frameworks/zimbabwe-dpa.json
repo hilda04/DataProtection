@@ -17,23 +17,27 @@
           "helpText": "This can be a formal DPO role or a clearly named responsible officer.",
           "guidance": {
             "title": "Has your organisation assigned a person accountable for data protection?",
-            "risk": "For has-dpo, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Has your organisation assigned a person accountable for data protection?' is governed, executed, and reviewable within Governance and accountability.",
+            "risk": "For has-dpo, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Has your organisation assigned a person accountable for data protection?' is governed, executed, and reviewable within Governance and accountability. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for has-dpo.",
             "actions": [
-              "In Governance and accountability, close gap has-dpo by formalizing control execution for 'Has your organisation assigned a person accountable for data protection?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for has-dpo with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Has your organisation assigned a person accountable for data protection?'.",
+              "Perform management review and control assurance testing for has-dpo, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to has-dpo and section 'Governance and accountability'.",
               "Dated operating records showing execution of 'Has your organisation assigned a person accountable for data protection?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for has-dpo."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for has-dpo.",
+              "Independent testing or QA validation confirming 'Has your organisation assigned a person accountable for data protection?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Governance and accountability, close gap has-dpo by formalizing control execution for 'Has your organisation assigned a person accountable for data protection?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Governance and accountability, close gap has-dpo by formalizing control execution for 'Has your organisation assigned a person accountable for data protection?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for has-dpo in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to has-dpo and section 'Governance and accountability'.",
             "Dated operating records showing execution of 'Has your organisation assigned a person accountable for data protection?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for has-dpo."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for has-dpo.",
+            "Independent testing or QA validation confirming 'Has your organisation assigned a person accountable for data protection?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For has-dpo, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Has your organisation assigned a person accountable for data protection?' is governed, executed, and reviewable within Governance and accountability."
+          "compliance_relevance": "For has-dpo, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Has your organisation assigned a person accountable for data protection?' is governed, executed, and reviewable within Governance and accountability. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for has-dpo."
         },
         {
           "questionId": "has-policy",
@@ -41,23 +45,27 @@
           "helpText": "The policy should be approved, current, and known by relevant teams.",
           "guidance": {
             "title": "Do you maintain a documented data protection and privacy policy?",
-            "risk": "For has-policy, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain a documented data protection and privacy policy?' is governed, executed, and reviewable within Governance and accountability.",
+            "risk": "For has-policy, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain a documented data protection and privacy policy?' is governed, executed, and reviewable within Governance and accountability. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for has-policy.",
             "actions": [
-              "In Governance and accountability, close gap has-policy by formalizing control execution for 'Do you maintain a documented data protection and privacy policy?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for has-policy with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you maintain a documented data protection and privacy policy?'.",
+              "Perform management review and control assurance testing for has-policy, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to has-policy and section 'Governance and accountability'.",
               "Dated operating records showing execution of 'Do you maintain a documented data protection and privacy policy?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for has-policy."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for has-policy.",
+              "Independent testing or QA validation confirming 'Do you maintain a documented data protection and privacy policy?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Governance and accountability, close gap has-policy by formalizing control execution for 'Do you maintain a documented data protection and privacy policy?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Governance and accountability, close gap has-policy by formalizing control execution for 'Do you maintain a documented data protection and privacy policy?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for has-policy in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to has-policy and section 'Governance and accountability'.",
             "Dated operating records showing execution of 'Do you maintain a documented data protection and privacy policy?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for has-policy."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for has-policy.",
+            "Independent testing or QA validation confirming 'Do you maintain a documented data protection and privacy policy?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For has-policy, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain a documented data protection and privacy policy?' is governed, executed, and reviewable within Governance and accountability."
+          "compliance_relevance": "For has-policy, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain a documented data protection and privacy policy?' is governed, executed, and reviewable within Governance and accountability. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for has-policy."
         },
         {
           "questionId": "governance-review",
@@ -65,23 +73,27 @@
           "helpText": "Examples include quarterly risk committee or board updates.",
           "guidance": {
             "title": "Does leadership review data protection performance on a regular cadence?",
-            "risk": "For governance-review, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Does leadership review data protection performance on a regular cadence?' is governed, executed, and reviewable within Governance and accountability.",
+            "risk": "For governance-review, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Does leadership review data protection performance on a regular cadence?' is governed, executed, and reviewable within Governance and accountability. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-review.",
             "actions": [
-              "In Governance and accountability, close gap governance-review by formalizing control execution for 'Does leadership review data protection performance on a regular cadence?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for governance-review with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Does leadership review data protection performance on a regular cadence?'.",
+              "Perform management review and control assurance testing for governance-review, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to governance-review and section 'Governance and accountability'.",
               "Dated operating records showing execution of 'Does leadership review data protection performance on a regular cadence?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-review."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-review.",
+              "Independent testing or QA validation confirming 'Does leadership review data protection performance on a regular cadence?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Governance and accountability, close gap governance-review by formalizing control execution for 'Does leadership review data protection performance on a regular cadence?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Governance and accountability, close gap governance-review by formalizing control execution for 'Does leadership review data protection performance on a regular cadence?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for governance-review in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to governance-review and section 'Governance and accountability'.",
             "Dated operating records showing execution of 'Does leadership review data protection performance on a regular cadence?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-review."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-review.",
+            "Independent testing or QA validation confirming 'Does leadership review data protection performance on a regular cadence?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For governance-review, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Does leadership review data protection performance on a regular cadence?' is governed, executed, and reviewable within Governance and accountability."
+          "compliance_relevance": "For governance-review, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Does leadership review data protection performance on a regular cadence?' is governed, executed, and reviewable within Governance and accountability. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-review."
         }
       ]
     },
@@ -96,23 +108,27 @@
           "helpText": "A processing register can map each activity to its lawful basis.",
           "guidance": {
             "title": "Have you documented lawful bases for key personal data processing activities?",
-            "risk": "For lawful-basis-register, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Have you documented lawful bases for key personal data processing activities?' is governed, executed, and reviewable within Lawful processing and consent.",
+            "risk": "For lawful-basis-register, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Have you documented lawful bases for key personal data processing activities?' is governed, executed, and reviewable within Lawful processing and consent. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for lawful-basis-register.",
             "actions": [
-              "In Lawful processing and consent, close gap lawful-basis-register by formalizing control execution for 'Have you documented lawful bases for key personal data processing activities?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for lawful-basis-register with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Have you documented lawful bases for key personal data processing activities?'.",
+              "Perform management review and control assurance testing for lawful-basis-register, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to lawful-basis-register and section 'Lawful processing and consent'.",
               "Dated operating records showing execution of 'Have you documented lawful bases for key personal data processing activities?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for lawful-basis-register."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for lawful-basis-register.",
+              "Independent testing or QA validation confirming 'Have you documented lawful bases for key personal data processing activities?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Lawful processing and consent, close gap lawful-basis-register by formalizing control execution for 'Have you documented lawful bases for key personal data processing activities?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Lawful processing and consent, close gap lawful-basis-register by formalizing control execution for 'Have you documented lawful bases for key personal data processing activities?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for lawful-basis-register in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to lawful-basis-register and section 'Lawful processing and consent'.",
             "Dated operating records showing execution of 'Have you documented lawful bases for key personal data processing activities?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for lawful-basis-register."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for lawful-basis-register.",
+            "Independent testing or QA validation confirming 'Have you documented lawful bases for key personal data processing activities?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For lawful-basis-register, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Have you documented lawful bases for key personal data processing activities?' is governed, executed, and reviewable within Lawful processing and consent."
+          "compliance_relevance": "For lawful-basis-register, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Have you documented lawful bases for key personal data processing activities?' is governed, executed, and reviewable within Lawful processing and consent. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for lawful-basis-register."
         },
         {
           "questionId": "consent-capture",
@@ -120,23 +136,27 @@
           "helpText": "Include digital forms, call centres, and offline channels where relevant.",
           "guidance": {
             "title": "Do consent collection channels record when and how consent was obtained?",
-            "risk": "For consent-capture, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do consent collection channels record when and how consent was obtained?' is governed, executed, and reviewable within Lawful processing and consent.",
+            "risk": "For consent-capture, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do consent collection channels record when and how consent was obtained?' is governed, executed, and reviewable within Lawful processing and consent. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for consent-capture.",
             "actions": [
-              "In Lawful processing and consent, close gap consent-capture by formalizing control execution for 'Do consent collection channels record when and how consent was obtained?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for consent-capture with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do consent collection channels record when and how consent was obtained?'.",
+              "Perform management review and control assurance testing for consent-capture, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to consent-capture and section 'Lawful processing and consent'.",
               "Dated operating records showing execution of 'Do consent collection channels record when and how consent was obtained?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for consent-capture."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for consent-capture.",
+              "Independent testing or QA validation confirming 'Do consent collection channels record when and how consent was obtained?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Lawful processing and consent, close gap consent-capture by formalizing control execution for 'Do consent collection channels record when and how consent was obtained?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Lawful processing and consent, close gap consent-capture by formalizing control execution for 'Do consent collection channels record when and how consent was obtained?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for consent-capture in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to consent-capture and section 'Lawful processing and consent'.",
             "Dated operating records showing execution of 'Do consent collection channels record when and how consent was obtained?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for consent-capture."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for consent-capture.",
+            "Independent testing or QA validation confirming 'Do consent collection channels record when and how consent was obtained?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For consent-capture, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do consent collection channels record when and how consent was obtained?' is governed, executed, and reviewable within Lawful processing and consent."
+          "compliance_relevance": "For consent-capture, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do consent collection channels record when and how consent was obtained?' is governed, executed, and reviewable within Lawful processing and consent. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for consent-capture."
         },
         {
           "questionId": "purpose-limitation",
@@ -144,23 +164,27 @@
           "helpText": "This should include controls before re-using data for new initiatives.",
           "guidance": {
             "title": "Do teams check that personal data is only used for stated purposes?",
-            "risk": "For purpose-limitation, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do teams check that personal data is only used for stated purposes?' is governed, executed, and reviewable within Lawful processing and consent.",
+            "risk": "For purpose-limitation, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do teams check that personal data is only used for stated purposes?' is governed, executed, and reviewable within Lawful processing and consent. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for purpose-limitation.",
             "actions": [
-              "In Lawful processing and consent, close gap purpose-limitation by formalizing control execution for 'Do teams check that personal data is only used for stated purposes?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for purpose-limitation with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do teams check that personal data is only used for stated purposes?'.",
+              "Perform management review and control assurance testing for purpose-limitation, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to purpose-limitation and section 'Lawful processing and consent'.",
               "Dated operating records showing execution of 'Do teams check that personal data is only used for stated purposes?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for purpose-limitation."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for purpose-limitation.",
+              "Independent testing or QA validation confirming 'Do teams check that personal data is only used for stated purposes?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Lawful processing and consent, close gap purpose-limitation by formalizing control execution for 'Do teams check that personal data is only used for stated purposes?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Lawful processing and consent, close gap purpose-limitation by formalizing control execution for 'Do teams check that personal data is only used for stated purposes?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for purpose-limitation in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to purpose-limitation and section 'Lawful processing and consent'.",
             "Dated operating records showing execution of 'Do teams check that personal data is only used for stated purposes?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for purpose-limitation."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for purpose-limitation.",
+            "Independent testing or QA validation confirming 'Do teams check that personal data is only used for stated purposes?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For purpose-limitation, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do teams check that personal data is only used for stated purposes?' is governed, executed, and reviewable within Lawful processing and consent."
+          "compliance_relevance": "For purpose-limitation, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do teams check that personal data is only used for stated purposes?' is governed, executed, and reviewable within Lawful processing and consent. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for purpose-limitation."
         }
       ]
     },
@@ -175,23 +199,27 @@
           "helpText": "Cover access, correction, deletion, objection, and restriction request types.",
           "guidance": {
             "title": "Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?",
-            "risk": "For dsr-intake-tracking, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?' is governed, executed, and reviewable within Data Subject Rights.",
+            "risk": "For dsr-intake-tracking, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?' is governed, executed, and reviewable within Data Subject Rights. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for dsr-intake-tracking.",
             "actions": [
-              "In Data Subject Rights, close gap dsr-intake-tracking by formalizing control execution for 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for dsr-intake-tracking with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?'.",
+              "Perform management review and control assurance testing for dsr-intake-tracking, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to dsr-intake-tracking and section 'Data Subject Rights'.",
               "Dated operating records showing execution of 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for dsr-intake-tracking."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for dsr-intake-tracking.",
+              "Independent testing or QA validation confirming 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Data Subject Rights, close gap dsr-intake-tracking by formalizing control execution for 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Data Subject Rights, close gap dsr-intake-tracking by formalizing control execution for 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for dsr-intake-tracking in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to dsr-intake-tracking and section 'Data Subject Rights'.",
             "Dated operating records showing execution of 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for dsr-intake-tracking."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for dsr-intake-tracking.",
+            "Independent testing or QA validation confirming 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For dsr-intake-tracking, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?' is governed, executed, and reviewable within Data Subject Rights."
+          "compliance_relevance": "For dsr-intake-tracking, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain a controlled workflow to intake, validate, and track data subject rights requests?' is governed, executed, and reviewable within Data Subject Rights. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for dsr-intake-tracking."
         },
         {
           "questionId": "dsr-fulfilment-quality",
@@ -199,23 +227,27 @@
           "helpText": "This includes production systems, backups, and processor-held data where applicable.",
           "guidance": {
             "title": "Can you fulfil DSR requests completely across all systems containing personal data?",
-            "risk": "For dsr-fulfilment-quality, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Can you fulfil DSR requests completely across all systems containing personal data?' is governed, executed, and reviewable within Data Subject Rights.",
+            "risk": "For dsr-fulfilment-quality, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Can you fulfil DSR requests completely across all systems containing personal data?' is governed, executed, and reviewable within Data Subject Rights. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for dsr-fulfilment-quality.",
             "actions": [
-              "In Data Subject Rights, close gap dsr-fulfilment-quality by formalizing control execution for 'Can you fulfil DSR requests completely across all systems containing personal data?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for dsr-fulfilment-quality with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Can you fulfil DSR requests completely across all systems containing personal data?'.",
+              "Perform management review and control assurance testing for dsr-fulfilment-quality, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to dsr-fulfilment-quality and section 'Data Subject Rights'.",
               "Dated operating records showing execution of 'Can you fulfil DSR requests completely across all systems containing personal data?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for dsr-fulfilment-quality."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for dsr-fulfilment-quality.",
+              "Independent testing or QA validation confirming 'Can you fulfil DSR requests completely across all systems containing personal data?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Data Subject Rights, close gap dsr-fulfilment-quality by formalizing control execution for 'Can you fulfil DSR requests completely across all systems containing personal data?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Data Subject Rights, close gap dsr-fulfilment-quality by formalizing control execution for 'Can you fulfil DSR requests completely across all systems containing personal data?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for dsr-fulfilment-quality in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to dsr-fulfilment-quality and section 'Data Subject Rights'.",
             "Dated operating records showing execution of 'Can you fulfil DSR requests completely across all systems containing personal data?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for dsr-fulfilment-quality."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for dsr-fulfilment-quality.",
+            "Independent testing or QA validation confirming 'Can you fulfil DSR requests completely across all systems containing personal data?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For dsr-fulfilment-quality, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Can you fulfil DSR requests completely across all systems containing personal data?' is governed, executed, and reviewable within Data Subject Rights."
+          "compliance_relevance": "For dsr-fulfilment-quality, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Can you fulfil DSR requests completely across all systems containing personal data?' is governed, executed, and reviewable within Data Subject Rights. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for dsr-fulfilment-quality."
         }
       ]
     },
@@ -230,23 +262,27 @@
           "helpText": "Inventory should include source, purpose, location, and transfer points.",
           "guidance": {
             "title": "Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?",
-            "risk": "For inventory-coverage, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?' is governed, executed, and reviewable within Data Inventory & Classification.",
+            "risk": "For inventory-coverage, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?' is governed, executed, and reviewable within Data Inventory & Classification. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for inventory-coverage.",
             "actions": [
-              "In Data Inventory & Classification, close gap inventory-coverage by formalizing control execution for 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for inventory-coverage with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?'.",
+              "Perform management review and control assurance testing for inventory-coverage, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to inventory-coverage and section 'Data Inventory & Classification'.",
               "Dated operating records showing execution of 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for inventory-coverage."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for inventory-coverage.",
+              "Independent testing or QA validation confirming 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Data Inventory & Classification, close gap inventory-coverage by formalizing control execution for 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Data Inventory & Classification, close gap inventory-coverage by formalizing control execution for 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for inventory-coverage in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to inventory-coverage and section 'Data Inventory & Classification'.",
             "Dated operating records showing execution of 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for inventory-coverage."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for inventory-coverage.",
+            "Independent testing or QA validation confirming 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For inventory-coverage, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?' is governed, executed, and reviewable within Data Inventory & Classification."
+          "compliance_relevance": "For inventory-coverage, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you maintain an up-to-date data inventory of systems, datasets, and data flows containing personal data?' is governed, executed, and reviewable within Data Inventory & Classification. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for inventory-coverage."
         },
         {
           "questionId": "classification-standard",
@@ -254,23 +290,27 @@
           "helpText": "Classification should trigger access, encryption, and retention rules.",
           "guidance": {
             "title": "Is personal data classified using a defined sensitivity taxonomy that drives control requirements?",
-            "risk": "For classification-standard, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?' is governed, executed, and reviewable within Data Inventory & Classification.",
+            "risk": "For classification-standard, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?' is governed, executed, and reviewable within Data Inventory & Classification. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for classification-standard.",
             "actions": [
-              "In Data Inventory & Classification, close gap classification-standard by formalizing control execution for 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for classification-standard with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?'.",
+              "Perform management review and control assurance testing for classification-standard, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to classification-standard and section 'Data Inventory & Classification'.",
               "Dated operating records showing execution of 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for classification-standard."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for classification-standard.",
+              "Independent testing or QA validation confirming 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Data Inventory & Classification, close gap classification-standard by formalizing control execution for 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Data Inventory & Classification, close gap classification-standard by formalizing control execution for 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for classification-standard in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to classification-standard and section 'Data Inventory & Classification'.",
             "Dated operating records showing execution of 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for classification-standard."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for classification-standard.",
+            "Independent testing or QA validation confirming 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For classification-standard, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?' is governed, executed, and reviewable within Data Inventory & Classification."
+          "compliance_relevance": "For classification-standard, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Is personal data classified using a defined sensitivity taxonomy that drives control requirements?' is governed, executed, and reviewable within Data Inventory & Classification. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for classification-standard."
         }
       ]
     },
@@ -285,23 +325,27 @@
           "helpText": "Include privileged access, shared accounts, and joiner-mover-leaver processes.",
           "guidance": {
             "title": "Are access controls for personal data based on least privilege and regularly reviewed?",
-            "risk": "For access-control-hardening, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Are access controls for personal data based on least privilege and regularly reviewed?' is governed, executed, and reviewable within Security Safeguards.",
+            "risk": "For access-control-hardening, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Are access controls for personal data based on least privilege and regularly reviewed?' is governed, executed, and reviewable within Security Safeguards. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for access-control-hardening.",
             "actions": [
-              "In Security Safeguards, close gap access-control-hardening by formalizing control execution for 'Are access controls for personal data based on least privilege and regularly reviewed?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for access-control-hardening with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are access controls for personal data based on least privilege and regularly reviewed?'.",
+              "Perform management review and control assurance testing for access-control-hardening, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to access-control-hardening and section 'Security Safeguards'.",
               "Dated operating records showing execution of 'Are access controls for personal data based on least privilege and regularly reviewed?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for access-control-hardening."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for access-control-hardening.",
+              "Independent testing or QA validation confirming 'Are access controls for personal data based on least privilege and regularly reviewed?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Security Safeguards, close gap access-control-hardening by formalizing control execution for 'Are access controls for personal data based on least privilege and regularly reviewed?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Security Safeguards, close gap access-control-hardening by formalizing control execution for 'Are access controls for personal data based on least privilege and regularly reviewed?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for access-control-hardening in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to access-control-hardening and section 'Security Safeguards'.",
             "Dated operating records showing execution of 'Are access controls for personal data based on least privilege and regularly reviewed?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for access-control-hardening."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for access-control-hardening.",
+            "Independent testing or QA validation confirming 'Are access controls for personal data based on least privilege and regularly reviewed?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For access-control-hardening, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Are access controls for personal data based on least privilege and regularly reviewed?' is governed, executed, and reviewable within Security Safeguards."
+          "compliance_relevance": "For access-control-hardening, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Are access controls for personal data based on least privilege and regularly reviewed?' is governed, executed, and reviewable within Security Safeguards. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for access-control-hardening."
         },
         {
           "questionId": "data-protection-controls",
@@ -309,23 +353,27 @@
           "helpText": "Cover data at rest, data in transit, and endpoint data leakage controls.",
           "guidance": {
             "title": "Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?",
-            "risk": "For data-protection-controls, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?' is governed, executed, and reviewable within Security Safeguards.",
+            "risk": "For data-protection-controls, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?' is governed, executed, and reviewable within Security Safeguards. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for data-protection-controls.",
             "actions": [
-              "In Security Safeguards, close gap data-protection-controls by formalizing control execution for 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for data-protection-controls with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?'.",
+              "Perform management review and control assurance testing for data-protection-controls, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to data-protection-controls and section 'Security Safeguards'.",
               "Dated operating records showing execution of 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for data-protection-controls."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for data-protection-controls.",
+              "Independent testing or QA validation confirming 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Security Safeguards, close gap data-protection-controls by formalizing control execution for 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Security Safeguards, close gap data-protection-controls by formalizing control execution for 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for data-protection-controls in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to data-protection-controls and section 'Security Safeguards'.",
             "Dated operating records showing execution of 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for data-protection-controls."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for data-protection-controls.",
+            "Independent testing or QA validation confirming 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For data-protection-controls, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?' is governed, executed, and reviewable within Security Safeguards."
+          "compliance_relevance": "For data-protection-controls, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you protect personal data with appropriate encryption, endpoint controls, and secure configuration baselines?' is governed, executed, and reviewable within Security Safeguards. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for data-protection-controls."
         }
       ]
     },
@@ -340,23 +388,27 @@
           "helpText": "The process should define triage, escalation, legal review, and communication steps.",
           "guidance": {
             "title": "Do you operate a tested incident response playbook for personal data incidents?",
-            "risk": "For incident-playbook, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you operate a tested incident response playbook for personal data incidents?' is governed, executed, and reviewable within Incident & Breach Management.",
+            "risk": "For incident-playbook, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you operate a tested incident response playbook for personal data incidents?' is governed, executed, and reviewable within Incident & Breach Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for incident-playbook.",
             "actions": [
-              "In Incident & Breach Management, close gap incident-playbook by formalizing control execution for 'Do you operate a tested incident response playbook for personal data incidents?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for incident-playbook with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you operate a tested incident response playbook for personal data incidents?'.",
+              "Perform management review and control assurance testing for incident-playbook, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to incident-playbook and section 'Incident & Breach Management'.",
               "Dated operating records showing execution of 'Do you operate a tested incident response playbook for personal data incidents?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for incident-playbook."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for incident-playbook.",
+              "Independent testing or QA validation confirming 'Do you operate a tested incident response playbook for personal data incidents?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Incident & Breach Management, close gap incident-playbook by formalizing control execution for 'Do you operate a tested incident response playbook for personal data incidents?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Incident & Breach Management, close gap incident-playbook by formalizing control execution for 'Do you operate a tested incident response playbook for personal data incidents?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for incident-playbook in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to incident-playbook and section 'Incident & Breach Management'.",
             "Dated operating records showing execution of 'Do you operate a tested incident response playbook for personal data incidents?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for incident-playbook."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for incident-playbook.",
+            "Independent testing or QA validation confirming 'Do you operate a tested incident response playbook for personal data incidents?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For incident-playbook, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you operate a tested incident response playbook for personal data incidents?' is governed, executed, and reviewable within Incident & Breach Management."
+          "compliance_relevance": "For incident-playbook, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you operate a tested incident response playbook for personal data incidents?' is governed, executed, and reviewable within Incident & Breach Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for incident-playbook."
         },
         {
           "questionId": "breach-notification",
@@ -364,23 +416,27 @@
           "helpText": "Include criteria for harm assessment and notification approval workflow.",
           "guidance": {
             "title": "Can your team assess reportability and notify regulators/data subjects within required timelines?",
-            "risk": "For breach-notification, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Can your team assess reportability and notify regulators/data subjects within required timelines?' is governed, executed, and reviewable within Incident & Breach Management.",
+            "risk": "For breach-notification, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Can your team assess reportability and notify regulators/data subjects within required timelines?' is governed, executed, and reviewable within Incident & Breach Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for breach-notification.",
             "actions": [
-              "In Incident & Breach Management, close gap breach-notification by formalizing control execution for 'Can your team assess reportability and notify regulators/data subjects within required timelines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for breach-notification with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Can your team assess reportability and notify regulators/data subjects within required timelines?'.",
+              "Perform management review and control assurance testing for breach-notification, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to breach-notification and section 'Incident & Breach Management'.",
               "Dated operating records showing execution of 'Can your team assess reportability and notify regulators/data subjects within required timelines?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for breach-notification."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for breach-notification.",
+              "Independent testing or QA validation confirming 'Can your team assess reportability and notify regulators/data subjects within required timelines?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Incident & Breach Management, close gap breach-notification by formalizing control execution for 'Can your team assess reportability and notify regulators/data subjects within required timelines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Incident & Breach Management, close gap breach-notification by formalizing control execution for 'Can your team assess reportability and notify regulators/data subjects within required timelines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for breach-notification in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to breach-notification and section 'Incident & Breach Management'.",
             "Dated operating records showing execution of 'Can your team assess reportability and notify regulators/data subjects within required timelines?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for breach-notification."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for breach-notification.",
+            "Independent testing or QA validation confirming 'Can your team assess reportability and notify regulators/data subjects within required timelines?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For breach-notification, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Can your team assess reportability and notify regulators/data subjects within required timelines?' is governed, executed, and reviewable within Incident & Breach Management."
+          "compliance_relevance": "For breach-notification, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Can your team assess reportability and notify regulators/data subjects within required timelines?' is governed, executed, and reviewable within Incident & Breach Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for breach-notification."
         }
       ]
     },
@@ -395,23 +451,27 @@
           "helpText": "Apply risk-based review depth depending on data sensitivity and processing scale.",
           "guidance": {
             "title": "Do you perform privacy and security due diligence before onboarding third parties that process personal data?",
-            "risk": "For third-party-due-diligence, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?' is governed, executed, and reviewable within Third-Party & Data Sharing.",
+            "risk": "For third-party-due-diligence, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?' is governed, executed, and reviewable within Third-Party & Data Sharing. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for third-party-due-diligence.",
             "actions": [
-              "In Third-Party & Data Sharing, close gap third-party-due-diligence by formalizing control execution for 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for third-party-due-diligence with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?'.",
+              "Perform management review and control assurance testing for third-party-due-diligence, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to third-party-due-diligence and section 'Third-Party & Data Sharing'.",
               "Dated operating records showing execution of 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-due-diligence."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-due-diligence.",
+              "Independent testing or QA validation confirming 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Third-Party & Data Sharing, close gap third-party-due-diligence by formalizing control execution for 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Third-Party & Data Sharing, close gap third-party-due-diligence by formalizing control execution for 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for third-party-due-diligence in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to third-party-due-diligence and section 'Third-Party & Data Sharing'.",
             "Dated operating records showing execution of 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-due-diligence."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-due-diligence.",
+            "Independent testing or QA validation confirming 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For third-party-due-diligence, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?' is governed, executed, and reviewable within Third-Party & Data Sharing."
+          "compliance_relevance": "For third-party-due-diligence, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you perform privacy and security due diligence before onboarding third parties that process personal data?' is governed, executed, and reviewable within Third-Party & Data Sharing. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for third-party-due-diligence."
         },
         {
           "questionId": "data-sharing-agreements",
@@ -419,23 +479,27 @@
           "helpText": "Contracts should include purpose limits, breach notification, security controls, and audit rights.",
           "guidance": {
             "title": "Are data sharing and processor agreements complete, current, and enforceable?",
-            "risk": "For data-sharing-agreements, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Are data sharing and processor agreements complete, current, and enforceable?' is governed, executed, and reviewable within Third-Party & Data Sharing.",
+            "risk": "For data-sharing-agreements, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Are data sharing and processor agreements complete, current, and enforceable?' is governed, executed, and reviewable within Third-Party & Data Sharing. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for data-sharing-agreements.",
             "actions": [
-              "In Third-Party & Data Sharing, close gap data-sharing-agreements by formalizing control execution for 'Are data sharing and processor agreements complete, current, and enforceable?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for data-sharing-agreements with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are data sharing and processor agreements complete, current, and enforceable?'.",
+              "Perform management review and control assurance testing for data-sharing-agreements, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to data-sharing-agreements and section 'Third-Party & Data Sharing'.",
               "Dated operating records showing execution of 'Are data sharing and processor agreements complete, current, and enforceable?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for data-sharing-agreements."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for data-sharing-agreements.",
+              "Independent testing or QA validation confirming 'Are data sharing and processor agreements complete, current, and enforceable?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Third-Party & Data Sharing, close gap data-sharing-agreements by formalizing control execution for 'Are data sharing and processor agreements complete, current, and enforceable?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Third-Party & Data Sharing, close gap data-sharing-agreements by formalizing control execution for 'Are data sharing and processor agreements complete, current, and enforceable?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for data-sharing-agreements in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to data-sharing-agreements and section 'Third-Party & Data Sharing'.",
             "Dated operating records showing execution of 'Are data sharing and processor agreements complete, current, and enforceable?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for data-sharing-agreements."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for data-sharing-agreements.",
+            "Independent testing or QA validation confirming 'Are data sharing and processor agreements complete, current, and enforceable?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For data-sharing-agreements, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Are data sharing and processor agreements complete, current, and enforceable?' is governed, executed, and reviewable within Third-Party & Data Sharing."
+          "compliance_relevance": "For data-sharing-agreements, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Are data sharing and processor agreements complete, current, and enforceable?' is governed, executed, and reviewable within Third-Party & Data Sharing. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for data-sharing-agreements."
         }
       ]
     },
@@ -450,23 +514,27 @@
           "helpText": "Retention should align to legal obligations and business need with clear ownership.",
           "guidance": {
             "title": "Do you enforce documented retention periods for each personal data category?",
-            "risk": "For retention-schedule, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you enforce documented retention periods for each personal data category?' is governed, executed, and reviewable within Data Retention & Disposal.",
+            "risk": "For retention-schedule, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you enforce documented retention periods for each personal data category?' is governed, executed, and reviewable within Data Retention & Disposal. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for retention-schedule.",
             "actions": [
-              "In Data Retention & Disposal, close gap retention-schedule by formalizing control execution for 'Do you enforce documented retention periods for each personal data category?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for retention-schedule with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you enforce documented retention periods for each personal data category?'.",
+              "Perform management review and control assurance testing for retention-schedule, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to retention-schedule and section 'Data Retention & Disposal'.",
               "Dated operating records showing execution of 'Do you enforce documented retention periods for each personal data category?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for retention-schedule."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for retention-schedule.",
+              "Independent testing or QA validation confirming 'Do you enforce documented retention periods for each personal data category?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Data Retention & Disposal, close gap retention-schedule by formalizing control execution for 'Do you enforce documented retention periods for each personal data category?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Data Retention & Disposal, close gap retention-schedule by formalizing control execution for 'Do you enforce documented retention periods for each personal data category?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for retention-schedule in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to retention-schedule and section 'Data Retention & Disposal'.",
             "Dated operating records showing execution of 'Do you enforce documented retention periods for each personal data category?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for retention-schedule."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for retention-schedule.",
+            "Independent testing or QA validation confirming 'Do you enforce documented retention periods for each personal data category?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For retention-schedule, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you enforce documented retention periods for each personal data category?' is governed, executed, and reviewable within Data Retention & Disposal."
+          "compliance_relevance": "For retention-schedule, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you enforce documented retention periods for each personal data category?' is governed, executed, and reviewable within Data Retention & Disposal. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for retention-schedule."
         },
         {
           "questionId": "secure-disposal",
@@ -474,23 +542,27 @@
           "helpText": "Include logical deletion, cryptographic erasure, and physical media destruction where relevant.",
           "guidance": {
             "title": "Do you securely dispose of personal data across live systems, archives, and media?",
-            "risk": "For secure-disposal, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you securely dispose of personal data across live systems, archives, and media?' is governed, executed, and reviewable within Data Retention & Disposal.",
+            "risk": "For secure-disposal, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you securely dispose of personal data across live systems, archives, and media?' is governed, executed, and reviewable within Data Retention & Disposal. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for secure-disposal.",
             "actions": [
-              "In Data Retention & Disposal, close gap secure-disposal by formalizing control execution for 'Do you securely dispose of personal data across live systems, archives, and media?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for secure-disposal with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you securely dispose of personal data across live systems, archives, and media?'.",
+              "Perform management review and control assurance testing for secure-disposal, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to secure-disposal and section 'Data Retention & Disposal'.",
               "Dated operating records showing execution of 'Do you securely dispose of personal data across live systems, archives, and media?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for secure-disposal."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for secure-disposal.",
+              "Independent testing or QA validation confirming 'Do you securely dispose of personal data across live systems, archives, and media?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Data Retention & Disposal, close gap secure-disposal by formalizing control execution for 'Do you securely dispose of personal data across live systems, archives, and media?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Data Retention & Disposal, close gap secure-disposal by formalizing control execution for 'Do you securely dispose of personal data across live systems, archives, and media?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for secure-disposal in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to secure-disposal and section 'Data Retention & Disposal'.",
             "Dated operating records showing execution of 'Do you securely dispose of personal data across live systems, archives, and media?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for secure-disposal."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for secure-disposal.",
+            "Independent testing or QA validation confirming 'Do you securely dispose of personal data across live systems, archives, and media?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For secure-disposal, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you securely dispose of personal data across live systems, archives, and media?' is governed, executed, and reviewable within Data Retention & Disposal."
+          "compliance_relevance": "For secure-disposal, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you securely dispose of personal data across live systems, archives, and media?' is governed, executed, and reviewable within Data Retention & Disposal. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for secure-disposal."
         }
       ]
     },
@@ -505,23 +577,27 @@
           "helpText": "Training should differ for high-impact roles such as HR, support, engineering, and marketing.",
           "guidance": {
             "title": "Do employees and contractors receive role-based privacy and data handling training?",
-            "risk": "For role-based-training, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do employees and contractors receive role-based privacy and data handling training?' is governed, executed, and reviewable within Training & Awareness.",
+            "risk": "For role-based-training, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do employees and contractors receive role-based privacy and data handling training?' is governed, executed, and reviewable within Training & Awareness. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for role-based-training.",
             "actions": [
-              "In Training & Awareness, close gap role-based-training by formalizing control execution for 'Do employees and contractors receive role-based privacy and data handling training?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for role-based-training with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do employees and contractors receive role-based privacy and data handling training?'.",
+              "Perform management review and control assurance testing for role-based-training, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to role-based-training and section 'Training & Awareness'.",
               "Dated operating records showing execution of 'Do employees and contractors receive role-based privacy and data handling training?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for role-based-training."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for role-based-training.",
+              "Independent testing or QA validation confirming 'Do employees and contractors receive role-based privacy and data handling training?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Training & Awareness, close gap role-based-training by formalizing control execution for 'Do employees and contractors receive role-based privacy and data handling training?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Training & Awareness, close gap role-based-training by formalizing control execution for 'Do employees and contractors receive role-based privacy and data handling training?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for role-based-training in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to role-based-training and section 'Training & Awareness'.",
             "Dated operating records showing execution of 'Do employees and contractors receive role-based privacy and data handling training?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for role-based-training."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for role-based-training.",
+            "Independent testing or QA validation confirming 'Do employees and contractors receive role-based privacy and data handling training?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For role-based-training, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do employees and contractors receive role-based privacy and data handling training?' is governed, executed, and reviewable within Training & Awareness."
+          "compliance_relevance": "For role-based-training, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do employees and contractors receive role-based privacy and data handling training?' is governed, executed, and reviewable within Training & Awareness. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for role-based-training."
         },
         {
           "questionId": "awareness-effectiveness",
@@ -529,23 +605,27 @@
           "helpText": "Use measurable outcomes beyond attendance, such as incident trends and campaign results.",
           "guidance": {
             "title": "Do you measure whether privacy awareness activities improve employee behavior?",
-            "risk": "For awareness-effectiveness, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you measure whether privacy awareness activities improve employee behavior?' is governed, executed, and reviewable within Training & Awareness.",
+            "risk": "For awareness-effectiveness, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you measure whether privacy awareness activities improve employee behavior?' is governed, executed, and reviewable within Training & Awareness. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for awareness-effectiveness.",
             "actions": [
-              "In Training & Awareness, close gap awareness-effectiveness by formalizing control execution for 'Do you measure whether privacy awareness activities improve employee behavior?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for awareness-effectiveness with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you measure whether privacy awareness activities improve employee behavior?'.",
+              "Perform management review and control assurance testing for awareness-effectiveness, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to awareness-effectiveness and section 'Training & Awareness'.",
               "Dated operating records showing execution of 'Do you measure whether privacy awareness activities improve employee behavior?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for awareness-effectiveness."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for awareness-effectiveness.",
+              "Independent testing or QA validation confirming 'Do you measure whether privacy awareness activities improve employee behavior?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Training & Awareness, close gap awareness-effectiveness by formalizing control execution for 'Do you measure whether privacy awareness activities improve employee behavior?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Training & Awareness, close gap awareness-effectiveness by formalizing control execution for 'Do you measure whether privacy awareness activities improve employee behavior?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for awareness-effectiveness in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to awareness-effectiveness and section 'Training & Awareness'.",
             "Dated operating records showing execution of 'Do you measure whether privacy awareness activities improve employee behavior?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for awareness-effectiveness."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for awareness-effectiveness.",
+            "Independent testing or QA validation confirming 'Do you measure whether privacy awareness activities improve employee behavior?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For awareness-effectiveness, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you measure whether privacy awareness activities improve employee behavior?' is governed, executed, and reviewable within Training & Awareness."
+          "compliance_relevance": "For awareness-effectiveness, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you measure whether privacy awareness activities improve employee behavior?' is governed, executed, and reviewable within Training & Awareness. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for awareness-effectiveness."
         }
       ]
     },
@@ -560,23 +640,27 @@
           "helpText": "Metrics should cover preventive, detective, and corrective controls.",
           "guidance": {
             "title": "Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?",
-            "risk": "For control-monitoring, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?' is governed, executed, and reviewable within Monitoring & Continuous Improvement.",
+            "risk": "For control-monitoring, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?' is governed, executed, and reviewable within Monitoring & Continuous Improvement. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for control-monitoring.",
             "actions": [
-              "In Monitoring & Continuous Improvement, close gap control-monitoring by formalizing control execution for 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for control-monitoring with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?'.",
+              "Perform management review and control assurance testing for control-monitoring, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to control-monitoring and section 'Monitoring & Continuous Improvement'.",
               "Dated operating records showing execution of 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for control-monitoring."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for control-monitoring.",
+              "Independent testing or QA validation confirming 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Monitoring & Continuous Improvement, close gap control-monitoring by formalizing control execution for 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Monitoring & Continuous Improvement, close gap control-monitoring by formalizing control execution for 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for control-monitoring in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to control-monitoring and section 'Monitoring & Continuous Improvement'.",
             "Dated operating records showing execution of 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for control-monitoring."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for control-monitoring.",
+            "Independent testing or QA validation confirming 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For control-monitoring, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?' is governed, executed, and reviewable within Monitoring & Continuous Improvement."
+          "compliance_relevance": "For control-monitoring, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you monitor privacy controls with defined metrics and trigger remediation when thresholds are breached?' is governed, executed, and reviewable within Monitoring & Continuous Improvement. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for control-monitoring."
         },
         {
           "questionId": "assurance-remediation",
@@ -584,23 +668,27 @@
           "helpText": "Assessments may include internal audit, control self-assessment, and targeted deep dives.",
           "guidance": {
             "title": "Do you run periodic internal assessments and close remediation actions to verified completion?",
-            "risk": "For assurance-remediation, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you run periodic internal assessments and close remediation actions to verified completion?' is governed, executed, and reviewable within Monitoring & Continuous Improvement.",
+            "risk": "For assurance-remediation, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you run periodic internal assessments and close remediation actions to verified completion?' is governed, executed, and reviewable within Monitoring & Continuous Improvement. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for assurance-remediation.",
             "actions": [
-              "In Monitoring & Continuous Improvement, close gap assurance-remediation by formalizing control execution for 'Do you run periodic internal assessments and close remediation actions to verified completion?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations."
+              "Define and approve a targeted remediation plan for assurance-remediation with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you run periodic internal assessments and close remediation actions to verified completion?'.",
+              "Perform management review and control assurance testing for assurance-remediation, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to assurance-remediation and section 'Monitoring & Continuous Improvement'.",
               "Dated operating records showing execution of 'Do you run periodic internal assessments and close remediation actions to verified completion?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for assurance-remediation."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for assurance-remediation.",
+              "Independent testing or QA validation confirming 'Do you run periodic internal assessments and close remediation actions to verified completion?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Monitoring & Continuous Improvement, close gap assurance-remediation by formalizing control execution for 'Do you run periodic internal assessments and close remediation actions to verified completion?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations.",
+          "recommendation": "In Monitoring & Continuous Improvement, close gap assurance-remediation by formalizing control execution for 'Do you run periodic internal assessments and close remediation actions to verified completion?'. Document accountable ownership, implementation milestones, and operating cadence aligned to privacy governance, lawful processing, and data-subject rights under Zimbabwe data protection obligations. Execute remediation in phases (design, deployment, and assurance review), and track milestones for assurance-remediation in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to assurance-remediation and section 'Monitoring & Continuous Improvement'.",
             "Dated operating records showing execution of 'Do you run periodic internal assessments and close remediation actions to verified completion?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for assurance-remediation."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for assurance-remediation.",
+            "Independent testing or QA validation confirming 'Do you run periodic internal assessments and close remediation actions to verified completion?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For assurance-remediation, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you run periodic internal assessments and close remediation actions to verified completion?' is governed, executed, and reviewable within Monitoring & Continuous Improvement."
+          "compliance_relevance": "For assurance-remediation, this control demonstrates accountable privacy management and defensible compliance under Zimbabwe data protection law by proving that 'Do you run periodic internal assessments and close remediation actions to verified completion?' is governed, executed, and reviewable within Monitoring & Continuous Improvement. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for assurance-remediation."
         }
       ]
     }

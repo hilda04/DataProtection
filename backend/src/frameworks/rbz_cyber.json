@@ -16,23 +16,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Has the board approved a cybersecurity policy and reviewed it in the last 12 months?",
-            "risk": "For governance-and-board-oversight-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?' is governed, executed, and reviewable within Governance and Board Oversight.",
+            "risk": "For governance-and-board-oversight-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?' is governed, executed, and reviewable within Governance and Board Oversight. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-board-oversight-q1.",
             "actions": [
-              "In Governance and Board Oversight, close gap governance-and-board-oversight-q1 by formalizing control execution for 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for governance-and-board-oversight-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?'.",
+              "Perform management review and control assurance testing for governance-and-board-oversight-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to governance-and-board-oversight-q1 and section 'Governance and Board Oversight'.",
               "Dated operating records showing execution of 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q1.",
+              "Independent testing or QA validation confirming 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Governance and Board Oversight, close gap governance-and-board-oversight-q1 by formalizing control execution for 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Governance and Board Oversight, close gap governance-and-board-oversight-q1 by formalizing control execution for 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for governance-and-board-oversight-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to governance-and-board-oversight-q1 and section 'Governance and Board Oversight'.",
             "Dated operating records showing execution of 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q1.",
+            "Independent testing or QA validation confirming 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For governance-and-board-oversight-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?' is governed, executed, and reviewable within Governance and Board Oversight."
+          "compliance_relevance": "For governance-and-board-oversight-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Has the board approved a cybersecurity policy and reviewed it in the last 12 months?' is governed, executed, and reviewable within Governance and Board Oversight. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-board-oversight-q1."
         },
         {
           "questionId": "governance-and-board-oversight-q2",
@@ -41,23 +45,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Does management submit quarterly cyber risk reports to the board risk committee?",
-            "risk": "For governance-and-board-oversight-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does management submit quarterly cyber risk reports to the board risk committee?' is governed, executed, and reviewable within Governance and Board Oversight.",
+            "risk": "For governance-and-board-oversight-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does management submit quarterly cyber risk reports to the board risk committee?' is governed, executed, and reviewable within Governance and Board Oversight. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-board-oversight-q2.",
             "actions": [
-              "In Governance and Board Oversight, close gap governance-and-board-oversight-q2 by formalizing control execution for 'Does management submit quarterly cyber risk reports to the board risk committee?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for governance-and-board-oversight-q2 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Does management submit quarterly cyber risk reports to the board risk committee?'.",
+              "Perform management review and control assurance testing for governance-and-board-oversight-q2, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to governance-and-board-oversight-q2 and section 'Governance and Board Oversight'.",
               "Dated operating records showing execution of 'Does management submit quarterly cyber risk reports to the board risk committee?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q2."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q2.",
+              "Independent testing or QA validation confirming 'Does management submit quarterly cyber risk reports to the board risk committee?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Governance and Board Oversight, close gap governance-and-board-oversight-q2 by formalizing control execution for 'Does management submit quarterly cyber risk reports to the board risk committee?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Governance and Board Oversight, close gap governance-and-board-oversight-q2 by formalizing control execution for 'Does management submit quarterly cyber risk reports to the board risk committee?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for governance-and-board-oversight-q2 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to governance-and-board-oversight-q2 and section 'Governance and Board Oversight'.",
             "Dated operating records showing execution of 'Does management submit quarterly cyber risk reports to the board risk committee?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q2."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q2.",
+            "Independent testing or QA validation confirming 'Does management submit quarterly cyber risk reports to the board risk committee?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For governance-and-board-oversight-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does management submit quarterly cyber risk reports to the board risk committee?' is governed, executed, and reviewable within Governance and Board Oversight."
+          "compliance_relevance": "For governance-and-board-oversight-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does management submit quarterly cyber risk reports to the board risk committee?' is governed, executed, and reviewable within Governance and Board Oversight. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-board-oversight-q2."
         },
         {
           "questionId": "governance-and-board-oversight-q3",
@@ -66,23 +74,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are cyber roles and accountabilities formally assigned across IT, risk, and operations?",
-            "risk": "For governance-and-board-oversight-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?' is governed, executed, and reviewable within Governance and Board Oversight.",
+            "risk": "For governance-and-board-oversight-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?' is governed, executed, and reviewable within Governance and Board Oversight. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-board-oversight-q3.",
             "actions": [
-              "In Governance and Board Oversight, close gap governance-and-board-oversight-q3 by formalizing control execution for 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for governance-and-board-oversight-q3 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?'.",
+              "Perform management review and control assurance testing for governance-and-board-oversight-q3, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to governance-and-board-oversight-q3 and section 'Governance and Board Oversight'.",
               "Dated operating records showing execution of 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q3."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q3.",
+              "Independent testing or QA validation confirming 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Governance and Board Oversight, close gap governance-and-board-oversight-q3 by formalizing control execution for 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Governance and Board Oversight, close gap governance-and-board-oversight-q3 by formalizing control execution for 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for governance-and-board-oversight-q3 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to governance-and-board-oversight-q3 and section 'Governance and Board Oversight'.",
             "Dated operating records showing execution of 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q3."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q3.",
+            "Independent testing or QA validation confirming 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For governance-and-board-oversight-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?' is governed, executed, and reviewable within Governance and Board Oversight."
+          "compliance_relevance": "For governance-and-board-oversight-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber roles and accountabilities formally assigned across IT, risk, and operations?' is governed, executed, and reviewable within Governance and Board Oversight. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-board-oversight-q3."
         },
         {
           "questionId": "governance-and-board-oversight-q4",
@@ -91,23 +103,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is there an approved cyber budget linked to key risk treatment plans?",
-            "risk": "For governance-and-board-oversight-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is there an approved cyber budget linked to key risk treatment plans?' is governed, executed, and reviewable within Governance and Board Oversight.",
+            "risk": "For governance-and-board-oversight-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is there an approved cyber budget linked to key risk treatment plans?' is governed, executed, and reviewable within Governance and Board Oversight. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-board-oversight-q4.",
             "actions": [
-              "In Governance and Board Oversight, close gap governance-and-board-oversight-q4 by formalizing control execution for 'Is there an approved cyber budget linked to key risk treatment plans?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for governance-and-board-oversight-q4 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there an approved cyber budget linked to key risk treatment plans?'.",
+              "Perform management review and control assurance testing for governance-and-board-oversight-q4, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to governance-and-board-oversight-q4 and section 'Governance and Board Oversight'.",
               "Dated operating records showing execution of 'Is there an approved cyber budget linked to key risk treatment plans?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q4."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q4.",
+              "Independent testing or QA validation confirming 'Is there an approved cyber budget linked to key risk treatment plans?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Governance and Board Oversight, close gap governance-and-board-oversight-q4 by formalizing control execution for 'Is there an approved cyber budget linked to key risk treatment plans?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Governance and Board Oversight, close gap governance-and-board-oversight-q4 by formalizing control execution for 'Is there an approved cyber budget linked to key risk treatment plans?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for governance-and-board-oversight-q4 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to governance-and-board-oversight-q4 and section 'Governance and Board Oversight'.",
             "Dated operating records showing execution of 'Is there an approved cyber budget linked to key risk treatment plans?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q4."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-board-oversight-q4.",
+            "Independent testing or QA validation confirming 'Is there an approved cyber budget linked to key risk treatment plans?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For governance-and-board-oversight-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is there an approved cyber budget linked to key risk treatment plans?' is governed, executed, and reviewable within Governance and Board Oversight."
+          "compliance_relevance": "For governance-and-board-oversight-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is there an approved cyber budget linked to key risk treatment plans?' is governed, executed, and reviewable within Governance and Board Oversight. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-board-oversight-q4."
         }
       ]
     },
@@ -123,23 +139,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Do you maintain a current cyber risk register for critical banking systems?",
-            "risk": "For cybersecurity-risk-management-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you maintain a current cyber risk register for critical banking systems?' is governed, executed, and reviewable within Cybersecurity Risk Management.",
+            "risk": "For cybersecurity-risk-management-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you maintain a current cyber risk register for critical banking systems?' is governed, executed, and reviewable within Cybersecurity Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for cybersecurity-risk-management-q1.",
             "actions": [
-              "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q1 by formalizing control execution for 'Do you maintain a current cyber risk register for critical banking systems?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for cybersecurity-risk-management-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you maintain a current cyber risk register for critical banking systems?'.",
+              "Perform management review and control assurance testing for cybersecurity-risk-management-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to cybersecurity-risk-management-q1 and section 'Cybersecurity Risk Management'.",
               "Dated operating records showing execution of 'Do you maintain a current cyber risk register for critical banking systems?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q1.",
+              "Independent testing or QA validation confirming 'Do you maintain a current cyber risk register for critical banking systems?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q1 by formalizing control execution for 'Do you maintain a current cyber risk register for critical banking systems?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q1 by formalizing control execution for 'Do you maintain a current cyber risk register for critical banking systems?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for cybersecurity-risk-management-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to cybersecurity-risk-management-q1 and section 'Cybersecurity Risk Management'.",
             "Dated operating records showing execution of 'Do you maintain a current cyber risk register for critical banking systems?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q1.",
+            "Independent testing or QA validation confirming 'Do you maintain a current cyber risk register for critical banking systems?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For cybersecurity-risk-management-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you maintain a current cyber risk register for critical banking systems?' is governed, executed, and reviewable within Cybersecurity Risk Management."
+          "compliance_relevance": "For cybersecurity-risk-management-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you maintain a current cyber risk register for critical banking systems?' is governed, executed, and reviewable within Cybersecurity Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for cybersecurity-risk-management-q1."
         },
         {
           "questionId": "cybersecurity-risk-management-q2",
@@ -148,23 +168,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are cyber risks rated by likelihood and impact using an approved methodology?",
-            "risk": "For cybersecurity-risk-management-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber risks rated by likelihood and impact using an approved methodology?' is governed, executed, and reviewable within Cybersecurity Risk Management.",
+            "risk": "For cybersecurity-risk-management-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber risks rated by likelihood and impact using an approved methodology?' is governed, executed, and reviewable within Cybersecurity Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for cybersecurity-risk-management-q2.",
             "actions": [
-              "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q2 by formalizing control execution for 'Are cyber risks rated by likelihood and impact using an approved methodology?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for cybersecurity-risk-management-q2 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are cyber risks rated by likelihood and impact using an approved methodology?'.",
+              "Perform management review and control assurance testing for cybersecurity-risk-management-q2, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to cybersecurity-risk-management-q2 and section 'Cybersecurity Risk Management'.",
               "Dated operating records showing execution of 'Are cyber risks rated by likelihood and impact using an approved methodology?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q2."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q2.",
+              "Independent testing or QA validation confirming 'Are cyber risks rated by likelihood and impact using an approved methodology?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q2 by formalizing control execution for 'Are cyber risks rated by likelihood and impact using an approved methodology?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q2 by formalizing control execution for 'Are cyber risks rated by likelihood and impact using an approved methodology?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for cybersecurity-risk-management-q2 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to cybersecurity-risk-management-q2 and section 'Cybersecurity Risk Management'.",
             "Dated operating records showing execution of 'Are cyber risks rated by likelihood and impact using an approved methodology?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q2."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q2.",
+            "Independent testing or QA validation confirming 'Are cyber risks rated by likelihood and impact using an approved methodology?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For cybersecurity-risk-management-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber risks rated by likelihood and impact using an approved methodology?' is governed, executed, and reviewable within Cybersecurity Risk Management."
+          "compliance_relevance": "For cybersecurity-risk-management-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber risks rated by likelihood and impact using an approved methodology?' is governed, executed, and reviewable within Cybersecurity Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for cybersecurity-risk-management-q2."
         },
         {
           "questionId": "cybersecurity-risk-management-q3",
@@ -173,23 +197,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are high and medium cyber risks assigned owners and target closure dates?",
-            "risk": "For cybersecurity-risk-management-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are high and medium cyber risks assigned owners and target closure dates?' is governed, executed, and reviewable within Cybersecurity Risk Management.",
+            "risk": "For cybersecurity-risk-management-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are high and medium cyber risks assigned owners and target closure dates?' is governed, executed, and reviewable within Cybersecurity Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for cybersecurity-risk-management-q3.",
             "actions": [
-              "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q3 by formalizing control execution for 'Are high and medium cyber risks assigned owners and target closure dates?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for cybersecurity-risk-management-q3 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are high and medium cyber risks assigned owners and target closure dates?'.",
+              "Perform management review and control assurance testing for cybersecurity-risk-management-q3, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to cybersecurity-risk-management-q3 and section 'Cybersecurity Risk Management'.",
               "Dated operating records showing execution of 'Are high and medium cyber risks assigned owners and target closure dates?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q3."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q3.",
+              "Independent testing or QA validation confirming 'Are high and medium cyber risks assigned owners and target closure dates?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q3 by formalizing control execution for 'Are high and medium cyber risks assigned owners and target closure dates?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q3 by formalizing control execution for 'Are high and medium cyber risks assigned owners and target closure dates?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for cybersecurity-risk-management-q3 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to cybersecurity-risk-management-q3 and section 'Cybersecurity Risk Management'.",
             "Dated operating records showing execution of 'Are high and medium cyber risks assigned owners and target closure dates?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q3."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q3.",
+            "Independent testing or QA validation confirming 'Are high and medium cyber risks assigned owners and target closure dates?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For cybersecurity-risk-management-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are high and medium cyber risks assigned owners and target closure dates?' is governed, executed, and reviewable within Cybersecurity Risk Management."
+          "compliance_relevance": "For cybersecurity-risk-management-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are high and medium cyber risks assigned owners and target closure dates?' is governed, executed, and reviewable within Cybersecurity Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for cybersecurity-risk-management-q3."
         },
         {
           "questionId": "cybersecurity-risk-management-q4",
@@ -198,23 +226,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is cyber risk integrated into enterprise risk reporting and escalation?",
-            "risk": "For cybersecurity-risk-management-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is cyber risk integrated into enterprise risk reporting and escalation?' is governed, executed, and reviewable within Cybersecurity Risk Management.",
+            "risk": "For cybersecurity-risk-management-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is cyber risk integrated into enterprise risk reporting and escalation?' is governed, executed, and reviewable within Cybersecurity Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for cybersecurity-risk-management-q4.",
             "actions": [
-              "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q4 by formalizing control execution for 'Is cyber risk integrated into enterprise risk reporting and escalation?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for cybersecurity-risk-management-q4 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is cyber risk integrated into enterprise risk reporting and escalation?'.",
+              "Perform management review and control assurance testing for cybersecurity-risk-management-q4, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to cybersecurity-risk-management-q4 and section 'Cybersecurity Risk Management'.",
               "Dated operating records showing execution of 'Is cyber risk integrated into enterprise risk reporting and escalation?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q4."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q4.",
+              "Independent testing or QA validation confirming 'Is cyber risk integrated into enterprise risk reporting and escalation?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q4 by formalizing control execution for 'Is cyber risk integrated into enterprise risk reporting and escalation?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Cybersecurity Risk Management, close gap cybersecurity-risk-management-q4 by formalizing control execution for 'Is cyber risk integrated into enterprise risk reporting and escalation?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for cybersecurity-risk-management-q4 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to cybersecurity-risk-management-q4 and section 'Cybersecurity Risk Management'.",
             "Dated operating records showing execution of 'Is cyber risk integrated into enterprise risk reporting and escalation?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q4."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for cybersecurity-risk-management-q4.",
+            "Independent testing or QA validation confirming 'Is cyber risk integrated into enterprise risk reporting and escalation?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For cybersecurity-risk-management-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is cyber risk integrated into enterprise risk reporting and escalation?' is governed, executed, and reviewable within Cybersecurity Risk Management."
+          "compliance_relevance": "For cybersecurity-risk-management-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is cyber risk integrated into enterprise risk reporting and escalation?' is governed, executed, and reviewable within Cybersecurity Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for cybersecurity-risk-management-q4."
         }
       ]
     },
@@ -230,23 +262,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Does the second-line risk function independently review cyber controls?",
-            "risk": "For risk-management-function-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does the second-line risk function independently review cyber controls?' is governed, executed, and reviewable within Risk Management Function.",
+            "risk": "For risk-management-function-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does the second-line risk function independently review cyber controls?' is governed, executed, and reviewable within Risk Management Function. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-function-q1.",
             "actions": [
-              "In Risk Management Function, close gap risk-management-function-q1 by formalizing control execution for 'Does the second-line risk function independently review cyber controls?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for risk-management-function-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Does the second-line risk function independently review cyber controls?'.",
+              "Perform management review and control assurance testing for risk-management-function-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to risk-management-function-q1 and section 'Risk Management Function'.",
               "Dated operating records showing execution of 'Does the second-line risk function independently review cyber controls?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q1.",
+              "Independent testing or QA validation confirming 'Does the second-line risk function independently review cyber controls?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Risk Management Function, close gap risk-management-function-q1 by formalizing control execution for 'Does the second-line risk function independently review cyber controls?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Risk Management Function, close gap risk-management-function-q1 by formalizing control execution for 'Does the second-line risk function independently review cyber controls?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for risk-management-function-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to risk-management-function-q1 and section 'Risk Management Function'.",
             "Dated operating records showing execution of 'Does the second-line risk function independently review cyber controls?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q1.",
+            "Independent testing or QA validation confirming 'Does the second-line risk function independently review cyber controls?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For risk-management-function-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does the second-line risk function independently review cyber controls?' is governed, executed, and reviewable within Risk Management Function."
+          "compliance_relevance": "For risk-management-function-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does the second-line risk function independently review cyber controls?' is governed, executed, and reviewable within Risk Management Function. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-function-q1."
         },
         {
           "questionId": "risk-management-function-q2",
@@ -255,23 +291,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are cyber KRIs defined and tracked monthly for key services?",
-            "risk": "For risk-management-function-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber KRIs defined and tracked monthly for key services?' is governed, executed, and reviewable within Risk Management Function.",
+            "risk": "For risk-management-function-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber KRIs defined and tracked monthly for key services?' is governed, executed, and reviewable within Risk Management Function. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-function-q2.",
             "actions": [
-              "In Risk Management Function, close gap risk-management-function-q2 by formalizing control execution for 'Are cyber KRIs defined and tracked monthly for key services?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for risk-management-function-q2 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are cyber KRIs defined and tracked monthly for key services?'.",
+              "Perform management review and control assurance testing for risk-management-function-q2, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to risk-management-function-q2 and section 'Risk Management Function'.",
               "Dated operating records showing execution of 'Are cyber KRIs defined and tracked monthly for key services?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q2."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q2.",
+              "Independent testing or QA validation confirming 'Are cyber KRIs defined and tracked monthly for key services?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Risk Management Function, close gap risk-management-function-q2 by formalizing control execution for 'Are cyber KRIs defined and tracked monthly for key services?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Risk Management Function, close gap risk-management-function-q2 by formalizing control execution for 'Are cyber KRIs defined and tracked monthly for key services?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for risk-management-function-q2 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to risk-management-function-q2 and section 'Risk Management Function'.",
             "Dated operating records showing execution of 'Are cyber KRIs defined and tracked monthly for key services?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q2."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q2.",
+            "Independent testing or QA validation confirming 'Are cyber KRIs defined and tracked monthly for key services?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For risk-management-function-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber KRIs defined and tracked monthly for key services?' is governed, executed, and reviewable within Risk Management Function."
+          "compliance_relevance": "For risk-management-function-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber KRIs defined and tracked monthly for key services?' is governed, executed, and reviewable within Risk Management Function. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-function-q2."
         },
         {
           "questionId": "risk-management-function-q3",
@@ -280,23 +320,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are unresolved cyber control issues escalated through formal governance channels?",
-            "risk": "For risk-management-function-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are unresolved cyber control issues escalated through formal governance channels?' is governed, executed, and reviewable within Risk Management Function.",
+            "risk": "For risk-management-function-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are unresolved cyber control issues escalated through formal governance channels?' is governed, executed, and reviewable within Risk Management Function. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-function-q3.",
             "actions": [
-              "In Risk Management Function, close gap risk-management-function-q3 by formalizing control execution for 'Are unresolved cyber control issues escalated through formal governance channels?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for risk-management-function-q3 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are unresolved cyber control issues escalated through formal governance channels?'.",
+              "Perform management review and control assurance testing for risk-management-function-q3, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to risk-management-function-q3 and section 'Risk Management Function'.",
               "Dated operating records showing execution of 'Are unresolved cyber control issues escalated through formal governance channels?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q3."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q3.",
+              "Independent testing or QA validation confirming 'Are unresolved cyber control issues escalated through formal governance channels?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Risk Management Function, close gap risk-management-function-q3 by formalizing control execution for 'Are unresolved cyber control issues escalated through formal governance channels?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Risk Management Function, close gap risk-management-function-q3 by formalizing control execution for 'Are unresolved cyber control issues escalated through formal governance channels?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for risk-management-function-q3 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to risk-management-function-q3 and section 'Risk Management Function'.",
             "Dated operating records showing execution of 'Are unresolved cyber control issues escalated through formal governance channels?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q3."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q3.",
+            "Independent testing or QA validation confirming 'Are unresolved cyber control issues escalated through formal governance channels?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For risk-management-function-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are unresolved cyber control issues escalated through formal governance channels?' is governed, executed, and reviewable within Risk Management Function."
+          "compliance_relevance": "For risk-management-function-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are unresolved cyber control issues escalated through formal governance channels?' is governed, executed, and reviewable within Risk Management Function. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-function-q3."
         },
         {
           "questionId": "risk-management-function-q4",
@@ -305,23 +349,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Does internal audit periodically test cybersecurity governance effectiveness?",
-            "risk": "For risk-management-function-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does internal audit periodically test cybersecurity governance effectiveness?' is governed, executed, and reviewable within Risk Management Function.",
+            "risk": "For risk-management-function-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does internal audit periodically test cybersecurity governance effectiveness?' is governed, executed, and reviewable within Risk Management Function. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-function-q4.",
             "actions": [
-              "In Risk Management Function, close gap risk-management-function-q4 by formalizing control execution for 'Does internal audit periodically test cybersecurity governance effectiveness?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for risk-management-function-q4 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Does internal audit periodically test cybersecurity governance effectiveness?'.",
+              "Perform management review and control assurance testing for risk-management-function-q4, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to risk-management-function-q4 and section 'Risk Management Function'.",
               "Dated operating records showing execution of 'Does internal audit periodically test cybersecurity governance effectiveness?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q4."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q4.",
+              "Independent testing or QA validation confirming 'Does internal audit periodically test cybersecurity governance effectiveness?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Risk Management Function, close gap risk-management-function-q4 by formalizing control execution for 'Does internal audit periodically test cybersecurity governance effectiveness?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Risk Management Function, close gap risk-management-function-q4 by formalizing control execution for 'Does internal audit periodically test cybersecurity governance effectiveness?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for risk-management-function-q4 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to risk-management-function-q4 and section 'Risk Management Function'.",
             "Dated operating records showing execution of 'Does internal audit periodically test cybersecurity governance effectiveness?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q4."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-function-q4.",
+            "Independent testing or QA validation confirming 'Does internal audit periodically test cybersecurity governance effectiveness?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For risk-management-function-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does internal audit periodically test cybersecurity governance effectiveness?' is governed, executed, and reviewable within Risk Management Function."
+          "compliance_relevance": "For risk-management-function-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Does internal audit periodically test cybersecurity governance effectiveness?' is governed, executed, and reviewable within Risk Management Function. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-function-q4."
         }
       ]
     },
@@ -337,23 +385,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are privileged accounts protected with MFA and periodic access reviews?",
-            "risk": "For technology-security-controls-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are privileged accounts protected with MFA and periodic access reviews?' is governed, executed, and reviewable within Technology Security Controls.",
+            "risk": "For technology-security-controls-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are privileged accounts protected with MFA and periodic access reviews?' is governed, executed, and reviewable within Technology Security Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for technology-security-controls-q1.",
             "actions": [
-              "In Technology Security Controls, close gap technology-security-controls-q1 by formalizing control execution for 'Are privileged accounts protected with MFA and periodic access reviews?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for technology-security-controls-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are privileged accounts protected with MFA and periodic access reviews?'.",
+              "Perform management review and control assurance testing for technology-security-controls-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to technology-security-controls-q1 and section 'Technology Security Controls'.",
               "Dated operating records showing execution of 'Are privileged accounts protected with MFA and periodic access reviews?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q1.",
+              "Independent testing or QA validation confirming 'Are privileged accounts protected with MFA and periodic access reviews?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Technology Security Controls, close gap technology-security-controls-q1 by formalizing control execution for 'Are privileged accounts protected with MFA and periodic access reviews?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Technology Security Controls, close gap technology-security-controls-q1 by formalizing control execution for 'Are privileged accounts protected with MFA and periodic access reviews?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for technology-security-controls-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to technology-security-controls-q1 and section 'Technology Security Controls'.",
             "Dated operating records showing execution of 'Are privileged accounts protected with MFA and periodic access reviews?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q1.",
+            "Independent testing or QA validation confirming 'Are privileged accounts protected with MFA and periodic access reviews?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For technology-security-controls-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are privileged accounts protected with MFA and periodic access reviews?' is governed, executed, and reviewable within Technology Security Controls."
+          "compliance_relevance": "For technology-security-controls-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are privileged accounts protected with MFA and periodic access reviews?' is governed, executed, and reviewable within Technology Security Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for technology-security-controls-q1."
         },
         {
           "questionId": "technology-security-controls-q2",
@@ -362,23 +414,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are critical servers and endpoints patched within approved timelines?",
-            "risk": "For technology-security-controls-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are critical servers and endpoints patched within approved timelines?' is governed, executed, and reviewable within Technology Security Controls.",
+            "risk": "For technology-security-controls-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are critical servers and endpoints patched within approved timelines?' is governed, executed, and reviewable within Technology Security Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for technology-security-controls-q2.",
             "actions": [
-              "In Technology Security Controls, close gap technology-security-controls-q2 by formalizing control execution for 'Are critical servers and endpoints patched within approved timelines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for technology-security-controls-q2 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are critical servers and endpoints patched within approved timelines?'.",
+              "Perform management review and control assurance testing for technology-security-controls-q2, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to technology-security-controls-q2 and section 'Technology Security Controls'.",
               "Dated operating records showing execution of 'Are critical servers and endpoints patched within approved timelines?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q2."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q2.",
+              "Independent testing or QA validation confirming 'Are critical servers and endpoints patched within approved timelines?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Technology Security Controls, close gap technology-security-controls-q2 by formalizing control execution for 'Are critical servers and endpoints patched within approved timelines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Technology Security Controls, close gap technology-security-controls-q2 by formalizing control execution for 'Are critical servers and endpoints patched within approved timelines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for technology-security-controls-q2 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to technology-security-controls-q2 and section 'Technology Security Controls'.",
             "Dated operating records showing execution of 'Are critical servers and endpoints patched within approved timelines?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q2."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q2.",
+            "Independent testing or QA validation confirming 'Are critical servers and endpoints patched within approved timelines?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For technology-security-controls-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are critical servers and endpoints patched within approved timelines?' is governed, executed, and reviewable within Technology Security Controls."
+          "compliance_relevance": "For technology-security-controls-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are critical servers and endpoints patched within approved timelines?' is governed, executed, and reviewable within Technology Security Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for technology-security-controls-q2."
         },
         {
           "questionId": "technology-security-controls-q3",
@@ -387,23 +443,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is network segmentation enforced between user, server, and payment environments?",
-            "risk": "For technology-security-controls-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is network segmentation enforced between user, server, and payment environments?' is governed, executed, and reviewable within Technology Security Controls.",
+            "risk": "For technology-security-controls-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is network segmentation enforced between user, server, and payment environments?' is governed, executed, and reviewable within Technology Security Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for technology-security-controls-q3.",
             "actions": [
-              "In Technology Security Controls, close gap technology-security-controls-q3 by formalizing control execution for 'Is network segmentation enforced between user, server, and payment environments?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for technology-security-controls-q3 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is network segmentation enforced between user, server, and payment environments?'.",
+              "Perform management review and control assurance testing for technology-security-controls-q3, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to technology-security-controls-q3 and section 'Technology Security Controls'.",
               "Dated operating records showing execution of 'Is network segmentation enforced between user, server, and payment environments?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q3."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q3.",
+              "Independent testing or QA validation confirming 'Is network segmentation enforced between user, server, and payment environments?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Technology Security Controls, close gap technology-security-controls-q3 by formalizing control execution for 'Is network segmentation enforced between user, server, and payment environments?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Technology Security Controls, close gap technology-security-controls-q3 by formalizing control execution for 'Is network segmentation enforced between user, server, and payment environments?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for technology-security-controls-q3 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to technology-security-controls-q3 and section 'Technology Security Controls'.",
             "Dated operating records showing execution of 'Is network segmentation enforced between user, server, and payment environments?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q3."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q3.",
+            "Independent testing or QA validation confirming 'Is network segmentation enforced between user, server, and payment environments?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For technology-security-controls-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is network segmentation enforced between user, server, and payment environments?' is governed, executed, and reviewable within Technology Security Controls."
+          "compliance_relevance": "For technology-security-controls-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is network segmentation enforced between user, server, and payment environments?' is governed, executed, and reviewable within Technology Security Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for technology-security-controls-q3."
         },
         {
           "questionId": "technology-security-controls-q4",
@@ -412,23 +472,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are backups encrypted, tested, and protected from unauthorized changes?",
-            "risk": "For technology-security-controls-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are backups encrypted, tested, and protected from unauthorized changes?' is governed, executed, and reviewable within Technology Security Controls.",
+            "risk": "For technology-security-controls-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are backups encrypted, tested, and protected from unauthorized changes?' is governed, executed, and reviewable within Technology Security Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for technology-security-controls-q4.",
             "actions": [
-              "In Technology Security Controls, close gap technology-security-controls-q4 by formalizing control execution for 'Are backups encrypted, tested, and protected from unauthorized changes?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for technology-security-controls-q4 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are backups encrypted, tested, and protected from unauthorized changes?'.",
+              "Perform management review and control assurance testing for technology-security-controls-q4, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to technology-security-controls-q4 and section 'Technology Security Controls'.",
               "Dated operating records showing execution of 'Are backups encrypted, tested, and protected from unauthorized changes?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q4."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q4.",
+              "Independent testing or QA validation confirming 'Are backups encrypted, tested, and protected from unauthorized changes?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Technology Security Controls, close gap technology-security-controls-q4 by formalizing control execution for 'Are backups encrypted, tested, and protected from unauthorized changes?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Technology Security Controls, close gap technology-security-controls-q4 by formalizing control execution for 'Are backups encrypted, tested, and protected from unauthorized changes?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for technology-security-controls-q4 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to technology-security-controls-q4 and section 'Technology Security Controls'.",
             "Dated operating records showing execution of 'Are backups encrypted, tested, and protected from unauthorized changes?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q4."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for technology-security-controls-q4.",
+            "Independent testing or QA validation confirming 'Are backups encrypted, tested, and protected from unauthorized changes?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For technology-security-controls-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are backups encrypted, tested, and protected from unauthorized changes?' is governed, executed, and reviewable within Technology Security Controls."
+          "compliance_relevance": "For technology-security-controls-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are backups encrypted, tested, and protected from unauthorized changes?' is governed, executed, and reviewable within Technology Security Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for technology-security-controls-q4."
         }
       ]
     },
@@ -444,23 +508,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Do you have a documented cyber incident response plan with clear roles?",
-            "risk": "For incident-management-and-resilience-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you have a documented cyber incident response plan with clear roles?' is governed, executed, and reviewable within Incident Management and Resilience.",
+            "risk": "For incident-management-and-resilience-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you have a documented cyber incident response plan with clear roles?' is governed, executed, and reviewable within Incident Management and Resilience. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for incident-management-and-resilience-q1.",
             "actions": [
-              "In Incident Management and Resilience, close gap incident-management-and-resilience-q1 by formalizing control execution for 'Do you have a documented cyber incident response plan with clear roles?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for incident-management-and-resilience-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you have a documented cyber incident response plan with clear roles?'.",
+              "Perform management review and control assurance testing for incident-management-and-resilience-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to incident-management-and-resilience-q1 and section 'Incident Management and Resilience'.",
               "Dated operating records showing execution of 'Do you have a documented cyber incident response plan with clear roles?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q1.",
+              "Independent testing or QA validation confirming 'Do you have a documented cyber incident response plan with clear roles?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Incident Management and Resilience, close gap incident-management-and-resilience-q1 by formalizing control execution for 'Do you have a documented cyber incident response plan with clear roles?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Incident Management and Resilience, close gap incident-management-and-resilience-q1 by formalizing control execution for 'Do you have a documented cyber incident response plan with clear roles?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for incident-management-and-resilience-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to incident-management-and-resilience-q1 and section 'Incident Management and Resilience'.",
             "Dated operating records showing execution of 'Do you have a documented cyber incident response plan with clear roles?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q1.",
+            "Independent testing or QA validation confirming 'Do you have a documented cyber incident response plan with clear roles?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For incident-management-and-resilience-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you have a documented cyber incident response plan with clear roles?' is governed, executed, and reviewable within Incident Management and Resilience."
+          "compliance_relevance": "For incident-management-and-resilience-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you have a documented cyber incident response plan with clear roles?' is governed, executed, and reviewable within Incident Management and Resilience. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for incident-management-and-resilience-q1."
         },
         {
           "questionId": "incident-management-and-resilience-q2",
@@ -469,23 +537,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are major cyber incidents reported to regulators within required timelines?",
-            "risk": "For incident-management-and-resilience-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are major cyber incidents reported to regulators within required timelines?' is governed, executed, and reviewable within Incident Management and Resilience.",
+            "risk": "For incident-management-and-resilience-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are major cyber incidents reported to regulators within required timelines?' is governed, executed, and reviewable within Incident Management and Resilience. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for incident-management-and-resilience-q2.",
             "actions": [
-              "In Incident Management and Resilience, close gap incident-management-and-resilience-q2 by formalizing control execution for 'Are major cyber incidents reported to regulators within required timelines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for incident-management-and-resilience-q2 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are major cyber incidents reported to regulators within required timelines?'.",
+              "Perform management review and control assurance testing for incident-management-and-resilience-q2, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to incident-management-and-resilience-q2 and section 'Incident Management and Resilience'.",
               "Dated operating records showing execution of 'Are major cyber incidents reported to regulators within required timelines?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q2."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q2.",
+              "Independent testing or QA validation confirming 'Are major cyber incidents reported to regulators within required timelines?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Incident Management and Resilience, close gap incident-management-and-resilience-q2 by formalizing control execution for 'Are major cyber incidents reported to regulators within required timelines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Incident Management and Resilience, close gap incident-management-and-resilience-q2 by formalizing control execution for 'Are major cyber incidents reported to regulators within required timelines?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for incident-management-and-resilience-q2 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to incident-management-and-resilience-q2 and section 'Incident Management and Resilience'.",
             "Dated operating records showing execution of 'Are major cyber incidents reported to regulators within required timelines?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q2."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q2.",
+            "Independent testing or QA validation confirming 'Are major cyber incidents reported to regulators within required timelines?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For incident-management-and-resilience-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are major cyber incidents reported to regulators within required timelines?' is governed, executed, and reviewable within Incident Management and Resilience."
+          "compliance_relevance": "For incident-management-and-resilience-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are major cyber incidents reported to regulators within required timelines?' is governed, executed, and reviewable within Incident Management and Resilience. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for incident-management-and-resilience-q2."
         },
         {
           "questionId": "incident-management-and-resilience-q3",
@@ -494,23 +566,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Do you conduct at least annual cyber incident simulation exercises?",
-            "risk": "For incident-management-and-resilience-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you conduct at least annual cyber incident simulation exercises?' is governed, executed, and reviewable within Incident Management and Resilience.",
+            "risk": "For incident-management-and-resilience-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you conduct at least annual cyber incident simulation exercises?' is governed, executed, and reviewable within Incident Management and Resilience. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for incident-management-and-resilience-q3.",
             "actions": [
-              "In Incident Management and Resilience, close gap incident-management-and-resilience-q3 by formalizing control execution for 'Do you conduct at least annual cyber incident simulation exercises?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for incident-management-and-resilience-q3 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do you conduct at least annual cyber incident simulation exercises?'.",
+              "Perform management review and control assurance testing for incident-management-and-resilience-q3, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to incident-management-and-resilience-q3 and section 'Incident Management and Resilience'.",
               "Dated operating records showing execution of 'Do you conduct at least annual cyber incident simulation exercises?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q3."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q3.",
+              "Independent testing or QA validation confirming 'Do you conduct at least annual cyber incident simulation exercises?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Incident Management and Resilience, close gap incident-management-and-resilience-q3 by formalizing control execution for 'Do you conduct at least annual cyber incident simulation exercises?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Incident Management and Resilience, close gap incident-management-and-resilience-q3 by formalizing control execution for 'Do you conduct at least annual cyber incident simulation exercises?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for incident-management-and-resilience-q3 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to incident-management-and-resilience-q3 and section 'Incident Management and Resilience'.",
             "Dated operating records showing execution of 'Do you conduct at least annual cyber incident simulation exercises?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q3."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q3.",
+            "Independent testing or QA validation confirming 'Do you conduct at least annual cyber incident simulation exercises?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For incident-management-and-resilience-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you conduct at least annual cyber incident simulation exercises?' is governed, executed, and reviewable within Incident Management and Resilience."
+          "compliance_relevance": "For incident-management-and-resilience-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do you conduct at least annual cyber incident simulation exercises?' is governed, executed, and reviewable within Incident Management and Resilience. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for incident-management-and-resilience-q3."
         },
         {
           "questionId": "incident-management-and-resilience-q4",
@@ -519,23 +595,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are post-incident root cause actions tracked to closure?",
-            "risk": "For incident-management-and-resilience-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are post-incident root cause actions tracked to closure?' is governed, executed, and reviewable within Incident Management and Resilience.",
+            "risk": "For incident-management-and-resilience-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are post-incident root cause actions tracked to closure?' is governed, executed, and reviewable within Incident Management and Resilience. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for incident-management-and-resilience-q4.",
             "actions": [
-              "In Incident Management and Resilience, close gap incident-management-and-resilience-q4 by formalizing control execution for 'Are post-incident root cause actions tracked to closure?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for incident-management-and-resilience-q4 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are post-incident root cause actions tracked to closure?'.",
+              "Perform management review and control assurance testing for incident-management-and-resilience-q4, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to incident-management-and-resilience-q4 and section 'Incident Management and Resilience'.",
               "Dated operating records showing execution of 'Are post-incident root cause actions tracked to closure?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q4."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q4.",
+              "Independent testing or QA validation confirming 'Are post-incident root cause actions tracked to closure?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Incident Management and Resilience, close gap incident-management-and-resilience-q4 by formalizing control execution for 'Are post-incident root cause actions tracked to closure?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Incident Management and Resilience, close gap incident-management-and-resilience-q4 by formalizing control execution for 'Are post-incident root cause actions tracked to closure?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for incident-management-and-resilience-q4 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to incident-management-and-resilience-q4 and section 'Incident Management and Resilience'.",
             "Dated operating records showing execution of 'Are post-incident root cause actions tracked to closure?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q4."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for incident-management-and-resilience-q4.",
+            "Independent testing or QA validation confirming 'Are post-incident root cause actions tracked to closure?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For incident-management-and-resilience-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are post-incident root cause actions tracked to closure?' is governed, executed, and reviewable within Incident Management and Resilience."
+          "compliance_relevance": "For incident-management-and-resilience-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are post-incident root cause actions tracked to closure?' is governed, executed, and reviewable within Incident Management and Resilience. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for incident-management-and-resilience-q4."
         }
       ]
     },
@@ -551,23 +631,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are third-party service providers assessed for cybersecurity before onboarding?",
-            "risk": "For third-party-and-outsourcing-security-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are third-party service providers assessed for cybersecurity before onboarding?' is governed, executed, and reviewable within Third-Party and Outsourcing Security.",
+            "risk": "For third-party-and-outsourcing-security-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are third-party service providers assessed for cybersecurity before onboarding?' is governed, executed, and reviewable within Third-Party and Outsourcing Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for third-party-and-outsourcing-security-q1.",
             "actions": [
-              "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q1 by formalizing control execution for 'Are third-party service providers assessed for cybersecurity before onboarding?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for third-party-and-outsourcing-security-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are third-party service providers assessed for cybersecurity before onboarding?'.",
+              "Perform management review and control assurance testing for third-party-and-outsourcing-security-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to third-party-and-outsourcing-security-q1 and section 'Third-Party and Outsourcing Security'.",
               "Dated operating records showing execution of 'Are third-party service providers assessed for cybersecurity before onboarding?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q1.",
+              "Independent testing or QA validation confirming 'Are third-party service providers assessed for cybersecurity before onboarding?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q1 by formalizing control execution for 'Are third-party service providers assessed for cybersecurity before onboarding?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q1 by formalizing control execution for 'Are third-party service providers assessed for cybersecurity before onboarding?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for third-party-and-outsourcing-security-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to third-party-and-outsourcing-security-q1 and section 'Third-Party and Outsourcing Security'.",
             "Dated operating records showing execution of 'Are third-party service providers assessed for cybersecurity before onboarding?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q1.",
+            "Independent testing or QA validation confirming 'Are third-party service providers assessed for cybersecurity before onboarding?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For third-party-and-outsourcing-security-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are third-party service providers assessed for cybersecurity before onboarding?' is governed, executed, and reviewable within Third-Party and Outsourcing Security."
+          "compliance_relevance": "For third-party-and-outsourcing-security-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are third-party service providers assessed for cybersecurity before onboarding?' is governed, executed, and reviewable within Third-Party and Outsourcing Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for third-party-and-outsourcing-security-q1."
         },
         {
           "questionId": "third-party-and-outsourcing-security-q2",
@@ -576,23 +660,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Do contracts require security controls, breach notification, and audit rights?",
-            "risk": "For third-party-and-outsourcing-security-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do contracts require security controls, breach notification, and audit rights?' is governed, executed, and reviewable within Third-Party and Outsourcing Security.",
+            "risk": "For third-party-and-outsourcing-security-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do contracts require security controls, breach notification, and audit rights?' is governed, executed, and reviewable within Third-Party and Outsourcing Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for third-party-and-outsourcing-security-q2.",
             "actions": [
-              "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q2 by formalizing control execution for 'Do contracts require security controls, breach notification, and audit rights?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for third-party-and-outsourcing-security-q2 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do contracts require security controls, breach notification, and audit rights?'.",
+              "Perform management review and control assurance testing for third-party-and-outsourcing-security-q2, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to third-party-and-outsourcing-security-q2 and section 'Third-Party and Outsourcing Security'.",
               "Dated operating records showing execution of 'Do contracts require security controls, breach notification, and audit rights?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q2."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q2.",
+              "Independent testing or QA validation confirming 'Do contracts require security controls, breach notification, and audit rights?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q2 by formalizing control execution for 'Do contracts require security controls, breach notification, and audit rights?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q2 by formalizing control execution for 'Do contracts require security controls, breach notification, and audit rights?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for third-party-and-outsourcing-security-q2 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to third-party-and-outsourcing-security-q2 and section 'Third-Party and Outsourcing Security'.",
             "Dated operating records showing execution of 'Do contracts require security controls, breach notification, and audit rights?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q2."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q2.",
+            "Independent testing or QA validation confirming 'Do contracts require security controls, breach notification, and audit rights?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For third-party-and-outsourcing-security-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do contracts require security controls, breach notification, and audit rights?' is governed, executed, and reviewable within Third-Party and Outsourcing Security."
+          "compliance_relevance": "For third-party-and-outsourcing-security-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do contracts require security controls, breach notification, and audit rights?' is governed, executed, and reviewable within Third-Party and Outsourcing Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for third-party-and-outsourcing-security-q2."
         },
         {
           "questionId": "third-party-and-outsourcing-security-q3",
@@ -601,23 +689,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are high-risk vendors monitored regularly for control performance?",
-            "risk": "For third-party-and-outsourcing-security-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are high-risk vendors monitored regularly for control performance?' is governed, executed, and reviewable within Third-Party and Outsourcing Security.",
+            "risk": "For third-party-and-outsourcing-security-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are high-risk vendors monitored regularly for control performance?' is governed, executed, and reviewable within Third-Party and Outsourcing Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for third-party-and-outsourcing-security-q3.",
             "actions": [
-              "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q3 by formalizing control execution for 'Are high-risk vendors monitored regularly for control performance?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for third-party-and-outsourcing-security-q3 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are high-risk vendors monitored regularly for control performance?'.",
+              "Perform management review and control assurance testing for third-party-and-outsourcing-security-q3, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to third-party-and-outsourcing-security-q3 and section 'Third-Party and Outsourcing Security'.",
               "Dated operating records showing execution of 'Are high-risk vendors monitored regularly for control performance?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q3."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q3.",
+              "Independent testing or QA validation confirming 'Are high-risk vendors monitored regularly for control performance?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q3 by formalizing control execution for 'Are high-risk vendors monitored regularly for control performance?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q3 by formalizing control execution for 'Are high-risk vendors monitored regularly for control performance?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for third-party-and-outsourcing-security-q3 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to third-party-and-outsourcing-security-q3 and section 'Third-Party and Outsourcing Security'.",
             "Dated operating records showing execution of 'Are high-risk vendors monitored regularly for control performance?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q3."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q3.",
+            "Independent testing or QA validation confirming 'Are high-risk vendors monitored regularly for control performance?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For third-party-and-outsourcing-security-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are high-risk vendors monitored regularly for control performance?' is governed, executed, and reviewable within Third-Party and Outsourcing Security."
+          "compliance_relevance": "For third-party-and-outsourcing-security-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are high-risk vendors monitored regularly for control performance?' is governed, executed, and reviewable within Third-Party and Outsourcing Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for third-party-and-outsourcing-security-q3."
         },
         {
           "questionId": "third-party-and-outsourcing-security-q4",
@@ -626,23 +718,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is outsourced data access limited to least privilege and monitored?",
-            "risk": "For third-party-and-outsourcing-security-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is outsourced data access limited to least privilege and monitored?' is governed, executed, and reviewable within Third-Party and Outsourcing Security.",
+            "risk": "For third-party-and-outsourcing-security-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is outsourced data access limited to least privilege and monitored?' is governed, executed, and reviewable within Third-Party and Outsourcing Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for third-party-and-outsourcing-security-q4.",
             "actions": [
-              "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q4 by formalizing control execution for 'Is outsourced data access limited to least privilege and monitored?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for third-party-and-outsourcing-security-q4 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is outsourced data access limited to least privilege and monitored?'.",
+              "Perform management review and control assurance testing for third-party-and-outsourcing-security-q4, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to third-party-and-outsourcing-security-q4 and section 'Third-Party and Outsourcing Security'.",
               "Dated operating records showing execution of 'Is outsourced data access limited to least privilege and monitored?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q4."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q4.",
+              "Independent testing or QA validation confirming 'Is outsourced data access limited to least privilege and monitored?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q4 by formalizing control execution for 'Is outsourced data access limited to least privilege and monitored?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Third-Party and Outsourcing Security, close gap third-party-and-outsourcing-security-q4 by formalizing control execution for 'Is outsourced data access limited to least privilege and monitored?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for third-party-and-outsourcing-security-q4 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to third-party-and-outsourcing-security-q4 and section 'Third-Party and Outsourcing Security'.",
             "Dated operating records showing execution of 'Is outsourced data access limited to least privilege and monitored?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q4."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for third-party-and-outsourcing-security-q4.",
+            "Independent testing or QA validation confirming 'Is outsourced data access limited to least privilege and monitored?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For third-party-and-outsourcing-security-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is outsourced data access limited to least privilege and monitored?' is governed, executed, and reviewable within Third-Party and Outsourcing Security."
+          "compliance_relevance": "For third-party-and-outsourcing-security-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Is outsourced data access limited to least privilege and monitored?' is governed, executed, and reviewable within Third-Party and Outsourcing Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for third-party-and-outsourcing-security-q4."
         }
       ]
     },
@@ -658,23 +754,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Do all staff complete cybersecurity awareness training at least annually?",
-            "risk": "For training-awareness-and-reporting-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do all staff complete cybersecurity awareness training at least annually?' is governed, executed, and reviewable within Training, Awareness and Reporting.",
+            "risk": "For training-awareness-and-reporting-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do all staff complete cybersecurity awareness training at least annually?' is governed, executed, and reviewable within Training, Awareness and Reporting. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for training-awareness-and-reporting-q1.",
             "actions": [
-              "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q1 by formalizing control execution for 'Do all staff complete cybersecurity awareness training at least annually?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for training-awareness-and-reporting-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do all staff complete cybersecurity awareness training at least annually?'.",
+              "Perform management review and control assurance testing for training-awareness-and-reporting-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to training-awareness-and-reporting-q1 and section 'Training, Awareness and Reporting'.",
               "Dated operating records showing execution of 'Do all staff complete cybersecurity awareness training at least annually?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q1.",
+              "Independent testing or QA validation confirming 'Do all staff complete cybersecurity awareness training at least annually?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q1 by formalizing control execution for 'Do all staff complete cybersecurity awareness training at least annually?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q1 by formalizing control execution for 'Do all staff complete cybersecurity awareness training at least annually?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for training-awareness-and-reporting-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to training-awareness-and-reporting-q1 and section 'Training, Awareness and Reporting'.",
             "Dated operating records showing execution of 'Do all staff complete cybersecurity awareness training at least annually?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q1.",
+            "Independent testing or QA validation confirming 'Do all staff complete cybersecurity awareness training at least annually?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For training-awareness-and-reporting-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do all staff complete cybersecurity awareness training at least annually?' is governed, executed, and reviewable within Training, Awareness and Reporting."
+          "compliance_relevance": "For training-awareness-and-reporting-q1, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do all staff complete cybersecurity awareness training at least annually?' is governed, executed, and reviewable within Training, Awareness and Reporting. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for training-awareness-and-reporting-q1."
         },
         {
           "questionId": "training-awareness-and-reporting-q2",
@@ -683,23 +783,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are phishing simulations performed and results reported to management?",
-            "risk": "For training-awareness-and-reporting-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are phishing simulations performed and results reported to management?' is governed, executed, and reviewable within Training, Awareness and Reporting.",
+            "risk": "For training-awareness-and-reporting-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are phishing simulations performed and results reported to management?' is governed, executed, and reviewable within Training, Awareness and Reporting. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for training-awareness-and-reporting-q2.",
             "actions": [
-              "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q2 by formalizing control execution for 'Are phishing simulations performed and results reported to management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for training-awareness-and-reporting-q2 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are phishing simulations performed and results reported to management?'.",
+              "Perform management review and control assurance testing for training-awareness-and-reporting-q2, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to training-awareness-and-reporting-q2 and section 'Training, Awareness and Reporting'.",
               "Dated operating records showing execution of 'Are phishing simulations performed and results reported to management?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q2."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q2.",
+              "Independent testing or QA validation confirming 'Are phishing simulations performed and results reported to management?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q2 by formalizing control execution for 'Are phishing simulations performed and results reported to management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q2 by formalizing control execution for 'Are phishing simulations performed and results reported to management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for training-awareness-and-reporting-q2 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to training-awareness-and-reporting-q2 and section 'Training, Awareness and Reporting'.",
             "Dated operating records showing execution of 'Are phishing simulations performed and results reported to management?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q2."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q2.",
+            "Independent testing or QA validation confirming 'Are phishing simulations performed and results reported to management?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For training-awareness-and-reporting-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are phishing simulations performed and results reported to management?' is governed, executed, and reviewable within Training, Awareness and Reporting."
+          "compliance_relevance": "For training-awareness-and-reporting-q2, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are phishing simulations performed and results reported to management?' is governed, executed, and reviewable within Training, Awareness and Reporting. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for training-awareness-and-reporting-q2."
         },
         {
           "questionId": "training-awareness-and-reporting-q3",
@@ -708,23 +812,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Are cyber metrics and incidents reported monthly to executive management?",
-            "risk": "For training-awareness-and-reporting-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber metrics and incidents reported monthly to executive management?' is governed, executed, and reviewable within Training, Awareness and Reporting.",
+            "risk": "For training-awareness-and-reporting-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber metrics and incidents reported monthly to executive management?' is governed, executed, and reviewable within Training, Awareness and Reporting. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for training-awareness-and-reporting-q3.",
             "actions": [
-              "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q3 by formalizing control execution for 'Are cyber metrics and incidents reported monthly to executive management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for training-awareness-and-reporting-q3 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Are cyber metrics and incidents reported monthly to executive management?'.",
+              "Perform management review and control assurance testing for training-awareness-and-reporting-q3, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to training-awareness-and-reporting-q3 and section 'Training, Awareness and Reporting'.",
               "Dated operating records showing execution of 'Are cyber metrics and incidents reported monthly to executive management?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q3."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q3.",
+              "Independent testing or QA validation confirming 'Are cyber metrics and incidents reported monthly to executive management?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q3 by formalizing control execution for 'Are cyber metrics and incidents reported monthly to executive management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q3 by formalizing control execution for 'Are cyber metrics and incidents reported monthly to executive management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for training-awareness-and-reporting-q3 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to training-awareness-and-reporting-q3 and section 'Training, Awareness and Reporting'.",
             "Dated operating records showing execution of 'Are cyber metrics and incidents reported monthly to executive management?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q3."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q3.",
+            "Independent testing or QA validation confirming 'Are cyber metrics and incidents reported monthly to executive management?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For training-awareness-and-reporting-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber metrics and incidents reported monthly to executive management?' is governed, executed, and reviewable within Training, Awareness and Reporting."
+          "compliance_relevance": "For training-awareness-and-reporting-q3, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Are cyber metrics and incidents reported monthly to executive management?' is governed, executed, and reviewable within Training, Awareness and Reporting. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for training-awareness-and-reporting-q3."
         },
         {
           "questionId": "training-awareness-and-reporting-q4",
@@ -733,23 +841,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Do high-risk teams receive role-based security training?",
-            "risk": "For training-awareness-and-reporting-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do high-risk teams receive role-based security training?' is governed, executed, and reviewable within Training, Awareness and Reporting.",
+            "risk": "For training-awareness-and-reporting-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do high-risk teams receive role-based security training?' is governed, executed, and reviewable within Training, Awareness and Reporting. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for training-awareness-and-reporting-q4.",
             "actions": [
-              "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q4 by formalizing control execution for 'Do high-risk teams receive role-based security training?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance."
+              "Define and approve a targeted remediation plan for training-awareness-and-reporting-q4 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Do high-risk teams receive role-based security training?'.",
+              "Perform management review and control assurance testing for training-awareness-and-reporting-q4, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to training-awareness-and-reporting-q4 and section 'Training, Awareness and Reporting'.",
               "Dated operating records showing execution of 'Do high-risk teams receive role-based security training?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q4."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q4.",
+              "Independent testing or QA validation confirming 'Do high-risk teams receive role-based security training?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q4 by formalizing control execution for 'Do high-risk teams receive role-based security training?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance.",
+          "recommendation": "In Training, Awareness and Reporting, close gap training-awareness-and-reporting-q4 by formalizing control execution for 'Do high-risk teams receive role-based security training?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ cyber-risk governance, board oversight, and banking-sector control assurance. Execute remediation in phases (design, deployment, and assurance review), and track milestones for training-awareness-and-reporting-q4 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to training-awareness-and-reporting-q4 and section 'Training, Awareness and Reporting'.",
             "Dated operating records showing execution of 'Do high-risk teams receive role-based security training?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q4."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for training-awareness-and-reporting-q4.",
+            "Independent testing or QA validation confirming 'Do high-risk teams receive role-based security training?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For training-awareness-and-reporting-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do high-risk teams receive role-based security training?' is governed, executed, and reviewable within Training, Awareness and Reporting."
+          "compliance_relevance": "For training-awareness-and-reporting-q4, this control strengthens regulatory defensibility for cyber controls, risk committees, and supervisory examinations by proving that 'Do high-risk teams receive role-based security training?' is governed, executed, and reviewable within Training, Awareness and Reporting. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for training-awareness-and-reporting-q4."
         }
       ]
     }

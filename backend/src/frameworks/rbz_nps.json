@@ -16,23 +16,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is there a documented policy for governance & oversight?",
-            "risk": "For governance-and-oversight-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for governance & oversight?' is governed, executed, and reviewable within Governance & Oversight.",
+            "risk": "For governance-and-oversight-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for governance & oversight?' is governed, executed, and reviewable within Governance & Oversight. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-oversight-q1.",
             "actions": [
-              "In Governance & Oversight, close gap governance-and-oversight-q1 by formalizing control execution for 'Is there a documented policy for governance & oversight?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
+              "Define and approve a targeted remediation plan for governance-and-oversight-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for governance & oversight?'.",
+              "Perform management review and control assurance testing for governance-and-oversight-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to governance-and-oversight-q1 and section 'Governance & Oversight'.",
               "Dated operating records showing execution of 'Is there a documented policy for governance & oversight?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-oversight-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-oversight-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for governance & oversight?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Governance & Oversight, close gap governance-and-oversight-q1 by formalizing control execution for 'Is there a documented policy for governance & oversight?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "recommendation": "In Governance & Oversight, close gap governance-and-oversight-q1 by formalizing control execution for 'Is there a documented policy for governance & oversight?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for governance-and-oversight-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to governance-and-oversight-q1 and section 'Governance & Oversight'.",
             "Dated operating records showing execution of 'Is there a documented policy for governance & oversight?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-oversight-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-oversight-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for governance & oversight?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For governance-and-oversight-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for governance & oversight?' is governed, executed, and reviewable within Governance & Oversight."
+          "compliance_relevance": "For governance-and-oversight-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for governance & oversight?' is governed, executed, and reviewable within Governance & Oversight. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-oversight-q1."
         }
       ]
     },
@@ -48,23 +52,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is there a documented policy for risk management framework?",
-            "risk": "For risk-management-framework-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for risk management framework?' is governed, executed, and reviewable within Risk Management Framework.",
+            "risk": "For risk-management-framework-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for risk management framework?' is governed, executed, and reviewable within Risk Management Framework. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-framework-q1.",
             "actions": [
-              "In Risk Management Framework, close gap risk-management-framework-q1 by formalizing control execution for 'Is there a documented policy for risk management framework?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
+              "Define and approve a targeted remediation plan for risk-management-framework-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for risk management framework?'.",
+              "Perform management review and control assurance testing for risk-management-framework-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to risk-management-framework-q1 and section 'Risk Management Framework'.",
               "Dated operating records showing execution of 'Is there a documented policy for risk management framework?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-framework-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-framework-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for risk management framework?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Risk Management Framework, close gap risk-management-framework-q1 by formalizing control execution for 'Is there a documented policy for risk management framework?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "recommendation": "In Risk Management Framework, close gap risk-management-framework-q1 by formalizing control execution for 'Is there a documented policy for risk management framework?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for risk-management-framework-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to risk-management-framework-q1 and section 'Risk Management Framework'.",
             "Dated operating records showing execution of 'Is there a documented policy for risk management framework?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-framework-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-framework-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for risk management framework?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For risk-management-framework-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for risk management framework?' is governed, executed, and reviewable within Risk Management Framework."
+          "compliance_relevance": "For risk-management-framework-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for risk management framework?' is governed, executed, and reviewable within Risk Management Framework. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-framework-q1."
         }
       ]
     },
@@ -80,23 +88,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is there a documented policy for operational risk?",
-            "risk": "For operational-risk-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for operational risk?' is governed, executed, and reviewable within Operational Risk.",
+            "risk": "For operational-risk-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for operational risk?' is governed, executed, and reviewable within Operational Risk. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for operational-risk-q1.",
             "actions": [
-              "In Operational Risk, close gap operational-risk-q1 by formalizing control execution for 'Is there a documented policy for operational risk?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
+              "Define and approve a targeted remediation plan for operational-risk-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for operational risk?'.",
+              "Perform management review and control assurance testing for operational-risk-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to operational-risk-q1 and section 'Operational Risk'.",
               "Dated operating records showing execution of 'Is there a documented policy for operational risk?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for operational-risk-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for operational-risk-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for operational risk?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Operational Risk, close gap operational-risk-q1 by formalizing control execution for 'Is there a documented policy for operational risk?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "recommendation": "In Operational Risk, close gap operational-risk-q1 by formalizing control execution for 'Is there a documented policy for operational risk?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for operational-risk-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to operational-risk-q1 and section 'Operational Risk'.",
             "Dated operating records showing execution of 'Is there a documented policy for operational risk?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for operational-risk-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for operational-risk-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for operational risk?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For operational-risk-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for operational risk?' is governed, executed, and reviewable within Operational Risk."
+          "compliance_relevance": "For operational-risk-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for operational risk?' is governed, executed, and reviewable within Operational Risk. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for operational-risk-q1."
         }
       ]
     },
@@ -112,23 +124,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is there a documented policy for it & systems security?",
-            "risk": "For it-and-systems-security-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for it & systems security?' is governed, executed, and reviewable within IT & Systems Security.",
+            "risk": "For it-and-systems-security-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for it & systems security?' is governed, executed, and reviewable within IT & Systems Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for it-and-systems-security-q1.",
             "actions": [
-              "In IT & Systems Security, close gap it-and-systems-security-q1 by formalizing control execution for 'Is there a documented policy for it & systems security?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
+              "Define and approve a targeted remediation plan for it-and-systems-security-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for it & systems security?'.",
+              "Perform management review and control assurance testing for it-and-systems-security-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to it-and-systems-security-q1 and section 'IT & Systems Security'.",
               "Dated operating records showing execution of 'Is there a documented policy for it & systems security?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for it-and-systems-security-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for it-and-systems-security-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for it & systems security?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In IT & Systems Security, close gap it-and-systems-security-q1 by formalizing control execution for 'Is there a documented policy for it & systems security?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "recommendation": "In IT & Systems Security, close gap it-and-systems-security-q1 by formalizing control execution for 'Is there a documented policy for it & systems security?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for it-and-systems-security-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to it-and-systems-security-q1 and section 'IT & Systems Security'.",
             "Dated operating records showing execution of 'Is there a documented policy for it & systems security?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for it-and-systems-security-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for it-and-systems-security-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for it & systems security?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For it-and-systems-security-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for it & systems security?' is governed, executed, and reviewable within IT & Systems Security."
+          "compliance_relevance": "For it-and-systems-security-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for it & systems security?' is governed, executed, and reviewable within IT & Systems Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for it-and-systems-security-q1."
         }
       ]
     },
@@ -144,23 +160,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is there a documented policy for business continuity?",
-            "risk": "For business-continuity-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity.",
+            "risk": "For business-continuity-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for business-continuity-q1.",
             "actions": [
-              "In Business Continuity, close gap business-continuity-q1 by formalizing control execution for 'Is there a documented policy for business continuity?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
+              "Define and approve a targeted remediation plan for business-continuity-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for business continuity?'.",
+              "Perform management review and control assurance testing for business-continuity-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to business-continuity-q1 and section 'Business Continuity'.",
               "Dated operating records showing execution of 'Is there a documented policy for business continuity?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for business continuity?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Business Continuity, close gap business-continuity-q1 by formalizing control execution for 'Is there a documented policy for business continuity?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "recommendation": "In Business Continuity, close gap business-continuity-q1 by formalizing control execution for 'Is there a documented policy for business continuity?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for business-continuity-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to business-continuity-q1 and section 'Business Continuity'.",
             "Dated operating records showing execution of 'Is there a documented policy for business continuity?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for business continuity?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For business-continuity-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity."
+          "compliance_relevance": "For business-continuity-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for business-continuity-q1."
         }
       ]
     },
@@ -176,23 +196,27 @@
           "expectedAnswer": "yes",
           "guidance": {
             "title": "Is there a documented policy for compliance & reporting?",
-            "risk": "For compliance-and-reporting-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for compliance & reporting?' is governed, executed, and reviewable within Compliance & Reporting.",
+            "risk": "For compliance-and-reporting-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for compliance & reporting?' is governed, executed, and reviewable within Compliance & Reporting. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for compliance-and-reporting-q1.",
             "actions": [
-              "In Compliance & Reporting, close gap compliance-and-reporting-q1 by formalizing control execution for 'Is there a documented policy for compliance & reporting?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions."
+              "Define and approve a targeted remediation plan for compliance-and-reporting-q1 with named control ownership.",
+              "Implement and operationalize process/technical changes needed to satisfy 'Is there a documented policy for compliance & reporting?'.",
+              "Perform management review and control assurance testing for compliance-and-reporting-q1, then formally close findings."
             ],
             "evidence": [
               "Approved procedure or standard mapped to compliance-and-reporting-q1 and section 'Compliance & Reporting'.",
               "Dated operating records showing execution of 'Is there a documented policy for compliance & reporting?' over the latest review cycle.",
-              "Management or committee evidence confirming oversight decisions and remediation tracking for compliance-and-reporting-q1."
+              "Management or committee evidence confirming oversight decisions and remediation tracking for compliance-and-reporting-q1.",
+              "Independent testing or QA validation confirming 'Is there a documented policy for compliance & reporting?' operates effectively and exceptions are remediated."
             ]
           },
-          "recommendation": "In Compliance & Reporting, close gap compliance-and-reporting-q1 by formalizing control execution for 'Is there a documented policy for compliance & reporting?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions.",
+          "recommendation": "In Compliance & Reporting, close gap compliance-and-reporting-q1 by formalizing control execution for 'Is there a documented policy for compliance & reporting?'. Document accountable ownership, implementation milestones, and operating cadence aligned to RBZ payment-system supervision, transaction integrity, and operational resilience for financial institutions. Execute remediation in phases (design, deployment, and assurance review), and track milestones for compliance-and-reporting-q1 in governance reporting until sustained effectiveness is demonstrated.",
           "evidence_required": [
             "Approved procedure or standard mapped to compliance-and-reporting-q1 and section 'Compliance & Reporting'.",
             "Dated operating records showing execution of 'Is there a documented policy for compliance & reporting?' over the latest review cycle.",
-            "Management or committee evidence confirming oversight decisions and remediation tracking for compliance-and-reporting-q1."
+            "Management or committee evidence confirming oversight decisions and remediation tracking for compliance-and-reporting-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for compliance & reporting?' operates effectively and exceptions are remediated."
           ],
-          "compliance_relevance": "For compliance-and-reporting-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for compliance & reporting?' is governed, executed, and reviewable within Compliance & Reporting."
+          "compliance_relevance": "For compliance-and-reporting-q1, this control supports regulatory inspections, prudential risk oversight, and enforceable corrective action tracking by proving that 'Is there a documented policy for compliance & reporting?' is governed, executed, and reviewable within Compliance & Reporting. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for compliance-and-reporting-q1."
         }
       ]
     }
