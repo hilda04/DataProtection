@@ -152,7 +152,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Build and Maintain a Secure Network and Systems findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Build and Maintain a Secure Network and Systems, close gap build-and-maintain-a-secure-network-and-systems-q4 by formalizing control execution for 'Are configuration standards applied to in-scope systems?'. Document accountable ownership, implementation milestones, and operating cadence aligned to PCI DSS v4.0.1 cardholder data environment control design and ongoing validation. Execute remediation in phases (design, deployment, and assurance review), and track milestones for build-and-maintain-a-secure-network-and-systems-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to build-and-maintain-a-secure-network-and-systems-q4 and section 'Build and Maintain a Secure Network and Systems'.",
+            "Dated operating records showing execution of 'Are configuration standards applied to in-scope systems?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for build-and-maintain-a-secure-network-and-systems-q4.",
+            "Independent testing or QA validation confirming 'Are configuration standards applied to in-scope systems?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For build-and-maintain-a-secure-network-and-systems-q4, this control reduces cardholder-data exposure and substantiates assessor-ready PCI control compliance by proving that 'Are configuration standards applied to in-scope systems?' is governed, executed, and reviewable within Build and Maintain a Secure Network and Systems. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for build-and-maintain-a-secure-network-and-systems-q4."
         }
       ]
     },
@@ -304,7 +312,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Protect Account Data findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Protect Account Data, close gap protect-account-data-q4 by formalizing control execution for 'Is transmission of account data over open networks encrypted?'. Document accountable ownership, implementation milestones, and operating cadence aligned to PCI DSS v4.0.1 cardholder data environment control design and ongoing validation. Execute remediation in phases (design, deployment, and assurance review), and track milestones for protect-account-data-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to protect-account-data-q4 and section 'Protect Account Data'.",
+            "Dated operating records showing execution of 'Is transmission of account data over open networks encrypted?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for protect-account-data-q4.",
+            "Independent testing or QA validation confirming 'Is transmission of account data over open networks encrypted?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For protect-account-data-q4, this control reduces cardholder-data exposure and substantiates assessor-ready PCI control compliance by proving that 'Is transmission of account data over open networks encrypted?' is governed, executed, and reviewable within Protect Account Data. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for protect-account-data-q4."
         }
       ]
     },
@@ -456,7 +472,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Vulnerability Management findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Vulnerability Management, close gap vulnerability-management-q4 by formalizing control execution for 'Are penetration tests conducted for the cardholder data environment?'. Document accountable ownership, implementation milestones, and operating cadence aligned to PCI DSS v4.0.1 cardholder data environment control design and ongoing validation. Execute remediation in phases (design, deployment, and assurance review), and track milestones for vulnerability-management-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to vulnerability-management-q4 and section 'Vulnerability Management'.",
+            "Dated operating records showing execution of 'Are penetration tests conducted for the cardholder data environment?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for vulnerability-management-q4.",
+            "Independent testing or QA validation confirming 'Are penetration tests conducted for the cardholder data environment?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For vulnerability-management-q4, this control reduces cardholder-data exposure and substantiates assessor-ready PCI control compliance by proving that 'Are penetration tests conducted for the cardholder data environment?' is governed, executed, and reviewable within Vulnerability Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for vulnerability-management-q4."
         }
       ]
     },
@@ -608,7 +632,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Access Control findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Access Control, close gap access-control-q4 by formalizing control execution for 'Are dormant or terminated user accounts disabled promptly?'. Document accountable ownership, implementation milestones, and operating cadence aligned to PCI DSS v4.0.1 cardholder data environment control design and ongoing validation. Execute remediation in phases (design, deployment, and assurance review), and track milestones for access-control-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to access-control-q4 and section 'Access Control'.",
+            "Dated operating records showing execution of 'Are dormant or terminated user accounts disabled promptly?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for access-control-q4.",
+            "Independent testing or QA validation confirming 'Are dormant or terminated user accounts disabled promptly?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For access-control-q4, this control reduces cardholder-data exposure and substantiates assessor-ready PCI control compliance by proving that 'Are dormant or terminated user accounts disabled promptly?' is governed, executed, and reviewable within Access Control. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for access-control-q4."
         }
       ]
     },
@@ -760,7 +792,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Monitoring and Testing findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Monitoring and Testing, close gap monitoring-and-testing-q4 by formalizing control execution for 'Are security control tests performed and evidence retained?'. Document accountable ownership, implementation milestones, and operating cadence aligned to PCI DSS v4.0.1 cardholder data environment control design and ongoing validation. Execute remediation in phases (design, deployment, and assurance review), and track milestones for monitoring-and-testing-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to monitoring-and-testing-q4 and section 'Monitoring and Testing'.",
+            "Dated operating records showing execution of 'Are security control tests performed and evidence retained?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for monitoring-and-testing-q4.",
+            "Independent testing or QA validation confirming 'Are security control tests performed and evidence retained?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For monitoring-and-testing-q4, this control reduces cardholder-data exposure and substantiates assessor-ready PCI control compliance by proving that 'Are security control tests performed and evidence retained?' is governed, executed, and reviewable within Monitoring and Testing. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for monitoring-and-testing-q4."
         }
       ]
     },
@@ -912,7 +952,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Security Policies and Programs findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Security Policies and Programs, close gap security-policies-and-programs-q4 by formalizing control execution for 'Are service providers managed under a formal PCI oversight program?'. Document accountable ownership, implementation milestones, and operating cadence aligned to PCI DSS v4.0.1 cardholder data environment control design and ongoing validation. Execute remediation in phases (design, deployment, and assurance review), and track milestones for security-policies-and-programs-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to security-policies-and-programs-q4 and section 'Security Policies and Programs'.",
+            "Dated operating records showing execution of 'Are service providers managed under a formal PCI oversight program?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for security-policies-and-programs-q4.",
+            "Independent testing or QA validation confirming 'Are service providers managed under a formal PCI oversight program?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For security-policies-and-programs-q4, this control reduces cardholder-data exposure and substantiates assessor-ready PCI control compliance by proving that 'Are service providers managed under a formal PCI oversight program?' is governed, executed, and reviewable within Security Policies and Programs. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for security-policies-and-programs-q4."
         }
       ]
     }

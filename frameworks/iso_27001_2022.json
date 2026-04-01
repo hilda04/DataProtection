@@ -152,7 +152,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Context, Scope and Leadership findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Context, Scope and Leadership, close gap context-scope-and-leadership-q4 by formalizing control execution for 'Are information security responsibilities assigned and communicated?'. Document accountable ownership, implementation milestones, and operating cadence aligned to ISO/IEC 27001:2022 ISMS implementation, risk treatment, and continual improvement evidence. Execute remediation in phases (design, deployment, and assurance review), and track milestones for context-scope-and-leadership-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to context-scope-and-leadership-q4 and section 'Context, Scope and Leadership'.",
+            "Dated operating records showing execution of 'Are information security responsibilities assigned and communicated?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for context-scope-and-leadership-q4.",
+            "Independent testing or QA validation confirming 'Are information security responsibilities assigned and communicated?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For context-scope-and-leadership-q4, this control supports ISMS certification readiness, surveillance audits, and objective control effectiveness testing by proving that 'Are information security responsibilities assigned and communicated?' is governed, executed, and reviewable within Context, Scope and Leadership. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for context-scope-and-leadership-q4."
         }
       ]
     },
@@ -304,7 +312,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Risk Assessment and Risk Treatment findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Risk Assessment and Risk Treatment, close gap risk-assessment-and-risk-treatment-q4 by formalizing control execution for 'Are residual risks accepted by authorized management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to ISO/IEC 27001:2022 ISMS implementation, risk treatment, and continual improvement evidence. Execute remediation in phases (design, deployment, and assurance review), and track milestones for risk-assessment-and-risk-treatment-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to risk-assessment-and-risk-treatment-q4 and section 'Risk Assessment and Risk Treatment'.",
+            "Dated operating records showing execution of 'Are residual risks accepted by authorized management?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-assessment-and-risk-treatment-q4.",
+            "Independent testing or QA validation confirming 'Are residual risks accepted by authorized management?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For risk-assessment-and-risk-treatment-q4, this control supports ISMS certification readiness, surveillance audits, and objective control effectiveness testing by proving that 'Are residual risks accepted by authorized management?' is governed, executed, and reviewable within Risk Assessment and Risk Treatment. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-assessment-and-risk-treatment-q4."
         }
       ]
     },
@@ -456,7 +472,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Support and Operation findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Support and Operation, close gap support-and-operation-q4 by formalizing control execution for 'Are outsourced operational services governed by security requirements?'. Document accountable ownership, implementation milestones, and operating cadence aligned to ISO/IEC 27001:2022 ISMS implementation, risk treatment, and continual improvement evidence. Execute remediation in phases (design, deployment, and assurance review), and track milestones for support-and-operation-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to support-and-operation-q4 and section 'Support and Operation'.",
+            "Dated operating records showing execution of 'Are outsourced operational services governed by security requirements?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for support-and-operation-q4.",
+            "Independent testing or QA validation confirming 'Are outsourced operational services governed by security requirements?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For support-and-operation-q4, this control supports ISMS certification readiness, surveillance audits, and objective control effectiveness testing by proving that 'Are outsourced operational services governed by security requirements?' is governed, executed, and reviewable within Support and Operation. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for support-and-operation-q4."
         }
       ]
     },
@@ -608,7 +632,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Performance Evaluation and Improvement findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Performance Evaluation and Improvement, close gap performance-evaluation-and-improvement-q4 by formalizing control execution for 'Does management review ISMS effectiveness at least annually?'. Document accountable ownership, implementation milestones, and operating cadence aligned to ISO/IEC 27001:2022 ISMS implementation, risk treatment, and continual improvement evidence. Execute remediation in phases (design, deployment, and assurance review), and track milestones for performance-evaluation-and-improvement-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to performance-evaluation-and-improvement-q4 and section 'Performance Evaluation and Improvement'.",
+            "Dated operating records showing execution of 'Does management review ISMS effectiveness at least annually?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for performance-evaluation-and-improvement-q4.",
+            "Independent testing or QA validation confirming 'Does management review ISMS effectiveness at least annually?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For performance-evaluation-and-improvement-q4, this control supports ISMS certification readiness, surveillance audits, and objective control effectiveness testing by proving that 'Does management review ISMS effectiveness at least annually?' is governed, executed, and reviewable within Performance Evaluation and Improvement. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for performance-evaluation-and-improvement-q4."
         }
       ]
     },
@@ -760,7 +792,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Annex A Organisational and People Controls findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Annex A Organisational and People Controls, close gap annex-a-organisational-and-people-controls-q4 by formalizing control execution for 'Are supplier relationships governed by security clauses and monitoring?'. Document accountable ownership, implementation milestones, and operating cadence aligned to ISO/IEC 27001:2022 ISMS implementation, risk treatment, and continual improvement evidence. Execute remediation in phases (design, deployment, and assurance review), and track milestones for annex-a-organisational-and-people-controls-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to annex-a-organisational-and-people-controls-q4 and section 'Annex A Organisational and People Controls'.",
+            "Dated operating records showing execution of 'Are supplier relationships governed by security clauses and monitoring?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for annex-a-organisational-and-people-controls-q4.",
+            "Independent testing or QA validation confirming 'Are supplier relationships governed by security clauses and monitoring?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For annex-a-organisational-and-people-controls-q4, this control supports ISMS certification readiness, surveillance audits, and objective control effectiveness testing by proving that 'Are supplier relationships governed by security clauses and monitoring?' is governed, executed, and reviewable within Annex A Organisational and People Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for annex-a-organisational-and-people-controls-q4."
         }
       ]
     },
@@ -912,7 +952,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Annex A Physical and Technological Controls findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Annex A Physical and Technological Controls, close gap annex-a-physical-and-technological-controls-q4 by formalizing control execution for 'Are cryptographic controls applied for sensitive information where required?'. Document accountable ownership, implementation milestones, and operating cadence aligned to ISO/IEC 27001:2022 ISMS implementation, risk treatment, and continual improvement evidence. Execute remediation in phases (design, deployment, and assurance review), and track milestones for annex-a-physical-and-technological-controls-q4 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to annex-a-physical-and-technological-controls-q4 and section 'Annex A Physical and Technological Controls'.",
+            "Dated operating records showing execution of 'Are cryptographic controls applied for sensitive information where required?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for annex-a-physical-and-technological-controls-q4.",
+            "Independent testing or QA validation confirming 'Are cryptographic controls applied for sensitive information where required?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For annex-a-physical-and-technological-controls-q4, this control supports ISMS certification readiness, surveillance audits, and objective control effectiveness testing by proving that 'Are cryptographic controls applied for sensitive information where required?' is governed, executed, and reviewable within Annex A Physical and Technological Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for annex-a-physical-and-technological-controls-q4."
         }
       ]
     }

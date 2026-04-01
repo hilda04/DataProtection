@@ -65,7 +65,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Governance & Compliance findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Governance & Compliance, close gap governance-and-compliance-q1 by formalizing control execution for 'Is there a documented policy for governance & compliance?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for governance-and-compliance-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to governance-and-compliance-q1 and section 'Governance & Compliance'.",
+            "Dated operating records showing execution of 'Is there a documented policy for governance & compliance?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for governance-and-compliance-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for governance & compliance?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For governance-and-compliance-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for governance & compliance?' is governed, executed, and reviewable within Governance & Compliance. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for governance-and-compliance-q1."
         }
       ]
     },
@@ -130,7 +138,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Data Protection & Confidentiality findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Data Protection & Confidentiality, close gap data-protection-and-confidentiality-q1 by formalizing control execution for 'Is there a documented policy for data protection & confidentiality?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for data-protection-and-confidentiality-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to data-protection-and-confidentiality-q1 and section 'Data Protection & Confidentiality'.",
+            "Dated operating records showing execution of 'Is there a documented policy for data protection & confidentiality?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for data-protection-and-confidentiality-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for data protection & confidentiality?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For data-protection-and-confidentiality-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for data protection & confidentiality?' is governed, executed, and reviewable within Data Protection & Confidentiality. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for data-protection-and-confidentiality-q1."
         }
       ]
     },
@@ -195,7 +211,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Risk Management findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Risk Management, close gap risk-management-q1 by formalizing control execution for 'Is there a documented policy for risk management?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for risk-management-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to risk-management-q1 and section 'Risk Management'.",
+            "Dated operating records showing execution of 'Is there a documented policy for risk management?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for risk-management-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for risk management?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For risk-management-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for risk management?' is governed, executed, and reviewable within Risk Management. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for risk-management-q1."
         }
       ]
     },
@@ -260,7 +284,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for IT Systems & Security findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In IT Systems & Security, close gap it-systems-and-security-q1 by formalizing control execution for 'Is there a documented policy for it systems & security?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for it-systems-and-security-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to it-systems-and-security-q1 and section 'IT Systems & Security'.",
+            "Dated operating records showing execution of 'Is there a documented policy for it systems & security?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for it-systems-and-security-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for it systems & security?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For it-systems-and-security-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for it systems & security?' is governed, executed, and reviewable within IT Systems & Security. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for it-systems-and-security-q1."
         }
       ]
     },
@@ -325,7 +357,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Financial Controls findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Financial Controls, close gap financial-controls-q1 by formalizing control execution for 'Is there a documented policy for financial controls?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for financial-controls-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to financial-controls-q1 and section 'Financial Controls'.",
+            "Dated operating records showing execution of 'Is there a documented policy for financial controls?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for financial-controls-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for financial controls?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For financial-controls-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for financial controls?' is governed, executed, and reviewable within Financial Controls. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for financial-controls-q1."
         }
       ]
     },
@@ -390,7 +430,15 @@
               "Risk committee or management minutes confirming escalation decisions and closure owners for Business Continuity findings.",
               "Follow-up validation records proving corrective actions were implemented and re-tested within agreed timelines."
             ]
-          }
+          },
+          "recommendation": "In Business Continuity, close gap business-continuity-q1 by formalizing control execution for 'Is there a documented policy for business continuity?'. Document accountable ownership, implementation milestones, and operating cadence aligned to insurance-sector governance, policyholder protection, and prudential reporting expectations from IPEC. Execute remediation in phases (design, deployment, and assurance review), and track milestones for business-continuity-q1 in governance reporting until sustained effectiveness is demonstrated.",
+          "evidence_required": [
+            "Approved procedure or standard mapped to business-continuity-q1 and section 'Business Continuity'.",
+            "Dated operating records showing execution of 'Is there a documented policy for business continuity?' over the latest review cycle.",
+            "Management or committee evidence confirming oversight decisions and remediation tracking for business-continuity-q1.",
+            "Independent testing or QA validation confirming 'Is there a documented policy for business continuity?' operates effectively and exceptions are remediated."
+          ],
+          "compliance_relevance": "For business-continuity-q1, this control improves auditability for insurance compliance and board-level financial governance accountability by proving that 'Is there a documented policy for business continuity?' is governed, executed, and reviewable within Business Continuity. This includes demonstrable remediation governance, verifiable operating evidence, and traceable management accountability for business-continuity-q1."
         }
       ]
     }
