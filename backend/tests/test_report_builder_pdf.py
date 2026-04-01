@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from services.report_builder import build_assessment_report_pdf
+from services.report_builder import _sanitize_visible_text, build_assessment_report_pdf
 
 
 def test_build_assessment_report_pdf_returns_valid_pdf_bytes() -> None:
@@ -75,3 +75,16 @@ def test_build_assessment_report_pdf_hides_compliance_relevance_when_missing() -
 
     decoded = pdf_bytes.decode('latin-1', errors='ignore')
     assert 'Compliance Relevance' not in decoded
+
+
+def test_sanitize_visible_text_repairs_common_broken_phrases() -> None:
+    assert (
+        _sanitize_visible_text('Control is mapped to and section business-continuity-q1')
+        == 'Control is mapped to this control and its respective section'
+    )
+    assert _sanitize_visible_text('Maintain tracking for .') == (
+        'Maintain tracking for this control.'
+    )
+    assert _sanitize_visible_text('For , this control requires evidence.') == (
+        'This control requires evidence.'
+    )
