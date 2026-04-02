@@ -52,6 +52,36 @@ export type AssessmentSummary = {
   previousAssessmentId?: string | null;
   sectionScores?: Array<{ sectionId: string; score: number }>;
   maturityLevel?: string;
+  previousScore?: number | null;
+  scoreImprovement?: number | null;
+  improvementPercent?: number | null;
+  remediationActions?: RemediationAction[];
+  remediationProgress?: RemediationProgress;
+};
+
+export type RemediationActionStatus = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED';
+
+export type RemediationAction = {
+  actionId: string;
+  sectionId: string;
+  questionId: string;
+  gapId: string;
+  gapTitle: string;
+  priority: 'HIGH' | 'MEDIUM';
+  actionText: string;
+  status: RemediationActionStatus;
+  owner?: string | null;
+  dueDate?: string | null;
+};
+
+export type RemediationProgress = {
+  actionsCompletedPercent: number;
+  gapsResolvedPercent: number;
+  totalActions: number;
+  completedActions: number;
+  totalGaps: number;
+  resolvedGaps: number;
+  overallPercent: number;
 };
 
 export type AssessmentDetail = AssessmentSummary & {
@@ -106,6 +136,8 @@ export type AssessmentDetail = AssessmentSummary & {
     }>;
   };
   responses: Record<string, Array<{ questionId: string; value: number | string }>>;
+  remediationActions?: RemediationAction[];
+  remediationProgress?: RemediationProgress;
 };
 
 export type BootstrapResponse = {
@@ -232,6 +264,21 @@ export async function restartAssessment(
 ): Promise<ApiResult<AssessmentSummary>> {
   return request<AssessmentSummary>(`/assessments/${assessmentId}/restart`, {
     method: 'POST',
+  });
+}
+
+export async function updateRemediationActions(
+  assessmentId: string,
+  actions: Array<{
+    actionId: string;
+    status: RemediationActionStatus;
+    owner?: string | null;
+    dueDate?: string | null;
+  }>,
+): Promise<ApiResult<AssessmentSummary>> {
+  return request<AssessmentSummary>(`/assessments/${assessmentId}/remediation`, {
+    method: 'POST',
+    body: JSON.stringify({ actions }),
   });
 }
 

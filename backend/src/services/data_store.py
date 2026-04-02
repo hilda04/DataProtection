@@ -247,6 +247,7 @@ class DataStore:
             'currentSectionId': current_section_id,
             'previousAssessmentId': None,
             'sectionScores': [],
+            'remediationActions': [],
             # Developer note:
             # Assessments persist a snapshot of framework sections/questions at creation time.
             # Existing assessments retain their original snapshot even if framework files are
@@ -261,7 +262,10 @@ class DataStore:
     ) -> list[Dict[str, Any]]:
         membership = self._require_membership(user['sub'])
         items = self._list_assessment_items(membership['organisationId'], framework_id)
-        return [self._serialize_assessment_summary(item) for item in items]
+        return [
+            self._serialize_assessment_with_history(item, membership['organisationId'])
+            for item in items
+        ]
 
     def get_assessment_detail(self, user: UserSummary, assessment_id: str) -> Dict[str, Any]:
         membership = self._require_membership(user['sub'])
@@ -280,7 +284,7 @@ class DataStore:
         )
         responses = self._get_assessment_responses(assessment_id)
         return {
-            **self._serialize_assessment_summary(assessment),
+            **self._serialize_assessment_with_history(assessment, organisation_id),
             'sections': sections,
             'currentSection': current_section,
             'framework': {
@@ -291,6 +295,10 @@ class DataStore:
                 'sections': sections,
             },
             'responses': responses,
+            'remediationActions': assessment.get('remediationActions', []),
+            'remediationProgress': self._calculate_remediation_progress(
+                assessment.get('remediationActions', [])
+            ),
         }
 
     def save_assessment_responses(
@@ -338,6 +346,11 @@ class DataStore:
 
         all_responses = self._get_assessment_responses(assessment_id)
         scoring = calculate_assessment_score(all_responses)
+        remediation_actions = self._build_remediation_actions(
+            sections=sections,
+            responses=all_responses,
+            existing_actions=assessment.get('remediationActions', []),
+        )
         logger.info(
             'Assessment scoring calculated.',
             extra={
@@ -349,7 +362,8 @@ class DataStore:
         )
         update_expression = (
             'SET #status = :status, currentSectionId = :section, '
-            'updatedAt = :updatedAt, score = :score, sectionScores = :sectionScores'
+            'updatedAt = :updatedAt, score = :score, sectionScores = :sectionScores, '
+            'remediationActions = :remediationActions'
         )
         expression_values: dict[str, Any] = {
             ':status': next_status,
@@ -357,6 +371,7 @@ class DataStore:
             ':updatedAt': now,
             ':score': scoring['score'],
             ':sectionScores': scoring['sectionScores'],
+            ':remediationActions': remediation_actions,
         }
         completed_at: Optional[str] = None
         report_s3_key: Optional[str] = None
@@ -438,10 +453,53 @@ class DataStore:
             'currentSectionId': current_section_id,
             'previousAssessmentId': assessment_id,
             'sectionScores': [],
+            'remediationActions': [],
             'assessmentSections': sections,
         }
         self.table.put_item(Item=self._to_dynamodb(assessment_item))
         return self._serialize_assessment_summary(assessment_item)
+
+    def update_remediation_actions(
+        self,
+        user: UserSummary,
+        assessment_id: str,
+        updates: list[Dict[str, Any]],
+    ) -> Dict[str, Any]:
+        membership = self._require_membership(user['sub'])
+        organisation_id = membership['organisationId']
+        assessment = self._get_assessment_item(organisation_id, assessment_id)
+        if not assessment:
+            raise ValidationError('Assessment not found.')
+
+        current_actions = assessment.get('remediationActions', [])
+        action_by_id = {
+            str(action.get('actionId') or '').strip(): dict(action)
+            for action in current_actions
+            if str(action.get('actionId') or '').strip()
+        }
+        for update in updates:
+            action_id = str(update.get('actionId') or '').strip()
+            if not action_id or action_id not in action_by_id:
+                continue
+            action_by_id[action_id]['status'] = self._normalise_status(update.get('status'))
+            owner = str(update.get('owner') or '').strip()
+            due_date = str(update.get('dueDate') or '').strip()
+            action_by_id[action_id]['owner'] = owner or None
+            action_by_id[action_id]['dueDate'] = due_date or None
+
+        updated_actions = list(action_by_id.values())
+        now = datetime.now(timezone.utc).isoformat()
+        self.table.update_item(
+            Key={'pk': f'ORG#{organisation_id}', 'sk': f'ASSESSMENT#{assessment_id}'},
+            UpdateExpression='SET remediationActions = :actions, updatedAt = :updatedAt',
+            ExpressionAttributeValues=self._to_dynamodb(
+                {':actions': updated_actions, ':updatedAt': now}
+            ),
+        )
+        refreshed = self._get_assessment_item(organisation_id, assessment_id)
+        if not refreshed:
+            raise DataStoreError('Assessment update failed.')
+        return self._serialize_assessment_summary(refreshed)
 
     def create_organisation(
         self, user: UserSummary, payload: Dict[str, Any]
@@ -924,6 +982,128 @@ class DataStore:
             'previousAssessmentId': item.get('previousAssessmentId'),
             'sectionScores': item.get('sectionScores', []),
             'maturityLevel': map_maturity_level(float(item.get('score', 0.0))),
+            'remediationActions': item.get('remediationActions', []),
+            'remediationProgress': self._calculate_remediation_progress(
+                item.get('remediationActions', [])
+            ),
+        }
+
+    def _serialize_assessment_with_history(
+        self, item: Dict[str, Any], organisation_id: str
+    ) -> Dict[str, Any]:
+        summary = self._serialize_assessment_summary(item)
+        previous_assessment_id = str(item.get('previousAssessmentId') or '').strip()
+        previous_score = None
+        if previous_assessment_id:
+            previous_item = self._get_assessment_item(organisation_id, previous_assessment_id)
+            if previous_item:
+                previous_score = float(previous_item.get('score', 0.0))
+        current_score = float(item.get('score', 0.0))
+        improvement = current_score - previous_score if previous_score is not None else None
+        improvement_percent = None
+        if previous_score is not None and previous_score > 0:
+            improvement_percent = round((improvement / previous_score) * 100, 1)
+        summary['previousScore'] = previous_score
+        summary['scoreImprovement'] = improvement
+        summary['improvementPercent'] = improvement_percent
+        return summary
+
+    def _build_remediation_actions(
+        self,
+        sections: list[Dict[str, Any]],
+        responses: Dict[str, list[Dict[str, Any]]],
+        existing_actions: list[Dict[str, Any]],
+    ) -> list[Dict[str, Any]]:
+        question_index = self._build_question_index(sections)
+        existing_by_id = {
+            str(item.get('actionId') or '').strip(): item
+            for item in existing_actions
+            if str(item.get('actionId') or '').strip()
+        }
+        actions: list[Dict[str, Any]] = []
+        for section_id, section_responses in responses.items():
+            for response in section_responses:
+                response_score = normalize_response_value(response.get('value'))
+                if response_score >= 1.0:
+                    continue
+                question_id = str(response.get('questionId') or '').strip()
+                if not question_id:
+                    continue
+                question = question_index.get(question_id, {})
+                guidance = self._normalise_question_guidance(question)
+                for index, action_text in enumerate(guidance['actions']):
+                    action_id = f'{section_id}:{question_id}:{index}'
+                    existing = existing_by_id.get(action_id, {})
+                    actions.append(
+                        {
+                            'actionId': action_id,
+                            'sectionId': section_id,
+                            'questionId': question_id,
+                            'gapId': f'{section_id}:{question_id}',
+                            'gapTitle': str(question.get('text') or 'Control gap identified'),
+                            'priority': 'HIGH' if response_score == 0 else 'MEDIUM',
+                            'actionText': action_text,
+                            'status': self._normalise_status(existing.get('status')),
+                            'owner': existing.get('owner'),
+                            'dueDate': existing.get('dueDate'),
+                        }
+                    )
+        actions.sort(
+            key=lambda item: (
+                REMEDIATION_PRIORITY_ORDER.get(str(item.get('priority')).upper(), 99),
+                str(item.get('gapTitle') or ''),
+                str(item.get('actionText') or ''),
+            )
+        )
+        return actions
+
+    def _calculate_remediation_progress(self, actions: Any) -> Dict[str, Any]:
+        if not isinstance(actions, list) or not actions:
+            return {
+                'actionsCompletedPercent': 0,
+                'gapsResolvedPercent': 0,
+                'totalActions': 0,
+                'completedActions': 0,
+                'totalGaps': 0,
+                'resolvedGaps': 0,
+                'overallPercent': 0,
+            }
+        total_actions = len(actions)
+        completed_actions = len(
+            [
+                action
+                for action in actions
+                if self._normalise_status(action.get('status')) == 'COMPLETED'
+            ]
+        )
+        gap_ids = {
+            str(action.get('gapId') or '').strip()
+            for action in actions
+            if str(action.get('gapId') or '').strip()
+        }
+        resolved_gap_ids = set()
+        for gap_id in gap_ids:
+            gap_actions = [
+                action
+                for action in actions
+                if str(action.get('gapId') or '').strip() == gap_id
+            ]
+            if gap_actions and all(
+                self._normalise_status(action.get('status')) == 'COMPLETED'
+                for action in gap_actions
+            ):
+                resolved_gap_ids.add(gap_id)
+        actions_percent = round((completed_actions / total_actions) * 100)
+        total_gaps = len(gap_ids)
+        gaps_percent = round((len(resolved_gap_ids) / total_gaps) * 100) if total_gaps else 0
+        return {
+            'actionsCompletedPercent': actions_percent,
+            'gapsResolvedPercent': gaps_percent,
+            'totalActions': total_actions,
+            'completedActions': completed_actions,
+            'totalGaps': total_gaps,
+            'resolvedGaps': len(resolved_gap_ids),
+            'overallPercent': round((actions_percent + gaps_percent) / 2),
         }
 
     def get_assessment_report_download_url(

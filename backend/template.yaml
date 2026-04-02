@@ -175,6 +175,12 @@ Resources:
             ApiId: !Ref BackendHttpApi
             Method: POST
             Path: /assessments/{assessmentId}/restart
+        AssessmentRemediationRoute:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BackendHttpApi
+            Method: POST
+            Path: /assessments/{assessmentId}/remediation
 
 Outputs:
   ApiUrl:
