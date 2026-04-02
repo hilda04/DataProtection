@@ -186,6 +186,24 @@ class FakeStore:
             'currentSectionId': 'governance-accountability',
         }
 
+    def update_remediation_actions(
+        self, _user: dict[str, str], assessment_id: str, updates: list[dict[str, Any]]
+    ) -> dict[str, Any]:
+        return {
+            'assessmentId': assessment_id,
+            'frameworkId': 'cdpa',
+            'organisationId': 'org_123',
+            'createdBy': 'user-123',
+            'createdAt': '2026-03-24T00:00:00+00:00',
+            'updatedAt': '2026-03-24T00:00:00+00:00',
+            'status': 'COMPLETED',
+            'score': 61.0,
+            'completedAt': '2026-03-24T00:00:00+00:00',
+            'reportS3Key': None,
+            'currentSectionId': 'governance-accountability',
+            'remediationActions': updates,
+        }
+
 
 @pytest.fixture
 def auth_event() -> dict[str, Any]:
@@ -457,3 +475,31 @@ def test_restart_assessment_creates_new_instance(
     assert response['statusCode'] == 201
     assert body['assessmentId'] == 'asm_123-restart'
     assert body['status'] == 'NOT_STARTED'
+
+
+def test_update_remediation_actions_updates_assessment(
+    monkeypatch: pytest.MonkeyPatch, auth_event: dict[str, Any]
+) -> None:
+    monkeypatch.setattr(api, 'DataStore', lambda: FakeStore(membership=True))
+    event = {
+        **auth_event,
+        'pathParameters': {'assessmentId': 'asm_123'},
+        'body': json.dumps(
+            {
+                'actions': [
+                    {
+                        'actionId': 'governance:gap-1:0',
+                        'status': 'COMPLETED',
+                        'owner': 'Compliance Lead',
+                        'dueDate': '2026-05-01',
+                    }
+                ]
+            }
+        ),
+    }
+    response = api.update_remediation_actions(event, None)
+    body = json.loads(response['body'])
+
+    assert response['statusCode'] == 200
+    assert body['assessmentId'] == 'asm_123'
+    assert body['remediationActions'][0]['status'] == 'COMPLETED'

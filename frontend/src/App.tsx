@@ -8,7 +8,9 @@ import {
   getBootstrap,
   restartAssessment,
   saveAssessmentResponses,
+  updateRemediationActions,
   type AssessmentDetail,
+  type RemediationAction,
   type AssessmentSummary,
   type BootstrapResponse,
   type CreateOrganisationInput,
@@ -74,6 +76,14 @@ function formatAssessmentDate(value: string | null | undefined): string {
     return value;
   }
   return date.toLocaleString();
+}
+
+function formatImprovement(value: number | null | undefined): string {
+  if (value === null || value === undefined) {
+    return '—';
+  }
+  const prefix = value > 0 ? '+' : '';
+  return `${prefix}${value.toFixed(1)}%`;
 }
 
 function resolveSelectedFrameworkId(
@@ -412,10 +422,47 @@ export default function App() {
     window.open(result.data.url, '_blank', 'noopener,noreferrer');
   }
 
+  async function handleMarkActionCompleted(action: RemediationAction): Promise<void> {
+    if (!activeAssessment) {
+      return;
+    }
+    setAssessmentError('');
+    const result = await updateRemediationActions(activeAssessment.assessmentId, [
+      {
+        actionId: action.actionId,
+        status: action.status === 'COMPLETED' ? 'IN_PROGRESS' : 'COMPLETED',
+        owner: action.owner ?? null,
+        dueDate: action.dueDate ?? null,
+      },
+    ]);
+    if (!result.ok) {
+      setAssessmentError(result.error ?? 'Unable to update remediation action.');
+      return;
+    }
+    const refreshed = await getAssessment(activeAssessment.assessmentId);
+    if (!refreshed.ok || !refreshed.data) {
+      setAssessmentError(refreshed.error ?? 'Updated action, but failed to refresh summary.');
+      return;
+    }
+    setActiveAssessment(refreshed.data);
+    setAssessmentsByFramework((current) => ({
+      ...current,
+      [refreshed.data.frameworkId]: refreshed.data,
+    }));
+  }
+
   const hasOrganisation = Boolean(bootstrap?.organisation);
   const selectedFramework = bootstrap?.frameworks.find(
     (framework) => framework.frameworkId === selectedFrameworkId,
   );
+  const remediationActions = activeAssessment?.remediationActions ?? [];
+  const remediationByGap = remediationActions.reduce<Record<string, RemediationAction[]>>((acc, action) => {
+    if (!acc[action.gapId]) {
+      acc[action.gapId] = [];
+    }
+    acc[action.gapId].push(action);
+    return acc;
+  }, {});
 
   return (
     <main className="app-shell">
@@ -757,6 +804,19 @@ export default function App() {
             Your assessment is complete. Use the section breakdown and recommendations in your report
             to prioritise next remediation actions.
           </p>
+          <p className="completion-summary">
+            Remediation progress: {activeAssessment.remediationProgress?.overallPercent ?? 0}% complete
+          </p>
+          <p className="meta-value">
+            Actions completed: {activeAssessment.remediationProgress?.actionsCompletedPercent ?? 0}% · Gaps resolved:{' '}
+            {activeAssessment.remediationProgress?.gapsResolvedPercent ?? 0}%
+          </p>
+          {activeAssessment.previousScore !== null && activeAssessment.previousScore !== undefined ? (
+            <p className="meta-value">
+              Previous score: {activeAssessment.previousScore}% · Improvement:{' '}
+              {formatImprovement(activeAssessment.improvementPercent)}
+            </p>
+          ) : null}
           {activeAssessment.sectionScores?.length ? (
             <div className="completion-breakdown">
               <p className="section-label">Section breakdown</p>
@@ -764,6 +824,32 @@ export default function App() {
                 {activeAssessment.sectionScores.map((item) => (
                   <li key={item.sectionId}>
                     {item.sectionId}: {item.score}%
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+          {Object.keys(remediationByGap).length ? (
+            <div className="completion-breakdown">
+              <p className="section-label">Gap remediation checklist</p>
+              <ul>
+                {Object.entries(remediationByGap).map(([gapId, actions]) => (
+                  <li key={gapId}>
+                    <strong>{actions[0]?.gapTitle ?? gapId}</strong>
+                    <ul>
+                      {actions.map((action) => (
+                        <li key={action.actionId}>
+                          <label>
+                            <input
+                              checked={action.status === 'COMPLETED'}
+                              onChange={() => void handleMarkActionCompleted(action)}
+                              type="checkbox"
+                            />{' '}
+                            {action.actionText}
+                          </label>
+                        </li>
+                      ))}
+                    </ul>
                   </li>
                 ))}
               </ul>
@@ -798,6 +884,8 @@ export default function App() {
                 <th>Date</th>
                 <th>Status</th>
                 <th>Score</th>
+                <th>Previous</th>
+                <th>Improvement</th>
                 <th>Maturity</th>
                 <th>Actions</th>
               </tr>
@@ -820,6 +908,8 @@ export default function App() {
                     </span>
                   </td>
                   <td>{item.score}%</td>
+                  <td>{item.previousScore ?? '—'}{item.previousScore !== null && item.previousScore !== undefined ? '%' : ''}</td>
+                  <td>{formatImprovement(item.improvementPercent)}</td>
                   <td>{item.maturityLevel ?? getMaturityLabel(item.score)}</td>
                   <td>
                     <div className="button-row history-actions">

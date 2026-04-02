@@ -13,6 +13,7 @@ from handlers.api import (
     onboard_organization,
     restart_assessment,
     save_assessment_responses,
+    update_remediation_actions,
 )
 from models.types import ApiResponse
 
@@ -72,6 +73,17 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         if len(parts) == 3 and parts[0] == 'assessments' and parts[2] == 'report':
             routed_event = {**event, 'pathParameters': {'assessmentId': parts[1]}}
             handler = get_assessment_report
+
+    if (
+        handler is None
+        and method == 'POST'
+        and path.startswith('/assessments/')
+        and path.endswith('/remediation')
+    ):
+        parts = path.strip('/').split('/')
+        if len(parts) == 3 and parts[0] == 'assessments' and parts[2] == 'remediation':
+            routed_event = {**event, 'pathParameters': {'assessmentId': parts[1]}}
+            handler = update_remediation_actions
 
     if handler is None:
         return ApiResponse(status_code=404, body={'message': 'Route not found.'}).to_dict()

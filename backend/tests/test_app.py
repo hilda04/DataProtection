@@ -125,3 +125,16 @@ def test_assessment_restart_dynamic_route() -> None:
     response = lambda_handler(make_event('POST', '/assessments/asm_123/restart'), None)
 
     assert response['statusCode'] != 404
+
+
+def test_assessment_remediation_dynamic_route() -> None:
+    response = lambda_handler(
+        make_event(
+            'POST',
+            '/assessments/asm_123/remediation',
+            body={'actions': []},
+        ),
+        None,
+    )
+
+    assert response['statusCode'] != 404

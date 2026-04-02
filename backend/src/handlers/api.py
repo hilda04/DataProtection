@@ -253,6 +253,33 @@ def restart_assessment(event: dict[str, Any], _context: Any) -> dict[str, Any]:
         return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
 
 
+def update_remediation_actions(event: dict[str, Any], _context: Any) -> dict[str, Any]:
+    try:
+        store = DataStore()
+        user = get_user_from_event(event)
+        assessment_id = str((event.get('pathParameters') or {}).get('assessmentId', '')).strip()
+        if not assessment_id:
+            return ApiResponse(
+                status_code=400, body={'message': 'assessmentId is required.'}
+            ).to_dict()
+
+        payload = _load_body(event)
+        updates = payload.get('actions')
+        if not isinstance(updates, list):
+            return ApiResponse(
+                status_code=400, body={'message': 'actions must be an array.'}
+            ).to_dict()
+
+        assessment = store.update_remediation_actions(user, assessment_id, updates)
+        return ApiResponse(status_code=200, body=assessment).to_dict()
+    except NotAuthenticatedError as error:
+        return ApiResponse(status_code=401, body={'message': str(error)}).to_dict()
+    except ValidationError as error:
+        return ApiResponse(status_code=400, body={'message': str(error)}).to_dict()
+    except DataStoreError as error:
+        return ApiResponse(status_code=500, body={'message': str(error)}).to_dict()
+
+
 def _load_body(event: dict[str, Any]) -> dict[str, Any]:
     body = event.get('body') or '{}'
     if isinstance(body, str):
